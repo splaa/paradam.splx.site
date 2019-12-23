@@ -19,10 +19,3 @@ pipelines:
               # PASSWORD: '<string>' # Optional.
               # EXTRA_ARGS: '<string>' # Optional.
               # DEBUG: '<boolean>' # Optional.
-          - pipe: atlassian/ssh-run:0.2.3
-            variables:
-              SSH_USER: 'andrii'
-              SERVER: '46.219.56.21'
-              COMMAND: 'cd /var/www/paradam.acer/ && composer install'
-              # MODE: 'command'
-              # COMMAND: './remote-script.sh'
