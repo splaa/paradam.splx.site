@@ -19,3 +19,6 @@ pipelines:
               # PASSWORD: '<string>' # Optional.
               # EXTRA_ARGS: '<string>' # Optional.
               # DEBUG: '<boolean>' # Optional.
+
+          - composer --version
+          - vendor/bin/codecept
