@@ -1,4 +1,11 @@
-dev-acer: /var/www/paradam.me.dev
+#Paradam.me
+path-dev-acer: /var/www/paradam.acer
+
+dev-domain: http://paradam.acer/
+
+        // в /etc/hosts прописать 
+        46.219.56.21    paradam.acer
+        
 
 
-test-acer: /var/www/paradam-test.me.dev
+test-acer: /var/www/para
