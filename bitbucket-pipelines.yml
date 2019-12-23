@@ -20,5 +20,8 @@ pipelines:
               # EXTRA_ARGS: '<string>' # Optional.
               # DEBUG: '<boolean>' # Optional.
 
-          - composer --version
-          - vendor/bin/codecept
+          - pipe: atlassian/ssh-run:0.2.3
+            variables:
+              SSH_USER: 'ec2-user'
+              SERVER: '127.0.0.1'
+              COMMAND: 'Echo $HOSTNAME'
