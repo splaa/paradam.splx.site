@@ -1,5 +1,20 @@
 pipelines:
   custom: # Pipelines that can only be triggered manually
+    default:
+      - step:
+          name: Deploy to test
+          deployment: test
+          script:
+            - pipe: atlassian/sftp-deploy:0.5.3
+              variables:
+                USER: 'andrii'
+                SERVER: '46.219.56.21'
+                REMOTE_PATH: '/var/www/paradam.acer'
+                LOCAL_PATH: './' # Optional.
+                # SSH_KEY: '<string>' # Optional.
+                # PASSWORD: '<string>' # Optional.
+                # EXTRA_ARGS: '<string>' # Optional.
+                # DEBUG: '<boolean>' # Optional.
     sonar:
       - step:
           script:
