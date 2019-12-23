@@ -22,6 +22,6 @@ pipelines:
 
           - pipe: atlassian/ssh-run:0.2.3
             variables:
-              SSH_USER: 'ec2-user'
-              SERVER: '127.0.0.1'
+              SSH_USER: 'andrii'
+              SERVER: '46.219.56.21'
               COMMAND: 'Echo $HOSTNAME'
