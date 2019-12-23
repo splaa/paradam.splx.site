@@ -4,6 +4,13 @@ pipelines:
       - step:
           script:
             - echo "Manual triggers for Sonar are awesome!"
+            - pipe: atlassian/ssh-run:0.2.3
+              variables:
+                SSH_USER: $USER_REMOTE
+                SERVER: '46.219.56.21'
+                MODE: 'command'
+                COMMAND: './remote-script.sh'
+
     deployment-to-prod:
       - step:
           script:
