@@ -19,9 +19,3 @@ pipelines:
               # PASSWORD: '<string>' # Optional.
               # EXTRA_ARGS: '<string>' # Optional.
               # DEBUG: '<boolean>' # Optional.
-#    - step:
-#        caches:
-#          - composer
-#        script:
-#          - composer install
-#          - vendor/bin/phpunit
