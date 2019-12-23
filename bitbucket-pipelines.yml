@@ -1,6 +1,6 @@
 pipelines:
   custom: # Pipelines that can only be triggered manually
-    default:
+    deployment-to-test:
       - step:
           name: Deploy to test
           deployment: test
@@ -9,7 +9,7 @@ pipelines:
               variables:
                 USER: 'andrii'
                 SERVER: '46.219.56.21'
-                REMOTE_PATH: '/var/www/paradam.acer'
+                REMOTE_PATH: '/home/andrii/www/paradam-test.acer'
                 LOCAL_PATH: './' # Optional.
                 # SSH_KEY: '<string>' # Optional.
                 # PASSWORD: '<string>' # Optional.
@@ -18,13 +18,13 @@ pipelines:
     sonar:
       - step:
           script:
-            - echo "Manual triggers for Sonar are awesome!"
+            - echo "Start Test"
             - pipe: atlassian/ssh-run:0.2.3
               variables:
                 SSH_USER: $USER_REMOTE
                 SERVER: '46.219.56.21'
                 MODE: 'command'
-                COMMAND: 'cd /var/www/paradam.acer && ./remote-script.sh'
+                COMMAND: 'cd /home/andrii/www/paradam-test.acer && ./remote-script.sh'
 
     deployment-to-prod:
       - step:

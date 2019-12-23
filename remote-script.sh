@@ -1,5 +1,4 @@
 #!/bin/bash
-echo "The current directory is:"
+composer install
 pwd
-echo "The user logged in is:"
-whoami
+vendor/bin/codecept run
