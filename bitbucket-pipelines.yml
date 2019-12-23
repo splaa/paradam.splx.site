@@ -24,7 +24,7 @@ pipelines:
                 SSH_USER: $USER_REMOTE
                 SERVER: '46.219.56.21'
                 MODE: 'command'
-                COMMAND: '/var/www/paradam.acer/remote-script.sh'
+                COMMAND: 'cd /var/www/paradam.acer && ./remote-script.sh'
 
     deployment-to-prod:
       - step:
