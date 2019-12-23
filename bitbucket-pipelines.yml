@@ -1,21 +1,15 @@
-# This is a sample build configuration for PHP.
-# Check our guides at https://confluence.atlassian.com/x/e8YWN for more examples.
-# Only use spaces to indent your .yml configuration.
-# -----
-# You can specify a custom docker image from Docker Hub as your build environment.
 pipelines:
-  default:
-    - step:
-        name: Deploy to test
-        deployment: test
-        script:
-          - pipe: atlassian/sftp-deploy:0.5.3
-            variables:
-              USER: 'andrii'
-              SERVER: '46.219.56.21'
-              REMOTE_PATH: '/var/www/paradam.acer'
-              LOCAL_PATH: './' # Optional.
-              # SSH_KEY: '<string>' # Optional.
-              # PASSWORD: '<string>' # Optional.
-              # EXTRA_ARGS: '<string>' # Optional.
-              # DEBUG: '<boolean>' # Optional.
+  custom: # Pipelines that can only be triggered manually
+    sonar:
+      - step:
+          script:
+            - echo "Manual triggers for Sonar are awesome!"
+    deployment-to-prod:
+      - step:
+          script:
+            - echo "Manual triggers for deployments are awesome!"
+  branches:  # Pipelines that run automatically on a commit to a branch can also be triggered manually
+    staging:
+      - step:
+          script:
+            - echo "Automated pipelines are cool too."
