@@ -18,5 +18,5 @@ pipelines:
               # SSH_KEY: '<string>' # Optional.
               # PASSWORD: '<string>' # Optional.
               # EXTRA_ARGS: '<string>' # Optional.
-              # DEBUG: '<boolean>' # Optional.
+              DEBUG: '<boolean>' # Optional.
  
