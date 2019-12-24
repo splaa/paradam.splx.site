@@ -1,11 +1,16 @@
 {
   "require": {
-    "yiisoft/yii2": "2.1.x-dev"
+    "yiisoft/yii2": "*"
   },
   "require-dev": {
     "codeception/codeception": "^4.0",
     "codeception/module-asserts": "^1.1",
     "codeception/module-phpbrowser": "^1.0",
     "fzaninotto/faker": "^1.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": ""
+    }
   }
 }

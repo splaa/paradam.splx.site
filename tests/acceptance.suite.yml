@@ -8,6 +8,7 @@ actor: AcceptanceTester
 modules:
   enabled:
     - PhpBrowser:
-        url: http://paradam.acer/
+        #        url: http://paradam.acer/
+        url: http://paradam.loc/
     - \Helper\Acceptance
   step_decorators: ~
