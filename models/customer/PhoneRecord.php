@@ -6,6 +6,12 @@
 	
 	use yii\db\ActiveRecord;
 	
+	/**
+	 * @property  number
+	 * @property int $id [int(11)]
+	 * @property int $customer_id [int(11)]
+	 * @property string $number [varchar(255)]
+	 */
 	class PhoneRecord extends ActiveRecord
 	{
 		public static function tableName()
@@ -17,9 +23,8 @@
 		{
 			return [
 				['customer_id', 'number'],
-				//пока номер телефона  вводим как строка без формата
 				['number', 'string'],
-				[['customer_id', 'number'], 'required']
+				[['customer_id', 'number'], 'required'],
 			];
 		}
 		

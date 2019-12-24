@@ -13,6 +13,7 @@
 	$I->amInAddCustomerUi();
 	
 	$first_customer = $I->imagineCustomer();
+	
 	$I->fillCustomerDataForm($first_customer);
 	$I->submitCustomerDataForm();
 	

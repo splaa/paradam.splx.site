@@ -6,6 +6,12 @@
 	
 	use yii\db\ActiveRecord;
 	
+	/**
+	 * @property string name
+	 * @property int $id [int(11)]
+	 * @property string $birth_date [date]
+	 * @property string $notes
+	 */
 	class CustomerRecord extends ActiveRecord
 	{
 		public static function tableName()
@@ -20,7 +26,6 @@
 				['name', 'required'],
 				['name', 'string', 'max' => 256],
 				['birth_date', 'date', 'format' => 'Y-m-d'],
-				//присваеваем что угодно в поле notes
 				['notes', 'safe']
 			];
 		}

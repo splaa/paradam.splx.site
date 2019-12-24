@@ -24,7 +24,7 @@
 		public $notes = '';
 		
 		/**
-		 * @var array PhoneRecord
+		 * @var array string
 		 */
 		public $phones = [];
 		

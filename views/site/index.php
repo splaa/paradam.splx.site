@@ -2,4 +2,11 @@
 	
 	// Default (Template) Project/${FILE_NAME}
 	
-	/* @var $this \yii\web\View */
+	/**
+	 * @var $this View
+	 * @var $message
+	 */
+	
+	use yii\web\View; ?>
+
+<h1><?= $message ?></h1>
