@@ -15,7 +15,7 @@ pipelines:
                 # PASSWORD: '<string>' # Optional.
                 # EXTRA_ARGS: '<string>' # Optional.
                 # DEBUG: '<boolean>' # Optional.
-    sonar:
+    run-tests:
       - step:
           script:
             - echo "Start Test"
