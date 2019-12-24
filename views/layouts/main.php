@@ -36,9 +36,9 @@
 			'options' => ['class' => 'navbar-nav navbar-right'],
 			'items' => [
 				['label' => 'Home', 'url' => ['/']],
-				['label' => 'Join', 'url' => ['/site/join']],
+				['label' => 'Join', 'url' => ['/user/join']],
 				Yii::$app->user->isGuest ? (
-				['label' => 'Login', 'url' => ['/site/login']]
+				['label' => 'Login', 'url' => ['/user/login']]
 				) : (
 					'<li>'
 					. Html::beginForm(['/site/logout'], 'post')

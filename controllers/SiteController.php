@@ -14,13 +14,5 @@
 			return $this->render('index', compact('message'));
 		}
 		
-		public function actionJoin()
-		{
-			return $this->render('join');
-		}
 		
-		public function actionLogin()
-		{
-			return $this->render('login');
-		}
 	}
