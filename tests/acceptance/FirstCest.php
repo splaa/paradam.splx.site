@@ -9,6 +9,7 @@
 		// tests
 		public function tryToTest(AcceptanceTester $I)
 		{
+			$I->wantTo('Переходим в корень сайта:');
 			$I->amOnPage('/');
 			$I->see('Paradam', 'h1');
 		}
