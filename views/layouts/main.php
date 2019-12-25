@@ -37,7 +37,8 @@
 			'items' => [
 				['label' => 'Home', 'url' => ['/']],
 				['label' => 'Join', 'url' => ['/user/join']],
-				Yii::$app->user->isGuest ? (
+				['label' => 'Login', 'url' => ['/user/login']],
+				/*Yii::$app->user->isGuest ? (
 				['label' => 'Login', 'url' => ['/user/login']]
 				) : (
 					'<li>'
@@ -48,7 +49,7 @@
 					)
 					. Html::endForm()
 					. '</li>'
-				)
+				)*/
 			],
 		]);
 		NavBar::end();

@@ -1,7 +1,7 @@
 <?php
 // paradam.me.loc/UserRecord.php
 	
-	namespace app\models;
+	namespace app\models\user;
 	
 	
 	use Faker\Factory;

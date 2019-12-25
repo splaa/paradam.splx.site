@@ -8,9 +8,8 @@
         <h1>Log in</h1>
     </div>
     <div class="panel-body">
-        email<br>
-        password <br>
-        [Enter]
+	    <?php $form = \yii\widgets\ActiveForm::begin(['id']);
+	    ?>
     </div>
 </div>
 
