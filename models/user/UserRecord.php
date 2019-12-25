@@ -40,4 +40,15 @@
 			$this->status = 2;
 		}
 		
+		/**
+		 * @param $email
+		 * @return int|string
+		 */
+		public static function existsEmail($email)
+		{
+			
+			$count = static::find()->where(['email' => $email])->count();
+			return $count > 0;
+		}
+		
 	}

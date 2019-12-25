@@ -5,6 +5,7 @@
 	
 	
 	use app\models\user\UserJoinForm;
+	use app\models\user\UserLoginForm;
 	use app\models\user\UserRecord;
 	use Yii;
 	use yii\web\Controller;
@@ -14,10 +15,14 @@
 		
 		public function actionJoin()
 		{
+			if (Yii::$app->request->isPost) {
+				return $this->actionJoinPost();
+			}
+			$userJoinForm = new UserJoinForm();
 			$userRecord = new UserRecord();
 			$userRecord->setTestUser();
-			$userRecord->save();
-			$userJoinForm = new UserJoinForm();
+			$userJoinForm->setUserRecord($userRecord);
+			
 			return $this->render('join', compact('userJoinForm'));
 		}
 		
@@ -26,7 +31,7 @@
 
 //			$uid = UserIdentity::findIdentity(1);
 //			Yii::$app->user->login($uid);
-//			$userLoginForm = new UserLoginForm();
+			$userLoginForm = new UserLoginForm();
 //			$userLoginForm->email = 'test@example.com';
 			return $this->render('login', compact('userLoginForm'));
 		}
@@ -35,6 +40,18 @@
 		{
 			Yii::$app->user->logout();
 			return $this->redirect('/');
+		}
+		
+		public function actionJoinPost()
+		{
+			$userJoinForm = new UserJoinForm();
+			if ($userJoinForm->load(Yii::$app->request->post())) {
+				if ($userJoinForm->validate()) {
+					$userJoinForm->name .= 'ok';
+				}
+			}
+			
+			return $this->render('join', compact('userJoinForm'));
 		}
 		
 	}

@@ -6,6 +6,10 @@
 	
 	use yii\base\Model;
 	
+	/**
+	 *
+	 * @property UserRecord $userRecord
+	 */
 	class UserJoinForm extends Model
 	{
 		public $name;
@@ -17,12 +21,32 @@
 		{
 			return [
 				[['name', 'email', 'password', 'password2'], 'required'],
-				['name', 'string', 'min' => 3, 'max' => 8],
+				['name', 'string', 'min' => 3, 'max' => 18],
 				['email', 'email'],
 				['password', 'string', 'min' => 4],
-				['password2', 'compare', 'compareAttribute' => 'password']
+				['password2', 'compare', 'compareAttribute' => 'password'],
+				['email', 'errorIfEmailUsed']
 			
 			];
 		}
+		
+		public function errorIfEmailUsed()
+		{
+			if (UserRecord::existsEmail($this->email)) {
+				return;
+			}
+			$this->addError('email', "This e-mail already exists");
+		}
+		
+		public function setUserRecord(UserRecord $userRecord)
+		{
+			$this->name = $userRecord->name;
+			$this->email = $userRecord->email;
+			$this->password2 = $this->password = 'qwas';
+			
+			
+		}
+		
+	
 		
 	}
