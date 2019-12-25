@@ -3,19 +3,20 @@
 	namespace Step\Acceptance;
 	
 	use AcceptanceTester;
+	use Faker\Factory;
 	
 	class TestUserJoin extends AcceptanceTester
 	{
 		
 		public function imagineUser()
 		{
+			$faker = Factory::create();
 			$user = [
-				'name' => 'John',
-				'email' => 'splaa@mail.com',
-				'password' => 'qwas',
+				'name' => $faker->name,
+				'email' => $faker->email,
+				'password' => $faker->password(3, 6),
 			
 			];
-			print_r($user);
 			return $user;
 		}
 		
