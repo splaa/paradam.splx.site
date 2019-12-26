@@ -42,11 +42,10 @@
 		
 		/**
 		 * @param $email
-		 * @return int|string
+		 * @return bool
 		 */
 		public static function existsEmail($email)
 		{
-			
 			$count = static::find()->where(['email' => $email])->count();
 			return $count > 0;
 		}

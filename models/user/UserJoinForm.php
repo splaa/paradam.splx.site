@@ -25,18 +25,27 @@
 				['email', 'email'],
 				['password', 'string', 'min' => 4],
 				['password2', 'compare', 'compareAttribute' => 'password'],
+				['name', 'errorIfName'],
 				['email', 'errorIfEmailUsed']
 			
 			];
 		}
 		
+		public function errorIfName()
+		{
+			//Добавляем ошибку если при вводе в Форму Имя Admin
+			if ($this->name == 'Admin')
+				$this->addError('name', 'No name pleas');
+		}
+		
 		public function errorIfEmailUsed()
 		{
-			$existsEmail = UserRecord::existsEmail($this->email);
-			if (!$existsEmail) {
+			if ($this->hasErrors()) return;
+			
+			if (UserRecord::existsEmail($this->email)) {
+				$this->addError('email', "This e-mail already exists");
 				return;
 			}
-			$this->addError('email', "This e-mail already exists");
 		}
 		
 		public function setUserRecord(UserRecord $userRecord)

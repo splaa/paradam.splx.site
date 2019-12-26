@@ -74,7 +74,6 @@
 		private function findRecordsByQuery()
 		{
 			$number = Yii::$app->request->get('phone_number');
-			//var_dump($number);die();
 			$records = $this->getRecordsByPhoneNumber($number);
 			$dataProvider = $this->wrapIntoDataProvider($records);
 			return $dataProvider;
