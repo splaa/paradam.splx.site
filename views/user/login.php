@@ -14,13 +14,13 @@
 
 <div class="panel panel-success">
     <div class="panel-heading">
-        <h1>Log in</h1>
+        <h3>Log in</h3>
     </div>
     <div class="panel-body">
 	    <?php $form = ActiveForm::begin(['id' => 'user-login-form']); ?>
 	    <?= $form->field($userLoginForm, 'email') ?>
 	    <?= $form->field($userLoginForm, 'password')->passwordInput() ?>
-	    <?= Html::submitButton('Enter') ?>
+	    <?= Html::submitButton('Enter', ['class' => 'btn btn-primary']) ?>
 	    <?php ActiveForm::end() ?>
     </div>
 </div>

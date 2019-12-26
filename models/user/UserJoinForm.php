@@ -21,7 +21,7 @@
 		{
 			return [
 				[['name', 'email', 'password', 'password2'], 'required'],
-				['name', 'string', 'min' => 3, 'max' => 18],
+				['name', 'string', 'min' => 3, 'max' => 30],
 				['email', 'email'],
 				['password', 'string', 'min' => 4],
 				['password2', 'compare', 'compareAttribute' => 'password'],

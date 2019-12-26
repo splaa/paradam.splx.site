@@ -43,11 +43,12 @@
 		
 		public function actionLogin()
 		{
+			if (Yii::$app->request->isPost) {
+				return $this->actionLoginPost();
+			}
 
-//			$uid = UserIdentity::findIdentity(1);
-//			Yii::$app->user->login($uid);
 			$userLoginForm = new UserLoginForm();
-//			$userLoginForm->email = 'test@example.com';
+			
 			return $this->render('login', compact('userLoginForm'));
 		}
 		
@@ -55,6 +56,18 @@
 		{
 			Yii::$app->user->logout();
 			return $this->redirect('/');
+		}
+		
+		public function actionLoginPost()
+		{
+			$userLoginForm = new UserLoginForm();
+			if ($userLoginForm->load(Yii::$app->request->post())) {
+				if ($userLoginForm->validate()) {
+					$userLoginForm->login();
+					return $this->redirect('/');
+				}
+			}
+			return $this->render('login', compact('userLoginForm'));
 		}
 		
 	}

@@ -13,7 +13,7 @@
 
 <div class="panel panel-info">
     <div class="panel-heading">
-        <h1>Join us</h1>
+        <h3>Join us</h3>
     </div>
     <div class="panel-body">
 	
