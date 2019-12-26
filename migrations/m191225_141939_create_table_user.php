@@ -36,8 +36,6 @@ class m191225_141939_create_table_user extends Migration
      */
     public function safeDown()
     {
-
-	    // drops index for column `author_id`
 	    $this->dropIndex(
 		    'idx-user-id',
 		    'user'
