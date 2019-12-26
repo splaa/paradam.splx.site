@@ -31,7 +31,11 @@
 			$userJoinForm = new UserJoinForm();
 			if ($userJoinForm->load(Yii::$app->request->post())) {
 				if ($userJoinForm->validate()) {
-					$userJoinForm->name .= 'ok';
+					$user = new UserRecord();
+					$user->setUserJoinForm($userJoinForm);
+					$user->save();
+					//  TODO: можно перенаправить на страницу Благодарим за регистрацию
+					return $this->redirect('/user/login/');
 				}
 			}
 			return $this->render('join', compact('userJoinForm'));

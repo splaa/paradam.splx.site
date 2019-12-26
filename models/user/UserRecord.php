@@ -12,6 +12,7 @@
 	 * @property int $id [int(11)]
 	 * @property string $email [varchar(255)]
 	 * @property string $passhash [varchar(255)]
+	 * @property UserJoinForm $userJoinForm
 	 * @property int $status [int(11)]
 	 */
 	class UserRecord extends ActiveRecord
@@ -48,6 +49,15 @@
 		{
 			$count = static::find()->where(['email' => $email])->count();
 			return $count > 0;
+		}
+		
+		public function setUserJoinForm(UserJoinForm $userJoinForm)
+		{
+			$this->name = $userJoinForm->name;
+			$this->email = $userJoinForm->email;
+			$this->passhash = $userJoinForm->password;
+			//todo: Определить в params define ACCAUNT_STATUS_ статусы (подтверждённый неподтвержденный
+			$this->status = 1;
 		}
 		
 	}
