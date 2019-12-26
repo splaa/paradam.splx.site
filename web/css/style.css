@@ -1,27 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Bad+Script&display=swap&subset=cyrillic');
 
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    background: #000;
-    font-family: 'Bad Script', cursive;
+    /*!*margin: 0;*!*/
+    /*!*padding: 0;*!*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*height: 100vh;*/
+    /*background: #000;*/
+    /*font-family: 'Bad Script', cursive;*/
 
 }
 
 h1 {
-    margin: 0;
-    padding: 0;
+
     color: #111;
     font-size: 16em;
 }
 
 h1 span {
     display: table-cell;
-    margin: 0;
-    padding: 0;
+
     animation: animate 2s linear infinite;
 }
 
