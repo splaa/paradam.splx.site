@@ -44,6 +44,6 @@
 		public function dontSeeCustomerInList(array $customer_data)
 		{
 			$I = $this;
-			$I->dontSee($customer_data['CustomerRecorrd[name]'], '#search_results');
+			$I->dontSee($customer_data['CustomerRecord[name]'], '#search_results');
 		}
 	}

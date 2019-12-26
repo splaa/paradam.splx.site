@@ -14,7 +14,7 @@
 			$user = [
 				'name' => $faker->name,
 				'email' => $faker->email,
-				'password' => $faker->password(3, 6),
+				'password' => $faker->password(4, 7),
 			
 			];
 			return $user;
