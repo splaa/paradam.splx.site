@@ -11,9 +11,7 @@
 	{
 		public $email;
 		public $password;
-		/**
-		 * @var UserRecord $userRecord
-		 */
+		
 		private $userRecord;
 		
 		public function rules()
@@ -38,7 +36,7 @@
 		public function errorIfPasswordWrong()
 		{
 			if ($this->hasErrors()) return;
-			if (!$this->userRecord->validatePassword($this->password)) {
+			if ($this->userRecord->passhash !== $this->password) {
 				$this->addError('password', 'Wrong password');
 			}
 		}
