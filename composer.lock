@@ -3648,7 +3648,7 @@
           "homepage": "https://symfony.com/contributors"
         }
       ],
-      "description": "Generic abstractions related to writing services",
+      "description": "Generic abstractions related to writing service",
       "homepage": "https://symfony.com",
       "keywords": [
         "abstractions",
