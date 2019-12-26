@@ -26,6 +26,17 @@
 			return $this->render('join', compact('userJoinForm'));
 		}
 		
+		public function actionJoinPost()
+		{
+			$userJoinForm = new UserJoinForm();
+			if ($userJoinForm->load(Yii::$app->request->post())) {
+				if ($userJoinForm->validate()) {
+					$userJoinForm->name .= 'ok';
+				}
+			}
+			return $this->render('join', compact('userJoinForm'));
+		}
+		
 		public function actionLogin()
 		{
 
@@ -40,18 +51,6 @@
 		{
 			Yii::$app->user->logout();
 			return $this->redirect('/');
-		}
-		
-		public function actionJoinPost()
-		{
-			$userJoinForm = new UserJoinForm();
-			if ($userJoinForm->load(Yii::$app->request->post())) {
-				if ($userJoinForm->validate()) {
-					$userJoinForm->name .= 'ok';
-				}
-			}
-			
-			return $this->render('join', compact('userJoinForm'));
 		}
 		
 	}

@@ -11,7 +11,7 @@
 
 <div class="container">
     <h1>
-        <span>P</span><span>a</span><span>r</span><span>a</span><span>d</span><span>a</span><span>m</span><span>.</span><span>m</span><span>e</span>
+        <span>P</span><span>a</span><span>r</span><span>a</span><span>d</span><span>a</span><span>m</span><span>.m</span><span>e</span>
     </h1>
 </div>
 <h2><?= $message ?></h2>

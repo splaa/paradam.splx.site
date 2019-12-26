@@ -32,7 +32,8 @@
 		
 		public function errorIfEmailUsed()
 		{
-			if (UserRecord::existsEmail($this->email)) {
+			$existsEmail = UserRecord::existsEmail($this->email);
+			if (!$existsEmail) {
 				return;
 			}
 			$this->addError('email', "This e-mail already exists");
