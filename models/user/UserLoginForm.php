@@ -12,6 +12,8 @@
 		public $email;
 		public $password;
 		
+		private $userRecord;
+		
 		public function rules()
 		{
 			return [
@@ -22,33 +24,38 @@
 			];
 		}
 		
-		public function errorIfPasswordWrong()
+		public function errorIfEmailNotFound()
 		{
-			if ($this->hasErrors()) {
-				return;
-			}
-			$userRecord = UserRecord::findUserByEmail($this->email);
-			if ($userRecord->passhash !== $this->password) {
-				$this->addError('password', 'Wrong password');
+			if ($this->hasErrors()) return;
+			$this->userRecord = $this->getUserByEmail($this->email);
+			if ($this->userRecord == null) {
+				$this->addError('This e-mail does not registered');
 			}
 		}
 		
-		public function errorIfEmailNotFound()
+		public function errorIfPasswordWrong()
 		{
-			$userRecord = UserRecord::findUserByEmail($this->email);
-			if ($userRecord->email !== $this->email) {
-				$this->addError('This e-mail does not registered');
+			if ($this->hasErrors()) return;
+			if ($this->userRecord->passhash !== $this->password) {
+				$this->addError('password', 'Wrong password');
 			}
 		}
 		
 		public function login()
 		{
-			if ($this->hasErrors()) {
-				return;
-			}
-			$userRecord = UserRecord::findUserByEmail($this->email);
-			$userIdentity = UserIdentity::findIdentity($userRecord->id);
+			if ($this->hasErrors()) return;
+			$userIdentity = UserIdentity::findIdentity($this->userRecord->id);
 			Yii::$app->user->login($userIdentity);
+		}
+		
+		/**
+		 * @param $email
+		 * @return UserRecord|null
+		 */
+		public function getUserByEmail($email): UserRecord
+		{
+			
+			return UserRecord::findUserByEmail($email);
 		}
 		
 	}
