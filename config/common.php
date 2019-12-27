@@ -11,6 +11,17 @@
 	return [
 		'basePath' => dirname(__DIR__),
 		'bootstrap' => ['log'],
+		'modules' => [
+			'main' => [
+				'class' => 'app\modules\main\Module',
+			],
+			'user' => [
+				'class' => 'app\modules\user\Module',
+			],
+			'services' => [
+				'class' => 'app\modules\services\Module',
+			],
+		],
 		'aliases' => [
 			'@bower' => '@vendor/bower-asset',
 			'@npm' => '@vendor/npm-asset',
@@ -26,9 +37,18 @@
 				'enablePrettyUrl' => true,
 				'showScriptName' => false,
 				'rules' => [
-					'<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
-					'<_c:[\w\-]+>' => '<_c>/index',
-					'<_c:[\w\-]+>/<_a:[\w\-]+>/<id:\d+>' => '<_c>/<_a>',
+					'' => 'main/default/index',
+					'contact' => 'main/contact/index',
+					'<_a:(about|error)>' => 'main/default/<_a>',
+					'<_a:(login|logout)>' => 'user/default/<_a>',
+					
+					'<_m:[\w\-]+>' => '<_m>/default/index',
+					'<_m:[\w\-]+>/<id:\d+>' => '<_m>/default/view',
+					'<_m:[\w\-]+>/<id:\d+>/<_a:[\w-]+>' => '<_m>/default/<_a>',
+					'<_m:[\w\-]+>/<_c:[\w\-]+>' => '<_m>/<_c>/index',
+					'<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>' => '<_m>/<_c>/view',
+					'<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>/<_a:[\w\-]+>' => '<_m>/<_c>/<_a>',
+					'<_m:[\w\-]+>/<_c:[\w\-]+>/<_a:[\w-]+>' => '<_m>/<_c>/<_a>',
 				],
 			],
 			'mailer' => [

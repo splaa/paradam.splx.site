@@ -1,6 +1,6 @@
 <?php
 	
-	namespace app\models;
+	namespace app\modules\main\models;
 	
 	use Yii;
 	use yii\base\Model;
@@ -28,7 +28,7 @@
 				// email has to be a valid email address
 				['email', 'email'],
 				// verifyCode needs to be entered correctly
-				['verifyCode', 'captcha'],
+				['verifyCode', 'captcha', 'captchaAction' => '/main/contact/captcha'],
 			];
 		}
 		
