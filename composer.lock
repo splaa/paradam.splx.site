@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "eb66231ccd835040d10dff19eca54927",
+  "content-hash": "8b092f2eada8eca96b1b93b53bb51add",
   "packages": [
     {
       "name": "bower-asset/bootstrap",
@@ -53,7 +53,7 @@
       "version": "3.4.1",
       "source": {
         "type": "git",
-        "url": "git@github.com:jquery/jquery-dist.git",
+        "url": "https://github.com/jquery/jquery-dist.git",
         "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
       },
       "dist": {
@@ -328,6 +328,70 @@
         "html"
       ],
       "time": "2019-10-28T03:44:26+00:00"
+    },
+    {
+      "name": "facebook/webdriver",
+      "version": "dev-community",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/facebook/php-webdriver.git",
+        "reference": "a0ae3f555eeefc0987995fb2a8fe4a9ef4bd1190"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/a0ae3f555eeefc0987995fb2a8fe4a9ef4bd1190",
+        "reference": "a0ae3f555eeefc0987995fb2a8fe4a9ef4bd1190",
+        "shasum": ""
+      },
+      "require": {
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-zip": "*",
+        "php": "^5.6 || ~7.0",
+        "symfony/polyfill-mbstring": "^1.12",
+        "symfony/process": "^2.8 || ^3.1 || ^4.0 || ^5.0"
+      },
+      "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "jakub-onderka/php-parallel-lint": "^1.0",
+        "php-coveralls/php-coveralls": "^2.0",
+        "php-mock/php-mock-phpunit": "^1.1",
+        "phpunit/phpunit": "^5.7",
+        "sebastian/environment": "^1.3.4 || ^2.0 || ^3.0",
+        "sminnee/phpunit-mock-objects": "^3.4",
+        "squizlabs/php_codesniffer": "^3.5",
+        "symfony/var-dumper": "^3.3 || ^4.0 || ^5.0"
+      },
+      "suggest": {
+        "ext-SimpleXML": "For Firefox profile creation"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-community": "1.8.x-dev"
+        }
+      },
+      "autoload": {
+        "files": [
+          "lib/Exception/TimeoutException.php"
+        ],
+        "psr-4": {
+          "Facebook\\WebDriver\\": "lib/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "Apache-2.0"
+      ],
+      "description": "A PHP client for Selenium WebDriver",
+      "homepage": "https://github.com/facebook/php-webdriver",
+      "keywords": [
+        "facebook",
+        "php",
+        "selenium",
+        "webdriver"
+      ],
+      "time": "2019-12-26T02:04:20+00:00"
     },
     {
       "name": "swiftmailer/swiftmailer",
@@ -625,6 +689,55 @@
         "shim"
       ],
       "time": "2019-11-27T13:56:44+00:00"
+    },
+    {
+      "name": "symfony/process",
+      "version": "v5.0.2",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/process.git",
+        "reference": "ea2dc31b59d63abd9bc2356ac72eb7b3f3469f0e"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/process/zipball/ea2dc31b59d63abd9bc2356ac72eb7b3f3469f0e",
+        "reference": "ea2dc31b59d63abd9bc2356ac72eb7b3f3469f0e",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^7.2.5"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "5.0-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Component\\Process\\": ""
+        },
+        "exclude-from-classmap": [
+          "/Tests/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Fabien Potencier",
+          "email": "fabien@symfony.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony Process Component",
+      "homepage": "https://symfony.com",
+      "time": "2019-12-10T11:06:55+00:00"
     },
     {
       "name": "yiisoft/yii2",
@@ -1240,6 +1353,61 @@
         "filesystem"
       ],
       "time": "2019-12-04T17:13:39+00:00"
+    },
+    {
+      "name": "codeception/module-webdriver",
+      "version": "1.0.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/Codeception/module-webdriver.git",
+        "reference": "e1b9957966c64b2f9f6a6a53f560ceab487cfae0"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/Codeception/module-webdriver/zipball/e1b9957966c64b2f9f6a6a53f560ceab487cfae0",
+        "reference": "e1b9957966c64b2f9f6a6a53f560ceab487cfae0",
+        "shasum": ""
+      },
+      "require": {
+        "codeception/codeception": "4.0.x-dev | ^4.0",
+        "facebook/webdriver": "^1.6.0",
+        "php": ">=5.6.0 <8.0"
+      },
+      "require-dev": {
+        "codeception/util-robohelpers": "dev-master"
+      },
+      "suggest": {
+        "codeception/phpbuiltinserver": "Start and stop PHP built-in web server for your tests"
+      },
+      "type": "library",
+      "autoload": {
+        "classmap": [
+          "src/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Michael Bodnarchuk"
+        },
+        {
+          "name": "Gintautas Miselis"
+        },
+        {
+          "name": "Zaahid Bateson"
+        }
+      ],
+      "description": "WebDriver module for Codeception",
+      "homepage": "http://codeception.com/",
+      "keywords": [
+        "acceptance-testing",
+        "browser-testing",
+        "codeception"
+      ],
+      "time": "2019-10-19T14:51:11+00:00"
     },
     {
       "name": "codeception/module-yii2",
@@ -4126,12 +4294,13 @@
   "aliases": [],
   "minimum-stability": "stable",
   "stability-flags": {
+    "facebook/webdriver": 20,
     "codeception/codeception": 20
   },
   "prefer-stable": false,
   "prefer-lowest": false,
   "platform": {
-    "php": ">=5.4.0"
+    "php": ">=7.3"
   },
   "platform-dev": []
 }

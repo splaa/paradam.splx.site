@@ -7,6 +7,6 @@
 		public function ensureThatAboutWorks(AcceptanceTester $I)
 		{
 			$I->amOnPage(Url::toRoute('/site/about'));
-			$I->see('About', 'h1');
+			$I->see('About');
 		}
 	}

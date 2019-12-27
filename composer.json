@@ -19,7 +19,8 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "php": ">=5.4.0",
+    "php": ">=7.3",
+    "facebook/webdriver": "^1.8@dev",
     "yiisoft/yii2": "~2.0.14",
     "yiisoft/yii2-bootstrap": "~2.0.0",
     "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0"
@@ -34,7 +35,8 @@
     "symfony/browser-kit": ">=2.7 <=4.2.4",
     "codeception/module-filesystem": "^1.0.0",
     "codeception/module-yii2": "^1.0.0",
-    "codeception/module-asserts": "^1.0.0"
+    "codeception/module-asserts": "^1.0.0",
+    "codeception/module-webdriver": "^1.0"
   },
   "config": {
     "process-timeout": 1800,
