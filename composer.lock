@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "ae596fe22ae90f05835acebc13fa73e6",
+  "content-hash": "eb66231ccd835040d10dff19eca54927",
   "packages": [
     {
       "name": "bower-asset/bootstrap",
@@ -43,48 +43,10 @@
       "require": {
         "bower-asset/jquery": ">=1.7"
       },
-      "type": "bower-asset-library",
-      "extra": {
-        "bower-asset-main": [
-          "./dist/inputmask/inputmask.js",
-          "./dist/inputmask/inputmask.extensions.js",
-          "./dist/inputmask/inputmask.date.extensions.js",
-          "./dist/inputmask/inputmask.numeric.extensions.js",
-          "./dist/inputmask/inputmask.phone.extensions.js",
-          "./dist/inputmask/jquery.inputmask.js",
-          "./dist/inputmask/global/document.js",
-          "./dist/inputmask/global/window.js",
-          "./dist/inputmask/phone-codes/phone.js",
-          "./dist/inputmask/phone-codes/phone-be.js",
-          "./dist/inputmask/phone-codes/phone-nl.js",
-          "./dist/inputmask/phone-codes/phone-ru.js",
-          "./dist/inputmask/phone-codes/phone-uk.js",
-          "./dist/inputmask/dependencyLibs/inputmask.dependencyLib.jqlite.js",
-          "./dist/inputmask/dependencyLibs/inputmask.dependencyLib.jquery.js",
-          "./dist/inputmask/dependencyLibs/inputmask.dependencyLib.js",
-          "./dist/inputmask/bindings/inputmask.binding.js"
-        ],
-        "bower-asset-ignore": [
-          "**/*",
-          "!dist/*",
-          "!dist/inputmask/*",
-          "!dist/min/*",
-          "!dist/min/inputmask/*"
-        ]
-      },
+      "type": "bower-asset",
       "license": [
         "http://opensource.org/licenses/mit-license.php"
-      ],
-      "description": "Inputmask is a javascript library which creates an input mask.  Inputmask can run against vanilla javascript, jQuery and jqlite.",
-      "keywords": [
-        "form",
-        "input",
-        "inputmask",
-        "jquery",
-        "mask",
-        "plugins"
-      ],
-      "time": "2017-11-21T11:46:23+00:00"
+      ]
     },
     {
       "name": "bower-asset/jquery",
@@ -99,23 +61,10 @@
         "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
         "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
       },
-      "type": "bower-asset-library",
-      "extra": {
-        "bower-asset-main": "dist/jquery.js",
-        "bower-asset-ignore": [
-          "package.json"
-        ]
-      },
+      "type": "bower-asset",
       "license": [
         "MIT"
-      ],
-      "keywords": [
-        "browser",
-        "javascript",
-        "jquery",
-        "library"
-      ],
-      "time": "2019-05-01T21:19:28+00:00"
+      ]
     },
     {
       "name": "bower-asset/punycode",
@@ -130,20 +79,7 @@
         "url": "https://api.github.com/repos/bestiejs/punycode.js/zipball/38c8d3131a82567bfef18da09f7f4db68c84f8a3",
         "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
       },
-      "type": "bower-asset-library",
-      "extra": {
-        "bower-asset-main": "punycode.js",
-        "bower-asset-ignore": [
-          "coverage",
-          "tests",
-          ".*",
-          "component.json",
-          "Gruntfile.js",
-          "node_modules",
-          "package.json"
-        ]
-      },
-      "time": "2014-10-22T12:02:42+00:00"
+      "type": "bower-asset"
     },
     {
       "name": "bower-asset/yii2-pjax",
@@ -161,23 +97,10 @@
       "require": {
         "bower-asset/jquery": ">=1.8"
       },
-      "type": "bower-asset-library",
-      "extra": {
-        "bower-asset-main": "./jquery.pjax.js",
-        "bower-asset-ignore": [
-          ".travis.yml",
-          "Gemfile",
-          "Gemfile.lock",
-          "CONTRIBUTING.md",
-          "vendor/",
-          "script/",
-          "test/"
-        ]
-      },
+      "type": "bower-asset",
       "license": [
         "MIT"
-      ],
-      "time": "2017-10-12T10:11:14+00:00"
+      ]
     },
     {
       "name": "cebe/markdown",
@@ -240,6 +163,126 @@
       "time": "2018-03-26T11:24:36+00:00"
     },
     {
+      "name": "doctrine/lexer",
+      "version": "1.2.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/doctrine/lexer.git",
+        "reference": "5242d66dbeb21a30dd8a3e66bf7a73b66e05e1f6"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/doctrine/lexer/zipball/5242d66dbeb21a30dd8a3e66bf7a73b66e05e1f6",
+        "reference": "5242d66dbeb21a30dd8a3e66bf7a73b66e05e1f6",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^7.2"
+      },
+      "require-dev": {
+        "doctrine/coding-standard": "^6.0",
+        "phpstan/phpstan": "^0.11.8",
+        "phpunit/phpunit": "^8.2"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "1.2.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Doctrine\\Common\\Lexer\\": "lib/Doctrine/Common/Lexer"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Guilherme Blanco",
+          "email": "guilhermeblanco@gmail.com"
+        },
+        {
+          "name": "Roman Borschel",
+          "email": "roman@code-factory.org"
+        },
+        {
+          "name": "Johannes Schmitt",
+          "email": "schmittjoh@gmail.com"
+        }
+      ],
+      "description": "PHP Doctrine Lexer parser library that can be used in Top-Down, Recursive Descent Parsers.",
+      "homepage": "https://www.doctrine-project.org/projects/lexer.html",
+      "keywords": [
+        "annotations",
+        "docblock",
+        "lexer",
+        "parser",
+        "php"
+      ],
+      "time": "2019-10-30T14:39:59+00:00"
+    },
+    {
+      "name": "egulias/email-validator",
+      "version": "2.1.12",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/egulias/EmailValidator.git",
+        "reference": "a6255605af39f2db7f5cb62e672bd8a7bad8d208"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/a6255605af39f2db7f5cb62e672bd8a7bad8d208",
+        "reference": "a6255605af39f2db7f5cb62e672bd8a7bad8d208",
+        "shasum": ""
+      },
+      "require": {
+        "doctrine/lexer": "^1.0.1",
+        "php": ">= 5.5"
+      },
+      "require-dev": {
+        "dominicsayers/isemail": "dev-master",
+        "phpunit/phpunit": "^4.8.35||^5.7||^6.0",
+        "satooshi/php-coveralls": "^1.0.1",
+        "symfony/phpunit-bridge": "^4.4@dev"
+      },
+      "suggest": {
+        "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.1.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Egulias\\EmailValidator\\": "EmailValidator"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Eduardo Gulias Davis"
+        }
+      ],
+      "description": "A library for validating emails against several RFCs",
+      "homepage": "https://github.com/egulias/EmailValidator",
+      "keywords": [
+        "email",
+        "emailvalidation",
+        "emailvalidator",
+        "validation",
+        "validator"
+      ],
+      "time": "2019-12-20T12:49:39+00:00"
+    },
+    {
       "name": "ezyang/htmlpurifier",
       "version": "v4.12.0",
       "source": {
@@ -285,6 +328,303 @@
         "html"
       ],
       "time": "2019-10-28T03:44:26+00:00"
+    },
+    {
+      "name": "swiftmailer/swiftmailer",
+      "version": "v6.2.3",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/swiftmailer/swiftmailer.git",
+        "reference": "149cfdf118b169f7840bbe3ef0d4bc795d1780c9"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/149cfdf118b169f7840bbe3ef0d4bc795d1780c9",
+        "reference": "149cfdf118b169f7840bbe3ef0d4bc795d1780c9",
+        "shasum": ""
+      },
+      "require": {
+        "egulias/email-validator": "~2.0",
+        "php": ">=7.0.0",
+        "symfony/polyfill-iconv": "^1.0",
+        "symfony/polyfill-intl-idn": "^1.10",
+        "symfony/polyfill-mbstring": "^1.0"
+      },
+      "require-dev": {
+        "mockery/mockery": "~0.9.1",
+        "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
+      },
+      "suggest": {
+        "ext-intl": "Needed to support internationalized email addresses",
+        "true/punycode": "Needed to support internationalized email addresses, if ext-intl is not installed"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "6.2-dev"
+        }
+      },
+      "autoload": {
+        "files": [
+          "lib/swift_required.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Chris Corbyn"
+        },
+        {
+          "name": "Fabien Potencier",
+          "email": "fabien@symfony.com"
+        }
+      ],
+      "description": "Swiftmailer, free feature-rich PHP mailer",
+      "homepage": "https://swiftmailer.symfony.com",
+      "keywords": [
+        "email",
+        "mail",
+        "mailer"
+      ],
+      "time": "2019-11-12T09:31:26+00:00"
+    },
+    {
+      "name": "symfony/polyfill-iconv",
+      "version": "v1.13.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-iconv.git",
+        "reference": "a019efccc03f1a335af6b4f20c30f5ea8060be36"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/a019efccc03f1a335af6b4f20c30f5ea8060be36",
+        "reference": "a019efccc03f1a335af6b4f20c30f5ea8060be36",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.3.3"
+      },
+      "suggest": {
+        "ext-iconv": "For best performance"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "1.13-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Polyfill\\Iconv\\": ""
+        },
+        "files": [
+          "bootstrap.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Nicolas Grekas",
+          "email": "p@tchwork.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony polyfill for the Iconv extension",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "compatibility",
+        "iconv",
+        "polyfill",
+        "portable",
+        "shim"
+      ],
+      "time": "2019-11-27T13:56:44+00:00"
+    },
+    {
+      "name": "symfony/polyfill-intl-idn",
+      "version": "v1.13.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-intl-idn.git",
+        "reference": "6f9c239e61e1b0c9229a28ff89a812dc449c3d46"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/6f9c239e61e1b0c9229a28ff89a812dc449c3d46",
+        "reference": "6f9c239e61e1b0c9229a28ff89a812dc449c3d46",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.3.3",
+        "symfony/polyfill-mbstring": "^1.3",
+        "symfony/polyfill-php72": "^1.9"
+      },
+      "suggest": {
+        "ext-intl": "For best performance"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "1.13-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Polyfill\\Intl\\Idn\\": ""
+        },
+        "files": [
+          "bootstrap.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Laurent Bassin",
+          "email": "laurent@bassin.info"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony polyfill for intl's idn_to_ascii and idn_to_utf8 functions",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "compatibility",
+        "idn",
+        "intl",
+        "polyfill",
+        "portable",
+        "shim"
+      ],
+      "time": "2019-11-27T13:56:44+00:00"
+    },
+    {
+      "name": "symfony/polyfill-mbstring",
+      "version": "v1.13.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-mbstring.git",
+        "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
+        "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.3.3"
+      },
+      "suggest": {
+        "ext-mbstring": "For best performance"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "1.13-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Polyfill\\Mbstring\\": ""
+        },
+        "files": [
+          "bootstrap.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Nicolas Grekas",
+          "email": "p@tchwork.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony polyfill for the Mbstring extension",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "compatibility",
+        "mbstring",
+        "polyfill",
+        "portable",
+        "shim"
+      ],
+      "time": "2019-11-27T14:18:11+00:00"
+    },
+    {
+      "name": "symfony/polyfill-php72",
+      "version": "v1.13.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-php72.git",
+        "reference": "66fea50f6cb37a35eea048d75a7d99a45b586038"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/66fea50f6cb37a35eea048d75a7d99a45b586038",
+        "reference": "66fea50f6cb37a35eea048d75a7d99a45b586038",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.3.3"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "1.13-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Polyfill\\Php72\\": ""
+        },
+        "files": [
+          "bootstrap.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Nicolas Grekas",
+          "email": "p@tchwork.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "compatibility",
+        "polyfill",
+        "portable",
+        "shim"
+      ],
+      "time": "2019-11-27T13:56:44+00:00"
     },
     {
       "name": "yiisoft/yii2",
@@ -503,6 +843,56 @@
         "yii2"
       ],
       "time": "2019-07-16T13:22:30+00:00"
+    },
+    {
+      "name": "yiisoft/yii2-swiftmailer",
+      "version": "2.1.2",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
+        "reference": "09659a55959f9e64b8178d842b64a9ffae42b994"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/09659a55959f9e64b8178d842b64a9ffae42b994",
+        "reference": "09659a55959f9e64b8178d842b64a9ffae42b994",
+        "shasum": ""
+      },
+      "require": {
+        "swiftmailer/swiftmailer": "~6.0",
+        "yiisoft/yii2": ">=2.0.4"
+      },
+      "type": "yii2-extension",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.1.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "yii\\swiftmailer\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "authors": [
+        {
+          "name": "Paul Klimov",
+          "email": "klimov.paul@gmail.com"
+        }
+      ],
+      "description": "The SwiftMailer integration for the Yii framework",
+      "keywords": [
+        "email",
+        "mail",
+        "mailer",
+        "swift",
+        "swiftmailer",
+        "yii2"
+      ],
+      "time": "2018-09-23T22:00:47+00:00"
     }
   ],
   "packages-dev": [
@@ -567,7 +957,7 @@
     },
     {
       "name": "codeception/codeception",
-      "version": "4.0.1",
+      "version": "4.0.x-dev",
       "source": {
         "type": "git",
         "url": "https://github.com/Codeception/Codeception.git",
@@ -850,60 +1240,6 @@
         "filesystem"
       ],
       "time": "2019-12-04T17:13:39+00:00"
-    },
-    {
-      "name": "codeception/module-phpbrowser",
-      "version": "1.0.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/Codeception/module-phpbrowser.git",
-        "reference": "fbf585c8562e4e4875f351f5392bcb2b1a633cbe"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/Codeception/module-phpbrowser/zipball/fbf585c8562e4e4875f351f5392bcb2b1a633cbe",
-        "reference": "fbf585c8562e4e4875f351f5392bcb2b1a633cbe",
-        "shasum": ""
-      },
-      "require": {
-        "codeception/codeception": "4.0.x-dev | ^4.0",
-        "codeception/lib-innerbrowser": "^1.0",
-        "guzzlehttp/guzzle": "^6.3.0",
-        "php": ">=5.6.0 <8.0"
-      },
-      "require-dev": {
-        "codeception/module-rest": "dev-master | ^1.0",
-        "codeception/util-robohelpers": "dev-master"
-      },
-      "suggest": {
-        "codeception/phpbuiltinserver": "Start and stop PHP built-in web server for your tests"
-      },
-      "type": "library",
-      "autoload": {
-        "classmap": [
-          "src/"
-        ]
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Michael Bodnarchuk"
-        },
-        {
-          "name": "Gintautas Miselis"
-        }
-      ],
-      "description": "Codeception module for testing web application over HTTP",
-      "homepage": "http://codeception.com/",
-      "keywords": [
-        "codeception",
-        "functional-testing",
-        "http"
-      ],
-      "time": "2019-10-10T14:25:59+00:00"
     },
     {
       "name": "codeception/module-yii2",
@@ -1216,124 +1552,6 @@
         "fixtures"
       ],
       "time": "2019-12-12T13:22:17+00:00"
-    },
-    {
-      "name": "guzzlehttp/guzzle",
-      "version": "6.5.2",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/guzzle/guzzle.git",
-        "reference": "43ece0e75098b7ecd8d13918293029e555a50f82"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/guzzle/guzzle/zipball/43ece0e75098b7ecd8d13918293029e555a50f82",
-        "reference": "43ece0e75098b7ecd8d13918293029e555a50f82",
-        "shasum": ""
-      },
-      "require": {
-        "ext-json": "*",
-        "guzzlehttp/promises": "^1.0",
-        "guzzlehttp/psr7": "^1.6.1",
-        "php": ">=5.5"
-      },
-      "require-dev": {
-        "ext-curl": "*",
-        "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
-        "psr/log": "^1.1"
-      },
-      "suggest": {
-        "ext-intl": "Required for Internationalized Domain Name (IDN) support",
-        "psr/log": "Required for using the Log middleware"
-      },
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "6.5-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "GuzzleHttp\\": "src/"
-        },
-        "files": [
-          "src/functions_include.php"
-        ]
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Michael Dowling",
-          "email": "mtdowling@gmail.com",
-          "homepage": "https://github.com/mtdowling"
-        }
-      ],
-      "description": "Guzzle is a PHP HTTP client library",
-      "homepage": "http://guzzlephp.org/",
-      "keywords": [
-        "client",
-        "curl",
-        "framework",
-        "http",
-        "http client",
-        "rest",
-        "web service"
-      ],
-      "time": "2019-12-23T11:57:10+00:00"
-    },
-    {
-      "name": "guzzlehttp/promises",
-      "version": "v1.3.1",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/guzzle/promises.git",
-        "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
-        "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
-        "shasum": ""
-      },
-      "require": {
-        "php": ">=5.5.0"
-      },
-      "require-dev": {
-        "phpunit/phpunit": "^4.0"
-      },
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "1.4-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "GuzzleHttp\\Promise\\": "src/"
-        },
-        "files": [
-          "src/functions_include.php"
-        ]
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Michael Dowling",
-          "email": "mtdowling@gmail.com",
-          "homepage": "https://github.com/mtdowling"
-        }
-      ],
-      "description": "Guzzle promises library",
-      "keywords": [
-        "promise"
-      ],
-      "time": "2016-12-20T10:07:11+00:00"
     },
     {
       "name": "guzzlehttp/psr7",
@@ -3486,65 +3704,6 @@
       "time": "2019-11-27T13:56:44+00:00"
     },
     {
-      "name": "symfony/polyfill-mbstring",
-      "version": "v1.13.1",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/symfony/polyfill-mbstring.git",
-        "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
-        "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
-        "shasum": ""
-      },
-      "require": {
-        "php": ">=5.3.3"
-      },
-      "suggest": {
-        "ext-mbstring": "For best performance"
-      },
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "1.13-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "Symfony\\Polyfill\\Mbstring\\": ""
-        },
-        "files": [
-          "bootstrap.php"
-        ]
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Nicolas Grekas",
-          "email": "p@tchwork.com"
-        },
-        {
-          "name": "Symfony Community",
-          "homepage": "https://symfony.com/contributors"
-        }
-      ],
-      "description": "Symfony polyfill for the Mbstring extension",
-      "homepage": "https://symfony.com",
-      "keywords": [
-        "compatibility",
-        "mbstring",
-        "polyfill",
-        "portable",
-        "shim"
-      ],
-      "time": "2019-11-27T14:18:11+00:00"
-    },
-    {
       "name": "symfony/polyfill-php73",
       "version": "v1.13.1",
       "source": {
@@ -3648,7 +3807,7 @@
           "homepage": "https://symfony.com/contributors"
         }
       ],
-      "description": "Generic abstractions related to writing service",
+      "description": "Generic abstractions related to writing services",
       "homepage": "https://symfony.com",
       "keywords": [
         "abstractions",
@@ -3866,6 +4025,53 @@
       "time": "2019-11-19T20:09:08+00:00"
     },
     {
+      "name": "yiisoft/yii2-faker",
+      "version": "2.0.4",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/yiisoft/yii2-faker.git",
+        "reference": "3df62b1dcb272a8413f9c6e532c9d73f325ccde1"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/3df62b1dcb272a8413f9c6e532c9d73f325ccde1",
+        "reference": "3df62b1dcb272a8413f9c6e532c9d73f325ccde1",
+        "shasum": ""
+      },
+      "require": {
+        "fzaninotto/faker": "~1.4",
+        "yiisoft/yii2": "~2.0.0"
+      },
+      "type": "yii2-extension",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.0.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "yii\\faker\\": ""
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "authors": [
+        {
+          "name": "Mark Jebri",
+          "email": "mark.github@yandex.ru"
+        }
+      ],
+      "description": "Fixture generator. The Faker integration for the Yii framework.",
+      "keywords": [
+        "Fixture",
+        "faker",
+        "yii2"
+      ],
+      "time": "2018-02-19T20:27:10+00:00"
+    },
+    {
       "name": "yiisoft/yii2-gii",
       "version": "2.1.3",
       "source": {
@@ -3919,9 +4125,13 @@
   ],
   "aliases": [],
   "minimum-stability": "stable",
-  "stability-flags": [],
+  "stability-flags": {
+    "codeception/codeception": 20
+  },
   "prefer-stable": false,
   "prefer-lowest": false,
-  "platform": [],
+  "platform": {
+    "php": ">=5.4.0"
+  },
   "platform-dev": []
 }

@@ -1,6 +1,8 @@
 <?php
+	
 	$params = require __DIR__ . '/params.php';
 	$db = require __DIR__ . '/db.php';
+	
 	$config = [
 		'id' => 'basic',
 		'basePath' => dirname(__DIR__),
@@ -12,14 +14,13 @@
 		'components' => [
 			'request' => [
 				// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-				'cookieValidationKey' => 'paradam ^2019_ijihowbos',
+				'cookieValidationKey' => 'DM6jz68lIIEsjmffBK8I08MafXl-CE7g',
 			],
 			'cache' => [
 				'class' => 'yii\caching\FileCache',
 			],
 			'user' => [
-//				'identityClass' => 'app\models\User',
-				'identityClass' => 'app\models\user\UserIdentity',
+				'identityClass' => 'app\models\User',
 				'enableAutoLogin' => true,
 			],
 			'errorHandler' => [
@@ -53,6 +54,7 @@
 		],
 		'params' => $params,
 	];
+	
 	if (YII_ENV_DEV) {
 		// configuration adjustments for 'dev' environment
 		$config['bootstrap'][] = 'debug';
@@ -61,6 +63,7 @@
 			// uncomment the following to add your IP if you are not connecting from localhost.
 			//'allowedIPs' => ['127.0.0.1', '::1'],
 		];
+		
 		$config['bootstrap'][] = 'gii';
 		$config['modules']['gii'] = [
 			'class' => 'yii\gii\Module',
@@ -68,4 +71,5 @@
 			//'allowedIPs' => ['127.0.0.1', '::1'],
 		];
 	}
+	
 	return $config;

@@ -12,7 +12,7 @@
 	 * @method void am($role)
 	 * @method void lookForwardTo($achieveValue)
 	 * @method void comment($description)
-	 * @method void pause()
+	 * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = NULL)
 	 *
 	 * @SuppressWarnings(PHPMD)
 	 */
@@ -20,7 +20,4 @@
 	{
 		use _generated\FunctionalTesterActions;
 		
-		/**
-		 * Define custom actions here
-		 */
 	}
