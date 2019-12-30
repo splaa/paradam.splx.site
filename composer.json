@@ -19,20 +19,13 @@
   },
   "minimum-stability": "dev",
   "require": {
-    "php": ">=7.0",
-    "ext-mcrypt": "*",
-    "ext-json": "*",
-    "ext-simplexml": "*",
-    "ext-openssl": "*",
-    "ext-soap": "*",
-    "ext-libsodium": "*",
-    "ext-primemodule": "*",
-    "ext-libtgvoip": "*",
+    "php": ">=7.1.0",
     "facebook/webdriver": "^1.8@dev",
     "yiisoft/yii2": "~2.0.14",
     "yiisoft/yii2-bootstrap": "~2.0.0",
     "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
-    "danog/madelineproto": "dev-master"
+    "danog/madelineproto": "dev-master",
+    "amphp/dns": "dev-master#eb0b0a2 as v1"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",
@@ -51,6 +44,9 @@
     "process-timeout": 1800,
     "fxp-asset": {
       "enabled": false
+    },
+    "platform": {
+      "php": "7.4"
     }
   },
   "scripts": {
@@ -83,10 +79,5 @@
       "type": "composer",
       "url": "https://asset-packagist.org"
     }
-  ],
-  "autoload": {
-    "psr-0": {
-      "PWRTelegram\\PWRTelegram\\": "src/"
-    }
-  }
+  ]
 }

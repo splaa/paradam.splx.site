@@ -1,19 +1,13 @@
 <?php
 
-
 namespace app\modules\services\controllers;
 
-use danog\MadelineProto;
 use danog\MadelineProto\API;
 use Yii;
 
 
 class TelegramController extends ServiceController
 {
-	public $telephone;
-	public $message;
-
-	private $mp;
 	private $telegramConfig = [
 		'authorization' => [
 			'default_temp_auth_key_expires_in' => 315576000, // я установил 10 лет, что бы не авторизовывать приложение повторно.
@@ -37,27 +31,14 @@ class TelegramController extends ServiceController
 		]
 	];
 
-	public function actionMessage()
+	public function actionIndex()
 	{
-		$this->telegramConfig['app_info']['api_id'] = isset(Yii::$app->params['api']['tg']['api_id']) ?? 0;
-		$this->telegramConfig['app_info']['api_hash'] = isset(Yii::$app->params['api']['tg']['api_hash']) ?? 0;
+		if (!file_exists('session/session.madeline')) {
+			$this->telegramConfig['app_info']['api_id'] = Yii::$app->params['api']['tg']['api_id'] ?? 0;
+			$this->telegramConfig['app_info']['api_hash'] = Yii::$app->params['api']['tg']['api_hash'] ?? 0;
 
-		$this->mp = new API('session.madeline', $this->telegramConfig);
-		$this->mp->start();
-
-		$contact = ['_' => 'inputPhoneContact', 'client_id' => 0, 'phone' => $this->telephone, 'first_name' => '', 'last_name' => ''];
-		$import = $this->mp->contacts->importContacts(['contacts' => [$contact]]);
-
-		if (!empty($import['imported'][0]['user_id'])) {
-			$this->mp->messages->sendMessage(['peer' => $import['imported'][0]['user_id'], 'message' => $this->message]);
-
-			if ($this->mp->updates->getState()) {
-				return 'Сообщение отправленно!';
-			} else {
-				return 'Ошибка при отправке сообщения!';
-			}
-		} else {
-			return 'Пользователь не найден!';
+			$mp = new API('lib/session.madeline', $this->telegramConfig);
+			$mp->start();
 		}
 	}
 }

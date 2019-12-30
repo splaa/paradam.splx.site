@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbb7c007630a4f1be208da30da81e80b",
+    "content-hash": "25742af6879682c07e90e44953c826b6",
     "packages": [
         {
             "name": "amphp/amp",
@@ -196,16 +196,16 @@
         },
         {
             "name": "amphp/dns",
-            "version": "v1.2.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/dns.git",
-                "reference": "9d7e57f37d21bfed8ff2e78db52b99d45ce0c215"
+                "reference": "eb0b0a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/dns/zipball/9d7e57f37d21bfed8ff2e78db52b99d45ce0c215",
-                "reference": "9d7e57f37d21bfed8ff2e78db52b99d45ce0c215",
+                "url": "https://api.github.com/repos/amphp/dns/zipball/eb0b0a2",
+                "reference": "eb0b0a2",
                 "shasum": ""
             },
             "require": {
@@ -269,7 +269,7 @@
                 "dns",
                 "resolve"
             ],
-            "time": "2019-11-28T20:10:22+00:00"
+            "time": "2019-12-12T19:09:10+00:00"
         },
         {
             "name": "amphp/file",
@@ -518,37 +518,33 @@
         },
         {
             "name": "amphp/http-client-cookies",
-            "version": "v1.0.0",
+            "version": "v1.0.0-rc5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/http-client-cookies.git",
-                "reference": "06f32a7d208e20a0ce9f9ee42f7132f65d31724d"
+                "reference": "253f7de299c174616ddd7b3d907f979806772b0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/http-client-cookies/zipball/06f32a7d208e20a0ce9f9ee42f7132f65d31724d",
-                "reference": "06f32a7d208e20a0ce9f9ee42f7132f65d31724d",
+                "url": "https://api.github.com/repos/amphp/http-client-cookies/zipball/253f7de299c174616ddd7b3d907f979806772b0c",
+                "reference": "253f7de299c174616ddd7b3d907f979806772b0c",
                 "shasum": ""
             },
             "require": {
                 "amphp/amp": "^2.3",
-                "amphp/dns": "^1.2",
                 "amphp/http": "^1.5",
-                "amphp/http-client": "^4",
-                "amphp/sync": "^1.3",
-                "ext-filter": "*",
-                "php": ">=7.2",
-                "psr/http-message": "^1.0"
+                "amphp/http-client": "^4.0.0-rc9",
+                "amphp/socket": "^1",
+                "php": ">=7.2"
             },
             "conflict": {
                 "amphp/file": "<1 || >=2"
             },
             "require-dev": {
                 "amphp/file": "^1",
-                "amphp/http-server": "dev-master",
+                "amphp/http-server": "^2-rc3",
                 "amphp/php-cs-fixer-config": "dev-master",
                 "amphp/phpunit-util": "^1.1",
-                "amphp/socket": "^1",
                 "friendsofphp/php-cs-fixer": "^2.3",
                 "phpunit/phpunit": "^7 || ^8"
             },
@@ -581,7 +577,7 @@
                 "cookies",
                 "http"
             ],
-            "time": "2019-12-21T17:05:53+00:00"
+            "time": "2019-11-20T19:24:05+00:00"
         },
         {
             "name": "amphp/parallel",
@@ -1136,48 +1132,10 @@
             "require": {
                 "bower-asset/jquery": ">=1.7"
             },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "./dist/inputmask/inputmask.js",
-                    "./dist/inputmask/inputmask.extensions.js",
-                    "./dist/inputmask/inputmask.date.extensions.js",
-                    "./dist/inputmask/inputmask.numeric.extensions.js",
-                    "./dist/inputmask/inputmask.phone.extensions.js",
-                    "./dist/inputmask/jquery.inputmask.js",
-                    "./dist/inputmask/global/document.js",
-                    "./dist/inputmask/global/window.js",
-                    "./dist/inputmask/phone-codes/phone.js",
-                    "./dist/inputmask/phone-codes/phone-be.js",
-                    "./dist/inputmask/phone-codes/phone-nl.js",
-                    "./dist/inputmask/phone-codes/phone-ru.js",
-                    "./dist/inputmask/phone-codes/phone-uk.js",
-                    "./dist/inputmask/dependencyLibs/inputmask.dependencyLib.jqlite.js",
-                    "./dist/inputmask/dependencyLibs/inputmask.dependencyLib.jquery.js",
-                    "./dist/inputmask/dependencyLibs/inputmask.dependencyLib.js",
-                    "./dist/inputmask/bindings/inputmask.binding.js"
-                ],
-                "bower-asset-ignore": [
-                    "**/*",
-                    "!dist/*",
-                    "!dist/inputmask/*",
-                    "!dist/min/*",
-                    "!dist/min/inputmask/*"
-                ]
-            },
+            "type": "bower-asset",
             "license": [
                 "http://opensource.org/licenses/mit-license.php"
-            ],
-            "description": "Inputmask is a javascript library which creates an input mask.  Inputmask can run against vanilla javascript, jQuery and jqlite.",
-            "keywords": [
-                "form",
-                "input",
-                "inputmask",
-                "jquery",
-                "mask",
-                "plugins"
-            ],
-            "time": "2017-11-21T11:46:23+00:00"
+            ]
         },
         {
             "name": "bower-asset/jquery",
@@ -1192,23 +1150,10 @@
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "dist/jquery.js",
-                "bower-asset-ignore": [
-                    "package.json"
-                ]
-            },
+            "type": "bower-asset",
             "license": [
                 "MIT"
-            ],
-            "keywords": [
-                "browser",
-                "javascript",
-                "jquery",
-                "library"
-            ],
-            "time": "2019-05-01T21:19:28+00:00"
+            ]
         },
         {
             "name": "bower-asset/punycode",
@@ -1223,20 +1168,7 @@
                 "url": "https://api.github.com/repos/bestiejs/punycode.js/zipball/38c8d3131a82567bfef18da09f7f4db68c84f8a3",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "punycode.js",
-                "bower-asset-ignore": [
-                    "coverage",
-                    "tests",
-                    ".*",
-                    "component.json",
-                    "Gruntfile.js",
-                    "node_modules",
-                    "package.json"
-                ]
-            },
-            "time": "2014-10-22T12:02:42+00:00"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -1254,23 +1186,10 @@
             "require": {
                 "bower-asset/jquery": ">=1.8"
             },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "./jquery.pjax.js",
-                "bower-asset-ignore": [
-                    ".travis.yml",
-                    "Gemfile",
-                    "Gemfile.lock",
-                    "CONTRIBUTING.md",
-                    "vendor/",
-                    "script/",
-                    "test/"
-                ]
-            },
+            "type": "bower-asset",
             "license": [
                 "MIT"
-            ],
-            "time": "2017-10-12T10:11:14+00:00"
+            ]
         },
         {
             "name": "cash/lrucache",
@@ -4182,12 +4101,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "c5a39003d5c0ef8e605d123d23355b1cb4112735"
+                "reference": "43f90ab91c74983651778dfcb4b906cd6d6e7fa2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/c5a39003d5c0ef8e605d123d23355b1cb4112735",
-                "reference": "c5a39003d5c0ef8e605d123d23355b1cb4112735",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/43f90ab91c74983651778dfcb4b906cd6d6e7fa2",
+                "reference": "43f90ab91c74983651778dfcb4b906cd6d6e7fa2",
                 "shasum": ""
             },
             "require": {
@@ -4227,7 +4146,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2019-12-27T20:42:04+00:00"
+            "time": "2019-12-30T09:40:11+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -6366,25 +6285,28 @@
             "time": "2019-11-19T20:19:33+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "v1",
+            "alias_normalized": "1.0.0.0",
+            "version": "9999999-dev",
+            "package": "amphp/dns"
+        }
+    ],
     "minimum-stability": "dev",
     "stability-flags": {
         "facebook/webdriver": 20,
         "danog/madelineproto": 20,
+        "amphp/dns": 20,
         "codeception/codeception": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0",
-        "ext-mcrypt": "*",
-        "ext-json": "*",
-        "ext-simplexml": "*",
-        "ext-openssl": "*",
-        "ext-soap": "*",
-        "ext-libsodium": "*",
-        "ext-primemodule": "*",
-        "ext-libtgvoip": "*"
+        "php": ">=7.1.0"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "platform-overrides": {
+        "php": "7.4"
+    }
 }
