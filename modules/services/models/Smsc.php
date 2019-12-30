@@ -4,20 +4,23 @@
 namespace app\modules\services\models;
 
 
+use Yii;
 use yii\base\Model;
 
 class Smsc extends Model
 {
 	public $telephone = '+380980183456';
-	public $message = '1234';
+	public $message = 'code';
 
 	public function call()
 	{
 		$send = $this->send_sms($this->telephone, $this->message, 0, 0, 0, 9);
-		echo 123;
-		echo "<pre>";print_r($send);exit;
 
-		return $send;
+		if (!empty($send[4])) {
+			return $send[4];
+		} else {
+			return 0;
+		}
 	}
 
 	/**
