@@ -12,7 +12,7 @@
 				'errorAction' => 'main/default/error',
 			],
 			'request' => [
-				'cookieValidationKey' => '',
+				'cookieValidationKey' => 'YowPOxrZb2scDDx7JVn7UC4xLmcWfbA1',
 			],
 			'log' => [
 				'traceLevel' => YII_DEBUG ? 3 : 0,
