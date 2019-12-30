@@ -13,6 +13,13 @@
 			'@npm' => '@vendor/npm-asset',
 		],
 		'language' => 'en-US',
+		'modules' => [
+			'services' => [
+				'class' => 'app\modules\services\Module',
+				//'layout' => 'admin',
+				//'defaultRoute' => 'test/index',
+			]
+		],
 		'components' => [
 			'db' => $db,
 			'mailer' => [
@@ -22,7 +29,11 @@
 				'basePath' => __DIR__ . '/../web/assets',
 			],
 			'urlManager' => [
-				'showScriptName' => true,
+				'enablePrettyUrl' => true,
+				'showScriptName' => false,
+				'rules' => [
+
+				],
 			],
 			'user' => [
 				'identityClass' => 'app\models\User',

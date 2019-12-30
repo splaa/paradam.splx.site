@@ -2,6 +2,7 @@
 	
 	namespace app\modules\main\controllers;
 	
+	use app\modules\services\controllers\TelegramController;
 	use yii\web\Controller;
 	
 	/**
@@ -24,6 +25,7 @@
 		 */
 		public function actionIndex()
 		{
+
 			return $this->render('index');
 		}
 	}

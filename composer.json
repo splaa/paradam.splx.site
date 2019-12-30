@@ -17,13 +17,22 @@
     "irc": "irc://irc.freenode.net/yii",
     "source": "https://github.com/yiisoft/yii2"
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "require": {
-    "php": ">=7.3",
+    "php": ">=7.0",
+    "ext-mcrypt": "*",
+    "ext-json": "*",
+    "ext-simplexml": "*",
+    "ext-openssl": "*",
+    "ext-soap": "*",
+    "ext-libsodium": "*",
+    "ext-primemodule": "*",
+    "ext-libtgvoip": "*",
     "facebook/webdriver": "^1.8@dev",
     "yiisoft/yii2": "~2.0.14",
     "yiisoft/yii2-bootstrap": "~2.0.0",
-    "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0"
+    "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+    "danog/madelineproto": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",
@@ -74,5 +83,10 @@
       "type": "composer",
       "url": "https://asset-packagist.org"
     }
-  ]
+  ],
+  "autoload": {
+    "psr-0": {
+      "PWRTelegram\\PWRTelegram\\": "src/"
+    }
+  }
 }
