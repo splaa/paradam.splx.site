@@ -35,7 +35,7 @@
 //
 			// Send Call Message to User Phone
 //			$smsc = new Smsc();
-//			$smsc->telephone = '+380686987691';
+//			$smsc->telephone = '+380980183456';
 //			$smsc->message = 'code';
 //			$code = $smsc->call();
 
