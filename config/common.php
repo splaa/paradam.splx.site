@@ -9,6 +9,7 @@
 	);
 	
 	return [
+		'name' => 'Paradam.me',
 		'basePath' => dirname(__DIR__),
 		'bootstrap' => ['log'],
 		'modules' => [
@@ -31,6 +32,14 @@
 			'db' => [
 				'class' => 'yii\db\Connection',
 				'charset' => 'utf8',
+			],
+			'i18n' => [
+				'translations' => [
+					'app' => [
+						'class' => 'yii\i18n\PhpMessageSource',
+						'forceTranslation' => true,
+					],
+				],
 			],
 			'urlManager' => [
 				'class' => 'yii\web\UrlManager',

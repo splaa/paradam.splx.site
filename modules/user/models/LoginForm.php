@@ -26,7 +26,7 @@
 		public function rules()
 		{
 			return [
-				// username and password are both required
+				// email and password are both required
 				[['username', 'password'], 'required'],
 				// rememberMe must be a boolean value
 				['rememberMe', 'boolean'],
@@ -46,9 +46,12 @@
 		{
 			if (!$this->hasErrors()) {
 				$user = $this->getUser();
-				
 				if (!$user || !$user->validatePassword($this->password)) {
-					$this->addError($attribute, 'Incorrect username or password.');
+					$this->addError('password',  Yii::t('app', 'ERROR_WRONG_USERNAME_OR_PASSWORD'));
+				} elseif ($user && $user->status == User::STATUS_BLOCKED) {
+					$this->addError('username', Yii::t('app', 'ERROR_PROFILE_BLOCKED'));
+				} elseif ($user && $user->status == User::STATUS_WAIT) {
+					$this->addError('username', Yii::t('app', 'ERROR_PROFILE_NOT_CONFIRMED'));
 				}
 			}
 		}
@@ -77,5 +80,13 @@
 			}
 			
 			return $this->_user;
+		}
+		public function attributeLabels()
+		{
+			return [
+				'username' => Yii::t('app', 'USER_USERNAME'),
+				'password' => Yii::t('app', 'USER_PASSWORD'),
+				'rememberMe' => Yii::t('app', 'USER_REMEMBER_ME'),
+			];
 		}
 	}

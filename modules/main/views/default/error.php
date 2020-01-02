@@ -10,7 +10,7 @@
 	
 	$this->title = $name;
 ?>
-<div class="site-error">
+<div class="main-default-error">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
