@@ -1,0 +1,159 @@
+[31-Dec-2019 13:54:53 Europe/Kiev] Enabled PHP logging
+[31-Dec-2019 13:54:53 Europe/Kiev] Enabled PHP logging
+Logger:         	MadelineProto
+Logger:         	Copyright (C) 2016-2019 Daniil Gentili
+Logger:         	Licensed under AGPLv3
+Logger:         	https://github.com/danog/MadelineProto
+API:            	Waiting for shared lock of serialization lockfile...
+API:            	Shared lock acquired, deserializing...
+[31-Dec-2019 13:54:53 Europe/Kiev] Enabled PHP logging
+[31-Dec-2019 13:54:53 Europe/Kiev] Enabled PHP logging
+[31-Dec-2019 13:54:53 Europe/Kiev] Enabled PHP logging
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP Fatal error:  Declaration of danog\MadelineProto\Stream\Transport\DefaultStream::getSocket(): Amp\Socket\EncryptableSocket must be compatible with danog\MadelineProto\Stream\StreamInterface::getSocket(): Amp\Socket\Socket in /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Stream/Transport/DefaultStream.php on line 40
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP Stack trace:
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP   1. {main}() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/web/index.php:0
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP   2. yii\web\Application->run() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/web/index.php:17
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP   3. yii\web\Application->handleRequest($request = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/Application.php:386
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP   4. yii\web\Application->runAction($route = *uninitialized*, $params = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/web/Application.php:103
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP   5. app\modules\user\controllers\DefaultController->runAction($id = *uninitialized*, $params = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/Module.php:528
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP   6. yii\base\InlineAction->runWithParams($params = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/Controller.php:157
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP   7. call_user_func_array:{/Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/InlineAction.php:57}(*uninitialized*, *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/InlineAction.php:57
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP   8. app\modules\user\controllers\DefaultController->actionCode() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/InlineAction.php:57
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP   9. app\modules\services\models\Telegram->send() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/modules/user/controllers/DefaultController.php:71
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  10. danog\MadelineProto\API->__construct(...$params = variadic(*uninitialized*)) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/modules/services/models/Telegram.php:17
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  11. danog\MadelineProto\API->__magic_construct($params = *uninitialized*, $settings = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/magicalserializer/src/danog/Serializable.php:35
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  12. danog\MadelineProto\API->setInitPromise($promise = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/API.php:87
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  13. danog\MadelineProto\Tools::callFork($promise = *uninitialized*, $actual = *uninitialized*, $file = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Async/AsyncConstruct.php:74
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  14. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:461
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  15. Amp\Success->onResolve($onResolved = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:178
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  16. danog\MadelineProto\Coroutine->danog\MadelineProto\{closure}($exception = *uninitialized*, $value = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/amphp/amp/lib/Success.php:36
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  17. Generator->send(*uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:139
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  18. danog\MadelineProto\API->__construct_async($params = *uninitialized*, $settings = *uninitialized*, $deferred = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:139
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  19. unserialize(*uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/API.php:128
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  20. danog\MadelineProto\MTProto->__wakeup() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/API.php:128
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  21. danog\MadelineProto\MTProto->setInitPromise($promise = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/MTProto.php:898
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  22. danog\MadelineProto\Tools::callFork($promise = *uninitialized*, $actual = *uninitialized*, $file = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Async/AsyncConstruct.php:74
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  23. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:461
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  24. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:109
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  25. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:109
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  26. danog\MadelineProto\Coroutine->onResolve($onResolved = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:178
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  27. danog\MadelineProto\Coroutine->danog\MadelineProto\{closure}($exception = *uninitialized*, $value = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/amphp/amp/lib/Internal/Placeholder.php:43
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  28. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:161
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  29. Generator->current() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  30. danog\MadelineProto\MTProto->connectToAllDcs($reconnectAll = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  31. danog\MadelineProto\Tools::all($promises = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/MTProto.php:1486
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  32. danog\MadelineProto\Tools::call($promise = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:351
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  33. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:429
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  34. Generator->current() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  35. danog\MadelineProto\DataCenter->dcConnect($dc_number = *uninitialized*, $id = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  36. danog\MadelineProto\DataCenter->generateContexts($dc_number = *uninitialized*, $uri = *uninitialized*, $context = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/DataCenter.php:270
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  37. spl_autoload_call(*uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/DataCenter.php:313
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  38. Composer\Autoload\ClassLoader->loadClass($class = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/DataCenter.php:313
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  39. Composer\Autoload\includeFile($file = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/composer/ClassLoader.php:322
+[31-Dec-2019 13:54:54 Europe/Kiev] PHP  40. include() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/composer/ClassLoader.php:444
+[31-Dec-2019 13:58:47 Europe/Kiev] Enabled PHP logging
+[31-Dec-2019 13:58:47 Europe/Kiev] Enabled PHP logging
+Logger:         	MadelineProto
+Logger:         	Copyright (C) 2016-2019 Daniil Gentili
+Logger:         	Licensed under AGPLv3
+Logger:         	https://github.com/danog/MadelineProto
+API:            	Waiting for shared lock of serialization lockfile...
+API:            	Shared lock acquired, deserializing...
+[31-Dec-2019 13:58:47 Europe/Kiev] Enabled PHP logging
+[31-Dec-2019 13:58:47 Europe/Kiev] Enabled PHP logging
+[31-Dec-2019 13:58:47 Europe/Kiev] Enabled PHP logging
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP Fatal error:  Declaration of danog\MadelineProto\Stream\Transport\DefaultStream::getSocket(): Amp\Socket\EncryptableSocket must be compatible with danog\MadelineProto\Stream\StreamInterface::getSocket(): Amp\Socket\Socket in /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Stream/Transport/DefaultStream.php on line 40
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP Stack trace:
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP   1. {main}() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/web/index.php:0
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP   2. yii\web\Application->run() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/web/index.php:17
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP   3. yii\web\Application->handleRequest($request = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/Application.php:386
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP   4. yii\web\Application->runAction($route = *uninitialized*, $params = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/web/Application.php:103
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP   5. app\modules\user\controllers\DefaultController->runAction($id = *uninitialized*, $params = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/Module.php:528
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP   6. yii\base\InlineAction->runWithParams($params = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/Controller.php:157
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP   7. call_user_func_array:{/Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/InlineAction.php:57}(*uninitialized*, *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/InlineAction.php:57
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP   8. app\modules\user\controllers\DefaultController->actionCode() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/InlineAction.php:57
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP   9. app\modules\services\models\Telegram->send() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/modules/user/controllers/DefaultController.php:71
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  10. danog\MadelineProto\API->__construct(...$params = variadic(*uninitialized*)) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/modules/services/models/Telegram.php:17
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  11. danog\MadelineProto\API->__magic_construct($params = *uninitialized*, $settings = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/magicalserializer/src/danog/Serializable.php:35
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  12. danog\MadelineProto\API->setInitPromise($promise = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/API.php:87
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  13. danog\MadelineProto\Tools::callFork($promise = *uninitialized*, $actual = *uninitialized*, $file = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Async/AsyncConstruct.php:74
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  14. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:461
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  15. Amp\Success->onResolve($onResolved = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:178
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  16. danog\MadelineProto\Coroutine->danog\MadelineProto\{closure}($exception = *uninitialized*, $value = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/amphp/amp/lib/Success.php:36
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  17. Generator->send(*uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:139
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  18. danog\MadelineProto\API->__construct_async($params = *uninitialized*, $settings = *uninitialized*, $deferred = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:139
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  19. unserialize(*uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/API.php:128
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  20. danog\MadelineProto\MTProto->__wakeup() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/API.php:128
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  21. danog\MadelineProto\MTProto->setInitPromise($promise = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/MTProto.php:898
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  22. danog\MadelineProto\Tools::callFork($promise = *uninitialized*, $actual = *uninitialized*, $file = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Async/AsyncConstruct.php:74
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  23. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:461
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  24. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:109
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  25. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:109
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  26. danog\MadelineProto\Coroutine->onResolve($onResolved = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:178
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  27. danog\MadelineProto\Coroutine->danog\MadelineProto\{closure}($exception = *uninitialized*, $value = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/amphp/amp/lib/Internal/Placeholder.php:43
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  28. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:161
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  29. Generator->current() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  30. danog\MadelineProto\MTProto->connectToAllDcs($reconnectAll = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  31. danog\MadelineProto\Tools::all($promises = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/MTProto.php:1486
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  32. danog\MadelineProto\Tools::call($promise = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:351
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  33. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:429
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  34. Generator->current() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  35. danog\MadelineProto\DataCenter->dcConnect($dc_number = *uninitialized*, $id = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  36. danog\MadelineProto\DataCenter->generateContexts($dc_number = *uninitialized*, $uri = *uninitialized*, $context = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/DataCenter.php:270
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  37. spl_autoload_call(*uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/DataCenter.php:313
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  38. Composer\Autoload\ClassLoader->loadClass($class = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/DataCenter.php:313
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  39. Composer\Autoload\includeFile($file = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/composer/ClassLoader.php:322
+[31-Dec-2019 13:58:48 Europe/Kiev] PHP  40. include() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/composer/ClassLoader.php:444
+[02-Jan-2020 11:49:37 Europe/Kiev] Enabled PHP logging
+[02-Jan-2020 11:49:37 Europe/Kiev] Enabled PHP logging
+Logger:         	MadelineProto
+Logger:         	Copyright (C) 2016-2019 Daniil Gentili
+Logger:         	Licensed under AGPLv3
+Logger:         	https://github.com/danog/MadelineProto
+API:            	Waiting for shared lock of serialization lockfile...
+API:            	Shared lock acquired, deserializing...
+[02-Jan-2020 11:49:37 Europe/Kiev] Enabled PHP logging
+[02-Jan-2020 11:49:37 Europe/Kiev] Enabled PHP logging
+[02-Jan-2020 11:49:37 Europe/Kiev] Enabled PHP logging
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP Fatal error:  Declaration of danog\MadelineProto\Stream\Transport\DefaultStream::getSocket(): Amp\Socket\EncryptableSocket must be compatible with danog\MadelineProto\Stream\StreamInterface::getSocket(): Amp\Socket\Socket in /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Stream/Transport/DefaultStream.php on line 40
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP Stack trace:
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP   1. {main}() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/web/index.php:0
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP   2. yii\web\Application->run() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/web/index.php:17
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP   3. yii\web\Application->handleRequest($request = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/Application.php:386
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP   4. yii\web\Application->runAction($route = *uninitialized*, $params = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/web/Application.php:103
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP   5. app\modules\user\controllers\DefaultController->runAction($id = *uninitialized*, $params = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/Module.php:528
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP   6. yii\base\InlineAction->runWithParams($params = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/Controller.php:157
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP   7. call_user_func_array:{/Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/InlineAction.php:57}(*uninitialized*, *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/InlineAction.php:57
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP   8. app\modules\user\controllers\DefaultController->actionLogin() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/yiisoft/yii2/base/InlineAction.php:57
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP   9. app\modules\services\models\Telegram->send() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/modules/user/controllers/DefaultController.php:47
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  10. danog\MadelineProto\API->__construct(...$params = variadic(*uninitialized*)) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/modules/services/models/Telegram.php:17
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  11. danog\MadelineProto\API->__magic_construct($params = *uninitialized*, $settings = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/magicalserializer/src/danog/Serializable.php:35
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  12. danog\MadelineProto\API->setInitPromise($promise = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/API.php:87
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  13. danog\MadelineProto\Tools::callFork($promise = *uninitialized*, $actual = *uninitialized*, $file = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Async/AsyncConstruct.php:74
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  14. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:461
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  15. Amp\Success->onResolve($onResolved = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:178
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  16. danog\MadelineProto\Coroutine->danog\MadelineProto\{closure}($exception = *uninitialized*, $value = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/amphp/amp/lib/Success.php:36
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  17. Generator->send(*uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:139
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  18. danog\MadelineProto\API->__construct_async($params = *uninitialized*, $settings = *uninitialized*, $deferred = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:139
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  19. unserialize(*uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/API.php:128
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  20. danog\MadelineProto\MTProto->__wakeup() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/API.php:128
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  21. danog\MadelineProto\MTProto->setInitPromise($promise = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/MTProto.php:898
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  22. danog\MadelineProto\Tools::callFork($promise = *uninitialized*, $actual = *uninitialized*, $file = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Async/AsyncConstruct.php:74
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  23. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:461
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  24. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:109
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  25. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:109
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  26. danog\MadelineProto\Coroutine->onResolve($onResolved = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:178
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  27. danog\MadelineProto\Coroutine->danog\MadelineProto\{closure}($exception = *uninitialized*, $value = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/amphp/amp/lib/Internal/Placeholder.php:43
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  28. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:161
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  29. Generator->current() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  30. danog\MadelineProto\MTProto->connectToAllDcs($reconnectAll = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  31. danog\MadelineProto\Tools::all($promises = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/MTProto.php:1486
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  32. danog\MadelineProto\Tools::call($promise = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:351
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  33. danog\MadelineProto\Coroutine->__construct($generator = *uninitialized*, $trace = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Tools.php:429
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  34. Generator->current() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  35. danog\MadelineProto\DataCenter->dcConnect($dc_number = *uninitialized*, $id = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/Coroutine.php:77
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  36. danog\MadelineProto\DataCenter->generateContexts($dc_number = *uninitialized*, $uri = *uninitialized*, $context = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/DataCenter.php:270
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  37. spl_autoload_call(*uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/DataCenter.php:313
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  38. Composer\Autoload\ClassLoader->loadClass($class = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/danog/madelineproto/src/danog/MadelineProto/DataCenter.php:313
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  39. Composer\Autoload\includeFile($file = *uninitialized*) /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/composer/ClassLoader.php:322
+[02-Jan-2020 11:49:38 Europe/Kiev] PHP  40. include() /Users/serik_lav/Documents/sevenpowerx/paradam.loc/vendor/composer/ClassLoader.php:444

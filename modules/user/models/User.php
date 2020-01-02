@@ -2,38 +2,35 @@
 	
 	namespace app\modules\user\models;
 	
-	class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+	use Yii;
+	use yii\base\Model;
+	use yii\db\ActiveRecord;
+
+	/**
+	 * @property mixed auth_key
+	 * @property mixed id
+	 * @property mixed login
+	 * @property mixed password
+	 * @property mixed telephone
+	 * @property mixed first_name
+	 * @property mixed last_name
+	 * @property mixed email
+	 * @property mixed birthday
+	 */
+
+	class User extends ActiveRecord implements \yii\web\IdentityInterface
 	{
-		public $id;
-		public $username;
-		public $password;
-		public $authKey;
-		public $accessToken;
-		
-		private static $users = [
-			'100' => [
-				'id' => '100',
-				'username' => 'admin',
-				'password' => 'admin',
-				'authKey' => 'test100key',
-				'accessToken' => '100-token',
-			],
-			'101' => [
-				'id' => '101',
-				'username' => 'demo',
-				'password' => 'demo',
-				'authKey' => 'test101key',
-				'accessToken' => '101-token',
-			],
-		];
-		
+		public static function tableName()
+		{
+			return 'user';
+		}
 		
 		/**
 		 * {@inheritdoc}
 		 */
 		public static function findIdentity($id)
 		{
-			return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+			return static::findOne($id);
 		}
 		
 		/**
@@ -41,13 +38,7 @@
 		 */
 		public static function findIdentityByAccessToken($token, $type = null)
 		{
-			foreach (self::$users as $user) {
-				if ($user['accessToken'] === $token) {
-					return new static($user);
-				}
-			}
-			
-			return null;
+			//return static::findOne(['access_token' => $token]);
 		}
 		
 		/**
@@ -58,13 +49,18 @@
 		 */
 		public static function findByUsername($username)
 		{
-			foreach (self::$users as $user) {
-				if (strcasecmp($user['username'], $username) === 0) {
-					return new static($user);
-				}
-			}
-			
-			return null;
+			return static::findOne(['username' => $username]);
+		}
+
+		/**
+		 * Finds user by username
+		 *
+		 * @param string $telephone
+		 * @return static|null
+		 */
+		public static function findByTelephone($telephone)
+		{
+			return static::findOne(['telephone' => $telephone]);
 		}
 		
 		/**
@@ -80,7 +76,7 @@
 		 */
 		public function getAuthKey()
 		{
-			return $this->authKey;
+			return $this->auth_key;
 		}
 		
 		/**
@@ -88,7 +84,7 @@
 		 */
 		public function validateAuthKey($authKey)
 		{
-			return $this->authKey === $authKey;
+			return $this->auth_key === $authKey;
 		}
 		
 		/**
@@ -99,6 +95,14 @@
 		 */
 		public function validatePassword($password)
 		{
-			return $this->password === $password;
+			return Yii::$app->security->validatePassword($password, $this->password);
+		}
+
+		/**
+		 * @throws \yii\base\Exception
+		 */
+		public function generateAuthKey()
+		{
+			$this->auth_key = Yii::$app->security->generateRandomString();
 		}
 	}
