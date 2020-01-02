@@ -57,10 +57,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 		    ['username', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'ERROR_USERNAME_EXISTS')],
 		    ['username', 'string', 'min' => 2, 'max' => 255],
 		
-		    ['email', 'required'],
-		    ['email', 'email'],
-		    ['email', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'ERROR_EMAIL_EXISTS')],
-		    ['email', 'string', 'max' => 255],
+		    ['email', 'required', 'except' => self::SCENARIO_PROFILE],
+		    ['email', 'email', 'except' => self::SCENARIO_PROFILE],
+		    ['email', 'unique', 'targetClass' => self::className(), 'except' => self::SCENARIO_PROFILE, 'message' => Yii::t('app', 'ERROR_EMAIL_EXISTS')],
+		    ['email', 'string', 'max' => 255, 'except' => self::SCENARIO_PROFILE],
 		
 		    ['status', 'integer'],
 		    ['status', 'default', 'value' => self::STATUS_ACTIVE],
