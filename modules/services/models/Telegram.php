@@ -2,6 +2,7 @@
 
 namespace app\modules\services\models;
 
+use danog\MadelineProto;
 use danog\MadelineProto\API;
 use Yii;
 use yii\base\Model;
@@ -14,7 +15,7 @@ class Telegram extends Model
 	public function send()
 	{
 		if (file_exists('session/session.madeline')) {
-			$mp = new API('session/session.madeline');
+			$mp = new API('session/session.madeline', Yii::$app->params['api']['tg']);
 			$mp->start();
 
 			$contact = ['_' => 'inputPhoneContact', 'client_id' => 0, 'phone' => $this->telephone, 'first_name' => '', 'last_name' => ''];
@@ -24,15 +25,15 @@ class Telegram extends Model
 				$mp->messages->sendMessage(['peer' => $import['imported'][0]['user_id'], 'message' => $this->message]);
 
 				if ($mp->updates->getState()) {
-					return Yii::t('ServicesTelegram','Сообщение отправленно!');
+					return Yii::t('ServicesTelegram','Сообщение отправленно!'); // TODO-splaandrey: создать категорию для переводом
 				} else {
-					return Yii::t('ServicesTelegram','Ошибка при отправке сообщения!');
+					return Yii::t('ServicesTelegram','Ошибка при отправке сообщения!'); // TODO-splaandrey: создать категорию для переводом
 				}
 			} else {
-				return Yii::t('ServicesTelegram','Пользователь не найден!');
+				return Yii::t('ServicesTelegram','Пользователь не найден!'); // TODO-splaandrey: создать категорию для переводом
 			}
 		} else {
-			return Yii::t('ServicesTelegram','Сессия не найдена!');
+			return Yii::t('ServicesTelegram','Сессия не найдена!'); // TODO-splaandrey: создать категорию для переводом
 		}
 	}
 }

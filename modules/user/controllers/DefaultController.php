@@ -9,7 +9,7 @@
 	use yii\filters\AccessControl;
 	use yii\filters\VerbFilter;
 	use yii\web\Controller;
-	
+
 	class DefaultController extends Controller
 	{
 		public function behaviors()
@@ -67,7 +67,7 @@
 						// Send Message to telegram
 						$telegram = new Telegram();
 						$telegram->telephone = '+' . Yii::$app->request->post('telephone');
-						$telegram->message = 'Код для авторизации: ' . $code;
+						$telegram->message = 'Код для авторизации: ' . $code; // TODO-splaandrey: создать категорию для переводом
 						$telegram->send();
 						break;
 					case 'call':
