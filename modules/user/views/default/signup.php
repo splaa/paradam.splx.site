@@ -27,6 +27,21 @@
 
 			<?= $form->field($model, 'telephone') ?>
 
+	        <div class="form-group">
+		        <div class="btn-group" data-toggle="buttons">
+			        <label class="btn btn-default active">
+				        <input type="radio" checked name="type" value="telegram"> Telegram
+			        </label>
+			        <label class="btn btn-default">
+				        <input type="radio" name="type" value="call"> Звонок последние 4 цыфры
+			        </label>
+		        </div>
+	        </div>
+
+	        <div class="form-group">
+		        <?= Html::button('Подтвердить', ['type' => 'button', 'id' => 'confirm_btn', 'class' => 'btn btn-primary']) ?>
+	        </div>
+
 			<?= $form->field($model, 'password')->passwordInput() ?>
    
 			<?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
@@ -42,3 +57,26 @@
         </div>
     </div>
 </div>
+
+<?php
+$js = <<< JS
+$(document).ready(function() {
+	$('#confirm_btn').click(function(){
+		$.ajax({
+			url: '/user/default/telephone-code-confirm',
+			data: 'type=' + $('input[name="type"]').val() + '&telephone=' + $('#signupform-telephone').val(),
+			type: 'POST',
+			success: function (res) {
+				console.log(res);
+			},
+			error: function () {
+				
+			}
+		});
+	})
+});
+JS;
+
+$this->registerJs($js);
+
+?>
