@@ -24,7 +24,9 @@
 			<?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 			
 			<?= $form->field($model, 'email') ?>
-			
+
+			<?= $form->field($model, 'telephone') ?>
+
 			<?= $form->field($model, 'password')->passwordInput() ?>
    
 			<?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [

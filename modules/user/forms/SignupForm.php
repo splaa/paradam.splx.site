@@ -14,6 +14,7 @@
 	{
 		public $username;
 		public $email;
+		public $telephone;
 		public $password;
 		public $verifyCode;
 		
@@ -34,7 +35,12 @@
 				['email', 'required'],
 				['email', 'email'],
 				['email', 'unique', 'targetClass' => User::className(), 'message' => 'This email address has already been taken.'],
-				
+
+				['telephone', 'filter', 'filter' => 'trim'],
+				['telephone', 'required'],
+				['telephone', 'match', 'pattern' => '/^\+380\d{3}\d{2}\d{2}\d{2}$/'],
+				['telephone', 'unique', 'targetClass' => self::className(), 'message' => 'This telephone address has already been taken.'],
+
 				['password', 'required'],
 				['password', 'string', 'min' => 6],
 				
@@ -54,6 +60,7 @@
 				$user = new User();
 				$user->username = $this->username;
 				$user->email = $this->email;
+				$user->telephone = $this->telephone;
 				$user->setPassword($this->password);
 				$user->status = User::STATUS_WAIT;
 				$user->generateAuthKey();
