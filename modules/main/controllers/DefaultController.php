@@ -26,9 +26,9 @@
 		 */
 		public function actionIndex()
 		{
-			$sms = new Smsc('+380980183456', 'Проверка');
-			$result = $sms->message();
-			echo "<pre>";print_r($result);exit;
+//			$sms = new Smsc('+380980183456', 'Проверка');
+//			$result = $sms->message();
+//			echo "<pre>";print_r($result);exit;
 
 //			$sms = new Telegram('+380980183456', 'Проверка');
 //			$result = $sms->message();
