@@ -2,21 +2,27 @@
 	
 	namespace app\modules\user\controllers;
 	
-
-	use app\modules\user\models\EmailConfirmForm;
-	use app\modules\user\models\LoginForm;
-	use app\modules\user\models\PasswordResetRequestForm;
-	use app\modules\user\models\PasswordResetForm;
-	use app\modules\user\models\SignupForm;
+	
+	use app\modules\user\forms\EmailConfirmForm;
+	use app\modules\user\forms\LoginForm;
+	use app\modules\user\forms\PasswordResetForm;
+	use app\modules\user\forms\PasswordResetRequestForm;
+	use app\modules\user\forms\SignupForm;
+	use app\modules\user\Module;
+	use Yii;
 	use yii\base\InvalidParamException;
 	use yii\filters\AccessControl;
 	use yii\filters\VerbFilter;
 	use yii\web\BadRequestHttpException;
 	use yii\web\Controller;
-	use Yii;
 	
 	class DefaultController extends Controller
 	{
+		/**
+		 * @var Module
+		 */
+		public $module;
+		
 		public function behaviors()
 		{
 			return [
@@ -119,7 +125,7 @@
 		
 		public function actionPasswordResetRequest()
 		{
-			$model = new PasswordResetRequestForm();
+			$model = new PasswordResetRequestForm($this->module->passwordResetTokenExpire);;
 			if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 				if ($model->sendEmail()) {
 					Yii::$app->getSession()->setFlash('success', 'Спасибо! На ваш Email было отправлено письмо со ссылкой на восстановление пароля.');
@@ -138,7 +144,7 @@
 		public function actionPasswordReset($token)
 		{
 			try {
-				$model = new PasswordResetForm($token);
+				$model = new PasswordResetForm($token, $this->module->passwordResetTokenExpire);;
 			} catch (InvalidParamException $e) {
 				throw new BadRequestHttpException($e->getMessage());
 			}

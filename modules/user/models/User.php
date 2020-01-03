@@ -24,11 +24,11 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
-	const SCENARIO_PROFILE = 'profile';
+	public const SCENARIO_PROFILE = 'profile';
 	
-	const STATUS_BLOCKED = 0;
-	const STATUS_ACTIVE = 1;
-	const STATUS_WAIT = 2;
+	public const STATUS_BLOCKED = 0;
+	public const STATUS_ACTIVE = 1;
+	public const STATUS_WAIT = 2;
 	
 	
 	public function behaviors()
@@ -230,9 +230,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 	 * @param string $token password reset token
 	 * @return static|null
 	 */
-	public static function findByPasswordResetToken($token)
+	public static function findByPasswordResetToken($token, $timeout)
 	{
-		if (!static::isPasswordResetTokenValid($token)) {
+		if (!static::isPasswordResetTokenValid($token, $timeout)) {
 			return null;
 		}
 		return static::findOne([
@@ -247,15 +247,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 	 * @param string $token password reset token
 	 * @return boolean
 	 */
-	public static function isPasswordResetTokenValid($token)
+	public static function isPasswordResetTokenValid($token, $timeout)
 	{
 		if (empty($token)) {
 			return false;
 		}
-		$expire = Yii::$app->params['user.passwordResetTokenExpire'];
 		$parts = explode('_', $token);
 		$timestamp = (int) end($parts);
-		return $timestamp + $expire >= time();
+		return $timestamp + $timeout >= time();
 	}
 	
 	/**

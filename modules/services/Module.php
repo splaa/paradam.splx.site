@@ -2,6 +2,8 @@
 	
 	namespace app\modules\services;
 	
+	use Yii;
+	
 	/**
 	 * services module definition class
 	 */
@@ -20,5 +22,10 @@
 			parent::init();
 			
 			// custom initialization code goes here
+		}
+		
+		public static function t($category, $message, $params = [], $language = null)
+		{
+			return Yii::t('modules/user/' . $category, $message, $params, $language);
 		}
 	}
