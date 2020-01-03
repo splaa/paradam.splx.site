@@ -9,35 +9,38 @@
 	use yii\captcha\Captcha;
 	use yii\helpers\Html;
 	
-	$this->title = 'Contact';
+	$this->title = Yii::t('app', 'TITLE_CONTACT');
 	$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
+<div class="main-contact">
     <h1><?= Html::encode($this->title) ?></h1>
 	
 	<?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
         <div class="alert alert-success">
-            Thank you for contacting us. We will respond to you as soon as possible.
+	        <?= Yii::t('app', 'CONTACT_THANKS'); ?>
         </div>
 
         <p>
-            Note that if you turn on the Yii debugger, you should be able
-            to view the mail message on the mail panel of the debugger.
+            Обратите внимание, что если вы включите отладчик Yii, вы сможете
+            просмотреть почтовое сообщение на почтовой панели отладчика. <br>
 			<?php if (Yii::$app->mailer->useFileTransport): ?>
-                Because the application is in development mode, the email is not sent but saved as
-                a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>.
-                                                                                                    Please configure the
-                <code>useFileTransport</code> property of the <code>mail</code>
-                application component to be false to enable email sending.
+                Поскольку приложение находится в режиме разработки, <br>
+                электронная почта не отправляется, <br>
+                но сохраняется как файл в
+                <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>. <br>
+                Пожалуйста, настройте
+                <code>useFileTransport</code> свойство of the <code>mail</code> <br>
+                application component должно быть false to enable email sending.
 			<?php endif; ?>
         </p>
 	
 	<?php else: ?>
 
         <p>
-            If you have business inquiries or other questions, please fill out the following form to contact us.
-            Thank you.
+            Если у вас есть деловые вопросы или другие вопросы,<br>
+            Пожалуйста, заполните следующую форму, чтобы связаться с нами. <br>
+            Thank you. <br>
         </p>
 
         <div class="row">
@@ -59,7 +62,7 @@
 				]) ?>
 
                 <div class="form-group">
-					<?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+					<?= Html::submitButton(Yii::t('app', 'BUTTON_SEND'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                 </div>
 				
 				<?php ActiveForm::end(); ?>

@@ -6,6 +6,7 @@
 		'supportName' => '',
 		'senderEmail' => '',
 		'senderName' => '',
+		'user.passwordResetTokenExpire' => 3600,
 
 		'api' => [
 			'tg' => [

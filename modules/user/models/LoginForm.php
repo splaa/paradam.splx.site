@@ -1,7 +1,7 @@
 <?php
 	
 	namespace app\modules\user\models;
-
+	
 	use Yii;
 	use yii\base\Model;
 	
@@ -13,9 +13,8 @@
 	 */
 	class LoginForm extends Model
 	{
-		public $telephone;
+		public $username;
 		public $password;
-		public $code;
 		public $rememberMe = true;
 		
 		private $_user = false;
@@ -27,10 +26,8 @@
 		public function rules()
 		{
 			return [
-				[['telephone'], 'string'],
-				// password are both required
-				[['password'], 'required'],
-				[['code'], 'required'],
+				// email and password are both required
+				[['username', 'password'], 'required'],
 				// rememberMe must be a boolean value
 				['rememberMe', 'boolean'],
 				// password is validated by validatePassword()
@@ -49,13 +46,16 @@
 		{
 			if (!$this->hasErrors()) {
 				$user = $this->getUser();
-				
 				if (!$user || !$user->validatePassword($this->password)) {
-					$this->addError($attribute,'Логин/пароль введены не верно.');
+					$this->addError('password',  Yii::t('app', 'ERROR_WRONG_USERNAME_OR_PASSWORD'));
+				} elseif ($user && $user->status == User::STATUS_BLOCKED) {
+					$this->addError('username', Yii::t('app', 'ERROR_PROFILE_BLOCKED'));
+				} elseif ($user && $user->status == User::STATUS_WAIT) {
+					$this->addError('username', Yii::t('app', 'ERROR_PROFILE_NOT_CONFIRMED'));
 				}
 			}
 		}
-
+		
 		/**
 		 * Logs in a user using the provided username and password.
 		 * @return bool whether the user is logged in successfully
@@ -63,13 +63,7 @@
 		public function login()
 		{
 			if ($this->validate()) {
-				if ($this->rememberMe) {
-					$u = $this->getUser();
-					$u->generateAuthKey();
-					$u->save();
-				}
-
-				return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+				return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
 			}
 			return false;
 		}
@@ -82,18 +76,17 @@
 		public function getUser()
 		{
 			if ($this->_user === false) {
-				$this->_user = User::findByTelephone($this->telephone);
+				$this->_user = User::findByUsername($this->username);
 			}
-
+			
 			return $this->_user;
 		}
-
 		public function attributeLabels()
 		{
 			return [
-				'telephone' => 'Телефон',
-				'password' => 'Пароль',
-				'rememberMe' => 'Запомнить'
+				'username' => Yii::t('app', 'USER_USERNAME'),
+				'password' => Yii::t('app', 'USER_PASSWORD'),
+				'rememberMe' => Yii::t('app', 'USER_REMEMBER_ME'),
 			];
 		}
 	}
