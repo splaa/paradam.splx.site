@@ -1,12 +1,11 @@
 <?php
 	
 	namespace app\modules\main\controllers;
-	
-	use app\modules\services\controllers\TelegramController;
-	use app\modules\services\models\Smsc;
-	use app\modules\services\models\Telegram;
+
+	use app\components\Smsc;
+	use app\components\Telegram;
 	use yii\web\Controller;
-	
+
 	/**
 	 * Default controller for the `main` module
 	 */
@@ -27,6 +26,14 @@
 		 */
 		public function actionIndex()
 		{
+//			$sms = new Smsc('+380980183456', 'Проверка');
+//			$result = $sms->message();
+//			echo "<pre>";print_r($result);exit;
+
+//			$sms = new Telegram('+380980183456', 'Проверка');
+//			$result = $sms->message();
+//			echo "<pre>";print_r($result);exit;
+
 			return $this->render('index');
 		}
 	}
