@@ -27,19 +27,6 @@
 		 */
 		public function actionIndex()
 		{
-			// Send Message to telegram
-//			$telegram = new Telegram();
-//			$telegram->telephone = '+380980183456';
-//			$telegram->message = 'TEST2 with composer';
-//			$telegram->send();
-//
-			// Send Call Message to User Phone
-//			$smsc = new Smsc();
-//			$smsc->telephone = '+380980183456';
-//			$smsc->message = 'code';
-//			$code = $smsc->call();
-
-
 			return $this->render('index');
 		}
 	}
