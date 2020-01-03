@@ -2,6 +2,7 @@
 	
 	namespace app\modules\admin;
 	
+	use Yii;
 	use yii\filters\AccessControl;
 	
 	/**
@@ -37,5 +38,10 @@
 			parent::init();
 			
 			// custom initialization code goes here
+		}
+		
+		public static function t($category, $message, $params = [], $language = null)
+		{
+			return Yii::t('modules/user/' . $category, $message, $params, $language);
 		}
 	}

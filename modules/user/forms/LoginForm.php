@@ -1,7 +1,8 @@
 <?php
 	
-	namespace app\modules\user\models;
+	namespace app\modules\user\forms;
 	
+	use app\modules\admin\models\User;
 	use Yii;
 	use yii\base\Model;
 	
@@ -81,6 +82,7 @@
 			
 			return $this->_user;
 		}
+		
 		public function attributeLabels()
 		{
 			return [

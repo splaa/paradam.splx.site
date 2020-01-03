@@ -1,7 +1,7 @@
 <?php
 // paradam.me.loc/UsersController.php
 	
-	namespace app\commands;
+	namespace app\modules\user\commands;
 	
 	use app\modules\user\models\User;
 	use yii\base\Model;

@@ -1,9 +1,10 @@
 <?php
 // paradam.me.loc/ProfileUpdateForm.php
 	
-	namespace app\modules\user\models;
+	namespace app\modules\user\forms;
 	
-	use Yii;
+	use app\modules\admin\models\User;
+	use app\modules\user\Module;
 	use yii\base\Model;
 	
 	class ProfileUpdateForm extends Model
@@ -31,7 +32,7 @@
 					'email',
 					'unique',
 					'targetClass' => User::className(),
-					'message' => Yii::t('app', 'ERROR_EMAIL_EXISTS'),
+					'message' => Module::t('app', 'ERROR_EMAIL_EXISTS'),
 					'filter' => ['<>', 'id', $this->_user->id],
 				],
 				['email', 'string', 'max' => 255],

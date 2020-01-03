@@ -3,7 +3,7 @@
 	/* @var $this yii\web\View */
 	/* @var $form yii\bootstrap\ActiveForm */
 	
-	/* @var $model app\modules\user\models\LoginForm */
+	/* @var $model app\modules\user\forms\LoginForm */
 	
 	use yii\bootstrap\ActiveForm;
 	use yii\helpers\Html;

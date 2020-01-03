@@ -1,11 +1,11 @@
 <?php
 // paradam.me.loc/EmailConfirmForm.php
 	
-	namespace app\modules\user\models;
+	namespace app\modules\user\forms;
 	
+	use app\modules\admin\models\User;
 	use yii\base\InvalidParamException;
 	use yii\base\Model;
-	use Yii;
 	
 	class EmailConfirmForm extends Model
 	{

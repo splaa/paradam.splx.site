@@ -1,10 +1,11 @@
 <?php
 // paradam.me.loc/SignupForm.php
 	
-	namespace app\modules\user\models;
+	namespace app\modules\user\forms;
 	
-	use yii\base\Model;
+	use app\modules\admin\models\User;
 	use Yii;
+	use yii\base\Model;
 	
 	/**
 	 * Signup form
@@ -58,7 +59,7 @@
 				$user->generateAuthKey();
 				$user->generateEmailConfirmToken();
 				if ($user->save()) {
-					Yii::$app->mailer->compose('@app/modules/user/mails/emailConfirm', ['user' => $user])
+					Yii::$app->mailer->compose(['text' => '@app/modules/user/mails/emailConfirm'], ['user' => $user])
 						->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
 						->setTo($this->email)
 						->setSubject('Email confirmation for ' . Yii::$app->name)

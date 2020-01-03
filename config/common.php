@@ -11,7 +11,12 @@
 	return [
 		'name' => 'Paradam.me',
 		'basePath' => dirname(__DIR__),
-		'bootstrap' => ['log'],
+		'bootstrap' => [
+			'log',
+			'app\modules\admin\Bootstrap',
+			'app\modules\main\Bootstrap',
+			'app\modules\user\Bootstrap',
+		],
 		'modules' => [
 			'admin' => [
 				'class' => 'app\modules\admin\Module',
@@ -21,6 +26,7 @@
 			],
 			'user' => [
 				'class' => 'app\modules\user\Module',
+				'passwordResetTokenExpire' => 3600,
 			],
 			'services' => [
 				'class' => 'app\modules\services\Module',
