@@ -39,12 +39,12 @@ class Telegram extends BaseObject
 			$mp->messages->sendMessage(['peer' => $import['imported'][0]['user_id'], 'message' => $this->message]);
 
 			if ($mp->updates->getState()) {
-				return Yii::t('ServicesTelegram', 'Сообщение отправленно!'); // TODO-splaandrey: создать категорию для переводом
+				return Yii::t('app', 'Сообщение отправленно!'); // TODO-splaandrey: создать категорию для переводом
 			} else {
-				return Yii::t('ServicesTelegram', 'Ошибка при отправке сообщения!'); // TODO-splaandrey: создать категорию для переводом
+				return Yii::t('app', 'Ошибка при отправке сообщения!'); // TODO-splaandrey: создать категорию для переводом
 			}
 		} else {
-			return Yii::t('ServicesTelegram', 'Пользователь не найден!'); // TODO-splaandrey: создать категорию для переводом
+			return Yii::t('app', 'Пользователь не найден!'); // TODO-splaandrey: создать категорию для переводом
 		}
 	}
 }
