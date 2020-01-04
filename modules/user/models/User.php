@@ -2,9 +2,12 @@
 
 namespace app\modules\user\models;
 
+use app\modules\user\models\query\UserQuery;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 
@@ -21,9 +24,12 @@ use yii\web\IdentityInterface;
  * @property string|null $password_reset_token
  * @property string $email
  * @property string $telephone
+ * @property mixed $statusName
+ * @property string $password
+ * @property string $authKey
  * @property int $status
  */
-class User extends \yii\db\ActiveRecord implements IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
 	public const SCENARIO_PROFILE = 'profile';
 	
@@ -40,60 +46,61 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 	}
 	
 	/**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return 'user';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-	    return [
-		    ['username', 'required'],
-		    ['username', 'match', 'pattern' => '#^[\w_-]+$#is'],
-		    ['username', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'ERROR_USERNAME_EXISTS')],
-		    ['username', 'string', 'min' => 2, 'max' => 255],
-		
-		    ['email', 'required', 'except' => self::SCENARIO_PROFILE],
-		    ['email', 'email', 'except' => self::SCENARIO_PROFILE],
-		    ['email', 'unique', 'targetClass' => self::className(), 'except' => self::SCENARIO_PROFILE, 'message' => Yii::t('app', 'ERROR_EMAIL_EXISTS')],
-		    ['email', 'string', 'max' => 255, 'except' => self::SCENARIO_PROFILE],
-
-		    ['telephone', 'required'],
-		    ['telephone', 'match', 'pattern' => '/^\+380\d{3}\d{2}\d{2}\d{2}$/'],
-		    ['telephone', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'ERROR_USERNAME_EXISTS')],
-		
-		    ['status', 'integer'],
-		    ['status', 'default', 'value' => self::STATUS_ACTIVE],
-		    ['status', 'in', 'range' => array_keys(self::getStatusesArray())],
-	    ];
-    }
+	 * {@inheritdoc}
+	 */
+	public static function tableName()
+	{
+		return 'user';
+	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function rules()
+	{
+		return [
+			['username', 'required'],
+			['username', 'match', 'pattern' => '#^[\w_-]+$#is'],
+			['username', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'ERROR_USERNAME_EXISTS')],
+			['username', 'string', 'min' => 2, 'max' => 255],
+			
+			['email', 'required', 'except' => self::SCENARIO_PROFILE],
+			['email', 'email', 'except' => self::SCENARIO_PROFILE],
+			['email', 'unique', 'targetClass' => self::className(), 'except' => self::SCENARIO_PROFILE, 'message' => Yii::t('app', 'ERROR_EMAIL_EXISTS')],
+			['email', 'string', 'max' => 255, 'except' => self::SCENARIO_PROFILE],
+			
+			['telephone', 'required'],
+			['telephone', 'match', 'pattern' => '/^\+380\d{3}\d{2}\d{2}\d{2}$/'],
+			['telephone', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'ERROR_USERNAME_EXISTS')],
+			
+			['status', 'integer'],
+			['status', 'default', 'value' => self::STATUS_ACTIVE],
+			['status', 'in', 'range' => array_keys(self::getStatusesArray())],
+		];
+	}
 	
 	public function scenarios()
 	{
 		return ArrayHelper::merge(parent::scenarios(), [
-		self::SCENARIO_PROFILE => ['email'],
-	]);
+			self::SCENARIO_PROFILE => ['email'],
+		]);
 	}
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-	    return [
-		    'id' => 'ID',
-		    'created_at' => 'Создан',
-		    'updated_at' => 'Обновлён',
-		    'username' => 'Имя пользователя',
-		    'email' => 'Email',
-		    'status' => 'Статус',
-	    ];
-    }
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function attributeLabels()
+	{
+		return [
+			'id' => 'ID',
+			'created_at' => 'Создан',
+			'updated_at' => 'Обновлён',
+			'username' => 'Имя пользователя',
+			'email' => 'Email',
+			'status' => 'Статус',
+		];
+	}
+	
 	public function getStatusName()
 	{
 		return ArrayHelper::getValue(self::getStatusesArray(), $this->status);
@@ -179,6 +186,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 	{
 		return $this->getAuthKey() === $authKey;
 	}
+	
+	/**
+	 * @return UserQuery
+	 * @throws InvalidConfigException
+	 */
+	public static function find()
+	{
+		return Yii::createObject(UserQuery::className(), [get_called_class()]);
+	}
+	
 	/**
 	 * Finds user by username
 	 *
@@ -229,6 +246,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 		}
 		return false;
 	}
+	
 	/**
 	 * Finds user by password reset token
 	 *
@@ -278,6 +296,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 	{
 		$this->password_reset_token = null;
 	}
+	
 	/**
 	 * @param string $email_confirm_token
 	 * @return static|null

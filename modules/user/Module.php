@@ -14,6 +14,11 @@
 		 */
 		public $controllerNamespace = 'app\modules\user\controllers';
 		/**
+		 * срок истечения регистрации.
+		 * @var int
+		 */
+		public $emailConfirmTokenExpire = 259200; // 3 days
+		/**
 		 * @var int
 		 */
 		public $passwordResetTokenExpire = 3600;
