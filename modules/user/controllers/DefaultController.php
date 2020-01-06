@@ -161,7 +161,7 @@
 				'model' => $model,
 			]);
 		}
-
+		
 		public function actionTelephoneCodeConfirm()
 		{
 			if (Yii::$app->request->post('type') && Yii::$app->request->post('telephone')) {
@@ -181,7 +181,7 @@
 						$code = 0;
 						break;
 				}
-
+				
 				if ($code) {
 					Yii::$app->session->set('codeAuth', $code);
 					return 'Телефон подтвержден';

@@ -1,3 +1,5 @@
 /.htaccess
 /index.php
 /index-test.php
+/MadelineProto.log
+/session/session.madeline

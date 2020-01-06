@@ -3,7 +3,7 @@
 	
 	namespace app\modules\user\forms;
 	
-	use app\modules\admin\models\User;
+	use app\modules\user\models\User;
 	use Yii;
 	use yii\base\Model;
 	
@@ -36,10 +36,10 @@
 				['email', 'email'],
 				['email', 'unique', 'targetClass' => User::className(), 'message' => 'This email address has already been taken.'],
 
-				['telephone', 'filter', 'filter' => 'trim'],
-				['telephone', 'required'],
-				['telephone', 'match', 'pattern' => '/^\+380\d{3}\d{2}\d{2}\d{2}$/'],
-				['telephone', 'unique', 'targetClass' => self::className(), 'message' => 'This telephone address has already been taken.'],
+//				['telephone', 'filter', 'filter' => 'trim'],
+//				['telephone', 'required'],
+//				['telephone', 'match', 'pattern' => '/^\+380\d{3}\d{2}\d{2}\d{2}$/'],
+//				['telephone', 'unique', 'targetClass' => self::className(), 'message' => 'This telephone address has already been taken.'],
 
 				['password', 'required'],
 				['password', 'string', 'min' => 6],
@@ -66,7 +66,7 @@
 				$user->generateAuthKey();
 				$user->generateEmailConfirmToken();
 				if ($user->save()) {
-					Yii::$app->mailer->compose(['text' => '@app/modules/user/mails/emailConfirm'], ['user' => $user])
+					Yii::$app->mailer->compose(['html' => '@app/modules/user/mails/emailConfirm'], ['user' => $user])
 						->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
 						->setTo($this->email)
 						->setSubject('Email confirmation for ' . Yii::$app->name)

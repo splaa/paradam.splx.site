@@ -68,11 +68,11 @@ class User extends ActiveRecord implements IdentityInterface
 			['email', 'email', 'except' => self::SCENARIO_PROFILE],
 			['email', 'unique', 'targetClass' => self::className(), 'except' => self::SCENARIO_PROFILE, 'message' => Yii::t('app', 'ERROR_EMAIL_EXISTS')],
 			['email', 'string', 'max' => 255, 'except' => self::SCENARIO_PROFILE],
-			
-			['telephone', 'required'],
-			['telephone', 'match', 'pattern' => '/^\+380\d{3}\d{2}\d{2}\d{2}$/'],
-			['telephone', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'ERROR_USERNAME_EXISTS')],
-			
+
+//			['telephone', 'required'],
+//			['telephone', 'match', 'pattern' => '/^\+380\d{3}\d{2}\d{2}\d{2}$/'],
+//			['telephone', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'ERROR_USERNAME_EXISTS')],
+//
 			['status', 'integer'],
 			['status', 'default', 'value' => self::STATUS_ACTIVE],
 			['status', 'in', 'range' => array_keys(self::getStatusesArray())],
