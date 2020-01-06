@@ -36,6 +36,7 @@ class User extends ActiveRecord implements IdentityInterface
 	public const STATUS_BLOCKED = 0;
 	public const STATUS_ACTIVE = 1;
 	public const STATUS_WAIT = 2;
+	public const STATUS_TEST = 3;
 	
 	
 	public function behaviors()

@@ -18,6 +18,7 @@
 		'TITLE_CONTACT' => 'Контакты',
 		'TITLE_PROFILE' => 'Профиль пользователя',
 		
+		'FOLLOW_TO_CONFIRM_PHONE' => 'Для подтверждения телефона пройдите по ссылке:',
 		'HELLO {username}' => 'Здравствуйте, {username}!',
 		'FOLLOW_TO_RESET_PASSWORD' => 'Для смены пароля пройдите по ссылке:',
 		'FOLLOW_TO_CONFIRM_EMAIL' => 'Для подтверждения адреса пройдите по ссылке:',
