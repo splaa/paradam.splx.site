@@ -17,7 +17,6 @@
 		public $email;
 		public $telephone;
 		public $password;
-		public $verifyCode;
 		
 		public function rules()
 		{
@@ -43,9 +42,7 @@
 				['telephone', 'unique', 'targetClass' => PhoneRecord::class, 'message' => 'This telephone address has already been taken.'],
 				
 				['password', 'required'],
-				['password', 'string', 'min' => 6],
-				
-				['verifyCode', 'captcha', 'captchaAction' => '/user/default/captcha'],
+				['password', 'string', 'min' => 6]
 			];
 		}
 		

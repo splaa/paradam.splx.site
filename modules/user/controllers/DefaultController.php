@@ -161,33 +161,4 @@
 				'model' => $model,
 			]);
 		}
-		
-		public function actionTelephoneCodeConfirm()
-		{
-			if (Yii::$app->request->post('type') && Yii::$app->request->post('telephone')) {
-				switch (Yii::$app->request->post('type')) {
-					case 'telegram':
-						$code = Yii::$app->security->generateRandomString(4);
-						// Send Message to telegram
-						$telegram = new Telegram(Yii::$app->request->post('telephone'), 'Код для авторизации: ' . $code);
-						$telegram->message();
-						break;
-					case 'call':
-						// Send Call Message to User Phone
-						$smsc = new Smsc(Yii::$app->request->post('telephone'));
-						$code = $smsc->call();
-						break;
-					default:
-						$code = 0;
-						break;
-				}
-				
-				if ($code) {
-					Yii::$app->session->set('codeAuth', $code);
-					return 'Телефон подтвержден';
-				} else {
-					return 'Ошибка повторите позже';
-				}
-			}
-		}
 	}
