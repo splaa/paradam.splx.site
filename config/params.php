@@ -9,6 +9,7 @@
 		'user.passwordResetTokenExpire' => 3600,
 
 		'api' => [
+			'telegram_phone' => '+380980183456',
 			'tg' => [
 				'authorization' => [
 					'default_temp_auth_key_expires_in' => 315576000, // я установил 10 лет, что бы не авторизовывать приложение повторно.
