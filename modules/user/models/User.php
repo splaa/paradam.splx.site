@@ -208,6 +208,12 @@ class User extends ActiveRecord implements IdentityInterface
 		return static::findOne(['username' => $username]);
 	}
 	
+	public static function findByPhone($phone)
+	{
+		return static::findOne(['telephone' => $phone]);
+	}
+	
+	
 	/**
 	 * Validates password
 	 *

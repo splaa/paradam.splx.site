@@ -9,6 +9,7 @@
 	use app\modules\user\forms\LoginForm;
 	use app\modules\user\forms\PasswordResetForm;
 	use app\modules\user\forms\PasswordResetRequestForm;
+	use app\modules\user\forms\PhoneLoginForm;
 	use app\modules\user\forms\SignupForm;
 	use app\modules\user\Module;
 	use Yii;
@@ -81,6 +82,24 @@
 				return $this->goBack();
 			} else {
 				return $this->render('login', [
+					'model' => $model,
+				]);
+			}
+		}
+		
+		public function actionPhonelogin()
+		{
+			if (!Yii::$app->user->isGuest) {
+				return $this->goHome();
+			}
+			
+			$model = new PhoneLoginForm();
+			
+			if ($model->load(Yii::$app->request->post()) && $model->login()) {
+				
+				return $this->goBack();
+			} else {
+				return $this->render('phonelogin', [
 					'model' => $model,
 				]);
 			}

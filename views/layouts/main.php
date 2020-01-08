@@ -49,7 +49,10 @@
 					]] :
 					false,
 				Yii::$app->user->isGuest ?
-					['label' => Yii::t('app', 'NAV_LOGIN'), 'url' => ['/user/default/login']] :
+					['label' => Yii::t('app', 'NAV_LOGIN'), 'items' => [
+						['label' => Yii::t('app', 'Вход по email'), 'url' => ['/user/default/login']],
+						['label' => Yii::t('app', 'Вход по телефону'), 'url' => ['/user/default/phonelogin']],
+					]] :
 					false,
 				!Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_ADMIN'), 'items' => [
