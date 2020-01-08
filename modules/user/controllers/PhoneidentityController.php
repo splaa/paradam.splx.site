@@ -5,10 +5,10 @@
 	use app\components\Smsc;
 	use app\components\Telegram;
 	use app\modules\user\forms\PhoneSignupForm;
+	use app\modules\user\forms\PhoneSignupVerifyForm;
 	use app\modules\user\models\PhoneRecord;
 	use Yii;
 	use yii\filters\VerbFilter;
-	use yii\helpers\Url;
 	use yii\web\Controller;
 	use yii\web\NotFoundHttpException;
 	
@@ -39,12 +39,12 @@
 		 */
 		public function actionIndex()
 		{
-			
-			
 			$model = new PhoneSignupForm();
 			if ($model->load(Yii::$app->request->post())) {
 				if ($user = $model->signup()) {
-					Yii::$app->getSession()->setFlash('success', 'Подтвердите ваш тедлефон.');
+					Yii::$app->getSession()->setFlash('success', 'Подтвердите ваш телефон.');
+
+					$model = new PhoneSignupVerifyForm();
 
 					return $this->render('verify', [
 						'model' => $model,
@@ -57,6 +57,18 @@
 				'message' => 'Ok',
 				'model' => $model,
 			]);
+		}
+
+		public function actionVerify($id)
+		{
+			$model = new PhoneSignupVerifyForm();
+			if ($model->load(Yii::$app->request->post())) {
+				if ($user = $model->signup($id)) {
+					Yii::$app->getSession()->setFlash('success', 'Ваш телефон подтвержден.');
+				}
+			}
+
+			return $this->goHome();
 		}
 
 		public function actionTelephoneCodeConfirm()
