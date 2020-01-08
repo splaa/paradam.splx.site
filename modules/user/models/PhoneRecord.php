@@ -18,7 +18,7 @@
 	 * @property string $password_hash [varchar(255)]
 	 * @property string $password_reset_token [varchar(255)]
 	 * @property int $status [smallint(6)]
-	 * @property string $birthday [datetime]
+	 * @property string $birthday
 	 * @property string $telephone [varchar(256)]
 	 */
 	class PhoneRecord extends User

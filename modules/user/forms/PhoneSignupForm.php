@@ -48,6 +48,7 @@
 				['password', 'required'],
 				['password', 'string', 'min' => 8],
 
+				['birthday', 'string'],
 				['birthday', 'required'],
 			];
 		}
@@ -67,7 +68,7 @@
 				$user->telephone = $this->telephone;
 				$user->first_name = $this->first_name;
 				$user->last_name = $this->last_name;
-				$user->birthday = $this->birthday;
+				$user->birthday = date('Y-m-d',strtotime($this->birthday));
 				$user->country = $this->country;
 				$user->setPassword($this->password);
 				$user->status = User::STATUS_WAIT;
