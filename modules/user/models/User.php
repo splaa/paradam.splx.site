@@ -65,7 +65,7 @@ class User extends ActiveRecord implements IdentityInterface
 			['username', 'unique', 'targetClass' => self::className(), 'message' => Yii::t('app', 'ERROR_USERNAME_EXISTS')],
 			['username', 'string', 'min' => 2, 'max' => 255],
 			
-			['email', 'required', 'except' => self::SCENARIO_PROFILE],
+//			['email', 'required', 'except' => self::SCENARIO_PROFILE],
 			['email', 'email', 'except' => self::SCENARIO_PROFILE],
 			['email', 'unique', 'targetClass' => self::className(), 'except' => self::SCENARIO_PROFILE, 'message' => Yii::t('app', 'ERROR_EMAIL_EXISTS')],
 			['email', 'string', 'max' => 255, 'except' => self::SCENARIO_PROFILE],

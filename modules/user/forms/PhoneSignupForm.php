@@ -17,7 +17,11 @@
 		public $email;
 		public $telephone;
 		public $password;
-		
+		public $first_name;
+		public $last_name;
+		public $birthday;
+		public $country;
+
 		public function rules()
 		{
 			return [
@@ -32,7 +36,7 @@
 				['username', 'string', 'min' => 2, 'max' => 255],
 				
 				['email', 'filter', 'filter' => 'trim'],
-				['email', 'required'],
+//				['email', 'required'],
 				['email', 'email'],
 				['email', 'unique', 'targetClass' => User::className(), 'message' => 'This email address has already been taken.'],
 				
@@ -42,7 +46,9 @@
 				['telephone', 'unique', 'targetClass' => PhoneRecord::class, 'message' => 'This telephone address has already been taken.'],
 				
 				['password', 'required'],
-				['password', 'string', 'min' => 6]
+				['password', 'string', 'min' => 8],
+
+				['birthday', 'required'],
 			];
 		}
 		
@@ -59,17 +65,23 @@
 				$user->username = $this->username;
 				$user->email = $this->email;
 				$user->telephone = $this->telephone;
+				$user->first_name = $this->first_name;
+				$user->last_name = $this->last_name;
+				$user->birthday = $this->birthday;
+				$user->country = $this->country;
 				$user->setPassword($this->password);
 				$user->status = User::STATUS_WAIT;
 				$user->generateAuthKey();
 				$user->generateEmailConfirmToken();
 				
 				if ($user->save()) {
-					Yii::$app->mailer->compose(['html' => '@app/modules/user/mails/phoneConfirm'], ['user' => $user])
-						->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
-						->setTo($this->email)
-						->setSubject('Email confirmation for ' . Yii::$app->name)
-						->send();
+					if ($this->email) {
+						Yii::$app->mailer->compose(['html' => '@app/modules/user/mails/phoneConfirm'], ['user' => $user])
+							->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
+							->setTo($this->email)
+							->setSubject('Email confirmation for ' . Yii::$app->name)
+							->send();
+					}
 					return $user;
 				}
 			}
