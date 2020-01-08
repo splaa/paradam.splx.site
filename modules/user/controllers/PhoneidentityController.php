@@ -9,6 +9,7 @@
 	use app\modules\user\models\PhoneRecord;
 	use Yii;
 	use yii\filters\VerbFilter;
+	use yii\helpers\Url;
 	use yii\web\Controller;
 	use yii\web\NotFoundHttpException;
 	
@@ -64,8 +65,14 @@
 			$model = new PhoneSignupVerifyForm();
 			if ($model->load(Yii::$app->request->post())) {
 				if ($user = $model->signup($id)) {
-					Yii::$app->getSession()->setFlash('success', 'Ваш телефон подтвержден.');
+					Yii::$app->getSession()->setFlash('success', 'Ваш телефон подтвержден. Вы можете ввойти в свой аккаунт.');
+
+					return $this->redirect(Url::to('/user/default/phonelogin'));
+				} else {
+					Yii::$app->getSession()->setFlash('error', 'Ошибка с подтверждением телефона. Повторите попытку позже.');
 				}
+			} else {
+				Yii::$app->getSession()->setFlash('error', 'Ошибка с подтверждением телефона. Повторите попытку позже.');
 			}
 
 			return $this->goHome();
