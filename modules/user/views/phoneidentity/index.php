@@ -1,9 +1,10 @@
 <?php
 
 // Default (Template) Project/${FILE_NAME}
-	
-	
-	use yii\bootstrap\ActiveForm;
+
+
+use kartik\date\DatePicker;
+use yii\bootstrap\ActiveForm;
 	use yii\captcha\Captcha;
 	use yii\helpers\Html;
 	
@@ -19,9 +20,23 @@
             <div class="col-lg-5">
 				<?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 				
+				<?= $form->field($model, 'first_name')->textInput(['autofocus' => true]) ?>
+
+				<?= $form->field($model, 'last_name')->textInput(['autofocus' => true]) ?>
+
+	            <?= $form->field($model, 'email') ?>
+
+				<?= $form->field($model, 'country')->textInput(['autofocus' => true]) ?>
+
 				<?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-				
-				<?= $form->field($model, 'email') ?>
+
+				<?= $form->field($model, 'birthday')->widget(DatePicker::className(),[
+					'type' => DatePicker::TYPE_INPUT,
+					'pluginOptions' => [
+						'autoclose'=>true,
+						'format' => 'dd.mm.yyyy'
+					]
+				]) ?>
 
 				<?= $form->field($model, 'telephone') ?>
 				

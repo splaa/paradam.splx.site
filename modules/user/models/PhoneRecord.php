@@ -5,7 +5,10 @@
 	
 	
 	/**
-	 * @property string email
+	 * @property string $email
+	 * @property string $first_name
+	 * @property string $last_name
+	 * @property string $country
 	 * @property int $id [int(11)]
 	 * @property int $created_at [int(11)]
 	 * @property int $updated_at [int(11)]
@@ -15,7 +18,7 @@
 	 * @property string $password_hash [varchar(255)]
 	 * @property string $password_reset_token [varchar(255)]
 	 * @property int $status [smallint(6)]
-	 * @property string $birthday [datetime]
+	 * @property string $birthday
 	 * @property string $telephone [varchar(256)]
 	 */
 	class PhoneRecord extends User
