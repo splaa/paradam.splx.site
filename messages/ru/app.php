@@ -1,6 +1,7 @@
 <?php
 	
 	return [
+		'Congratulations' => 'Поздравляю',
 		'NAV_HOME' => 'Главная',
 		'NAV_CONTACT' => 'Связь',
 		'NAV_SIGNUP' => 'Регистрация',

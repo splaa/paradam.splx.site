@@ -74,6 +74,15 @@
 						['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
 					]] :
 					false,
+				Yii::$app->language === 'en' ?
+					['label' => Yii::t('app', 'Русский'), 'url' => ['/', 'language' => 'ru']] :
+					false,
+				Yii::$app->language === 'ru' ?
+					['label' => Yii::t('app', 'English'), 'url' => ['/', 'language' => 'en']] :
+					false,
+				
+				
+    
 			]),
 		]);
 		NavBar::end();

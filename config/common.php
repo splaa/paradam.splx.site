@@ -46,14 +46,17 @@
 				'translations' => [
 					'app' => [
 						'class' => 'yii\i18n\PhpMessageSource',
-						'forceTranslation' => true,
+						'forceTranslation' => false,
 					],
 				],
 			],
 			'urlManager' => [
-				'class' => 'yii\web\UrlManager',
+				'class' => 'codemix\localeurls\UrlManager',
 				'enablePrettyUrl' => true,
 				'showScriptName' => false,
+				'languages' => ['ru', 'en'],
+				'enableDefaultLanguageUrlCode' => true,
+				'enableLanguagePersistence' => false,
 				'rules' => [
 					'' => 'main/default/index',
 					'site/about' => 'main/default/about',

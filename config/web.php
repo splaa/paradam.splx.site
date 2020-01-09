@@ -1,7 +1,6 @@
 <?php
 	$config = [
 		'id' => 'app',
-		'language' => 'ru-RU',
 		'defaultRoute' => 'main/default/index',
 		'components' => [
 			'user' => [
