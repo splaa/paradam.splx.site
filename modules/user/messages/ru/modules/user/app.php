@@ -30,7 +30,7 @@
 		'ERROR_PROFILE_NOT_CONFIRMED' => 'ERROR_PROFILE_NOT_CONFIRMED',
 		'Users' => 'Users',
 		'Update' => 'Update',
-		'USER_CURRENT_PASSWORD' => 'USER_CURRENT_PASSWORD',
+		'USER_CURRENT_PASSWORD' => 'Повторите для проверки Новый пароль',
 		'USER_PASSWORD' => 'USER_PASSWORD',
 		'USER_CREATED' => 'USER_CREATED',
 		'Create User' => 'Create User',

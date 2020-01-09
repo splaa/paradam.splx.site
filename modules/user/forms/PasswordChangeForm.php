@@ -44,9 +44,9 @@
 		public function attributeLabels()
 		{
 			return [
-				'newPassword' => Module::t('app', 'USER_NEW_PASSWORD'),
-				'newPasswordRepeat' => Module::t('app', 'USER_REPEAT_PASSWORD'),
-				'currentPassword' => Module::t('app', 'USER_CURRENT_PASSWORD'),
+				'newPassword' => Module::t('app', 'Новый пароль'),
+				'newPasswordRepeat' => Module::t('app', 'Новый пароль (Повторите для проверки)'),
+				'currentPassword' => Module::t('app', 'Текущий пароль'),
 			];
 		}
 		
