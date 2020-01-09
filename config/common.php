@@ -56,7 +56,10 @@
 				'showScriptName' => false,
 				'rules' => [
 					'' => 'main/default/index',
+					'site/about' => 'main/default/about',
+					
 					'contact' => 'main/contact/index',
+					'/site/contact' => 'main/contact/index',
 					'<_a:error>' => 'main/default/<_a>',
 					'<_a:(login|logout|signup|confirm-email|request-password-reset|reset-password)>' => 'user/default/<_a>',
 					

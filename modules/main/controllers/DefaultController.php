@@ -2,10 +2,8 @@
 	
 	namespace app\modules\main\controllers;
 
-	use app\components\Smsc;
-	use app\components\Telegram;
 	use yii\web\Controller;
-
+	
 	/**
 	 * Default controller for the `main` module
 	 */
@@ -35,5 +33,11 @@
 //			echo "<pre>";print_r($result);exit;
 
 			return $this->render('index');
+		}
+		
+		public function actionAbout()
+		{
+			$message = 'About';
+			return $this->render('about', compact('message'));
 		}
 	}

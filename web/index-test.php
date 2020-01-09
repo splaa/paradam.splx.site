@@ -1,9 +1,7 @@
 <?php
 
 // NOTE: Make sure this file is not accessible when deployed to production
-// ПРИМЕЧАНИЕ. Убедитесь, что этот файл недоступен при развертывании в рабочей среде.
-	if (!in_array(@$_SERVER['REMOTE_ADDR'], ['192.168.0.9', '127.0.0.1', '::1'])) {
-		// У вас нет прав доступа к этому файлу.
+	if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
 		die('You are not allowed to access this file.');
 	}
 	
