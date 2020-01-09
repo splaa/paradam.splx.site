@@ -55,7 +55,7 @@
 				'enablePrettyUrl' => true,
 				'showScriptName' => false,
 				'languages' => ['ru', 'en'],
-				'enableDefaultLanguageUrlCode' => true,
+				'enableDefaultLanguageUrlCode' => false,
 				'enableLanguagePersistence' => false,
 				'rules' => [
 					'' => 'main/default/index',
