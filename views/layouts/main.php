@@ -43,7 +43,7 @@
 				['label' => Yii::t('app', 'NAV_HOME'), 'url' => ['/main/default/index']],
 				['label' => Yii::t('app', 'NAV_CONTACT'), 'url' => ['/main/contact/index']],
 				Yii::$app->user->isGuest ?
-					['label' => Yii::t('app', 'NAV_SIGNUP'), 'url' => ['/user/default/signup']] :
+					['label' => Yii::t('app', 'NAV_SIGNUP'), 'url' => ['/user/phoneidentity/index']] :
 					false,
 				Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_LOGIN'), 'url' => ['/user/default/phonelogin']] :
