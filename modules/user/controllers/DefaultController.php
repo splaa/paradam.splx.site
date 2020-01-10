@@ -3,8 +3,6 @@
 	namespace app\modules\user\controllers;
 	
 	
-	use app\components\Smsc;
-	use app\components\Telegram;
 	use app\modules\user\forms\EmailConfirmForm;
 	use app\modules\user\forms\LoginForm;
 	use app\modules\user\forms\PasswordResetForm;
@@ -118,7 +116,12 @@
 			if ($model->load(Yii::$app->request->post())) {
 				if ($user = $model->signup()) {
 					Yii::$app->getSession()->setFlash('success', 'Подтвердите ваш электронный адрес.');
-					return $this->goHome();
+//					return $this->goHome();
+					$modelPhoneForm = new PhoneLoginForm();
+					$modelPhoneForm->phone = $model->telephone;
+					var_dump($model);
+					die();
+					return $this->render('login', compact('model'));
 				}
 			}
 			
