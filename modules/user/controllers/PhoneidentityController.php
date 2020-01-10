@@ -5,7 +5,6 @@
 	use app\components\Smsc;
 	use app\components\Telegram;
 	use app\modules\user\forms\PhoneSignupForm;
-	use app\modules\user\forms\PhoneSignupVerifyForm;
 	use app\modules\user\models\PhoneRecord;
 	use Yii;
 	use yii\filters\VerbFilter;
@@ -46,13 +45,6 @@
 					Yii::$app->getSession()->setFlash('success', 'Ваш аккаунт успешно создан.');
 
 					return $this->redirect(Url::to('/user/default/phonelogin'));
-
-//					$model = new PhoneSignupVerifyForm();
-//
-//					return $this->render('verify', [
-//						'model' => $model,
-//						'user' => $user
-//					]);
 				}
 			}
 			
@@ -60,24 +52,6 @@
 				'message' => 'Ok',
 				'model' => $model,
 			]);
-		}
-
-		public function actionVerify($id)
-		{
-			$model = new PhoneSignupVerifyForm();
-			if ($model->load(Yii::$app->request->post())) {
-				if ($user = $model->signup($id)) {
-					Yii::$app->getSession()->setFlash('success', 'Ваш телефон подтвержден. Вы можете ввойти в свой аккаунт.');
-
-					return $this->redirect(Url::to('/user/default/phonelogin'));
-				} else {
-					Yii::$app->getSession()->setFlash('error', 'Ошибка с подтверждением телефона. Повторите попытку позже.');
-				}
-			} else {
-				Yii::$app->getSession()->setFlash('error', 'Ошибка с подтверждением телефона. Повторите попытку позже.');
-			}
-
-			return $this->goHome();
 		}
 
 		public function actionTelephoneCodeConfirm()

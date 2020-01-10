@@ -2,6 +2,10 @@
 
 use kartik\date\DatePicker;
 
+
+/**
+ * @var $form \yii\bootstrap\ActiveForm;
+ */
 ?>
 <?= $form->field($model, 'first_name')->textInput(['autofocus' => true]) ?>
 
