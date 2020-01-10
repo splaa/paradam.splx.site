@@ -43,14 +43,16 @@
 			$model = new PhoneSignupForm();
 			if ($model->load(Yii::$app->request->post())) {
 				if ($user = $model->signup()) {
-					Yii::$app->getSession()->setFlash('success', 'Подтвердите ваш телефон.');
+					Yii::$app->getSession()->setFlash('success', 'Ваш аккаунт успешно создан.');
 
-					$model = new PhoneSignupVerifyForm();
+					return $this->redirect(Url::to('/user/default/phonelogin'));
 
-					return $this->render('verify', [
-						'model' => $model,
-						'user' => $user
-					]);
+//					$model = new PhoneSignupVerifyForm();
+//
+//					return $this->render('verify', [
+//						'model' => $model,
+//						'user' => $user
+//					]);
 				}
 			}
 			

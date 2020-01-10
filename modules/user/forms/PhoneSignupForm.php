@@ -21,6 +21,7 @@
 		public $last_name;
 		public $birthday;
 		public $country;
+		public $verifyCodeTelephone;
 
 		public function rules()
 		{
@@ -50,7 +51,22 @@
 
 				['birthday', 'string'],
 				['birthday', 'required'],
+
+				['verifyCodeTelephone', 'required'],
+				['verifyCodeTelephone', 'validateVerifyCode'],
 			];
+		}
+
+		/**
+		 * @param $attribute
+		 * @param $params
+		 */
+		public function validateVerifyCode($attribute, $params)
+		{
+			$codeAuth = Yii::$app->session->get('codeAuth');
+			if ($this->$attribute != $codeAuth ) {
+				$this->addError($attribute, 'Не верный код подтверждения.');
+			}
 		}
 		
 		/**
@@ -71,7 +87,7 @@
 				$user->birthday = date('Y-m-d',strtotime($this->birthday));
 				$user->country = $this->country;
 				$user->setPassword($this->password);
-				$user->status = User::STATUS_WAIT;
+				$user->status = User::STATUS_ACTIVE;
 				$user->generateAuthKey();
 				$user->generateEmailConfirmToken();
 				
