@@ -43,16 +43,10 @@
 				['label' => Yii::t('app', 'NAV_HOME'), 'url' => ['/main/default/index']],
 				['label' => Yii::t('app', 'NAV_CONTACT'), 'url' => ['/main/contact/index']],
 				Yii::$app->user->isGuest ?
-					['label' => Yii::t('app', 'NAV_SIGNUP'), 'items' => [
-						['label' => Yii::t('app', 'Регистрация По Email'), 'url' => ['/user/default/signup']],
-						['label' => Yii::t('app', 'Регистрация По Телефону'), 'url' => ['/user/phoneidentity/index']],
-					]] :
+					['label' => Yii::t('app', 'NAV_SIGNUP'), 'url' => ['/user/default/signup']] :
 					false,
 				Yii::$app->user->isGuest ?
-					['label' => Yii::t('app', 'NAV_LOGIN'), 'items' => [
-						['label' => Yii::t('app', 'Вход по email'), 'url' => ['/user/default/login']],
-						['label' => Yii::t('app', 'Вход по телефону'), 'url' => ['/user/default/phonelogin']],
-					]] :
+					['label' => Yii::t('app', 'NAV_LOGIN'), 'url' => ['/user/default/phonelogin']] :
 					false,
 				!Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_ADMIN'), 'items' => [
@@ -80,9 +74,8 @@
 				Yii::$app->language === 'ru' ?
 					['label' => Yii::t('app', 'English'), 'url' => ['/', 'language' => 'en']] :
 					false,
-				
-				
-    
+			
+			
 			]),
 		]);
 		NavBar::end();

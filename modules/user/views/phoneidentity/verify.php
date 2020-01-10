@@ -43,19 +43,18 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 
 <?php
+$url = Url::to(['phoneidentity/telephone-code-confirm']);
 $js = <<< JS
 $(document).ready(function() {
 	$('.confirm_btn').click(function(){
 		$.ajax({
-			url: '/user/phoneidentity/telephone-code-confirm',
+			url: '{$url}',
 			data: 'type=' + $(this).data('type') + '&telephone=' + $('#phonesignupverifyform-telephone').val(),
 			type: 'POST',
 			success: function (res) {
 				console.log(res);
 			},
-			error: function () {
-			
-			}
+			error: function () {}
 		});
 	})
 });

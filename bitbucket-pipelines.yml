@@ -1,4 +1,20 @@
 pipelines:
+  default:
+      - step:
+          name: Deploy to test
+          deployment: test
+          script:
+            - pipe: atlassian/sftp-deploy:0.5.3
+              variables:
+                USER: $USER_REMOTE
+                SERVER: $SERVER_IP
+                REMOTE_PATH: $PATH_REMOTE
+                LOCAL_PATH: './' # Optional.
+                # SSH_KEY: '<string>' # Optional.
+                # PASSWORD: '<string>' # Optional.
+                # EXTRA_ARGS: '<string>' # Optional.
+                # DEBUG: '<boolean>' # Optional.
+
   custom: # Pipelines that can only be triggered manually
     deployment-to-test:
       - step:
@@ -7,9 +23,9 @@ pipelines:
           script:
             - pipe: atlassian/sftp-deploy:0.5.3
               variables:
-                USER: 'andrii'
-                SERVER: '46.219.56.21'
-                REMOTE_PATH: '/home/andrii/www/paradam-test.acer'
+                USER: $USER_REMOTE
+                SERVER: $SERVER_IP
+                REMOTE_PATH: $PATH_REMOTE
                 LOCAL_PATH: './' # Optional.
                 # SSH_KEY: '<string>' # Optional.
                 # PASSWORD: '<string>' # Optional.
@@ -22,7 +38,7 @@ pipelines:
             - pipe: atlassian/ssh-run:0.2.3
               variables:
                 SSH_USER: $USER_REMOTE
-                SERVER: '46.219.56.21'
+                SERVER: $SERVER_IP
                 MODE: 'command'
                 COMMAND: 'cd /home/andrii/www/paradam-test.acer && ./remote-script.sh'
 
