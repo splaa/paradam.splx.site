@@ -5,6 +5,7 @@
 	
 	use app\modules\user\models\PhoneRecord;
 	use app\modules\user\models\User;
+	use himiklab\yii2\recaptcha\ReCaptchaValidator2;
 	use Yii;
 	use yii\base\Model;
 	
@@ -22,6 +23,7 @@
 		public $birthday;
 		public $country;
 		public $verifyCodeTelephone;
+		public $reCaptcha;
 
 		public function rules()
 		{
@@ -54,6 +56,8 @@
 
 				['verifyCodeTelephone', 'required'],
 				['verifyCodeTelephone', 'validateVerifyCode'],
+
+				[['reCaptcha'], ReCaptchaValidator2::className(), 'uncheckedMessage' => 'Please confirm that you are not a bot.'],
 			];
 		}
 

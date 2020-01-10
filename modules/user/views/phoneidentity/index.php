@@ -1,5 +1,6 @@
 <?php
 
+use himiklab\yii2\recaptcha\ReCaptcha2;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -21,6 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
 					'model' => $model,
 					'form' => $form
 				]) ?>
+
+				<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha2::className(),[]) ?>
 
 				<div class="form-group">
 					<?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
