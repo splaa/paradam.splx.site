@@ -42,3 +42,4 @@ runtime
 web/assets
 /web/MadelineProto.log
 /assets/*
+/MadelineProto.log
