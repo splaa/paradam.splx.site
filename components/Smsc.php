@@ -88,8 +88,8 @@ class Smsc extends BaseObject
 	{
 		$result = $this->send_sms($this->telephone, 'code', 0, 0, 0, 9);
 
-		if ($this->isSuccess($result)) {
-			return $result[4];
+		if (isset($result[4])) {
+			return mb_substr($result[4], 2);
 		} else {
 			return $this->getError($result);
 		}
