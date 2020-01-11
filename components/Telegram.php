@@ -11,15 +11,23 @@ class Telegram extends BaseObject
 {
 	public $telephone;
 	public $message;
+	public $username;
+	public $mp;
 
-	public function __construct($telephone, $message, $config = [])
+	public function __construct($telephone, $message, $username = 'User', $config = [])
 	{
 		parent::__construct($config);
-		$mp = new API('session/session.madeline', Yii::$app->params['api']['tg']);
-		$mp->start();
+		$this->mp = new API('session/session.madeline', Yii::$app->params['api']['tg']);
+		$this->mp->start();
 
 		$this->telephone = $telephone;
 		$this->message = $message;
+
+		if ($username != 'User') {
+			$this->username = $username;
+		} else {
+			$this->username = 'User ' . strtotime(date('YmdHis'));
+		}
 	}
 
 	public function init()
@@ -29,16 +37,13 @@ class Telegram extends BaseObject
 
 	public function message()
 	{
-		$mp = new API('session/session.madeline', Yii::$app->params['api']['tg']);
-		$mp->start();
-
-		$contact = ['_' => 'inputPhoneContact', 'client_id' => 0, 'phone' => $this->telephone, 'first_name' => '', 'last_name' => ''];
-		$import = $mp->contacts->importContacts(['contacts' => [$contact]]);
+		$this->mp->contacts->addContact(['add_phone_privacy_exception' => true, 'id' => 'me', 'first_name' => $this->username, 'last_name' => '', 'phone' => $this->telephone]);
+		$import = $this->mp->contacts->importContacts(['contacts' => [['_' => 'inputPhoneContact', 'client_id' => 0, 'phone' => $this->telephone, 'first_name' => $this->username, 'last_name' => '']]]);
 
 		if (!empty($import['imported'][0]['user_id'])) {
-			$mp->messages->sendMessage(['peer' => $import['imported'][0]['user_id'], 'message' => $this->message]);
+			$this->mp->messages->sendMessage(['peer' => $import['imported'][0]['user_id'], 'message' => $this->message]);
 
-			if ($mp->updates->getState()) {
+			if ($this->mp->updates->getState()) {
 				return Yii::t('app', 'Сообщение отправленно!'); // TODO-splaandrey: создать категорию для переводом
 			} else {
 				return Yii::t('app', 'Ошибка при отправке сообщения!'); // TODO-splaandrey: создать категорию для переводом
