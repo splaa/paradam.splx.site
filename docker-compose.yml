@@ -21,7 +21,6 @@ services:
       MYSQL_PASSWORD: splaa1977
     volumes:
       - "./database:/var/lib/mysql"
-
   adminer:
     image: adminer
     restart: always
