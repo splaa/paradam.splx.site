@@ -1,9 +1,9 @@
 <?php
 // paradam.me.loc/ProfileController.php
-	
+
 	namespace app\modules\user\controllers;
-	
-	
+
+
 	use app\modules\admin\models\User;
 	use app\modules\user\forms\PasswordChangeForm;
 	use app\modules\user\forms\ProfileUpdateForm;
@@ -11,23 +11,8 @@
 	use yii\filters\AccessControl;
 	use yii\web\Controller;
 	
-	class ProfileController extends Controller
+	class ProfileController extends UserController
 	{
-		public function behaviors()
-		{
-			return [
-				'access' =>[
-					'class' => AccessControl::className(),
-					'rules' => [
-						[
-							'allow' =>true,
-							'roles' =>['@']
-						],
-					],
-				],
-			];
-		}
-		
 		public function actionIndex()
 		{
 			return $this->render('index', [

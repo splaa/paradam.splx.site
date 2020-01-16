@@ -375,12 +375,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/php-webdriver.git",
-                "reference": "f777ca1139d3e089e5b4583de8a531a6b1a336c9"
+                "reference": "1a4f7a1fc682e5d338e55580480862daa83acec7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/f777ca1139d3e089e5b4583de8a531a6b1a336c9",
-                "reference": "f777ca1139d3e089e5b4583de8a531a6b1a336c9",
+                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/1a4f7a1fc682e5d338e55580480862daa83acec7",
+                "reference": "1a4f7a1fc682e5d338e55580480862daa83acec7",
                 "shasum": ""
             },
             "require": {
@@ -431,7 +431,7 @@
                 "selenium",
                 "webdriver"
             ],
-            "time": "2020-01-07T12:58:56+00:00"
+            "time": "2020-01-11T18:57:04+00:00"
         },
         {
             "name": "himiklab/yii2-recaptcha-widget",
@@ -1479,12 +1479,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "65bb6f8248000d7b8a3e2e98b7a6da6248096b78"
+                "reference": "e610c15ebb73b56722c67e1c799bf0565f062899"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/65bb6f8248000d7b8a3e2e98b7a6da6248096b78",
-                "reference": "65bb6f8248000d7b8a3e2e98b7a6da6248096b78",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/e610c15ebb73b56722c67e1c799bf0565f062899",
+                "reference": "e610c15ebb73b56722c67e1c799bf0565f062899",
                 "shasum": ""
             },
             "require": {
@@ -1556,7 +1556,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2019-12-21T16:22:15+00:00"
+            "time": "2020-01-14T14:44:10+00:00"
         },
         {
             "name": "codeception/lib-asserts",

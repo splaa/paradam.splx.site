@@ -63,5 +63,6 @@
 		'Update User: {name}' => 'Update User: {name}',
 		'Save' => 'Save',
 		'USERS' => 'Пользователи',
-		'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS'
+		'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS',
+		'LINK_TO_MESSAGES' => 'Сообщения'
 	];

@@ -17,6 +17,7 @@
     <p>
 		<?= Html::a(Yii::t('app', 'BUTTON_UPDATE'), ['update'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(Yii::t('app', 'LINK_PASSWORD_CHANGE'), ['password-change'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(Yii::t('app', 'LINK_TO_MESSAGES'), ['/message/'], ['class' => 'btn btn-primary']) ?>
     </p>
 	<?= DetailView::widget([
 		'model' => $model,

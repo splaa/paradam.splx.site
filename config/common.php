@@ -15,7 +15,7 @@
 			'log',
 			'app\modules\admin\Bootstrap',
 			'app\modules\main\Bootstrap',
-			'app\modules\user\Bootstrap',
+			'app\modules\user\Bootstrap'
 		],
 		'modules' => [
 			'admin' => [
@@ -30,6 +30,12 @@
 			],
 			'services' => [
 				'class' => 'app\modules\services\Module',
+			],
+			'message' => [
+				'class' => 'app\modules\message\Module',
+			],
+			'simplechat' => [
+				'class' => 'bubasuma\simplechat\Module',
 			],
 		],
 		'aliases' => [
@@ -62,6 +68,7 @@
 					'site/about' => 'main/default/about',
 					
 					'contact' => 'main/contact/index',
+					'message' => 'message/message/index',
 					'/site/contact' => 'main/contact/index',
 					'<_a:error>' => 'main/default/<_a>',
 					'<_a:(login|logout|signup|confirm-email|request-password-reset|reset-password)>' => 'user/default/<_a>',
