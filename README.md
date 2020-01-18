@@ -90,8 +90,10 @@
 `docker-compose up -d`
 
 
-`http://examle.com:8000 - site`
-`http://examle.com:8888 - adminer`
+`http://examle.com:8000` - site
+
+`http://examle.com:8888` - adminer
+
 `db host=mysql`
 `port = 3336`
 `login = splaa`
