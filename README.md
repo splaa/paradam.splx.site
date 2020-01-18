@@ -1,3 +1,11 @@
+#  [ссылка: Инструкция по Google cloud](https://docs.google.com/document/d/144eI2NVO05XxZ2xTOvmInJeOlf5XHTP8Zyuvw5gIDD8/edit?usp=sharing)
+
+
+
+
+
+
+
 # Скачуем docker image на комп 
 docker pull yiisoftware/yii-php:7.4-apache
 
