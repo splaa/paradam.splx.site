@@ -99,3 +99,32 @@
 `login = splaa`
 `pass = splaa1977`
 
+
+#Тесты
+1. переименовать /paradam.me.loc/tests/acceptance.suite.yml.example
+в paradam.me.loc/tests/acceptance.suite.yml
+
+2. прописать url в секции  - PhpBrowser:
+    
+3. Генерируем тест домашней странички 
+настройка alise  http://www.fkn.ktu10.com/?q=node/9698
+ настроим alias cept="./vendor/bin/codecept"
+    
+        cept g:cept acceptance HomePage
+
+полная форма :
+    
+        vendor/bin/codecept generate:cept acceptance HomePage
+
+Сгенерированый файл paradam.me.loc/tests/acceptance/HomePageCept.php
+чтобы PhpStorm неподсвечивал параметр $scenario прописуем аннотацию
+
+    /**
+	 * @var \Codeception\Scenario $scenario
+	 */
+	 
+	 
+	 $I->wantTo('Тест домашней страницы');
+	 
+	 $I->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+
