@@ -127,4 +127,17 @@
 	 $I->wantTo('Тест домашней страницы');
 	 
 	 $I->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
+	 
+# Запуск тестов в Googlecloud
+
+
+заходм в docker
+
+git pull
+
+1. переименовать /app/tests/acceptance.suite.yml.example
+в /app/tests/acceptance.suite.yml
+
+2. прописать url в секции  - PhpBrowser:
+
 
