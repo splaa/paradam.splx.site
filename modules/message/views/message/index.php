@@ -1,7 +1,12 @@
 <?php
 /**
  * @var \app\modules\message\models\UserThread[] $threads
+ * @var \app\modules\message\models\UserThread $selected_user_thread
  */
+
+use yii\helpers\Url;
+use \app\components\Hash;
+
 ?>
 <div class="container">
 	<h3 class=" text-center">Messaging</h3>
@@ -24,59 +29,32 @@
 				</div>
 				<div class="inbox_chat">
 					<?php foreach ($threads as $thread): ?>
-						<?php $last = $thread->thread->messages; ?>
-						<?php $last = array_pop($last); ?>
-						<div class="chat_list active_chat">
+						<?php
+							$hash = new Hash();
+							$hash->string = $thread->thread->id;
+						?>
+						<a class="chat_list active_chat" href="<?= Url::to(['/message/', 'id' => $hash->run(Hash::ENCODE)]) ?>">
 							<div class="chat_people">
 								<div class="chat_img">
 									<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
 								</div>
-								<div class="chat_ib">
-									<h5><?= $last->author->username ?> <span class="chat_date">Dec 25</span></h5>
-									<p><?= $last->text ?></p>
+								<div class="chat_ib" id="thread_<?= $thread->thread->id ?>">
+									<h5><?= $thread->thread->message->author->username ?> <span class="chat_date"><?= date("d M", strtotime($thread->thread->created_at)) ?></span></h5>
+									<p><span class="text"><?= $thread->thread->message->text ?></span> <span class="badge" style="float: right">0</span></p>
 								</div>
 							</div>
-						</div>
+						</a>
 					<?php endforeach; ?>
 				</div>
 			</div>
 			<div class="mesgs">
-				<?php foreach ($threads as $thread): ?>
-					<div class="msg_history">
-						<?php foreach ($thread->thread->messages as $message): ?>
-							<?php if ($message->author_id != Yii::$app->user->getId()): ?>
-								<div class="incoming_msg">
-									<div class="incoming_msg_img">
-										<img src="https://ptetutorials.com/images/user-profile.png"  alt="sunil">
-									</div>
-									<div class="received_msg">
-										<div class="received_withd_msg">
-											<p>
-												<?= $message->text ?>
-											</p>
-											<span class="time_date"> 11:01 AM    |    June 9</span>
-										</div>
-									</div>
-								</div>
-							<?php else: ?>
-								<div class="outgoing_msg">
-									<div class="sent_msg">
-										<p>
-											<?= $message->text ?>
-										</p>
-										<span class="time_date"> 11:01 AM    |    June 9</span>
-									</div>
-								</div>
-							<?php endif; ?>
-						<?php endforeach; ?>
-					</div>
-					<div class="type_msg">
-						<div class="input_msg_write">
-							<input type="text" class="write_msg" placeholder="Type a message"/>
-							<button class="msg_send_btn" type="button"><i class="glyphicon glyphicon-send"aria-hidden="true"></i></button>
-						</div>
-					</div>
-				<?php endforeach; ?>
+				<?php if (!empty($selected_user_thread)): ?>
+					<?=
+						$this->render('thread', [
+							'selected_user_thread' => $selected_user_thread
+						]);
+					?>
+				<?php endif; ?>
 			</div>
 		</div>
 

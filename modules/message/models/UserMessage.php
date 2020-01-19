@@ -2,6 +2,7 @@
 
 namespace app\modules\message\models;
 
+use app\modules\user\models\User;
 use Yii;
 
 /**

@@ -3,7 +3,10 @@
 namespace app\modules\message\models;
 
 use app\modules\user\models\User;
+use yii\behaviors\TimestampBehavior;
 use Yii;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "message".
@@ -12,6 +15,7 @@ use Yii;
  * @property int|null $author_id
  * @property int|null $thread_id
  * @property string|null $text
+ * @property string|null $created_at
  *
  * @property User $author
  * @property Thread $thread
@@ -26,6 +30,19 @@ class Message extends \yii\db\ActiveRecord
     {
         return 'message';
     }
+
+	public function behaviors()
+	{
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'attributes' => [
+					ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+				],
+				'value' => new Expression('NOW()'),
+			]
+		];
+	}
 
     /**
      * {@inheritdoc}

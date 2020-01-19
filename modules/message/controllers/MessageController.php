@@ -4,7 +4,8 @@ namespace app\modules\message\controllers;
 
 use app\modules\message\models\UserThread;
 use app\modules\user\controllers\UserController;
-use yii\web\Controller;
+use Yii;
+use \app\components\Hash;
 
 /**
  * Default controller for the `message` module
@@ -12,18 +13,34 @@ use yii\web\Controller;
 class MessageController extends UserController
 {
 	/**
-	 * Renders the index view for the module
+	 * @param string $id
 	 * @return string
+	 * @throws \yii\base\InvalidConfigException
 	 */
-	public function actionIndex()
+	public function actionIndex($id = '')
 	{
 		$this->view->registerCssFile('@web/css/chat.css');
 
+		$threads = UserThread::find()
+			->where(['user_id' => Yii::$app->user->getId()])
+			->orderBy(['id' => SORT_DESC])
+			->all();
+		$selected_user_thread = [];
 
-		$threads = UserThread::findAll(['user_id' => \Yii::$app->user->getId()]);
+		if ($id) {
+			// Decode Hash
+			$hash = new Hash();
+			$hash->string = $id;
+
+			$selected_user_thread = UserThread::find()
+				->where(['thread_id' =>  $hash->run(Hash::DECODE)])
+				->andWhere(['user_id' => Yii::$app->user->getId()])
+				->one();
+		}
 		
 		return $this->render('index', [
-			'threads' => $threads
+			'threads' => $threads,
+			'selected_user_thread' => $selected_user_thread
 		]);
 	}
 
