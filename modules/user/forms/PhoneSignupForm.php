@@ -8,7 +8,8 @@
 	use himiklab\yii2\recaptcha\ReCaptchaValidator2;
 	use Yii;
 	use yii\base\Model;
-	
+	use YoHang88\LetterAvatar\LetterAvatar;
+
 	/**
 	 * Signup form
 	 */
@@ -94,6 +95,22 @@
 				$user->status = User::STATUS_ACTIVE;
 				$user->generateAuthKey();
 				$user->generateEmailConfirmToken();
+
+				// Generate User Avatar
+				$name = $this->username;
+				if (!empty($this->last_name)) {
+					$name = $this->first_name . ' ' . $this->last_name;
+				}
+
+				$avatar = new LetterAvatar($name, 'circle', User::SIZE_AVATAR_SMALL);
+				$avatar->saveAs('images/user/avatar/' . $this->username . '-' . User::SIZE_AVATAR_SMALL . '.png');
+				$avatar = new LetterAvatar($name, 'square',  User::SIZE_AVATAR_MEDIUM);
+				$avatar->saveAs('images/user/avatar/' . $this->username . '-' . User::SIZE_AVATAR_MEDIUM . '.png');
+				$avatar = new LetterAvatar($name, 'square', User::SIZE_AVATAR_BIG);
+				$avatar->saveAs('images/user/avatar/' . $this->username . '-' . User::SIZE_AVATAR_BIG . '.png');
+
+				$user->avatar = 'images/user/avatar/' .  $this->username;
+
 				
 				if ($user->save()) {
 					if ($this->email) {

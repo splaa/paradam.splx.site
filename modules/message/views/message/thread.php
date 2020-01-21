@@ -4,6 +4,8 @@
  * @var \yii\web\View $this
  */
 
+use app\modules\user\models\User;
+
 ?>
 
 <div class="msg_history">
@@ -11,7 +13,7 @@
 		<?php if ($message->author_id != Yii::$app->user->getId()): ?>
 			<div class="incoming_msg">
 				<div class="incoming_msg_img">
-					<img src="https://ptetutorials.com/images/user-profile.png"  alt="sunil">
+					<img src="<?= $message->author->getAvatarSmall() ?>" alt="<?= $message->author->alt ?>">
 				</div>
 				<div class="received_msg">
 					<div class="received_withd_msg">
@@ -45,25 +47,28 @@
 
 <?php
 $user_id = Yii::$app->user->getId();
+$avatar = Yii::$app->user->identity->getAvatarSmall();
+$alt = Yii::$app->user->identity->alt;
+$time = date("Y-m-m H:i:s");
 $JS = <<<JS
-	function message(text, me) {
+	function message(data, me) {
 	    let html = '';
 	    if (me) {
 			html += '<div class="outgoing_msg">';
 				html += '<div class="sent_msg">';
-					html += '<p>' + text + '</p>';
-					html += '<span class="time_date"> 11:01 AM    |    June 9</span>';
+					html += '<p>' + data.message + '</p>';
+					html += '<span class="time_date"> ' + data.time + '    |    ' + data.date + '</span>';
 				html += '</div>';
 			html += '</div>';
 		} else {
 			html += '<div class="incoming_msg">';
 				html += '<div class="incoming_msg_img">';
-					html += '<img src="https://ptetutorials.com/images/user-profile.png"  alt="sunil">';
+					html += '<img src="' + data.avatar + '"  alt="' +  data.alt + '">';
 				html += '</div>';
 				html += '<div class="received_msg">';
 					html += '<div class="received_withd_msg">';
-						html += '<p>' + text + '</p>';
-						html += '<span class="time_date"> 11:01 AM    |    June 9</span>';
+						html += '<p>' + data.message + '</p>';
+						html += '<span class="time_date"> ' + data.time + '    |    ' + data.date + '</span>';
 					html += '</div>';
 				html += '</div>';
 			html += '</div>';
@@ -79,6 +84,10 @@ $JS = <<<JS
             message:$(".write_msg").val(),
             user_id:'{$user_id}',
             thread_id:'{$selected_user_thread->thread_id}',
+            avatar: '{$avatar}',
+            alt: '{$alt}',
+            time: '{$time}',
+            date: '{$time}',
         };
 
         $(".write_msg").val("");
@@ -97,9 +106,9 @@ $JS = <<<JS
 	    
 	    if (data.thread_id == '{$selected_user_thread->thread_id}') {
 		    if (data.user_id == '{$user_id}') {
-	            message(data.message, true);
+	            message(data, true);
 	        } else {
-		        message(data.message, false);
+		        message(data, false);
 	        }
 	    }
 	    

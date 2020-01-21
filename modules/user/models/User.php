@@ -18,6 +18,8 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property string $username
+ * @property string $first_name
+ * @property string $last_name
  * @property string|null $auth_key
  * @property string|null $email_confirm_token
  * @property string $password_hash
@@ -28,6 +30,10 @@ use yii\web\IdentityInterface;
  * @property string $password
  * @property string $authKey
  * @property int $status
+ * @property string $alt
+ * @property string $avatar_small
+ * @property string $avatar_medium
+ * @property string $avatar_big
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -37,8 +43,15 @@ class User extends ActiveRecord implements IdentityInterface
 	public const STATUS_ACTIVE = 1;
 	public const STATUS_WAIT = 2;
 	public const STATUS_TEST = 3;
-	
-	
+
+	public const SIZE_AVATAR_SMALL = 64;
+	public const SIZE_AVATAR_MEDIUM = 150;
+	public const SIZE_AVATAR_BIG = 250;
+
+	public $avatar_small;
+	public $avatar_medium;
+	public $avatar_big;
+
 	public function behaviors()
 	{
 		return [
@@ -150,6 +163,53 @@ class User extends ActiveRecord implements IdentityInterface
 	public function getId()
 	{
 		return $this->getPrimaryKey();
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getFirstName() {
+		return $this->first_name;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLastName()
+	{
+		return $this->last_name;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAvatarSmall()
+	{
+		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->username . '-' . self::SIZE_AVATAR_SMALL . '.png';
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAvatarMedium()
+	{
+		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->username . '-' . self::SIZE_AVATAR_MEDIUM . '.png';
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAvatarBig()
+	{
+		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->username . '-' . self::SIZE_AVATAR_BIG . '.png';
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAlt()
+	{
+		return $this->last_name ? ($this->first_name . ' ' . $this->last_name) : $this->username;
 	}
 	
 	/**

@@ -4,6 +4,7 @@
  * @var \app\modules\message\models\UserThread $selected_user_thread
  */
 
+use app\modules\user\models\User;
 use yii\helpers\Url;
 use \app\components\Hash;
 
@@ -36,7 +37,7 @@ use \app\components\Hash;
 						<a class="chat_list active_chat" href="<?= Url::to(['/message/', 'id' => $hash->run(Hash::ENCODE)]) ?>">
 							<div class="chat_people">
 								<div class="chat_img">
-									<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+									<img src="<?= $thread->thread->message->author->getAvatarSmall() ?>" alt="<?= $thread->thread->message->author->alt ?>">
 								</div>
 								<div class="chat_ib" id="thread_<?= $thread->thread->id ?>">
 									<h5><?= $thread->thread->message->author->username ?> <span class="chat_date"><?= date("d M", strtotime($thread->thread->created_at)) ?></span></h5>

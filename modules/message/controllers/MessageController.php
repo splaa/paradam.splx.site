@@ -6,6 +6,7 @@ use app\modules\message\models\UserThread;
 use app\modules\user\controllers\UserController;
 use Yii;
 use \app\components\Hash;
+use YoHang88\LetterAvatar\LetterAvatar;
 
 /**
  * Default controller for the `message` module
@@ -42,9 +43,5 @@ class MessageController extends UserController
 			'threads' => $threads,
 			'selected_user_thread' => $selected_user_thread
 		]);
-	}
-
-	public function actionGetThreadMessage($threads_id) {
-
 	}
 }

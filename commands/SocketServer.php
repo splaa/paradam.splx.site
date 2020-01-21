@@ -1,9 +1,11 @@
 <?php
 namespace app\commands;
+use app\modules\admin\models\User;
 use app\modules\message\models\Message;
 use app\modules\message\models\UserMessage;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use Yii;
 
 class SocketServer implements MessageComponentInterface
 {
@@ -48,7 +50,7 @@ class SocketServer implements MessageComponentInterface
 		$conn->close();
 	}
 
-	private function saveMessageToDB($data) {
+	private function saveMessageToDB(&$data) {
 		$parse = json_decode($data, true);
 
 		if ((!empty($parse['message'])) && !empty($parse['user_id']) && !empty($parse['thread_id'])) {
@@ -62,6 +64,11 @@ class SocketServer implements MessageComponentInterface
 			$user_message->user_id = $parse['user_id'];
 			$user_message->message_id = $message->id;
 			$user_message->save();
+
+			$parse['time'] = Yii::$app->formatter->asRelativeTime(date('Y-m-d H:i:s'));
+			$parse['date'] = Yii::$app->formatter->asDate(date('Y-m-d H:i:s'));
+
+			$data = json_encode($parse);
 		}
 	}
 }

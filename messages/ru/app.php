@@ -64,5 +64,6 @@
 		'Save' => 'Save',
 		'USERS' => 'Пользователи',
 		'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS',
-		'LINK_TO_MESSAGES' => 'Сообщения'
+		'LINK_TO_MESSAGES' => 'Сообщения',
+		'LINK_TO_AVATAR' => 'Сменить Аватар'
 	];

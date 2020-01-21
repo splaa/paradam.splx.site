@@ -64,6 +64,9 @@ img{ max-width:100%;}
     display: inline-block;
     width: 6%;
 }
+.incoming_msg_img img {
+    border-radius: 50%;
+}
 .received_msg {
     display: inline-block;
     padding: 0 0 0 10px;
