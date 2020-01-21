@@ -1,31 +1,28 @@
 <?php
+
+namespace app\modules\services\controllers;
+
+use app\modules\services\models\ServiceSearch;
+use Yii;
+use yii\web\Controller;
+
+/**
+ * Default controller for the `services` module
+ */
+class DefaultController extends Controller
+{
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionIndex()
+    {
+	    $searchModel = new ServiceSearch();
+	    $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 	
-	namespace app\modules\services\controllers;
-	
-	use yii\web\Controller;
-	
-	/**
-	 * Default controller for the `main` module
-	 */
-	class DefaultController extends Controller
-	{
-		public function actions()
-		{
-			return [
-				'error' => [
-					'class' => 'yii\web\ErrorAction',
-				],
-			];
-		}
-		
-		/**
-		 * Renders the index view for the module
-		 * @return string
-		 */
-		public function actionIndex()
-		{
-			
-			return $this->render('index');
-		}
-		
-	}
+	    return $this->render('index', [
+		    'searchModel' => $searchModel,
+		    'dataProvider' => $dataProvider,
+	    ]);
+    }
+}
