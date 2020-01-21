@@ -34,7 +34,7 @@ class m191225_142149_create_table_message extends Migration
 		);
 
 		$this->createIndex(
-			'idx-service-id_recipient',
+			'idx-message-id_recipient',
 			'message',
 			'id_recipient'
 		);

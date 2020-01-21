@@ -59,5 +59,7 @@ return [
 	'Update User: {name}' => 'Update User: {name}',
 	'Save' => 'Save',
 	'TITLE_CONTACT' => 'TITLE_CONTACT',
-	'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS'
+	'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS',
+	'LINK_TO_MESSAGES' => 'Messages',
+	'LINK_TO_AVATAR' => 'Change Avatar'
 ];

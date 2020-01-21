@@ -16,12 +16,7 @@ class TelegramController extends Controller
 			$madeline = new API('web/session/session.madeline');
 		} else {
 			// Иначе создать новую сессию
-			$madeline = new API([
-				'app_info' => [
-					'api_id' => Yii::$app->params['api']['tg']['app_info']['api_id'],
-					'api_hash' => Yii::$app->params['api']['tg']['app_info']['api_hash'],
-				]
-			]);
+			$madeline = new API(Yii::$app->params['api']['tg']);
 
 			// Задать имя сессии
 			$madeline->session = 'web/session/session.madeline';

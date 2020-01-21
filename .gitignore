@@ -44,3 +44,4 @@ web/assets
 /assets/*
 /MadelineProto.log
 .phpunit.result.cache
+/database/
