@@ -4,17 +4,16 @@ namespace app\modules\services\controllers;
 
 use app\modules\services\models\ServiceQuestion;
 use Yii;
-use app\modules\services\models\Service;
-use app\modules\services\models\ServiceSearch;
+use app\modules\services\models\Question;
+use app\modules\services\models\QuestionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * ServiceController implements the CRUD actions for Service model.
+ * QuestionController implements the CRUD actions for Question model.
  */
-class ServiceController extends Controller
+class QuestionController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -32,12 +31,12 @@ class ServiceController extends Controller
     }
 
     /**
-     * Lists all Service models.
+     * Lists all Question models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ServiceSearch();
+        $searchModel = new QuestionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,7 +46,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * Displays a single Service model.
+     * Displays a single Question model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -60,28 +59,24 @@ class ServiceController extends Controller
     }
 
     /**
-     * Creates a new Service model.
+     * Creates a new Question model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Service();
-	   
-	    if (Yii::$app->request->isPost) {
-		    $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-		    if ($model->upload()) {
-			    if ($model->load(Yii::$app->request->post()) && $model->save()) {
-				   
-				   
-//            return $this->redirect(['view', 'id' => $model->id]);
-				    return $this->redirect(['/services/question/create','id' => $model->id]);
-			    }
-			 
-		    }
-	    }
+        $model = new Question();
+
+        	$service_id = Yii::$app->request->get('id');
         
-        
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+	        $serviceQuestions = new ServiceQuestion();
+	        $serviceQuestions->service_id = $service_id;
+	        $serviceQuestions->question_id = $model->id;
+	        $serviceQuestions->save();
+	      
+            return $this->redirect('/services/service-question');
+        }
 
         return $this->render('create', [
             'model' => $model,
@@ -89,7 +84,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * Updates an existing Service model.
+     * Updates an existing Question model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -107,16 +102,14 @@ class ServiceController extends Controller
             'model' => $model,
         ]);
     }
-	
-	/**
-	 * Deletes an existing Service model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 * @param integer $id
-	 * @return mixed
-	 * @throws NotFoundHttpException if the model cannot be found
-	 * @throws \Throwable
-	 * @throws \yii\db\StaleObjectException
-	 */
+
+    /**
+     * Deletes an existing Question model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -125,15 +118,15 @@ class ServiceController extends Controller
     }
 
     /**
-     * Finds the Service model based on its primary key value.
+     * Finds the Question model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Service the loaded model
+     * @return Question the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Service::findOne($id)) !== null) {
+        if (($model = Question::findOne($id)) !== null) {
             return $model;
         }
 

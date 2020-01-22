@@ -4,12 +4,12 @@ namespace app\modules\services\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\services\models\Service;
+use app\modules\services\models\ServiceQuestion;
 
 /**
- * ServiceSearch represents the model behind the search form of `app\modules\services\models\Service`.
+ * ServiceQuestionSearch represents the model behind the search form of `app\modules\services\models\ServiceQuestion`.
  */
-class ServiceSearch extends Service
+class ServiceQuestionSearch extends ServiceQuestion
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,7 @@ class ServiceSearch extends Service
     public function rules()
     {
         return [
-            [['id', 'user_id', 'periodOfExecution', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'description', 'link_foto_video_file'], 'safe'],
-            [['price'], 'number'],
+            [['service_id', 'question_id'], 'integer'],
         ];
     }
 
@@ -41,7 +39,7 @@ class ServiceSearch extends Service
      */
     public function search($params)
     {
-        $query = Service::find();
+        $query = ServiceQuestion::find();
 
         // add conditions that should always apply here
 
@@ -59,17 +57,9 @@ class ServiceSearch extends Service
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
-            'price' => $this->price,
-            'periodOfExecution' => $this->periodOfExecution,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'service_id' => $this->service_id,
+            'question_id' => $this->question_id,
         ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'link_foto_video_file', $this->link_foto_video_file]);
 
         return $dataProvider;
     }

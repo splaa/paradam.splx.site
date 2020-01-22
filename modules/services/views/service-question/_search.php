@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\services\models\ServiceSearch */
+/* @var $model app\modules\services\models\ServiceQuestionSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="service-search">
+<div class="service-question-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,23 +18,9 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($model, 'service_id') ?>
 
-    <?= $form->field($model, 'user_id') ?>
-
-    <?= $form->field($model, 'name') ?>
-
-    <?= $form->field($model, 'description') ?>
-
-    <?= $form->field($model, 'price') ?>
-
-    <?php // echo $form->field($model, 'periodOfExecution') ?>
-
-    <?php // echo $form->field($model, 'link_foto_video_file') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
+    <?= $form->field($model, 'question_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

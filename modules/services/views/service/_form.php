@@ -10,9 +10,12 @@ use yii\widgets\ActiveForm;
 
 <div class="service-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+<!--    --><?php //= $form->field($model, 'user_id')->textInput() ?>
+<!--    --><?php //= $form->field($model, 'link_foto_video_file')->textInput(['maxlength' => true]) ?>
+<!--    --><?php //= $form->field($model, 'created_at')->textInput() ?>
+<!--    --><?php //= $form->field($model, 'updated_at')->textInput() ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -20,8 +23,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'periodOfExecution')->textInput() ?>
 
+
+
+	<?= $form->field($model, 'imageFile')->fileInput() ?>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>

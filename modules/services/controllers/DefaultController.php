@@ -2,8 +2,6 @@
 
 namespace app\modules\services\controllers;
 
-use app\modules\services\models\ServiceSearch;
-use Yii;
 use yii\web\Controller;
 
 /**
@@ -17,12 +15,6 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-	    $searchModel = new ServiceSearch();
-	    $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-	
-	    return $this->render('index', [
-		    'searchModel' => $searchModel,
-		    'dataProvider' => $dataProvider,
-	    ]);
+        return $this->render('index');
     }
 }

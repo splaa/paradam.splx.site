@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\services\models\Service */
+/* @var $model app\modules\services\models\Question */
 
-$this->title = Yii::t('app', 'Create Service');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Services'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Question');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Questions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="service-create">
+<div class="question-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -34,7 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description:ntext',
             'price',
+            'periodOfExecution',
+            'link_foto_video_file',
             'created_at',
+            'updated_at',
         ],
     ]) ?>
 
