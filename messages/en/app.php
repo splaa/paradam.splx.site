@@ -62,5 +62,6 @@ return [
 	'TITLE_CONTACT' => 'TITLE_CONTACT',
 	'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS',
 	'LINK_TO_MESSAGES' => 'Messages',
-	'LINK_TO_AVATAR' => 'Change Avatar'
+	'LINK_TO_AVATAR' => 'Change Avatar',
+	'USER_SUBSCRIBE' => 'Get new and notification'
 ];

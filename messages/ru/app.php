@@ -66,5 +66,6 @@
 		'USERS' => 'Пользователи',
 		'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS',
 		'LINK_TO_MESSAGES' => 'Сообщения',
-		'LINK_TO_AVATAR' => 'Сменить Аватар'
+		'LINK_TO_AVATAR' => 'Сменить Аватар',
+		'USER_SUBSCRIBE' => 'Получения новостей и уведомлений'
 	];

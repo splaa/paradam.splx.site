@@ -25,6 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 				<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha2::className(),[]) ?>
 
+				<div class="row">
+				<?= $form->field($model, 'subscribe')->checkbox() ?>
+				</div>
+
 				<div class="form-group">
 					<?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
 				</div>
