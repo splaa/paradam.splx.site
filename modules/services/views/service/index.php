@@ -1,9 +1,10 @@
 <?php
-
-use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\widgets\Pjax;
-/* @var $this yii\web\View */
+	
+	use yii\grid\GridView;
+	use yii\helpers\Html;
+	use yii\widgets\Pjax;
+	
+	/* @var $this yii\web\View */
 /* @var $searchModel app\modules\services\models\ServiceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -26,9 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'user_id',
+	
+	        //      'id',
+	        //      'user_id',
             'name',
             'description:ntext',
             'price',
@@ -36,8 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
             //'link_foto_video_file',
             //'created_at',
             //'updated_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
+	
+	        ['class' => 'app\components\ActionColumn'],
         ],
     ]); ?>
 

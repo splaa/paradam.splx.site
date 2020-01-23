@@ -1,9 +1,10 @@
 <?php
-
-use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\widgets\Pjax;
-/* @var $this yii\web\View */
+	
+	use yii\grid\GridView;
+	use yii\helpers\Html;
+	use yii\widgets\Pjax;
+	
+	/* @var $this yii\web\View */
 /* @var $searchModel app\modules\services\models\ServiceQuestionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -29,8 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'service_id',
             'question_id',
-
-            ['class' => 'yii\grid\ActionColumn'],
+	
+	        [
+		        'class' => 'yii\grid\ActionColumn',
+		        'contentOptions' => ['style' => 'white-space: nowrap; text-align: center; letter-spacing: 0.1em; max-width: 7em;'],
+	        ],
         ],
     ]); ?>
 

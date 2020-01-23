@@ -1,9 +1,10 @@
 <?php
-
-use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\widgets\Pjax;
-/* @var $this yii\web\View */
+	
+	use yii\grid\GridView;
+	use yii\helpers\Html;
+	use yii\widgets\Pjax;
+	
+	/* @var $this yii\web\View */
 /* @var $searchModel app\modules\services\models\QuestionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -26,14 +27,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'created_at',
-            'updated_at',
+	
+	        //    'id',
+	        //    'created_at',
+	        //    'updated_at',
             'question',
-            'status',
-
-            ['class' => 'yii\grid\ActionColumn'],
+	        //    'status',
+	
+	        ['class' => 'app\components\ActionColumn'],
         ],
     ]); ?>
 
