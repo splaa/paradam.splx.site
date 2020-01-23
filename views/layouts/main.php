@@ -57,8 +57,8 @@ use app\widgets\Alert;
 					]] :
 					false,
 				!Yii::$app->user->isGuest ?
-					['label' => sprintf(Yii::t('app', 'NAV_PROFILE'), Yii::$app->user->identity->balance . ' ' . User::CURRENCY_BIT), 'items' => [
-						['label' => sprintf(Yii::t('app', 'NAV_PROFILE'), Yii::$app->user->identity->balance . ' ' . User::CURRENCY_BIT), 'url' => ['/user/profile/index']],
+					['label' => sprintf(Yii::t('app', 'NAV_PROFILE'), Yii::$app->user->identity->formatBalance), 'items' => [
+						['label' => sprintf(Yii::t('app', 'NAV_PROFILE'), Yii::$app->user->identity->formatBalance), 'url' => ['/user/profile/index']],
 						['label' => Yii::t('app', 'NAV_LOGOUT'),
 							'url' => ['/user/default/logout'],
 							'linkOptions' => ['data-method' => 'post']]

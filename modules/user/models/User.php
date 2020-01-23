@@ -35,6 +35,7 @@ use yii\web\IdentityInterface;
  * @property string $avatarSmall
  * @property string $avatarMedium
  * @property string $avatarBig
+ * @property string $formatBalance
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -214,9 +215,9 @@ class User extends ActiveRecord implements IdentityInterface
 	/**
 	 * @return float
 	 */
-	public function getBalance()
+	public function getFormatBalance()
 	{
-		return number_format($this->balance, 2, '.', '');
+		return number_format($this->balance, 2, '.', '') . ' ' . self::CURRENCY_BIT;
 	}
 	
 	/**
