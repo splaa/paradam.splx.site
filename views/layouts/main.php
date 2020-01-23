@@ -5,7 +5,8 @@
 	/* @var $content string */
 	
 	use app\assets\AppAsset;
-	use app\widgets\Alert;
+use app\modules\user\models\User;
+use app\widgets\Alert;
 	use yii\bootstrap\Nav;
 	use yii\bootstrap\NavBar;
 	use yii\helpers\Html;
@@ -56,8 +57,8 @@
 					]] :
 					false,
 				!Yii::$app->user->isGuest ?
-					['label' => Yii::t('app', 'NAV_PROFILE'), 'items' => [
-						['label' => Yii::t('app', 'NAV_PROFILE'), 'url' => ['/user/profile/index']],
+					['label' => sprintf(Yii::t('app', 'NAV_PROFILE'), Yii::$app->user->identity->balance . ' ' . User::CURRENCY_BIT), 'items' => [
+						['label' => sprintf(Yii::t('app', 'NAV_PROFILE'), Yii::$app->user->identity->balance . ' ' . User::CURRENCY_BIT), 'url' => ['/user/profile/index']],
 						['label' => Yii::t('app', 'NAV_LOGOUT'),
 							'url' => ['/user/default/logout'],
 							'linkOptions' => ['data-method' => 'post']]

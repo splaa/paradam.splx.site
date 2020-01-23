@@ -18,6 +18,7 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property string $username
+ * @property float $balance
  * @property string $first_name
  * @property string $last_name
  * @property string|null $auth_key
@@ -47,6 +48,8 @@ class User extends ActiveRecord implements IdentityInterface
 	public const SIZE_AVATAR_SMALL = 64;
 	public const SIZE_AVATAR_MEDIUM = 150;
 	public const SIZE_AVATAR_BIG = 250;
+
+	public const CURRENCY_BIT = 'bit';
 
 	public function behaviors()
 	{
@@ -206,6 +209,14 @@ class User extends ActiveRecord implements IdentityInterface
 	public function getAlt()
 	{
 		return $this->last_name ? ($this->first_name . ' ' . $this->last_name) : $this->username;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function getBalance()
+	{
+		return number_format($this->balance, 2, '.', '');
 	}
 	
 	/**
