@@ -108,9 +108,6 @@
 				$avatar->saveAs('images/user/avatar/' . $this->username . '-' . User::SIZE_AVATAR_MEDIUM . '.png');
 				$avatar = new LetterAvatar($name, 'square', User::SIZE_AVATAR_BIG);
 				$avatar->saveAs('images/user/avatar/' . $this->username . '-' . User::SIZE_AVATAR_BIG . '.png');
-
-				$user->avatar = 'images/user/avatar/' .  $this->username;
-
 				
 				if ($user->save()) {
 					if ($this->email) {
