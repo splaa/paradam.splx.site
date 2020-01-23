@@ -2,12 +2,13 @@
 
 namespace app\modules\services\controllers;
 
-use yii\web\Controller;
+use app\modules\user\controllers\UserController;
+
 
 /**
  * Default controller for the `services` module
  */
-class DefaultController extends Controller
+class DefaultController extends UserController
 {
     /**
      * Renders the index view for the module

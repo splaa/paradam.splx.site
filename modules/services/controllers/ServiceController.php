@@ -2,19 +2,18 @@
 
 namespace app\modules\services\controllers;
 
-use app\modules\services\models\ServiceQuestion;
-use Yii;
 use app\modules\services\models\Service;
 use app\modules\services\models\ServiceSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use app\modules\user\controllers\UserController;
+use Yii;
 use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 
 /**
  * ServiceController implements the CRUD actions for Service model.
  */
-class ServiceController extends Controller
+class ServiceController extends UserController
 {
     /**
      * {@inheritdoc}

@@ -2,17 +2,17 @@
 
 namespace app\modules\services\controllers;
 
-use Yii;
 use app\modules\services\models\ServiceQuestion;
 use app\modules\services\models\ServiceQuestionSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use app\modules\user\controllers\UserController;
+use Yii;
 use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 
 /**
  * ServiceQuestionController implements the CRUD actions for ServiceQuestion model.
  */
-class ServiceQuestionController extends Controller
+class ServiceQuestionController extends UserController
 {
     /**
      * {@inheritdoc}
@@ -96,15 +96,17 @@ class ServiceQuestionController extends Controller
             'model' => $model,
         ]);
     }
-
-    /**
-     * Deletes an existing ServiceQuestion model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $service_id
-     * @param integer $question_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+	
+	/**
+	 * Deletes an existing ServiceQuestion model.
+	 * If deletion is successful, the browser will be redirected to the 'index' page.
+	 * @param integer $service_id
+	 * @param integer $question_id
+	 * @return mixed
+	 * @throws NotFoundHttpException if the model cannot be found
+	 * @throws \Throwable
+	 * @throws \yii\db\StaleObjectException
+	 */
     public function actionDelete($service_id, $question_id)
     {
         $this->findModel($service_id, $question_id)->delete();
