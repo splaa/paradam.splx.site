@@ -2,6 +2,7 @@
 
 return [
     'NAV_HOME' => 'Home',
+	'NAV_USERS' => 'Users',
     'NAV_CONTACT' => 'Contact',
     'NAV_SIGNUP' => 'Signup',
     'NAV_LOGIN' => 'Login',

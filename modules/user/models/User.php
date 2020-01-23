@@ -31,9 +31,9 @@ use yii\web\IdentityInterface;
  * @property string $authKey
  * @property int $status
  * @property string $alt
- * @property string $avatar_small
- * @property string $avatar_medium
- * @property string $avatar_big
+ * @property string $avatarSmall
+ * @property string $avatarMedium
+ * @property string $avatarBig
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -47,10 +47,6 @@ class User extends ActiveRecord implements IdentityInterface
 	public const SIZE_AVATAR_SMALL = 64;
 	public const SIZE_AVATAR_MEDIUM = 150;
 	public const SIZE_AVATAR_BIG = 250;
-
-	public $avatar_small;
-	public $avatar_medium;
-	public $avatar_big;
 
 	public function behaviors()
 	{

@@ -3,6 +3,7 @@
 	return [
 		'Congratulations' => 'Поздравляю',
 		'NAV_HOME' => 'Главная',
+		'NAV_USERS' => 'Пользователи',
 		'NAV_CONTACT' => 'Связь',
 		'NAV_SIGNUP' => 'Регистрация',
 		'NAV_LOGIN' => 'Вход',

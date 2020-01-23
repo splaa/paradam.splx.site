@@ -70,6 +70,9 @@
 					'contact' => 'main/contact/index',
 					'message' => 'message/message/index',
 
+					'public/list' => 'user/public/list',
+					'public/<id:\d+>/' => 'user/public/',
+
 					'/site/contact' => 'main/contact/index',
 					'<_a:error>' => 'main/default/<_a>',
 					'<_a:(login|logout|signup|confirm-email|request-password-reset|reset-password)>' => 'user/default/<_a>',
