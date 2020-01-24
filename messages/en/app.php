@@ -63,5 +63,6 @@ return [
 	'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS',
 	'LINK_TO_MESSAGES' => 'Messages',
 	'LINK_TO_AVATAR' => 'Change Avatar',
-	'USER_SUBSCRIBE' => 'Get new and notification'
+	'USER_SUBSCRIBE' => 'Get new and notification',
+	'LINK_TO_MESSAGE_SETTINGS' => 'Message Settings',
 ];

@@ -19,6 +19,7 @@ use yii\web\IdentityInterface;
  * @property int $updated_at
  * @property string $username
  * @property float $balance
+ * @property float $sms_cost
  * @property string $first_name
  * @property string $last_name
  * @property string|null $auth_key
@@ -36,6 +37,7 @@ use yii\web\IdentityInterface;
  * @property string $avatarMedium
  * @property string $avatarBig
  * @property string $formatBalance
+ * @property string $formatSmsCost
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -213,11 +215,19 @@ class User extends ActiveRecord implements IdentityInterface
 	}
 
 	/**
-	 * @return float
+	 * @return string
 	 */
 	public function getFormatBalance()
 	{
 		return number_format($this->balance, 2, '.', '') . ' ' . self::CURRENCY_BIT;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getFormatSmsCost()
+	{
+		return number_format($this->sms_cost, 2, '.', '') . ' ' . self::CURRENCY_BIT;
 	}
 	
 	/**

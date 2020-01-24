@@ -69,6 +69,7 @@
 					
 					'contact' => 'main/contact/index',
 					'message' => 'message/message/index',
+					'message/settings' => 'message/message/settings',
 
 					'public/list' => 'user/public/list',
 					'public/<id:\d+>/' => 'user/public/',
