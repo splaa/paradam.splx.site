@@ -7,7 +7,10 @@
 	use app\modules\admin\models\User;
 	use app\modules\user\forms\PasswordChangeForm;
 	use app\modules\user\forms\ProfileUpdateForm;
+	use app\modules\user\forms\TelephoneChangeForm;
 	use app\modules\user\forms\UploadAvatar;
+	use app\modules\user\models\Activity;
+	use yii\data\ActiveDataProvider;
 	use yii\imagine\Image;
 	use Yii;
 	use yii\filters\AccessControl;
@@ -84,6 +87,37 @@
 				'model' => $model
 			]);
 		}
-		
-		
+
+		public function actionBalance()
+		{
+			$model = Activity::find()->where(['user_id' => Yii::$app->user->id])->orderBy(['created_at' => SORT_DESC]);
+
+			$dataProvider = new ActiveDataProvider([
+				'query' => $model,
+				'pagination' => [
+					'pageSize' => 10,
+				],
+			]);
+
+			return $this->render('balance', [
+				'model' => $model,
+				'dataProvider' => $dataProvider
+			]);
+		}
+
+		public function actionTelephoneChange()
+		{
+			$user = $this->findModel();
+			$model = new TelephoneChangeForm($user);
+
+			if ($model->load(Yii::$app->request->post()) && $model->changeTelephone()) {
+				Yii::$app->getSession()->setFlash('success', 'Спасибо! Телефон успешно изменён.');
+
+				return $this->refresh();
+			} else {
+				return $this->render('telephoneChange', [
+					'model' => $model,
+				]);
+			}
+		}
 	}

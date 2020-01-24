@@ -311,6 +311,15 @@ class User extends ActiveRecord implements IdentityInterface
 	{
 		$this->password_hash = Yii::$app->security->generatePasswordHash($password);
 	}
+
+	/**
+	 * @param string $telephone
+	 * @throws \yii\base\Exception
+	 */
+	public function setTelephone($telephone)
+	{
+		$this->telephone = $telephone;
+	}
 	
 	/**
 	 * Generates "remember me" authentication key

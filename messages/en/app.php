@@ -6,7 +6,8 @@ return [
     'NAV_CONTACT' => 'Contact',
     'NAV_SIGNUP' => 'Signup',
     'NAV_LOGIN' => 'Login',
-    'NAV_PROFILE' => 'Profile (%s)',
+    'NAV_PROFILE' => 'Profile',
+    'NAV_PROFILE_BALANCE' => 'Balance (%s)',
     'NAV_LOGOUT' => 'Logout',
     'NAV_ADMIN' => 'Manage',
     'NAV_ADMIN_USERS' => 'Users',
@@ -65,4 +66,5 @@ return [
 	'LINK_TO_AVATAR' => 'Change Avatar',
 	'USER_SUBSCRIBE' => 'Get new and notification',
 	'LINK_TO_MESSAGE_SETTINGS' => 'Message Settings',
+	'LINK_TO_PHONE_CHANGE' => 'Change telephone',
 ];
