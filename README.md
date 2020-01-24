@@ -146,8 +146,11 @@ git pull
 #Модуль Services(Услуги)
 
 http://paradam.loc/ru/services/  - Главная страница модуля
+
 http://paradam.loc/ru/services/service - Страница отображения всех услуг
+
 http://paradam.loc/ru/services/question - страница отображает все вопросы
+
 http://paradam.loc/ru/services/service-question - страница отношений услуг и вопросов
 
 
