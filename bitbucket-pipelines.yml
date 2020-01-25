@@ -4,16 +4,17 @@ pipelines:
           name: Deploy to test
           deployment: test
           script:
-            - pipe: atlassian/sftp-deploy:0.5.3
-              variables:
-                USER: $USER_REMOTE
-                SERVER: $SERVER_IP
-                REMOTE_PATH: $PATH_REMOTE
-                LOCAL_PATH: './' # Optional.
-                # SSH_KEY: '<string>' # Optional.
-                # PASSWORD: '<string>' # Optional.
-                # EXTRA_ARGS: '<string>' # Optional.
-                # DEBUG: '<boolean>' # Optional.
+            - echo "Deploy is Ok!"
+  #            - pipe: atlassian/sftp-deploy:0.5.3
+  #              variables:
+  #                USER: $USER_REMOTE
+  #                SERVER: $SERVER_IP
+  #                REMOTE_PATH: $PATH_REMOTE
+  #                LOCAL_PATH: './' # Optional.
+  #                # SSH_KEY: '<string>' # Optional.
+  #                # PASSWORD: '<string>' # Optional.
+  #                # EXTRA_ARGS: '<string>' # Optional.
+  #                # DEBUG: '<boolean>' # Optional.
 
   custom: # Pipelines that can only be triggered manually
     deployment-to-test:
@@ -46,7 +47,7 @@ pipelines:
       - step:
           script:
             - echo "Manual triggers for deployments are awesome!"
-  branches:  # Pipelines that run automatically on a commit to a branch can also be triggered manually
+  branches:  # Конвейеры, которые запускаются автоматически при фиксации ветви, также могут запускаться вручную
     staging:
       - step:
           script:

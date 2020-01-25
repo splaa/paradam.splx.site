@@ -29,7 +29,7 @@ Thumbs.db
 .DS_Store
 
 # phpunit itself is not needed
-phpunit.phar
+#phpunit.phar
 # local phpunit config
 /phpunit.xml
 
@@ -43,4 +43,7 @@ web/assets
 /web/MadelineProto.log
 /assets/*
 /MadelineProto.log
+.phpunit.result.cache
 /database/
+!/web/images/user/avatar/.gitkeep
+/.phpunit.result.cache

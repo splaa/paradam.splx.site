@@ -5,8 +5,8 @@
 	/* @var $content string */
 	
 	use app\assets\AppAsset;
-use app\modules\user\models\User;
-use app\widgets\Alert;
+    use app\modules\user\models\User;
+    use app\widgets\Alert;
 	use yii\bootstrap\Nav;
 	use yii\bootstrap\NavBar;
 	use yii\helpers\Html;
@@ -52,9 +52,11 @@ use app\widgets\Alert;
 					false,
 				!Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_ADMIN'), 'items' => [
-						['label' => Yii::t('app', 'NAV_ADMIN'), 'url' => ['/admin/default/index']],
-						['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
-					]] :
+                        ['label' => Yii::t('app', 'NAV_ADMIN'), 'url' => ['/admin/default/index']],
+                        ['label' => Yii::t('app', 'NAV_SERVICES'), 'url' => ['/services/service']],
+                        ['label' => Yii::t('app', 'NAV_QUESTIONS'), 'url' => ['/services/question']],
+                        ['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
+                    ]] :
 					false,
 				!Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_PROFILE'), 'items' => [

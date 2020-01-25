@@ -6,3 +6,5 @@
 /session/session.madeline.lock
 /images/user/avatar/*
 !/images/user/avatar/.gitkeep
+/uploads/*
+!/uploads/.gitkeep
