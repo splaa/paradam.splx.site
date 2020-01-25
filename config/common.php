@@ -34,9 +34,6 @@
 			'message' => [
 				'class' => 'app\modules\message\Module',
 			],
-			'simplechat' => [
-				'class' => 'bubasuma\simplechat\Module',
-			],
 		],
 		'aliases' => [
 			'@bower' => '@vendor/bower-asset',
