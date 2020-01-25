@@ -15,7 +15,7 @@ use yii\helpers\Html;
 
 		<?php $form = ActiveForm::begin(); ?>
 
-		<?= $form->field($model, 'newName') ?>
+		<?= $form->field($model, 'newName')->textInput(['value' => Yii::$app->user->identity->first_name]) ?>
 
 		<div class="form-group">
 			<?= Html::submitButton(Yii::t('app', 'BUTTON_SAVE'), ['class' => 'btn btn-primary']) ?>

@@ -10,6 +10,7 @@
 	use app\modules\user\forms\ProfileUpdateForm;
 	use app\modules\user\forms\TelephoneChangeForm;
 	use app\modules\user\forms\UploadAvatar;
+	use app\modules\user\forms\UserNameChangeForm;
 	use app\modules\user\models\Activity;
 	use yii\data\ActiveDataProvider;
 	use yii\imagine\Image;
@@ -132,7 +133,23 @@
 
 				return $this->refresh();
 			} else {
-				return $this->render('passwordName', [
+				return $this->render('nameChange', [
+					'model' => $model,
+				]);
+			}
+		}
+
+		public function actionUserNameChange()
+		{
+			$user = $this->findModel();
+			$model = new UserNameChangeForm($user);
+
+			if ($model->load(Yii::$app->request->post()) && $model->changeUserName()) {
+				Yii::$app->getSession()->setFlash('success', 'Спасибо! Username успешно изменёно.');
+
+				return $this->refresh();
+			} else {
+				return $this->render('userNameChange', [
 					'model' => $model,
 				]);
 			}
