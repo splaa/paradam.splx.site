@@ -44,3 +44,5 @@ web/assets
 /assets/*
 /MadelineProto.log
 /database/
+!/web/images/user/avatar/.gitkeep
+/.phpunit.result.cache
