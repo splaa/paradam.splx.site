@@ -27,6 +27,8 @@
 `cd /app && composer update`
 `mkdir /app/runtime && mkdir /app/web/assets`
 
+`php yii telegram/run`                              // Telegram
+
 `php init`
 
 `p config/common-docker.php.example config/common-local.php`

@@ -2,8 +2,8 @@
 /index.php
 /index-test.php
 /MadelineProto.log
-/session/session.madeline
-/session/session.madeline.lock
+/session/*
+/session/.gitkeep
 /images/user/avatar/*
 !/images/user/avatar/.gitkeep
 /uploads/*
