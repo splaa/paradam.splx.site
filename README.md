@@ -27,6 +27,8 @@
 `cd /app && composer update`
 `mkdir /app/runtime && mkdir /app/web/assets`
 
+`php yii migrate`
+
 `php yii telegram/run`                              // Telegram
 
 `php init`
@@ -56,7 +58,7 @@
 `docker-compose up` 
 
 //запуск в фоне
-`ocker-compose up -d`  
+`docker-compose up -d`  
 
 //посмотреть список запущенных контейнеров
 `docker ps ` 								
