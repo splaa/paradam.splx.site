@@ -4,8 +4,10 @@
 	/* @var $form yii\bootstrap\ActiveForm */
 	
 	/* @var $model app\modules\user\forms\LoginForm */
-	
-	use yii\bootstrap\ActiveForm;
+	/* @var $show_captcha int */
+
+use himiklab\yii2\recaptcha\ReCaptcha2;
+use yii\bootstrap\ActiveForm;
 	use yii\helpers\Html;
 	
 	$this->title = 'PhoneLogin';
@@ -33,6 +35,10 @@
 			<?= $form->field($model, 'rememberMe')->checkbox([
 				'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
 			]) ?>
+
+			<?php if ($show_captcha): ?>
+			<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha2::className(),[]) ?>
+	        <?php endif; ?>
         </div>
     </div>
     <div class="form-group">

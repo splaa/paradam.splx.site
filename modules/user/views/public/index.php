@@ -34,7 +34,7 @@ use yii\helpers\Html; ?>
 					</ul>
 				</div>
 			</div>
-			<?php if (Yii::$app->user->getId() == $model->id): ?>
+			<?php if (Yii::$app->user->id == $model->id): ?>
 				<div class="col-md-2">
 					<?= Html::a('Edit Profile', '/user/profile', ['class' => 'profile-edit-btn']) ?>
 				</div>

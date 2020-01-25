@@ -80,7 +80,7 @@
 				return $this->goBack();
 			} else {
 				return $this->render('login', [
-					'model' => $model,
+					'model' => $model
 				]);
 			}
 		}
@@ -97,8 +97,22 @@
 				
 				return $this->goBack();
 			} else {
+				$show_captcha = false;
+				if (Yii::$app->request->isPost) {
+					if (Yii::$app->session->get('loginCount')) {
+						if (Yii::$app->session->get('loginCount') >= PhoneLoginForm::LOGIN_COUNT_LIMIT) {
+							$show_captcha = true;
+						} else {
+							Yii::$app->session->set('loginCount', Yii::$app->session->get('loginCount') + 1);
+						}
+					} else {
+						Yii::$app->session->set('loginCount', 1);
+					}
+				}
+
 				return $this->render('phonelogin', [
 					'model' => $model,
+					'show_captcha' => $show_captcha
 				]);
 			}
 		}

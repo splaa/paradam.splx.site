@@ -10,7 +10,7 @@ use app\modules\user\models\User;
 
 <div class="msg_history">
 	<?php foreach ($selected_user_thread->thread->messages as $message): ?>
-		<?php if ($message->author_id != Yii::$app->user->getId()): ?>
+		<?php if ($message->author_id != Yii::$app->user->id): ?>
 			<div class="incoming_msg">
 				<div class="incoming_msg_img">
 					<img src="<?= $message->author->getAvatarSmall() ?>" alt="<?= $message->author->alt ?>">
@@ -46,7 +46,7 @@ use app\modules\user\models\User;
 
 
 <?php
-$user_id = Yii::$app->user->getId();
+$user_id = Yii::$app->user->id;
 $avatar = Yii::$app->user->identity->getAvatarSmall();
 $alt = Yii::$app->user->identity->alt;
 $time = date("Y-m-m H:i:s");

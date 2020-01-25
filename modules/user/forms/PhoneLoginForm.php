@@ -3,9 +3,11 @@
 	namespace app\modules\user\forms;
 	
 	use app\modules\admin\models\User;
+	use himiklab\yii2\recaptcha\ReCaptchaValidator2;
 	use Yii;
 	use yii\base\Model;
-	
+	use yii\helpers\ArrayHelper;
+
 	/**
 	 * LoginForm is the model behind the login form.
 	 *
@@ -17,8 +19,11 @@
 		public $phone;
 		public $password;
 		public $rememberMe = true;
+		public $reCaptcha;
 		
 		private $_user = false;
+
+		public const LOGIN_COUNT_LIMIT = 5;
 		
 		
 		/**
@@ -27,12 +32,16 @@
 		public function rules()
 		{
 			return [
-				// phone and password are both required
+				// email and password are both required
 				[['phone', 'password'], 'required'],
 				// rememberMe must be a boolean value
 				['rememberMe', 'boolean'],
 				// password is validated by validatePassword()
 				['password', 'validatePassword'],
+
+				[['reCaptcha'], ReCaptchaValidator2::className(), 'uncheckedMessage' => 'Please confirm that you are not a bot.', 'when' => function($model){
+					return Yii::$app->session->get('loginCount') >= self::LOGIN_COUNT_LIMIT;
+				}]
 			];
 		}
 		
