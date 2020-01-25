@@ -13,14 +13,8 @@
 		public function safeUp()
 		{
 			// DROP TABLE message
-			
-			
-			$this->dropIndex(
-				'idx-message-id_service',
-				'message'
-			);
-			
-			$this->dropTable('message');
+			$message = new m191225_142149_create_table_message();
+			$message->safeDown();
 			
 			// Create new Table
 			$tableOptions = null;
