@@ -7,6 +7,7 @@ return [
     'NAV_SIGNUP' => 'Signup',
     'NAV_LOGIN' => 'Login',
     'NAV_PROFILE' => 'Profile',
+    'NAV_PROFILE_BALANCE' => 'Balance (%s)',
     'NAV_LOGOUT' => 'Logout',
     'NAV_ADMIN' => 'Manage',
     'NAV_ADMIN_USERS' => 'Users',
@@ -62,5 +63,8 @@ return [
 	'TITLE_CONTACT' => 'TITLE_CONTACT',
 	'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS',
 	'LINK_TO_MESSAGES' => 'Messages',
-	'LINK_TO_AVATAR' => 'Change Avatar'
+	'LINK_TO_AVATAR' => 'Change Avatar',
+	'USER_SUBSCRIBE' => 'Get new and notification',
+	'LINK_TO_MESSAGE_SETTINGS' => 'Message Settings',
+	'LINK_TO_PHONE_CHANGE' => 'Change telephone',
 ];

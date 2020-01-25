@@ -18,6 +18,8 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property string $username
+ * @property float $balance
+ * @property float $sms_cost
  * @property string $first_name
  * @property string $last_name
  * @property string|null $auth_key
@@ -34,6 +36,8 @@ use yii\web\IdentityInterface;
  * @property string $avatarSmall
  * @property string $avatarMedium
  * @property string $avatarBig
+ * @property string $formatBalance
+ * @property string $formatSmsCost
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -47,6 +51,8 @@ class User extends ActiveRecord implements IdentityInterface
 	public const SIZE_AVATAR_SMALL = 64;
 	public const SIZE_AVATAR_MEDIUM = 150;
 	public const SIZE_AVATAR_BIG = 250;
+
+	public const CURRENCY_BIT = 'bit';
 
 	public function behaviors()
 	{
@@ -207,6 +213,22 @@ class User extends ActiveRecord implements IdentityInterface
 	{
 		return $this->last_name ? ($this->first_name . ' ' . $this->last_name) : $this->username;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getFormatBalance()
+	{
+		return number_format($this->balance, 2, '.', '') . ' ' . self::CURRENCY_BIT;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getFormatSmsCost()
+	{
+		return number_format($this->sms_cost, 2, '.', '') . ' ' . self::CURRENCY_BIT;
+	}
 	
 	/**
 	 * Returns a key that can be used to check the validity of a given identity ID.
@@ -288,6 +310,15 @@ class User extends ActiveRecord implements IdentityInterface
 	public function setPassword($password)
 	{
 		$this->password_hash = Yii::$app->security->generatePasswordHash($password);
+	}
+
+	/**
+	 * @param string $telephone
+	 * @throws \yii\base\Exception
+	 */
+	public function setTelephone($telephone)
+	{
+		$this->telephone = $telephone;
 	}
 	
 	/**

@@ -4,7 +4,7 @@
 /MadelineProto.log
 /session/session.madeline
 /session/session.madeline.lock
-/images/user/avatar/
+/images/user/avatar/*
 !/images/user/avatar/.gitkeep
-/uploads/
+/uploads/*
 !/uploads/.gitkeep

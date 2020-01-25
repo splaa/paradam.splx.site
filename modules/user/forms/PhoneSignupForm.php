@@ -25,38 +25,40 @@
 		public $country;
 		public $verifyCodeTelephone;
 		public $reCaptcha;
+		public $subscribe;
 
 		public function rules()
 		{
 			return [
+				[['first_name', 'username', 'telephone', 'password', 'birthday', 'verifyCodeTelephone', 'subscribe'], 'required'],
+
 				['username', 'filter', 'filter' => 'trim'],
-				['username', 'required'],
-				['username', 'match', 'pattern' => '#^[\w_-]+$#i'],
+				['username', 'string', 'min' => 4, 'max' => 255],
+				['username', 'match', 'pattern' => '/^[a-zA-Z0-9_\.]+$/', 'message' => 'Username can be use only cyrillic symbols and "." and "_"'],
+				//['username', 'match', 'pattern' => '#^[\w_-]+$#i'],
 				[['username'], 'unique',
 					'targetAttribute' => 'username',
 					'targetClass' => User::className(),
 					'message' => 'Это имя пользователя уже занято.',
 				],
-				['username', 'string', 'min' => 2, 'max' => 255],
-				
+
 				['email', 'filter', 'filter' => 'trim'],
-//				['email', 'required'],
 				['email', 'email'],
 				['email', 'unique', 'targetClass' => User::className(), 'message' => 'This email address has already been taken.'],
-				
+
 				['telephone', 'filter', 'filter' => 'trim'],
-				['telephone', 'required'],
 				['telephone', 'match', 'pattern' => '/^\+380\d{3}\d{2}\d{2}\d{2}$/'],
 				['telephone', 'unique', 'targetClass' => PhoneRecord::class, 'message' => 'This telephone address has already been taken.'],
-				
-				['password', 'required'],
+
 				['password', 'string', 'min' => 8],
 
-				['birthday', 'string'],
-				['birthday', 'required'],
+				['first_name', 'string', 'min' => 1],
 
-				['verifyCodeTelephone', 'required'],
+				['birthday', 'string'],
+
 				['verifyCodeTelephone', 'validateVerifyCode'],
+
+				['subscribe', 'compare', 'compareValue' => 1, 'message' => 'Выствите чебокс, иначе форма не отправится!'],
 
 				//[['reCaptcha'], ReCaptchaValidator2::className(), 'uncheckedMessage' => 'Please confirm that you are not a bot.'],
 			];
@@ -89,6 +91,7 @@
 				$user->telephone = $this->telephone;
 				$user->first_name = $this->first_name;
 				$user->last_name = $this->last_name;
+				$user->subscribe = $this->subscribe;
 				$user->birthday = date('Y-m-d',strtotime($this->birthday));
 				$user->country = $this->country;
 				$user->setPassword($this->password);
@@ -122,5 +125,12 @@
 			}
 			
 			return null;
+		}
+
+		public function attributeLabels()
+		{
+			return [
+				'subscribe' => Yii::t('app', 'USER_SUBSCRIBE'),
+			];
 		}
 	}

@@ -2,8 +2,10 @@
 
 namespace app\modules\message\controllers;
 
+use app\modules\message\forms\SettingsForm;
 use app\modules\message\models\UserThread;
 use app\modules\user\controllers\UserController;
+use app\modules\user\models\User;
 use Yii;
 use \app\components\Hash;
 use YoHang88\LetterAvatar\LetterAvatar;
@@ -23,7 +25,7 @@ class MessageController extends UserController
 		$this->view->registerCssFile('@web/css/chat.css');
 
 		$threads = UserThread::find()
-			->where(['user_id' => Yii::$app->user->getId()])
+			->where(['user_id' => Yii::$app->user->id])
 			->orderBy(['id' => SORT_DESC])
 			->all();
 		$selected_user_thread = [];
@@ -35,13 +37,28 @@ class MessageController extends UserController
 
 			$selected_user_thread = UserThread::find()
 				->where(['thread_id' =>  $hash->run(Hash::DECODE)])
-				->andWhere(['user_id' => Yii::$app->user->getId()])
+				->andWhere(['user_id' => Yii::$app->user->id])
 				->one();
 		}
 		
 		return $this->render('index', [
 			'threads' => $threads,
 			'selected_user_thread' => $selected_user_thread
+		]);
+	}
+
+	public function actionSettings()
+	{
+		$model = new SettingsForm();
+
+		if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->changeSmsCost()) {
+			Yii::$app->getSession()->setFlash('success', 'Спасибо! Стоимость сообщения изменена.');
+
+			return $this->refresh();
+		}
+
+		return $this->render('settings', [
+			'model' => $model
 		]);
 	}
 }
