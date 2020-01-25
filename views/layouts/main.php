@@ -1,17 +1,17 @@
 <?php
-	
-	/* @var $this \yii\web\View */
-	
-	/* @var $content string */
-	
-	use app\assets\AppAsset;
-	use app\widgets\Alert;
-	use yii\bootstrap\Nav;
-	use yii\bootstrap\NavBar;
-	use yii\helpers\Html;
-	use yii\widgets\Breadcrumbs;
-	
-	AppAsset::register($this);
+
+/* @var $this \yii\web\View */
+
+/* @var $content string */
+
+use app\assets\AppAsset;
+use app\widgets\Alert;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
+
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -20,7 +20,7 @@
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<?php $this->registerCsrfMetaTags() ?>
+    <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
 	<?php $this->head() ?>
 </head>
@@ -51,9 +51,11 @@
 					false,
 				!Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_ADMIN'), 'items' => [
-						['label' => Yii::t('app', 'NAV_ADMIN'), 'url' => ['/admin/default/index']],
-						['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
-					]] :
+                        ['label' => Yii::t('app', 'NAV_ADMIN'), 'url' => ['/admin/default/index']],
+                        ['label' => Yii::t('app', 'NAV_SERVICES'), 'url' => ['/services/service']],
+                        ['label' => Yii::t('app', 'NAV_QUESTIONS'), 'url' => ['/services/question']],
+                        ['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
+                    ]] :
 					false,
 				!Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_PROFILE'), 'items' => [

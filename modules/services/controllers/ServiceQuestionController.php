@@ -19,14 +19,14 @@ class ServiceQuestionController extends UserController
      */
     public function behaviors()
     {
-        return [
+        return yii\helpers\ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
                 ],
             ],
-        ];
+        ]);
     }
 
     /**

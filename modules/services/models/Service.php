@@ -3,6 +3,7 @@
 namespace app\modules\services\models;
 
 use app\modules\admin\models\User;
+use app\modules\user\models\query\UserQuery;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;

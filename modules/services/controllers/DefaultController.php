@@ -10,6 +10,11 @@ use app\modules\user\controllers\UserController;
  */
 class DefaultController extends UserController
 {
+    public function behaviors()
+    {
+        return parent::behaviors();
+    }
+
     /**
      * Renders the index view for the module
      * @return string

@@ -20,14 +20,14 @@ class ServiceController extends UserController
      */
     public function behaviors()
     {
-        return [
+        return yii\helpers\ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
                 ],
             ],
-        ];
+        ]);
     }
 
     /**
@@ -71,10 +71,9 @@ class ServiceController extends UserController
 		    $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
 		    if ($model->upload()) {
 			    if ($model->load(Yii::$app->request->post()) && $model->save()) {
-				   
-				   
-//            return $this->redirect(['view', 'id' => $model->id]);
-				    return $this->redirect(['/services/question/create','id' => $model->id]);
+
+
+                    return $this->redirect(['/services/question/create','id' => $model->id]);
 			    }
 			 
 		    }

@@ -26,12 +26,24 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'periodOfExecution')->textInput() ?>
 
 
+    <div class="row">
 
-	<?= $form->field($model, 'imageFile')->fileInput() ?>
+        <div class="col-12 col-md-3">
+            <?= $nameFile = $form->field($model, 'imageFile')->fileInput() ?>
+
+        </div>
+        <div class="col-12">
+
+            <?php if ($model->imageFile): ?>
+                <?= Html::img('@web/uploads/' . $model->imageFile, ['width' => '100px']) ?>
+            <?php endif; ?>
+        </div>
+    </div>
+
+
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
 </div>

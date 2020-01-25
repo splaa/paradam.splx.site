@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 
-    var i = $('input').size() + 1;
+    let i = $('input').size() + 1;
 
     $('#add').click(function () {
         $('<div><input type="text" class="field" name="dynamic[]" value="' + i + '" /></div>').fadeIn('slow').appendTo('.inputs');

@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -40,5 +41,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
         ],
     ]) ?>
+    <div class="row">
+        <div class="col-md-12">
+            <?= Html::a(Yii::t('app', 'Add Image'), ['update', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
 
+        </div>
+        <div class="col-md-12">
+            <?php if (!empty($model->imageFile)) {
+                echo Html::img($model->imageFile, $options = ['class' => 'postImg', 'style' => ['width' => '180px']]);
+                echo Html::img('@web/uploads/Снимок экрана 2020-01-23 в 12.06.54 ДП.png', ['width' => '150px']);
+            } ?>
+        </div>
+    </div>
 </div>
