@@ -52,3 +52,5 @@ web/assets
 
 /web/uploads/*
 !/web/uploads/.gitkeep
+
+composer.lock
