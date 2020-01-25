@@ -38,14 +38,25 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
-runtime
-web/assets
+
+
+runtime/*
+!/runtime/.gitkeep
+
+web/assets/*
+!web/assets/.gitkeep
+
 /web/MadelineProto.log
+
 /assets/*
 /MadelineProto.log
+
 .phpunit.result.cache
-!/web/images/user/avatar/.gitkeep
 /.phpunit.result.cache
+
+
+/web/images/user/avatar/*
+!/web/images/user/avatar/.gitkeep
 
 /database/*
 !/database/.gitkeep
