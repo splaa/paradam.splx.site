@@ -75,6 +75,8 @@
         'USER_SUBSCRIBE' => 'Получения новостей и уведомлений',
 		'LINK_TO_MESSAGE_SETTINGS' => 'Настройка сообщений',
 		'LINK_TO_PHONE_CHANGE' => 'Изменить телефон',
+		'NAV_PROFILE_CHANGE_NAME' => 'Изменить имя',
+		'NAV_PROFILE_CHANGE_USER_NAME' => 'Изменить username',
         'Article ID' => 'Article ID',
         'User ID' => 'User ID',
         'Email' => 'Email',

@@ -67,4 +67,6 @@ return [
 	'USER_SUBSCRIBE' => 'Get new and notification',
 	'LINK_TO_MESSAGE_SETTINGS' => 'Message Settings',
 	'LINK_TO_PHONE_CHANGE' => 'Change telephone',
+	'NAV_PROFILE_CHANGE_NAME' => 'Change name',
+	'NAV_PROFILE_CHANGE_USER_NAME' => 'Change username',
 ];
