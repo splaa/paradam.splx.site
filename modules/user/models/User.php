@@ -320,6 +320,15 @@ class User extends ActiveRecord implements IdentityInterface
 	{
 		$this->telephone = $telephone;
 	}
+
+	/**
+	 * @param string $first_name
+	 * @throws \yii\base\Exception
+	 */
+	public function setName($first_name)
+	{
+		$this->first_name = $first_name;
+	}
 	
 	/**
 	 * Generates "remember me" authentication key

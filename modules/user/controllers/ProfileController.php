@@ -5,6 +5,7 @@
 
 
 	use app\modules\admin\models\User;
+	use app\modules\user\forms\NameChangeForm;
 	use app\modules\user\forms\PasswordChangeForm;
 	use app\modules\user\forms\ProfileUpdateForm;
 	use app\modules\user\forms\TelephoneChangeForm;
@@ -116,6 +117,22 @@
 				return $this->refresh();
 			} else {
 				return $this->render('telephoneChange', [
+					'model' => $model,
+				]);
+			}
+		}
+
+		public function actionNameChange()
+		{
+			$user = $this->findModel();
+			$model = new NameChangeForm($user);
+
+			if ($model->load(Yii::$app->request->post()) && $model->changeName()) {
+				Yii::$app->getSession()->setFlash('success', 'Спасибо! Имя успешно изменёно.');
+
+				return $this->refresh();
+			} else {
+				return $this->render('passwordName', [
 					'model' => $model,
 				]);
 			}
