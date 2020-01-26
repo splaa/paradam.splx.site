@@ -3,7 +3,6 @@
 namespace app\modules\message\models;
 
 use app\modules\user\models\User;
-use Yii;
 
 /**
  * This is the model class for table "user_thread".

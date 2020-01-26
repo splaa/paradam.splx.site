@@ -3,20 +3,20 @@
 	namespace app\modules\main\controllers;
 	
 	use app\modules\main\models\ContactForm;
-	use yii\web\Controller;
-	use Yii;
-	
-	class ContactController extends Controller
-	{
-		public function actions()
-		{
-			return [
-				'captcha' => [
-					'class' => 'yii\captcha\CaptchaAction',
-					'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-				],
-			];
-		}
+    use Yii;
+    use yii\web\Controller;
+
+    class ContactController extends Controller
+    {
+        public function actions()
+        {
+            return [
+                'captcha' => [
+                    'class' => 'yii\captcha\CaptchaAction',
+                    'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                ],
+            ];
+        }
 		
 		public function actionIndex()
 		{

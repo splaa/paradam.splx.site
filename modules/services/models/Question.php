@@ -3,21 +3,21 @@
 	namespace app\modules\services\models;
 	
 	use Yii;
-	use yii\behaviors\TimestampBehavior;
-	use yii\db\ActiveRecord;
-	use yii\db\Expression;
-	
-	/**
-	 * This is the model class for table "question".
-	 *
-	 * @property int $id
-	 * @property int|null $created_at
-	 * @property int|null $updated_at
-	 * @property string $question
-	 * @property int|null $status
-	 *
-	 * @property ServiceQuestion[] $serviceQuestions
-	 * @property Service[] $services
+    use yii\behaviors\TimestampBehavior;
+    use yii\db\ActiveRecord;
+    use yii\db\Expression;
+
+    /**
+     * This is the model class for table "question".
+     *
+     * @property int $id
+     * @property int|null $created_at
+     * @property int|null $updated_at
+     * @property string $question
+     * @property int|null $status
+     *
+     * @property ServiceQuestion[] $serviceQuestions
+     * @property Service[] $services
 	 */
 	class Question extends \yii\db\ActiveRecord
 	{

@@ -3,26 +3,26 @@
 	namespace app\modules\user\controllers;
 	
 	use app\components\Smsc;
-	use app\components\Telegram;
-	use app\modules\user\forms\PhoneSignupForm;
-	use app\modules\user\models\PhoneRecord;
-	use Yii;
-	use yii\filters\VerbFilter;
-	use yii\helpers\Url;
-	use yii\web\Controller;
-	use yii\web\NotFoundHttpException;
-	
-	/**
-	 * UsersController implements the CRUD actions for User model.
-	 */
-	class PhoneidentityController extends Controller
-	{
-		/**
-		 * {@inheritdoc}
-		 */
-		public function behaviors()
-		{
-			return [
+    use app\components\Telegram;
+    use app\modules\user\forms\PhoneSignupForm;
+    use app\modules\user\models\PhoneRecord;
+    use Yii;
+    use yii\filters\VerbFilter;
+    use yii\helpers\Url;
+    use yii\web\Controller;
+    use yii\web\NotFoundHttpException;
+
+    /**
+     * UsersController implements the CRUD actions for User model.
+     */
+    class PhoneidentityController extends Controller
+    {
+        /**
+         * {@inheritdoc}
+         */
+        public function behaviors()
+        {
+            return [
 				'verbs' => [
 					'class' => VerbFilter::className(),
 					'actions' => [

@@ -31,7 +31,7 @@ Thumbs.db
 # phpunit itself is not needed
 #phpunit.phar
 # local phpunit config
-/phpunit.xml
+phpunit.xml
 
 tests/_output/*
 tests/_support/_generated
@@ -41,7 +41,7 @@ tests/_support/_generated
 
 
 runtime/*
-!/runtime/.gitkeep
+!runtime/.gitkeep
 
 web/assets/*
 !web/assets/.gitkeep
@@ -52,16 +52,15 @@ web/assets/*
 /MadelineProto.log
 
 .phpunit.result.cache
-/.phpunit.result.cache
 
 
-/web/images/user/avatar/*
-!/web/images/user/avatar/.gitkeep
+web/images/user/avatar/*
+!web/images/user/avatar/.gitkeep
 
-/database/*
-!/database/.gitkeep
+database/*
+!database/.gitkeep
 
-/web/uploads/*
-!/web/uploads/.gitkeep
+web/uploads/*
+!web/uploads/.gitkeep
 
 composer.lock

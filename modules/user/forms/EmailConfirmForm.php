@@ -4,20 +4,20 @@
 	namespace app\modules\user\forms;
 	
 	use app\modules\admin\models\User;
-	use yii\base\InvalidParamException;
-	use yii\base\Model;
-	
-	class EmailConfirmForm extends Model
-	{
-		/**
-		 * @var User
-		 */
-		private $_user;
-		
-		/**
-		 * Creates a form model given a token.
-		 *
-		 * @param  string $token
+    use yii\base\InvalidParamException;
+    use yii\base\Model;
+
+    class EmailConfirmForm extends Model
+    {
+        /**
+         * @var User
+         */
+        private $_user;
+
+        /**
+         * Creates a form model given a token.
+         *
+         * @param string $token
 		 * @param  array $config
 		 * @throws \yii\base\InvalidParamException if token is empty or not valid
 		 */

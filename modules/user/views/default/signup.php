@@ -1,16 +1,16 @@
 <?php
-	
-	/* @var $this yii\web\View */
-	/* @var $form yii\bootstrap\ActiveForm */
-	
-	/* @var $model app\modules\user\forms\SignupForm */
-	
-	use yii\bootstrap\ActiveForm;
-	use yii\captcha\Captcha;
-	use yii\helpers\Html;
-	
-	$this->title = 'Signup';
-	$this->params['breadcrumbs'][] = $this->title;
+
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap\ActiveForm */
+
+/* @var $model app\modules\user\forms\SignupForm */
+
+use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
+use yii\helpers\Html;
+
+$this->title = 'Signup';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-default-signup">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -19,7 +19,7 @@
 
     <div class="row">
         <div class="col-lg-5">
-			<?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 			
 			<?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 			

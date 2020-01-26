@@ -3,21 +3,21 @@
 	namespace app\modules\admin\models;
 	
 	use Yii;
-	use yii\base\Model;
-	use yii\data\ActiveDataProvider;
-	
-	
-	/**
-	 * UserSearch represents the model behind the search form of `app\modules\user\models\User`.
-	 */
-	class UserSearch extends Model
-	{
-		public $id;
-		public $username;
-		public $email;
-		public $status;
-		public $date_from;
-		public $date_to;
+    use yii\base\Model;
+    use yii\data\ActiveDataProvider;
+
+
+    /**
+     * UserSearch represents the model behind the search form of `app\modules\user\models\User`.
+     */
+    class UserSearch extends Model
+    {
+        public $id;
+        public $username;
+        public $email;
+        public $status;
+        public $date_from;
+        public $date_to;
 		
 		/**
 		 * {@inheritdoc}

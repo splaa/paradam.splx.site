@@ -5,20 +5,20 @@
 	
 	
 	use app\modules\admin\models\User;
-	use yii\grid\DataColumn;
-	use yii\helpers\Html;
-	
-	class UserStatusColumn extends DataColumn
-	{
-		/**
-		 * @param $model
-		 * @param $key
-		 * @param $index
-		 * @return string
-		 */
-		protected function renderDataCellContent($model, $key, $index)
-		{
-			/** @var User $model */
+    use yii\grid\DataColumn;
+    use yii\helpers\Html;
+
+    class UserStatusColumn extends DataColumn
+    {
+        /**
+         * @param $model
+         * @param $key
+         * @param $index
+         * @return string
+         */
+        protected function renderDataCellContent($model, $key, $index)
+        {
+            /** @var User $model */
 			$value = $this->getDataCellValue($model, $key, $index);
 			switch ($value) {
 				case User::STATUS_ACTIVE:

@@ -4,20 +4,20 @@
 	namespace app\modules\user\forms;
 	
 	use app\modules\admin\models\User;
-	use app\modules\user\Module;
-	use yii\base\Model;
-	
-	class ProfileUpdateForm extends Model
-	{
-		public $email;
-		
-		/**
-		 * @var User
-		 */
-		private $_user;
-		
-		public function __construct(User $user, $config = [])
-		{
+    use app\modules\user\Module;
+    use yii\base\Model;
+
+    class ProfileUpdateForm extends Model
+    {
+        public $email;
+
+        /**
+         * @var User
+         */
+        private $_user;
+
+        public function __construct(User $user, $config = [])
+        {
 			$this->_user = $user;
 			$this->email = $user->email;
 			parent::__construct($config);

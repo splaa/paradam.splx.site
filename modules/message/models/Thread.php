@@ -2,7 +2,6 @@
 
 namespace app\modules\message\models;
 
-use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;

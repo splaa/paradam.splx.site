@@ -7,18 +7,18 @@
 
 	
 	use PHPUnit\Framework\TestCase;
-	
-	/**
-	 * Class StackTest
-	 * @package app\tests\unit
-	 * @var TestCase $this
-	 */
-	class StackTest extends TestCase
-	{
-		public function testEmpty(): array
-		{
-			$stack = [];
-			$this->assertEmpty($stack);
+
+    /**
+     * Class StackTest
+     * @package app\tests\unit
+     * @var TestCase $this
+     */
+    class StackTest extends TestCase
+    {
+        public function testEmpty(): array
+        {
+            $stack = [];
+            $this->assertEmpty($stack);
 			return $stack;
 		}
 		

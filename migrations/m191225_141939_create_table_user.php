@@ -1,18 +1,18 @@
 <?php
-	
-	use yii\db\Migration;
-	
-	/**
-	 * Class m191225_141939_create_table_user
-	 */
-	class m191225_141939_create_table_user extends Migration
-	{
-		/**
-		 * {@inheritdoc}
-		 */
-		public function safeUp()
-		{
-			$tableOptions = null;
+
+use yii\db\Migration;
+
+/**
+ * Class m191225_141939_create_table_user
+ */
+class m191225_141939_create_table_user extends Migration
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function safeUp()
+    {
+        $tableOptions = null;
 			if ($this->db->driverName === 'mysql') {
 				$tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
 			}

@@ -1,18 +1,18 @@
 <?php
-	
-	use app\components\grid\LinkColumn;
-	use app\modules\admin\components\SetColumn;
-	use app\modules\admin\models\User;
-	use kartik\date\DatePicker;
-	use yii\grid\GridView;
-	use yii\helpers\Html;
-	
-	/* @var $this yii\web\View */
-	/* @var $searchModel app\modules\admin\models\UserSearch */
-	/* @var $dataProvider yii\data\ActiveDataProvider */
-	
-	$this->title = Yii::t('app', 'USERS');
-	$this->params['breadcrumbs'][] = $this->title;
+
+use app\components\grid\LinkColumn;
+use app\modules\admin\components\SetColumn;
+use app\modules\admin\models\User;
+use kartik\date\DatePicker;
+use yii\grid\GridView;
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\modules\admin\models\UserSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = Yii::t('app', 'USERS');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 

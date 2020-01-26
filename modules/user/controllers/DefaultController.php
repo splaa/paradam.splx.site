@@ -4,30 +4,30 @@
 	
 	
 	use app\modules\user\forms\EmailConfirmForm;
-	use app\modules\user\forms\LoginForm;
-	use app\modules\user\forms\PasswordResetForm;
-	use app\modules\user\forms\PasswordResetRequestForm;
-	use app\modules\user\forms\PhoneLoginForm;
-	use app\modules\user\forms\SignupForm;
-	use app\modules\user\Module;
-	use Yii;
-	use yii\base\InvalidParamException;
-	use yii\filters\AccessControl;
-	use yii\filters\VerbFilter;
-	use yii\web\BadRequestHttpException;
-	use yii\web\Controller;
-	
-	class DefaultController extends Controller
-	{
-		/**
-		 * @var Module
-		 */
-		public $module;
-		
-		public function behaviors()
-		{
-			return [
-				'access' => [
+    use app\modules\user\forms\LoginForm;
+    use app\modules\user\forms\PasswordResetForm;
+    use app\modules\user\forms\PasswordResetRequestForm;
+    use app\modules\user\forms\PhoneLoginForm;
+    use app\modules\user\forms\SignupForm;
+    use app\modules\user\Module;
+    use Yii;
+    use yii\base\InvalidParamException;
+    use yii\filters\AccessControl;
+    use yii\filters\VerbFilter;
+    use yii\web\BadRequestHttpException;
+    use yii\web\Controller;
+
+    class DefaultController extends Controller
+    {
+        /**
+         * @var Module
+         */
+        public $module;
+
+        public function behaviors()
+        {
+            return [
+                'access' => [
 					'class' => AccessControl::className(),
 					'only' => ['logout'],
 //					'only' => ['logout', 'signup'],

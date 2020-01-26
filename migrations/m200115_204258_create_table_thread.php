@@ -1,18 +1,18 @@
 <?php
-	
-	use yii\db\Migration;
-	
-	/**
-	 * Class m200115_204258_create_table_thread
-	 */
-	class m200115_204258_create_table_thread extends Migration
-	{
-		/**
-		 * {@inheritdoc}
-		 */
-		public function safeUp()
-		{
-			// DROP TABLE message
+
+use yii\db\Migration;
+
+/**
+ * Class m200115_204258_create_table_thread
+ */
+class m200115_204258_create_table_thread extends Migration
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function safeUp()
+    {
+        // DROP TABLE message
 			$message = new m191225_142149_create_table_message();
 			$message->safeDown();
 			

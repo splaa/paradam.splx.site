@@ -2,8 +2,6 @@
 
 namespace app\modules\user\models;
 
-use Yii;
-
 /**
  * This is the model class for table "activity".
  *

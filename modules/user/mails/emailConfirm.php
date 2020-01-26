@@ -1,12 +1,10 @@
 <?php
-	// paradam.me.loc/emailConfirm.php
-	
-	use yii\helpers\Html;
-	
-	/* @var $this yii\web\View */
-	/* @var $user app\modules\user\models\User */
-	
-	$confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['user/default/email-confirm', 'token' => $user->email_confirm_token]);
+// paradam.me.loc/emailConfirm.php
+
+/* @var $this yii\web\View */
+/* @var $user app\modules\user\models\User */
+
+$confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['user/default/email-confirm', 'token' => $user->email_confirm_token]);
 ?>
 
 <?= Yii::t('app', 'HELLO {username}', ['username' => $user->username]); ?>

@@ -4,8 +4,8 @@
 /* @var $form yii\bootstrap\ActiveForm */
 
 
-use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'TITLE_RESET_PASSWORD');
 $this->params['breadcrumbs'][] = $this->title;

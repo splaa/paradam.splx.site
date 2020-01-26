@@ -3,20 +3,19 @@
 	namespace app\modules\user\forms;
 	
 	use app\modules\admin\models\User;
-	use himiklab\yii2\recaptcha\ReCaptchaValidator2;
-	use Yii;
-	use yii\base\Model;
-	use yii\helpers\ArrayHelper;
+    use himiklab\yii2\recaptcha\ReCaptchaValidator2;
+    use Yii;
+    use yii\base\Model;
 
-	/**
-	 * LoginForm is the model behind the login form.
-	 *
-	 * @property User|null $user This property is read-only.
-	 *
-	 */
-	class PhoneLoginForm extends Model
-	{
-		public $phone;
+    /**
+     * LoginForm is the model behind the login form.
+     *
+     * @property User|null $user This property is read-only.
+     *
+     */
+    class PhoneLoginForm extends Model
+    {
+        public $phone;
 		public $password;
 		public $rememberMe = true;
 		public $reCaptcha;

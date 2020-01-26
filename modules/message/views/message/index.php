@@ -4,9 +4,8 @@
  * @var \app\modules\message\models\UserThread $selected_user_thread
  */
 
-use app\modules\user\models\User;
+use app\components\Hash;
 use yii\helpers\Url;
-use \app\components\Hash;
 
 ?>
 <div class="container">

@@ -3,18 +3,18 @@
 	namespace app\modules\user\forms;
 	
 	use app\modules\admin\models\User;
-use yii\base\InvalidParamException;
-	use yii\base\Model;
+    use yii\base\InvalidParamException;
+    use yii\base\Model;
 
-
-/**
- * Password reset form
- */
-	class PasswordResetForm extends Model
-{
-    public $password;
 
     /**
+     * Password reset form
+     */
+    class PasswordResetForm extends Model
+    {
+        public $password;
+
+        /**
      * @var User
      */
     private $_user;

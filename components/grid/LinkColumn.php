@@ -4,21 +4,21 @@
 	namespace app\components\grid;
 	
 	use Closure;
-	use yii\grid\DataColumn;
-	use yii\helpers\Html;
-	use yii\helpers\Url;
-	
-	class LinkColumn extends DataColumn
-	{
-		/**
-		 * @var callable
-		 */
-		public $url;
-		/**
-		 * @var bool
-		 */
-		public $targetBlank = false;
-		/**
+    use yii\grid\DataColumn;
+    use yii\helpers\Html;
+    use yii\helpers\Url;
+
+    class LinkColumn extends DataColumn
+    {
+        /**
+         * @var callable
+         */
+        public $url;
+        /**
+         * @var bool
+         */
+        public $targetBlank = false;
+        /**
 		 * @var string
 		 */
 		public $controller;

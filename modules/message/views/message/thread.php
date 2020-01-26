@@ -4,8 +4,6 @@
  * @var \yii\web\View $this
  */
 
-use app\modules\user\models\User;
-
 ?>
 
 <div class="msg_history">

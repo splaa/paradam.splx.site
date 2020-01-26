@@ -4,21 +4,20 @@
 	namespace app\modules\user\forms;
 	
 	use app\modules\user\models\PhoneRecord;
-	use app\modules\user\models\User;
-	use himiklab\yii2\recaptcha\ReCaptchaValidator2;
-	use Yii;
-	use yii\base\Model;
-	use YoHang88\LetterAvatar\LetterAvatar;
+    use app\modules\user\models\User;
+    use Yii;
+    use yii\base\Model;
+    use YoHang88\LetterAvatar\LetterAvatar;
 
-	/**
-	 * Signup form
-	 */
-	class PhoneSignupForm extends Model
-	{
-		public $username;
-		public $email;
-		public $telephone;
-		public $password;
+    /**
+     * Signup form
+     */
+    class PhoneSignupForm extends Model
+    {
+        public $username;
+        public $email;
+        public $telephone;
+        public $password;
 		public $first_name;
 		public $last_name;
 		public $birthday;

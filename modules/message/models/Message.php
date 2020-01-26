@@ -4,7 +4,6 @@ namespace app\modules\message\models;
 
 use app\modules\user\models\User;
 use yii\behaviors\TimestampBehavior;
-use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 

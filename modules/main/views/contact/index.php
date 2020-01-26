@@ -1,24 +1,24 @@
 <?php
-	
-	/* @var $this yii\web\View */
-	/* @var $form yii\bootstrap\ActiveForm */
-	
-	/* @var $model app\models\ContactForm */
-	
-	use yii\bootstrap\ActiveForm;
-	use yii\captcha\Captcha;
-	use yii\helpers\Html;
-	
-	$this->title = Yii::t('app', 'TITLE_CONTACT');
-	$this->params['breadcrumbs'][] = $this->title;
+
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap\ActiveForm */
+
+/* @var $model app\models\ContactForm */
+
+use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
+use yii\helpers\Html;
+
+$this->title = Yii::t('app', 'TITLE_CONTACT');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="main-contact">
     <h1><?= Html::encode($this->title) ?></h1>
-	
-	<?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+
+    <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
         <div class="alert alert-success">
-	        <?= Yii::t('app', 'CONTACT_THANKS'); ?>
+            <?= Yii::t('app', 'CONTACT_THANKS'); ?>
         </div>
 
         <p>

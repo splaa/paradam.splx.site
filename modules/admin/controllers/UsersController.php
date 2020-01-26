@@ -3,23 +3,23 @@
 	namespace app\modules\admin\controllers;
 	
 	use app\modules\admin\models\User;
-	use app\modules\admin\models\UserSearch;
-	use Yii;
-	use yii\filters\VerbFilter;
-	use yii\web\Controller;
-	use yii\web\NotFoundHttpException;
-	
-	/**
-	 * UsersController implements the CRUD actions for User model.
-	 */
-	class UsersController extends Controller
-	{
-		/**
-		 * {@inheritdoc}
-		 */
-		public function behaviors()
-		{
-			return [
+    use app\modules\admin\models\UserSearch;
+    use Yii;
+    use yii\filters\VerbFilter;
+    use yii\web\Controller;
+    use yii\web\NotFoundHttpException;
+
+    /**
+     * UsersController implements the CRUD actions for User model.
+     */
+    class UsersController extends Controller
+    {
+        /**
+         * {@inheritdoc}
+         */
+        public function behaviors()
+        {
+            return [
 				'verbs' => [
 					'class' => VerbFilter::className(),
 					'actions' => [

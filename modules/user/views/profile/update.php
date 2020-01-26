@@ -1,19 +1,20 @@
 <?php
-	use yii\bootstrap\ActiveForm;
-	use yii\helpers\Html;
-	
-	/* @var $this yii\web\View */
-	/* @var $model app\modules\user\models\User */
-	
-	$this->title = Yii::t('app', 'TITLE_UPDATE');
-	$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'TITLE_PROFILE'), 'url' => ['index']];
-	$this->params['breadcrumbs'][] = $this->title;
+
+use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+/* @var $model app\modules\user\models\User */
+
+$this->title = Yii::t('app', 'TITLE_UPDATE');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'TITLE_PROFILE'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-profile-update">
-	
-	<h1><?= Html::encode($this->title) ?></h1>
-	
-	<div class="user-form">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <div class="user-form">
 		
 		<?php $form = ActiveForm::begin([]); ?>
 		

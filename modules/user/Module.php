@@ -3,18 +3,18 @@
 	namespace app\modules\user;
 	
 	use Yii;
-	
-	/**
-	 * user module definition class
-	 */
-	class Module extends \yii\base\Module
-	{
-		/**
-		 * {@inheritdoc}
-		 */
-		public $controllerNamespace = 'app\modules\user\controllers';
-		/**
-		 * срок истечения регистрации.
+
+    /**
+     * user module definition class
+     */
+    class Module extends \yii\base\Module
+    {
+        /**
+         * {@inheritdoc}
+         */
+        public $controllerNamespace = 'app\modules\user\controllers';
+        /**
+         * срок истечения регистрации.
 		 * @var int
 		 */
 		public $emailConfirmTokenExpire = 259200; // 3 days

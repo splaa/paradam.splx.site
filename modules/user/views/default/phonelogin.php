@@ -1,17 +1,18 @@
 <?php
-	
-	/* @var $this yii\web\View */
-	/* @var $form yii\bootstrap\ActiveForm */
-	
-	/* @var $model app\modules\user\forms\LoginForm */
-	/* @var $show_captcha int */
+
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap\ActiveForm */
+
+/* @var $model app\modules\user\forms\LoginForm */
+
+/* @var $show_captcha int */
 
 use himiklab\yii2\recaptcha\ReCaptcha2;
 use yii\bootstrap\ActiveForm;
-	use yii\helpers\Html;
-	
-	$this->title = 'PhoneLogin';
-	$this->params['breadcrumbs'][] = $this->title;
+use yii\helpers\Html;
+
+$this->title = 'PhoneLogin';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-default-login">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -19,8 +20,8 @@ use yii\bootstrap\ActiveForm;
     <p>Please fill out the following fields to login:</p>
     <div class="row">
         <div class="col-lg-12">
-			<?php $form = ActiveForm::begin([
-				'id' => 'login-form',
+            <?php $form = ActiveForm::begin([
+                'id' => 'login-form',
 				'layout' => 'horizontal',
 				'fieldConfig' => [
 					'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",

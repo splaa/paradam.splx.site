@@ -3,18 +3,18 @@
 	namespace unit;
 	
 	use PHPUnit\Framework\TestCase;
-	
-	class DataProvTest extends TestCase
-	{
-		/**
-		 * @dataProvider additionProvider
-		 * @dataProvider additionWithNonNegativeNumbersProvider
-		 * @dataProvider additionWithNegativeNumbersProvider
-		 * @param $a
-		 * @param $b
-		 * @param $expected
-		 */
-		public function testAdd($a, $b, $expected): void
+
+    class DataProvTest extends TestCase
+    {
+        /**
+         * @dataProvider additionProvider
+         * @dataProvider additionWithNonNegativeNumbersProvider
+         * @dataProvider additionWithNegativeNumbersProvider
+         * @param $a
+         * @param $b
+         * @param $expected
+         */
+        public function testAdd($a, $b, $expected): void
 		{
 			$this->assertSame($expected, $a + $b);
 		}

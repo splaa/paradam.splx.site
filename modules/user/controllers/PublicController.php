@@ -7,7 +7,6 @@ namespace app\modules\user\controllers;
 use app\modules\admin\models\UserSearch;
 use app\modules\user\models\User;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 
 class PublicController extends Controller
 {

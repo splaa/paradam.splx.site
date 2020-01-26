@@ -5,20 +5,20 @@
 	
 	
 	use app\modules\user\models\User as ModuleUser;
-	use Yii;
-	use yii\helpers\ArrayHelper;
-	
-	class User extends ModuleUser
-	{
-		public const SCENARIO_ADMIN_CREATE = 'adminCreate';
-		public const SCENARIO_ADMIN_UPDATE = 'adminUpdate';
-		
-		public $newPassword;
-		public $newPasswordRepeat;
-		
-		public function rules()
-		{
-			return ArrayHelper::merge(parent::rules(), [
+    use Yii;
+    use yii\helpers\ArrayHelper;
+
+    class User extends ModuleUser
+    {
+        public const SCENARIO_ADMIN_CREATE = 'adminCreate';
+        public const SCENARIO_ADMIN_UPDATE = 'adminUpdate';
+
+        public $newPassword;
+        public $newPasswordRepeat;
+
+        public function rules()
+        {
+            return ArrayHelper::merge(parent::rules(), [
 				[['newPassword', 'newPasswordRepeat'], 'required', 'on' => self::SCENARIO_ADMIN_CREATE],
 				['newPassword', 'string', 'min' => 6],
 				['newPasswordRepeat', 'compare', 'compareAttribute' => 'newPassword'],

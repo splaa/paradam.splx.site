@@ -1,15 +1,15 @@
 <?php
-	// paradam.me.loc/passwordChange.php
-	
-	use yii\bootstrap\ActiveForm;
-	use yii\helpers\Html;
-	
-	/* @var $this yii\web\View */
-	
-	
-	$this->title = Yii::t('app', 'TITLE_PASSWORD_CHANGE');
-	$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'TITLE_PROFILE'), 'url' => ['index']];
-	$this->params['breadcrumbs'][] = $this->title;
+// paradam.me.loc/passwordChange.php
+
+use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+
+
+$this->title = Yii::t('app', 'TITLE_PASSWORD_CHANGE');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'TITLE_PROFILE'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-profile-password-change">
 

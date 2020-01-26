@@ -1,10 +1,9 @@
 <?php
 namespace app\commands;
-use app\modules\admin\models\User;
 use app\modules\message\models\Message;
 use app\modules\message\models\UserMessage;
-use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use Ratchet\MessageComponentInterface;
 use Yii;
 
 class SocketServer implements MessageComponentInterface

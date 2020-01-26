@@ -4,19 +4,19 @@
 	namespace app\modules\user\forms;
 	
 	use app\modules\user\models\User;
-	use Yii;
-	use yii\base\Model;
-	
-	/**
-	 * Signup form
-	 */
-	class SignupForm extends Model
-	{
-		public $username;
-		public $email;
-		public $telephone;
-		public $password;
-		public $verifyCode;
+    use Yii;
+    use yii\base\Model;
+
+    /**
+     * Signup form
+     */
+    class SignupForm extends Model
+    {
+        public $username;
+        public $email;
+        public $telephone;
+        public $password;
+        public $verifyCode;
 		
 		public function rules()
 		{

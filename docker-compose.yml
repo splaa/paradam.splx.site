@@ -1,4 +1,4 @@
-version: '2'
+version: '3.2'
 services:
   php:
     image: yiisoftware/yii-php:7.4-apache
@@ -7,6 +7,7 @@ services:
       - ./:/app:delegated
     ports:
       - '80:80'
+
     depends_on:
       - mysql
   mysql:

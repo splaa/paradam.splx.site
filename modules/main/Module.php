@@ -3,18 +3,18 @@
 	namespace app\modules\main;
 	
 	use Yii;
-	
-	/**
-	 * main module definition class
-	 */
-	class Module extends \yii\base\Module
-	{
-		/**
-		 * {@inheritdoc}
-		 */
-		public $controllerNamespace = 'app\modules\main\controllers';
-		
-		/**
+
+    /**
+     * main module definition class
+     */
+    class Module extends \yii\base\Module
+    {
+        /**
+         * {@inheritdoc}
+         */
+        public $controllerNamespace = 'app\modules\main\controllers';
+
+        /**
 		 * {@inheritdoc}
 		 */
 		public function init()

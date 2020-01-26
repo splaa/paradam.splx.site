@@ -4,7 +4,6 @@
 namespace app\modules\user\forms;
 
 use app\modules\admin\models\User;
-use app\modules\user\models\PhoneRecord;
 use app\modules\user\Module;
 use Yii;
 use yii\base\Model;

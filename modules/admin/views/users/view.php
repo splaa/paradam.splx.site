@@ -1,15 +1,15 @@
 <?php
-	
-	use yii\helpers\Html;
-	use yii\widgets\DetailView;
-	
-	/* @var $this yii\web\View */
-	/* @var $model app\modules\user\models\User */
-	
-	$this->title = $model->username;
-	$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['index']];
-	$this->params['breadcrumbs'][] = $this->title;
-	\yii\web\YiiAsset::register($this);
+
+use yii\helpers\Html;
+use yii\widgets\DetailView;
+
+/* @var $this yii\web\View */
+/* @var $model app\modules\user\models\User */
+
+$this->title = $model->username;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
 ?>
 <div class="user-view">
 

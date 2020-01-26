@@ -4,8 +4,8 @@
 
 /* @var $model \app\modules\message\forms\SettingsForm */
 
-use yii\bootstrap\ActiveForm;
 use app\widgets\Alert;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 $this->title = 'Settings Message';

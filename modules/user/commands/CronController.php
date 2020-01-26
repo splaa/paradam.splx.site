@@ -4,21 +4,21 @@
 	namespace app\modules\user\commands;
 	
 	use app\modules\user\models\User;
-	use Yii;
-	use yii\console\Controller;
-	use yii\helpers\Console;
-	
-	/**
-	 * Console crontab actions
-	 */
-	class CronController extends Controller
-	{
-		/**
-		 * @var \app\modules\user\Module
-		 */
-		public $module;
-		
-		/**
+    use Yii;
+    use yii\console\Controller;
+    use yii\helpers\Console;
+
+    /**
+     * Console crontab actions
+     */
+    class CronController extends Controller
+    {
+        /**
+         * @var \app\modules\user\Module
+         */
+        public $module;
+
+        /**
 		 * Removes non-activated expired users
 		 * @throws \Throwable
 		 * @throws \yii\base\InvalidConfigException

@@ -4,20 +4,20 @@
 	namespace app\modules\user\forms;
 	
 	use app\modules\admin\models\User;
-	use app\modules\user\Module;
-	use yii\base\Model;
-	
-	/**
-	 * Password reset form
-	 */
-	class PasswordChangeForm extends Model
-	{
-		public $currentPassword;
-		public $newPassword;
-		public $newPasswordRepeat;
-		
-		/**
-		 * @var User
+    use app\modules\user\Module;
+    use yii\base\Model;
+
+    /**
+     * Password reset form
+     */
+    class PasswordChangeForm extends Model
+    {
+        public $currentPassword;
+        public $newPassword;
+        public $newPasswordRepeat;
+
+        /**
+         * @var User
 		 */
 		private $_user;
 		

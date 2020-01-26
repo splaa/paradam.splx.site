@@ -1,8 +1,8 @@
 <?php
 
 namespace app\commands;
-use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
+use Ratchet\Server\IoServer;
 use Ratchet\WebSocket\WsServer;
 
 class SocketController extends  \yii\console\Controller

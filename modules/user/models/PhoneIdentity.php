@@ -5,18 +5,18 @@
 	
 	
 	use yii\web\IdentityInterface;
-	
-	class PhoneIdentity extends PhoneRecord implements IdentityInterface
-	{
-		
-		/**
-		 * Finds an identity by the given ID.
-		 * @param string|int $id the ID to be looked for
-		 * @return IdentityInterface|null the identity object that matches the given ID.
-		 * Null should be returned if such an identity cannot be found
-		 * or the identity is not in an active state (disabled, deleted, etc.)
-		 */
-		public static function findIdentity($id)
+
+    class PhoneIdentity extends PhoneRecord implements IdentityInterface
+    {
+
+        /**
+         * Finds an identity by the given ID.
+         * @param string|int $id the ID to be looked for
+         * @return IdentityInterface|null the identity object that matches the given ID.
+         * Null should be returned if such an identity cannot be found
+         * or the identity is not in an active state (disabled, deleted, etc.)
+         */
+        public static function findIdentity($id)
 		{
 			// TODO: Implement findIdentity() method.
 		}

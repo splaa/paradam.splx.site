@@ -4,21 +4,21 @@
 	namespace app\modules\admin\components;
 	
 	use yii\grid\DataColumn;
-	use yii\helpers\ArrayHelper;
-	use yii\helpers\Html;
-	
-	
-	class SetColumn extends DataColumn
-	{
-		/**
-		 * @var callable
-		 */
-		public $name;
-		/**
-		 * Array of status classes
-		 * ```
-		 * [
-		 *     User::STATUS_ACTIVE => 'success',
+    use yii\helpers\ArrayHelper;
+    use yii\helpers\Html;
+
+
+    class SetColumn extends DataColumn
+    {
+        /**
+         * @var callable
+         */
+        public $name;
+        /**
+         * Array of status classes
+         * ```
+         * [
+         *     User::STATUS_ACTIVE => 'success',
 		 *     User::STATUS_WAIT => 'warning',
 		 *     User::STATUS_BLOCKED => 'default',
 		 * ]
