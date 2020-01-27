@@ -434,4 +434,13 @@ class User extends ActiveRecord implements IdentityInterface
 	{
 		$this->email_confirm_token = null;
 	}
+
+	public static function onLanguageChanged($event)
+	{
+		// $event->language: new language
+		// $event->oldLanguage: old language
+
+		// Save the current language to user record
+		Yii::$app->language = $event->language;
+	}
 }

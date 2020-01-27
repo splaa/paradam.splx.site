@@ -11,6 +11,7 @@
 	return [
 		'name' => 'Paradam.me',
 		'basePath' => dirname(__DIR__),
+		'language' => 'ru',
 		'bootstrap' => [
 			'log',
 			'app\modules\admin\Bootstrap',
@@ -58,8 +59,8 @@
 				'enablePrettyUrl' => true,
 				'showScriptName' => false,
 				'languages' => ['ru', 'en'],
-				'enableDefaultLanguageUrlCode' => false,
-				'enableLanguagePersistence' => false,
+				'enableLanguagePersistence' => true,
+				'on languageChanged' => 'app\modules\user\models\User::onLanguageChanged',
 				'rules' => [
 					'' => 'main/default/index',
 					'site/about' => 'main/default/about',
@@ -69,7 +70,7 @@
 					'message/settings' => 'message/message/settings',
 
 					'public/list' => 'user/public/list',
-					'public/<id:\d+>/' => 'user/public/',
+					'<username:\w+>' => 'user/public/',
 
 					'/site/contact' => 'main/contact/index',
 					'<_a:error>' => 'main/default/<_a>',
