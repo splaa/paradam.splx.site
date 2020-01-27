@@ -6,37 +6,45 @@
 
 
 # Скачуем docker image 
+
 `docker pull yiisoftware/yii-php:7.4-apache`
 
-//  в случае ошибок — они будут указаны
-`docker-compose up` 
+// Запускаем:  в случае ошибок — они будут указаны
 
-//или запуск в фоне
-`docker-compose up -d` 
+        docker-compose up 
 
-//посмотреть список запущенных контейнеров можно так
-`docker ps`  								
+//  или запуск в фоне
 
-//После запуска контейнера можно выполнить команду, чтобы обновить `composer`
+        docker-compose up -d 
 
-`docker-compose run --rm php` 
-`docker exec -it d7a2456b68cc bash`  		// если нужно войти в контейнер по хешу смотрим docker ps. Вход происходит под root
-`docker exec -it docker_app_1 bash` 		// Подключаемся к контейнеру по имени смотрим docker ps
+// Посмотреть список запущенных контейнеров можно так
 
-`cd /app && composer install`
-`cd /app && composer update`
+        docker ps  								
+
+// После запуска контейнера можно выполнить команду, 
+чтобы обновить `composer`
+
+    docker ps 
+    docker exec -it d7a2456b68cc bash`  		// если нужно войти в контейнер по хешу смотрим docker ps. Вход происходит под root
+    docker exec -it docker_app_1 bash` 		// Подключаемся к контейнеру по имени смотрим docker ps
+
+    cd /app && composer install`
+    cd /app && composer update`
+
+    //Инициализируем и заполняем config
+   
+    php init  
+                             
+    php yii migrate
+    
+    // Telegram
+    php yii telegram/run                              
 
 
-`php init`                              //Инициализируем и заполняем config 
-`php yii migrate`
+    cp config/common-docker.php.example config/common-local.php
 
-`php yii telegram/run`                              // Telegram
-
-
-`p config/common-docker.php.example config/common-local.php`
-
-//	Выполняем команду миграции БД php 
-`/app/yii migrate`
+    //	Выполняем команду миграции БД php 
+    /app/yii migrate
 
 //	Создаем папку для логов 
 // если логируем в эту папку
