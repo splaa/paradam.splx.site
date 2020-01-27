@@ -13,7 +13,7 @@ class PublicController extends Controller
 {
 	public function actionIndex($username)
 	{
-		$model = User::findOne(['username' => $username]);
+		$model = User::findByUsername($username);
 
 		return $this->render('index', [
 			'model' => $model
