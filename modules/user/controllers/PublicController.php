@@ -10,9 +10,9 @@ use yii\web\Controller;
 
 class PublicController extends Controller
 {
-	public function actionIndex($id)
+	public function actionIndex($username)
 	{
-		$model = User::findOne($id);
+		$model = User::findOne(['username' => $username]);
 
 		return $this->render('index', [
 			'model' => $model

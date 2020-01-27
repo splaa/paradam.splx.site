@@ -19,7 +19,7 @@ use yii\helpers\Html;
 				'attribute' => 'username',
 				'format' => 'raw',
 				'value' => function($data) {
-					return Html::a($data->username, ['public/', 'id' => $data->id]);
+					return Html::a($data->username, ['public/', 'username' => $data->username]);
 				}
 			],
 		],
