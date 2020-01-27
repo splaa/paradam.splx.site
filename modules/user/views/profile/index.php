@@ -24,6 +24,7 @@
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_BALANCE'), Yii::$app->user->identity->formatBalance), ['/user/profile/balance'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_NAME'), Yii::$app->user->identity->formatBalance), ['/user/profile/name-change'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_USER_NAME'), Yii::$app->user->identity->formatBalance), ['/user/profile/user-name-change'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_DATE'), Yii::$app->user->identity->formatBalance), ['/user/profile/date-change'], ['class' => 'btn btn-primary']) ?>
     </p>
 	<?= DetailView::widget([
 		'model' => $model,

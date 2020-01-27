@@ -5,6 +5,7 @@
 
 
 	use app\modules\admin\models\User;
+	use app\modules\user\forms\DateChangeForm;
 	use app\modules\user\forms\NameChangeForm;
 	use app\modules\user\forms\PasswordChangeForm;
 	use app\modules\user\forms\ProfileUpdateForm;
@@ -152,6 +153,28 @@
 				return $this->render('userNameChange', [
 					'model' => $model,
 				]);
+			}
+		}
+
+		public function actionDateChange()
+		{
+			$user = $this->findModel();
+			$model = new DateChangeForm($user);
+
+			if ($user->birthday_change == 1) {
+				Yii::$app->getSession()->setFlash('error', 'Ошибка! Дата рождения уже была изменена рание.');
+
+				return $this->redirect('/user/profile/');
+			} else {
+				if ($model->load(Yii::$app->request->post()) && $model->changeDate()) {
+					Yii::$app->getSession()->setFlash('success', 'Спасибо! Дата рождения успешно изменёно.');
+
+					return $this->redirect('/user/profile/');
+				} else {
+					return $this->render('dateChange', [
+						'model' => $model,
+					]);
+				}
 			}
 		}
 	}
