@@ -10,14 +10,13 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: yiisoftware/yii-php:7.4-apache
+      #      - image: mysql:5.7
+      #        environment:
+      #          MYSQL_ROOT_PASSWORD: root
+      #          MYSQL_DATABASE: paradam
+      #          MYSQL_USER: splaa
+      #          MYSQL_PASSWORD: splaa1977
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # Using the RAM variation mitigates I/O contention
-      # for database intensive operations.
-      # - image: circleci/mysql:5.7-ram
-      #
       # - image: redis:2.8.19
 
     steps:
@@ -26,9 +25,16 @@ jobs:
 
       - run: composer install -n --prefer-dist
       - run: composer update -n --prefer-dist
-      - run: php init
-
+      - run: php init --env=Development --overwrite=All
+      #      - run: php yii migrate --interactive=0
       # run tests with phpunit or codecept
       - run: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/splx_phpunit
-#      - run: ./vendor/bin/codecept build
-#      - run: ./vendor/bin/codecept run
+      #      - run: ./vendor/bin/codecept build
+      #      - run: ./vendor/bin/codecept run
+      - deploy:
+          # Push application container to dockerhub
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                docker login -u ${DOCKER_USER} -p ${DOCKER_PASS};
+                docker push ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME};
+            fi

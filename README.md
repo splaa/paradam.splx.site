@@ -53,7 +53,7 @@
     // Telegram
     php yii telegram/run                              
 
-
+    //испавленно добавленно в шаблон эту строчку можна удалить
     cp config/common-docker.php.example config/common-local.php
 
     /app/yii migrate
