@@ -22,9 +22,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Install MySQL CLI
-          command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
       - run: composer install -n --prefer-dist
       - run: composer update -n --prefer-dist
