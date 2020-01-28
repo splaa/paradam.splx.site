@@ -16,7 +16,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # Using the RAM variation mitigates I/O contention
       # for database intensive operations.
-      # - image: circleci/mysql:5.7-ram
+     - image: circleci/mysql:5.7-ram
       #
       # - image: redis:2.8.19
 
@@ -26,7 +26,7 @@ jobs:
 
       - run: composer install -n --prefer-dist
       - run: composer update -n --prefer-dist
-      - run: php init
+      - run: php init --env=Development --overwrite=All
 
       # run tests with phpunit or codecept
       - run: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/splx_phpunit
