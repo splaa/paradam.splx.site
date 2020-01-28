@@ -10,12 +10,12 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: yiisoftware/yii-php:7.4-apache
-      - image: mysql:5.7
-        environment:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: paradam
-          MYSQL_USER: splaa
-          MYSQL_PASSWORD: splaa1977
+      #      - image: mysql:5.7
+      #        environment:
+      #          MYSQL_ROOT_PASSWORD: root
+      #          MYSQL_DATABASE: paradam
+      #          MYSQL_USER: splaa
+      #          MYSQL_PASSWORD: splaa1977
 
       # - image: redis:2.8.19
 
@@ -26,7 +26,7 @@ jobs:
       - run: composer install -n --prefer-dist
       - run: composer update -n --prefer-dist
       - run: php init --env=Development --overwrite=All
-      - run: php yii migrate --interactive=0
+      #      - run: php yii migrate --interactive=0
       # run tests with phpunit or codecept
       - run: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/splx_phpunit
       #      - run: ./vendor/bin/codecept build
