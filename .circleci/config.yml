@@ -11,13 +11,20 @@ jobs:
       # Specify the version you desire here
       - image: yiisoftware/yii-php:7.4-apache
       - image: mysql:5.7
-          command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: paradam
+          MYSQL_USER: splaa
+          MYSQL_PASSWORD: splaa1977
 
       # - image: redis:2.8.19
 
     steps:
       - checkout
       - setup_remote_docker
+      - run:
+          name: Install MySQL CLI
+          command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
       - run: composer install -n --prefer-dist
       - run: composer update -n --prefer-dist
