@@ -21,8 +21,15 @@ jobs:
       - run: composer install -n --prefer-dist
       - run: composer update -n --prefer-dist
       - run: php init --env=Development --overwrite=All
-
+      - run: php yii migrate --interactive=0
       # run tests with phpunit or codecept
       - run: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/splx_phpunit
-#      - run: ./vendor/bin/codecept build
-#      - run: ./vendor/bin/codecept run
+      #      - run: ./vendor/bin/codecept build
+      #      - run: ./vendor/bin/codecept run
+      - deploy:
+          # Push application container to dockerhub
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                docker login -u ${DOCKER_USER} -p ${DOCKER_PASS};
+                docker push ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME};
+            fi
