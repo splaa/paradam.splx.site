@@ -1,0 +1,34 @@
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2
+jobs:
+  build:
+    working_directory:
+      /go/src/github.com/splaa/paradam.splx.site
+    docker:
+      # Specify the version you desire here
+      - image: yiisoftware/yii-php:7.4-apache
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # Using the RAM variation mitigates I/O contention
+      # for database intensive operations.
+      # - image: circleci/mysql:5.7-ram
+      #
+      # - image: redis:2.8.19
+
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      - run: composer install -n --prefer-dist
+      - run: composer update -n --prefer-dist
+      - run: php init
+
+      # run tests with phpunit or codecept
+      - run: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/splx_phpunit
+#      - run: ./vendor/bin/codecept build
+#      - run: ./vendor/bin/codecept run

@@ -1,46 +1,63 @@
 
 #  [ссылка: Инструкция по Google cloud](https://docs.google.com/document/d/144eI2NVO05XxZ2xTOvmInJeOlf5XHTP8Zyuvw5gIDD8/edit?usp=sharing)
 
+#   AWS 
+###Настройка Ubuntu18.04
 
+    //Установка Docker : 
+    https://docs.docker.com/install/linux/docker-ce/ubuntu/
+    //Установка Docker-Compose:
+     https://docs.docker.com/compose/install/
+
+     // Клонируем проект:
+     https://github.com/splaa/paradam.splx.site.git paradam.me
+     // Переходим в папку проекта
+     cd paradam.me
 
 
 
 # Скачуем docker image 
-`docker pull yiisoftware/yii-php:7.4-apache`
 
-//  в случае ошибок — они будут указаны
-`docker-compose up` 
+    docker pull yiisoftware/yii-php:7.4-apache
 
-//или запуск в фоне
-`docker-compose up -d` 
+// Запускаем:  в случае ошибок — они будут указаны
 
-//посмотреть список запущенных контейнеров можно так
-`docker ps`  								
+        docker-compose up 
+        docker-compose down
 
-//После запуска контейнера можно выполнить команду, чтобы обновить `composer`
+//  или запуск в фоне
 
-`docker-compose run --rm php` 
-`docker exec -it d7a2456b68cc bash`  		// если нужно войти в контейнер по хешу смотрим docker ps. Вход происходит под root
-`docker exec -it docker_app_1 bash` 		// Подключаемся к контейнеру по имени смотрим docker ps
+        docker-compose up -d 
 
-`cd /app && composer install`
-`cd /app && composer update`
+// Посмотреть список запущенных контейнеров можно так
+
+        docker ps  								
+
+// После запуска контейнера можно выполнить команду, 
+чтобы обновить `composer`
+
+    docker ps 
+    docker exec -it d7a2456b68cc bash`  		// если нужно войти в контейнер по хешу смотрим docker ps. Вход происходит под root
+    docker exec -it docker_app_1 bash` 		// Подключаемся к контейнеру по имени смотрим docker ps
+
+    cd /app && composer install`
+    cd /app && composer update`
+
+    //Инициализируем и заполняем config
+    php init  
+   
+                             
+    //	Выполняем команду миграции БД php 
+    php yii migrate
+    
+    // Telegram
+    php yii telegram/run                              
 
 
-`php init`                              //Инициализируем и заполняем config 
-`php yii migrate`
+    cp config/common-docker.php.example config/common-local.php
 
-`php yii telegram/run`                              // Telegram
+    /app/yii migrate
 
-
-`p config/common-docker.php.example config/common-local.php`
-
-//	Выполняем команду миграции БД php 
-`/app/yii migrate`
-
-//	Создаем папку для логов 
-// если логируем в эту папку
-`mkdir /app/log`
 
 // И выходим 
 `exit`

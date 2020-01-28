@@ -61,7 +61,8 @@
     "post-create-project-cmd": [
       "yii\\composer\\Installer::postCreateProject",
       "yii\\composer\\Installer::postInstall"
-    ]
+    ],
+    "test": "vendor/bin/phpunit"
   },
   "extra": {
     "yii\\composer\\Installer::postCreateProject": {
