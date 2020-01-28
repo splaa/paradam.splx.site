@@ -10,7 +10,8 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: yiisoftware/yii-php:7.4-apache
-      - image: circleci/mysql:5.7-ram
+      - image: mysql:5.7
+          command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
       # - image: redis:2.8.19
 
