@@ -31,6 +31,7 @@ jobs:
       - run: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/splx_phpunit
       #      - run: ./vendor/bin/codecept build
       #      - run: ./vendor/bin/codecept run
+      - run: docker build -t ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME} .;
       - deploy:
           # Push application container to dockerhub
           command: |
