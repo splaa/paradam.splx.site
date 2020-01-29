@@ -17,6 +17,7 @@
 		'NAV_SERVICES' => 'Услуги',
 		'NAV_QUESTIONS' => 'Вопросы к Услугам',
 		'SET_IMAGE_SERVICE' => 'Добавить Картинку',
+		'SET_QUESTION_SERVICE' => 'Добавить Вопросы',
 
 		'BUTTON_SEND' => 'Отправить',
 		'BUTTON_SAVE' => 'Сохранить',

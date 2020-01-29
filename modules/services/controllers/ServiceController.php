@@ -73,23 +73,13 @@
 				$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
 
 				if (!is_null($model->imageFile)) {
-
 					$model->saveImage($modelImage->uploadFile($model->imageFile, $model->link_foto_video_file));
-
 				}
-
-
 				$model->user_id = Yii::$app->user->id;
 				if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-
 					return $this->redirect(['/services/question/create', 'id' => $model->id]);
 				}
-
-
 			}
-
-
 			return $this->render('create', [
 				'model' => $model,
 			]);

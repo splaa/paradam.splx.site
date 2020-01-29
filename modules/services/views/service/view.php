@@ -18,6 +18,7 @@
     <p>
 		<?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(Yii::t('app', 'SET_IMAGE_SERVICE'), ['set-image', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
+		<?= Html::a(Yii::t('app', 'SET_QUESTION_SERVICE'), ['/services/question/create', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
 		<?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
 			'class' => 'btn btn-danger',
 			'data' => [
