@@ -131,6 +131,7 @@ class Service extends \yii\db\ActiveRecord
     {
         return new ServiceQuery(get_called_class());
     }
+
 	public function upload()
 	{
 		if ($this->validate()) {
@@ -139,5 +140,35 @@ class Service extends \yii\db\ActiveRecord
 		} else {
 			return false;
 		}
+	}
+
+	public function saveImage($file)
+	{
+
+		$this->link_foto_video_file = $file;
+		return $this->save(false);
+
+	}
+
+	public function deleteImage()
+	{
+		$imageUpLoadeModel = new ImageUpload();
+		$imageUpLoadeModel->deleteCurrentImage($this->link_foto_video_file);
+	}
+
+	public function beforeDelete()
+	{
+		$this->deleteImage();
+		return parent::beforeDelete();
+	}
+
+	public function getImage()
+	{
+		$image = new ImageUpload();
+		if ($this->link_foto_video_file) {
+			return '/' . $image->getFolder() . $this->link_foto_video_file;
+		}
+
+		return '/' . $image->getFolder() . 'no-image.png';
 	}
 }
