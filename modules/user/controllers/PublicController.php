@@ -12,11 +12,15 @@ class PublicController extends Controller
 {
 	public function actionIndex($username)
 	{
-		$model = User::findOne(['username' => $username]);
+		$model = User::findByUsername($username);
 
-		return $this->render('index', [
-			'model' => $model
-		]);
+		if ($model) {
+			return $this->render('index', [
+				'model' => $model
+			]);
+		} else {
+			throw new \yii\web\NotFoundHttpException('Страница не найденна');
+		}
 	}
 
 	public function actionList()

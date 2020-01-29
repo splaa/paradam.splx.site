@@ -132,5 +132,6 @@
         'Update Category: {name}' => 'Обновить категорию: {name}',
         'Update Question: {name}' => 'Обновить Вопрос: {name}',
         'Ваш Телефон:' => 'Ваш Телефон:',
+		'NAV_PROFILE_CHANGE_DATE' => 'Изменить дату рождения',
         'Update Article: {name}' => 'Обновить Статью: {name}'
 	];
