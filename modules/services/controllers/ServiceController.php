@@ -67,18 +67,26 @@
 		public function actionCreate()
 		{
 			$model = new Service();
+			$modelImage = new ImageUpload();
 
 			if (Yii::$app->request->isPost) {
 				$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-				if ($model->upload()) {
-					$model->user_id = Yii::$app->user->id;
-					if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
+				if (!is_null($model->imageFile)) {
 
-						return $this->redirect(['/services/question/create', 'id' => $model->id]);
-					}
+					$model->saveImage($modelImage->uploadFile($model->imageFile, $model->link_foto_video_file));
 
 				}
+
+
+				$model->user_id = Yii::$app->user->id;
+				if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+
+					return $this->redirect(['/services/question/create', 'id' => $model->id]);
+				}
+
+
 			}
 
 
@@ -97,7 +105,7 @@
 		public function actionUpdate($id)
 		{
 			$model = $this->findModel($id);
-
+			$model->user_id = Yii::$app->user->id;
 			if ($model->load(Yii::$app->request->post()) && $model->save()) {
 				return $this->redirect(['view', 'id' => $model->id]);
 			}
