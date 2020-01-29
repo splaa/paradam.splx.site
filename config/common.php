@@ -70,7 +70,12 @@
 					'message/settings' => 'message/message/settings',
 
 					'public/list' => 'user/public/list',
-					'<username:\w+>' => 'user/public/',
+					[
+						'pattern' => '<username>',
+						'route' => 'user/public',
+						'suffix' => '/',
+						'normalizer' => false, // disable normalizer for this rule
+					],
 
 					'/site/contact' => 'main/contact/index',
 					'<_a:error>' => 'main/default/<_a>',

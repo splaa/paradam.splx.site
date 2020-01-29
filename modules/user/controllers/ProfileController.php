@@ -5,29 +5,32 @@
 
 
 	use app\modules\admin\models\User;
-    use app\modules\user\forms\NameChangeForm;
-    use app\modules\user\forms\PasswordChangeForm;
-    use app\modules\user\forms\ProfileUpdateForm;
-    use app\modules\user\forms\TelephoneChangeForm;
-    use app\modules\user\forms\UploadAvatar;
-    use app\modules\user\forms\UserNameChangeForm;
-    use app\modules\user\models\Activity;
-    use Yii;
-    use yii\data\ActiveDataProvider;
-    use yii\imagine\Image;
-    use yii\web\UploadedFile;
+	use app\modules\user\forms\DateChangeForm;
+	use app\modules\user\forms\NameChangeForm;
+	use app\modules\user\forms\PasswordChangeForm;
+	use app\modules\user\forms\ProfileUpdateForm;
+	use app\modules\user\forms\TelephoneChangeForm;
+	use app\modules\user\forms\UploadAvatar;
+	use app\modules\user\forms\UserNameChangeForm;
+	use app\modules\user\models\Activity;
+	use yii\data\ActiveDataProvider;
+	use yii\imagine\Image;
+	use Yii;
+	use yii\filters\AccessControl;
+	use yii\web\Controller;
+	use yii\web\UploadedFile;
 
-    class ProfileController extends UserController
-    {
-        public function actionIndex()
-        {
-            return $this->render('index', [
-                'model' => $this->findModel(),
-            ]);
-        }
-
-        private function findModel()
-        {
+	class ProfileController extends UserController
+	{
+		public function actionIndex()
+		{
+			return $this->render('index', [
+				'model' => $this->findModel(),
+			]);
+		}
+		
+		private function findModel()
+		{
 			return User::findOne(Yii::$app->user->identity->getId());
 		}
 		
@@ -150,6 +153,28 @@
 				return $this->render('userNameChange', [
 					'model' => $model,
 				]);
+			}
+		}
+
+		public function actionDateChange()
+		{
+			$user = $this->findModel();
+			$model = new DateChangeForm($user);
+
+			if ($user->birthday_change == 1) {
+				Yii::$app->getSession()->setFlash('error', 'Ошибка! Дата рождения уже была изменена рание.');
+
+				return $this->redirect('/user/profile/');
+			} else {
+				if ($model->load(Yii::$app->request->post()) && $model->changeDate()) {
+					Yii::$app->getSession()->setFlash('success', 'Спасибо! Дата рождения успешно изменёно.');
+
+					return $this->redirect('/user/profile/');
+				} else {
+					return $this->render('dateChange', [
+						'model' => $model,
+					]);
+				}
 			}
 		}
 	}

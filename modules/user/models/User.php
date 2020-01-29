@@ -18,6 +18,7 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property string $username
+ * @property string $birthday
  * @property float $balance
  * @property float $sms_cost
  * @property string $first_name
@@ -32,6 +33,7 @@ use yii\web\IdentityInterface;
  * @property string $password
  * @property string $authKey
  * @property int $status
+ * @property int $birthday_change
  * @property string $alt
  * @property string $avatarSmall
  * @property string $avatarMedium
@@ -337,6 +339,15 @@ class User extends ActiveRecord implements IdentityInterface
 	public function setUserName($username)
 	{
 		$this->username = $username;
+	}
+
+	/**
+	 * @param string $birthday
+	 * @throws \yii\base\Exception
+	 */
+	public function setDate($birthday)
+	{
+		$this->birthday = date("Y-m-d H:i:s", strtotime($birthday));
 	}
 	
 	/**

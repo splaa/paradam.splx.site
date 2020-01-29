@@ -17,13 +17,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'BUTTON_UPDATE'), ['update'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(Yii::t('app', 'LINK_PASSWORD_CHANGE'), ['password-change'], ['class' => 'btn btn-primary']) ?>
-		<?= Html::a(Yii::t('app', 'LINK_TO_PHONE_CHANGE'), ['/message/settings/'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(Yii::t('app', 'LINK_TO_PHONE_CHANGE'), ['telephone-change'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(Yii::t('app', 'LINK_TO_MESSAGES'), ['/message/'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(Yii::t('app', 'LINK_TO_AVATAR'), ['upload-avatar'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(Yii::t('app', 'LINK_TO_MESSAGE_SETTINGS'), ['/message/settings/'], ['class' => 'btn btn-primary']) ?>
-		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_BALANCE'), Yii::$app->user->identity->formatBalance), ['/user/profile/balance'], ['class' => 'btn btn-primary']) ?>
-		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_NAME'), Yii::$app->user->identity->formatBalance), ['/user/profile/name-change'], ['class' => 'btn btn-primary']) ?>
-		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_USER_NAME'), Yii::$app->user->identity->formatBalance), ['/user/profile/user-name-change'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_BALANCE'), Yii::$app->user->identity->formatBalance), ['balance'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_NAME'), Yii::$app->user->identity->formatBalance), ['name-change'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_USER_NAME'), Yii::$app->user->identity->formatBalance), ['user-name-change'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_DATE'), Yii::$app->user->identity->formatBalance), ['date-change'], ['class' => 'btn btn-primary']) ?>
     </p>
 	<?= DetailView::widget([
 		'model' => $model,
