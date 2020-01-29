@@ -66,6 +66,9 @@
 					'site/about' => 'main/default/about',
 					
 					'contact' => 'main/contact/index',
+
+					'message/<id>' => 'message/message/index',
+					'message/create' => 'message/message/create',
 					'message' => 'message/message/index',
 					'message/settings' => 'message/message/settings',
 

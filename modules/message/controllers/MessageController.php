@@ -2,12 +2,17 @@
 
 namespace app\modules\message\controllers;
 
+use app\modules\message\forms\MessageForm;
 use app\modules\message\forms\SettingsForm;
+use app\modules\message\models\Message;
+use app\modules\message\models\Thread;
+use app\modules\message\models\UserMessage;
 use app\modules\message\models\UserThread;
 use app\modules\user\controllers\UserController;
 use app\modules\user\models\User;
 use Yii;
 use \app\components\Hash;
+use yii\helpers\Url;
 use YoHang88\LetterAvatar\LetterAvatar;
 
 /**
@@ -28,6 +33,7 @@ class MessageController extends UserController
 			->where(['user_id' => Yii::$app->user->id])
 			->orderBy(['id' => SORT_DESC])
 			->all();
+
 		$selected_user_thread = [];
 
 		if ($id) {
@@ -60,5 +66,61 @@ class MessageController extends UserController
 		return $this->render('settings', [
 			'model' => $model
 		]);
+	}
+
+	public function actionCreate()
+	{
+		if (Yii::$app->request->isPost || Yii::$app->request->isAjax) {
+			$model = new MessageForm();
+
+			if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+				$author_id = Yii::$app->user->id;
+				$user_id = Yii::$app->request->post('user_id');
+				$text = $model->text;
+
+				$thread = Thread::find()->alias('t')
+					->innerJoin('user_thread as ut1', 't.id = ut1.thread_id')
+					->innerJoin('user_thread as ut2', 't.id = ut2.thread_id')
+					->where(['ut1.user_id' => $author_id, 'ut2.user_id' => $user_id])
+					->orWhere(['ut1.user_id' => $user_id, 'ut2.user_id' => $author_id])
+					->groupBy('t.id')
+					->asArray()
+					->one();
+
+				if ($thread) {
+					$thread_id = $thread['id'];
+				} else {
+					$thread = new Thread();
+					$thread->title = $author_id . '=>' . $user_id;
+					$thread->save();
+					$thread_id = $thread->id;
+
+					$user_thread = new UserThread();
+					$user_thread->user_id = $user_id;
+					$user_thread->thread_id = $thread_id;
+					$user_thread->save();
+				}
+
+
+				$message = new Message();
+				$message->author_id = $author_id;
+				$message->thread_id = $thread_id;
+				$message->text = $text;
+				$message->save();
+
+				$user_message = new UserMessage();
+				$user_message->user_id = $author_id;
+				$user_message->message_id = $message->id;
+				$user_message->save();
+
+
+				$hash = new Hash();
+				$hash->string = $thread_id;
+
+				return $this->redirect(Url::to(['index', 'id' => $hash->run(Hash::ENCODE)]));
+			} else {
+				return 'Ошибка';
+			}
+		}
 	}
 }
