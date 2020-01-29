@@ -5,8 +5,8 @@ return [
     'components' => [
         'reCaptcha' => [
             'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
-            'siteKeyV2' => '6LcNSc4UAAAAAFFThKjbampM1PhXIfFzcQPTWfXl',
-            'secretV2' => '6LcNSc4UAAAAAIO62wRroEo5ffqwYaT1cNIQ9mkI',
+            'siteKeyV2' => '6LdwqdMUAAAAAKOB9PxmuiMXlLdlb9PlQSQxq2LH',
+            'secretV2' => '6LdwqdMUAAAAACSvAL73YWp2uyxHOT-A2HCxRs-r',
             'siteKeyV3' => '',
             'secretV3' => '',
         ],

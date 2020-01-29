@@ -61,7 +61,8 @@
     "post-create-project-cmd": [
       "yii\\composer\\Installer::postCreateProject",
       "yii\\composer\\Installer::postInstall"
-    ]
+    ],
+    "test": "vendor/bin/phpunit"
   },
   "extra": {
     "yii\\composer\\Installer::postCreateProject": {
@@ -70,6 +71,7 @@
           "runtime": "0777",
           "web/assets": "0777",
           "web/session": "0777",
+          "web/images": "-R 0777",
           "web/upload": "0777",
           "web/images/user/avatar": "0777",
           "yii": "0755"

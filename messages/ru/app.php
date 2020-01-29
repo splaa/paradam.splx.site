@@ -8,23 +8,24 @@
 		'NAV_SIGNUP' => 'Регистрация',
 		'NAV_LOGIN' => 'Вход',
 		'NAV_PROFILE' => 'Профиль',
-        'NAV_PROFILE_BALANCE' => 'Баланс (%s)',
+		'NAV_PROFILE_BALANCE' => 'Баланс (%s)',
 		'NAV_LOGOUT' => 'Выход',
 		'NAV_ADMIN' => 'Админка',
 		'NAV_ADMIN_USERS' => 'Пользователи',
 
-        //        Услуги
-        'NAV_SERVICES' => 'Услуги',
-        'NAV_QUESTIONS' => 'Вопросы к Услугам',
+		//        Услуги
+		'NAV_SERVICES' => 'Услуги',
+		'NAV_QUESTIONS' => 'Вопросы к Услугам',
+		'SET_IMAGE_SERVICE' => 'Добавить Картинку',
 
 		'BUTTON_SEND' => 'Отправить',
 		'BUTTON_SAVE' => 'Сохранить',
 		'BUTTON_UPDATE' => 'Редактировать Email',
 		'BUTTON_DELETE' => 'Удалить',
-		
+
 		'TITLE_CONTACT' => 'Контакты',
 		'TITLE_PROFILE' => 'Профиль пользователя',
-		
+
 		'FOLLOW_TO_CONFIRM_PHONE' => 'Для подтверждения телефона пройдите по ссылке:',
 		'HELLO {username}' => 'Здравствуйте, {username}!',
 		'FOLLOW_TO_RESET_PASSWORD' => 'Для смены пароля пройдите по ссылке:',

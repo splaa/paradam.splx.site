@@ -1,17 +1,29 @@
 
 #  [ссылка: Инструкция по Google cloud](https://docs.google.com/document/d/144eI2NVO05XxZ2xTOvmInJeOlf5XHTP8Zyuvw5gIDD8/edit?usp=sharing)
 
+#   AWS 
+###Настройка Ubuntu18.04
 
+    //Установка Docker : 
+    https://docs.docker.com/install/linux/docker-ce/ubuntu/
+    //Установка Docker-Compose:
+     https://docs.docker.com/compose/install/
+
+     // Клонируем проект:
+     https://github.com/splaa/paradam.splx.site.git paradam.me
+     // Переходим в папку проекта
+     cd paradam.me
 
 
 
 # Скачуем docker image 
 
-`docker pull yiisoftware/yii-php:7.4-apache`
+    docker pull yiisoftware/yii-php:7.4-apache
 
 // Запускаем:  в случае ошибок — они будут указаны
 
         docker-compose up 
+        docker-compose down
 
 //  или запуск в фоне
 
@@ -32,23 +44,20 @@
     cd /app && composer update`
 
     //Инициализируем и заполняем config
-   
     php init  
+   
                              
+    //	Выполняем команду миграции БД php 
     php yii migrate
     
     // Telegram
     php yii telegram/run                              
 
-
+    //испавленно добавленно в шаблон эту строчку можна удалить
     cp config/common-docker.php.example config/common-local.php
 
-    //	Выполняем команду миграции БД php 
     /app/yii migrate
 
-//	Создаем папку для логов 
-// если логируем в эту папку
-`mkdir /app/log`
 
 // И выходим 
 `exit`

@@ -6,7 +6,7 @@ use yii\base\Model;
 use yii\web\UploadedFile;
 
 /**
- * UploadForm is the model behind the upload form.
+ * UploadForm is the model behind the uploads form.
  */
 class UploadAvatar extends Model
 {
