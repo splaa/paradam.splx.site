@@ -33,7 +33,7 @@ use yii\helpers\Url;
 							$hash = new Hash();
 							$hash->string = $thread->thread->id;
 						?>
-						<a class="chat_list active_chat" href="<?= Url::to(['/message/', 'id' => $hash->run(Hash::ENCODE)]) ?>">
+						<a class="chat_list active_chat" href="<?= Url::to(['index', 'id' => $hash->run(Hash::ENCODE)]) ?>">
 							<div class="chat_people">
 								<div class="chat_img">
 									<img src="<?= $thread->thread->message->author->getAvatarSmall() ?>" alt="<?= $thread->thread->message->author->alt ?>">

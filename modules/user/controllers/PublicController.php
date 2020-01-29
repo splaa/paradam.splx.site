@@ -5,6 +5,7 @@ namespace app\modules\user\controllers;
 
 
 use app\modules\admin\models\UserSearch;
+use app\modules\message\forms\MessageForm;
 use app\modules\user\models\User;
 use yii\web\Controller;
 
@@ -15,11 +16,15 @@ class PublicController extends Controller
 		$model = User::findByUsername($username);
 
 		if ($model) {
+			$messageForm = new MessageForm();
+
 			return $this->render('index', [
-				'model' => $model
+				'model' => $model,
+				'messageForm' => $messageForm
 			]);
+
 		} else {
-			throw new \yii\web\NotFoundHttpException('Страница не найденна');
+			throw new NotFoundHttpException('Страница не найденна');
 		}
 	}
 
