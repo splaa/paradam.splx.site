@@ -1,13 +1,10 @@
 <?php
 
-namespace splx_phpunit;
 
-use PHPUnit\Framework\TestCase;
+	use PHPUnit\Framework\TestCase;
 
-class EmptyTest extends TestCase
-{
-    /**
-     * @expectedException
-     */
+	class EmptyTest extends TestCase
+	{
 
-}
+
+	}
