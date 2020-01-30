@@ -45,7 +45,7 @@
 
 <?php
 $user_id = Yii::$app->user->id;
-$avatar = Yii::$app->user->identity->getAvatarSmall();
+$avatar = Yii::$app->user->identity->avatarSmall;
 $alt = Yii::$app->user->identity->alt;
 $time = date("Y-m-m H:i:s");
 $JS = <<<JS
@@ -141,6 +141,9 @@ $JS = <<<JS
 			send();
 		}
 	});
+	
+	var div = $(".msg_history");
+	div.scrollTop(div.prop('scrollHeight'));
 JS;
 
 $this->registerJs($JS);

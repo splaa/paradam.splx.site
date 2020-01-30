@@ -19,13 +19,6 @@ use yii\helpers\Html;
 			'columns' => [
 				['class' => 'yii\grid\SerialColumn'],
 				[
-					'attribute' => 'user_id',
-					'format' => 'html',
-					'value' => function($data){
-						return Html::a($data->user->username, ['public/', 'id' => $data->id]);
-					}
-				],
-				[
 					'attribute' => 'type',
 					'format' => 'html',
 					'value' => function($data){

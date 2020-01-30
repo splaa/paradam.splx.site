@@ -10,6 +10,7 @@ use yii\base\Model;
 class MessageForm extends Model
 {
 	public $text;
+	public $user_id;
 
 
 	/**
@@ -19,6 +20,7 @@ class MessageForm extends Model
 	{
 		return [
 			['text', 'required'],
+			['user_id', 'required'],
 		];
 	}
 

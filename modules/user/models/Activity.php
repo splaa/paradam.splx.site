@@ -2,12 +2,16 @@
 
 namespace app\modules\user\models;
 
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+
 /**
  * This is the model class for table "activity".
  *
  * @property int $id
  * @property int|null $user_id
- * @property int|null $type 0 => profile, 1 => add_funds, 2 => service, 3 => photo, 4 => video, 5 => products, 6 => investition
+ * @property int|null $type 0 => profile, 1 => add_funds, 2 => service, 3 => photo, 4 => video, 5 => products, 6 => investment, 7 => message
  * @property string|null $additional
  * @property string|null $created_at
  *
@@ -15,6 +19,15 @@ namespace app\modules\user\models;
  */
 class Activity extends \yii\db\ActiveRecord
 {
+	public const ACTIVITY_TYPE_PROFILE = 0;
+	public const ACTIVITY_TYPE_ADD_FUNDS = 1;
+	public const ACTIVITY_TYPE_SERVICE = 2;
+	public const ACTIVITY_TYPE_PHOTO = 3;
+	public const ACTIVITY_TYPE_VIDEO = 4;
+	public const ACTIVITY_TYPE_PRODUCTS = 5;
+	public const ACTIVITY_TYPE_INVESTMENT = 6;
+	public const ACTIVITY_TYPE_MESSAGE = 7;
+
     /**
      * {@inheritdoc}
      */
@@ -22,6 +35,19 @@ class Activity extends \yii\db\ActiveRecord
     {
         return 'activity';
     }
+
+	public function behaviors()
+	{
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'attributes' => [
+					ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+				],
+				'value' => new Expression('NOW()'),
+			]
+		];
+	}
 
     /**
      * {@inheritdoc}
@@ -81,7 +107,10 @@ class Activity extends \yii\db\ActiveRecord
 			    return 'Products';
 		    	break;
 		    case 6:
-		    	return 'Investition';
+		    	return 'Investment';
+		    	break;
+		    case 7:
+		    	return 'Message';
 		    	break;
 	    }
     }
@@ -94,6 +123,10 @@ class Activity extends \yii\db\ActiveRecord
 
 			if (isset($parse['amount'])) {
 				$html = '<span class="label label-primary">Amount: ' . $parse['amount'] . ' ' . User::CURRENCY_BIT . '</span><br>';
+			}
+
+			if (isset($parse['username'])) {
+				$html .= '<span class="label label-primary">Username: ' . $parse['username'] . '</span><br>';
 			}
 
 			return $html;
