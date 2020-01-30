@@ -12,7 +12,7 @@
 	$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-profile">
-
+    
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
 		<?= Html::a(Yii::t('app', 'BUTTON_UPDATE'), ['update'], ['class' => 'btn btn-primary']) ?>
@@ -25,12 +25,38 @@
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_NAME'), Yii::$app->user->identity->formatBalance), ['name-change'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_USER_NAME'), Yii::$app->user->identity->formatBalance), ['user-name-change'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_DATE'), Yii::$app->user->identity->formatBalance), ['date-change'], ['class' => 'btn btn-primary']) ?>
+
     </p>
+	<?php
+		//var_dump($model);
+	?>
+
+
 	<?= DetailView::widget([
 		'model' => $model,
 		'attributes' => [
 			'username',
-			'email',
+			[
+				'label' => 'електронный адрес',
+				'attribute' => 'email',
+			],
+			[
+				'attribute' => 'first_name',
+				'label' => 'Услуги',
+				'format' => 'raw',
+				'value' => function ($data) {
+					return '<a href="/services/service">Услуги</a>';
+				}
+			],
+			'telephone',
+			'balance',
+			[
+				'attribute' => 'status',
+				'format' => 'raw',
+				'value' => function ($data) {
+					return $data->status ? '<span class="text-success">Активный</span>' : '<span class="text-danger">Не Активный</span>';
+				}
+			],
 		],
 	]) ?>
 
