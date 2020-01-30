@@ -77,7 +77,7 @@
 				}
 				$model->user_id = Yii::$app->user->id;
 				if ($model->load(Yii::$app->request->post()) && $model->save()) {
-					return $this->redirect(['/services/question/create', 'id' => $model->id]);
+					return $this->redirect(['/services/question/add-question', 'id' => $model->id]);
 				}
 			}
 			return $this->render('create', [
