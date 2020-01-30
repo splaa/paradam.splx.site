@@ -2,6 +2,8 @@
 namespace app\commands;
 use app\modules\message\models\Message;
 use app\modules\message\models\UserMessage;
+use app\modules\message\models\UserThread;
+use app\modules\user\models\User;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 use Yii;
@@ -53,19 +55,44 @@ class SocketServer implements MessageComponentInterface
 		$parse = json_decode($data, true);
 
 		if ((!empty($parse['message'])) && !empty($parse['user_id']) && !empty($parse['thread_id'])) {
-			$message = new Message();
-			$message->author_id = $parse['user_id'];
-			$message->thread_id = $parse['thread_id'];
-			$message->text = $parse['message'];
-			$message->save();
+			$recipient = UserThread::find()
+						->alias('ut')
+						->leftJoin('thread as t', 'ut.thread_id = t.id')
+						->where(['ut.thread_id' => $parse['thread_id']])
+						->andWhere(['<>', 'ut.user_id', $parse['user_id']])
+						->asArray()
+						->one();
 
-			$user_message = new UserMessage();
-			$user_message->user_id = $parse['user_id'];
-			$user_message->message_id = $message->id;
-			$user_message->save();
+			if ($recipient) {
+				$recipient_id = $recipient['user_id'];
 
-			$parse['time'] = Yii::$app->formatter->asRelativeTime(date('Y-m-d H:i:s'));
-			$parse['date'] = Yii::$app->formatter->asDate(date('Y-m-d H:i:s'));
+				if (!empty($recipient['creator_id'])) {
+					$recipient_id = $recipient['creator_id'];
+				}
+
+				$message = new Message();
+				$message->author_id = $parse['user_id'];
+				$message->thread_id = $parse['thread_id'];
+				$message->text = $parse['message'];
+				$message->save();
+
+				$user_message = new UserMessage();
+				$user_message->user_id = $parse['user_id'];
+				$user_message->message_id = $message->id;
+				$user_message->save();
+
+				// Minus from balance
+				if (mb_strlen($parse['message'], 'UTF-8') > USER::MESSAGE_LENGTH) {
+					$factor = count(User::strSplitUnicode($parse['message'], USER::MESSAGE_LENGTH));
+				} else {
+					$factor = 1;
+				}
+
+				User::transferBits($parse['user_id'], $recipient_id, User::TRANSFER_TYPE_SMS, 0, $factor);
+
+				$parse['time'] = Yii::$app->formatter->asRelativeTime(date('Y-m-d H:i:s'));
+				$parse['date'] = Yii::$app->formatter->asDate(date('Y-m-d H:i:s'));
+			}
 
 			$data = json_encode($parse);
 		}

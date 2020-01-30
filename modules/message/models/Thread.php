@@ -15,6 +15,7 @@ use yii\db\Expression;
  *
  * @property Message[] $messages
  * @property Message[] $message
+ * @property Message[] $messageWriter
  * @property UserThread[] $userThreads
  */
 class Thread extends \yii\db\ActiveRecord
@@ -74,7 +75,15 @@ class Thread extends \yii\db\ActiveRecord
      */
     public function getMessage()
     {
-        return $this->hasOne(Message::className(), ['thread_id' => 'id'])->orderBy('created_at desc');
+        return $this->hasOne(Message::className(), ['thread_id' => 'id'])->orderBy(['created_at' => SORT_DESC]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMessageWriter()
+    {
+        return $this->hasOne(Message::className(), ['thread_id' => 'id'])->where(['<>', 'author_id', \Yii::$app->user->id]);
     }
 
     /**

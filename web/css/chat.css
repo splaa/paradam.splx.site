@@ -41,7 +41,10 @@ img{ max-width:100%;}
 .chat_ib p{ font-size:14px; color:#989898; margin:auto}
 .chat_img {
     float: left;
-    width: 11%;
+    width: 10%;
+}
+.chat_img img {
+    border-radius: 50%;
 }
 .chat_ib {
     float: left;

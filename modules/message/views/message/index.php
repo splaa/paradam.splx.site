@@ -33,14 +33,23 @@ use yii\helpers\Url;
 							$hash = new Hash();
 							$hash->string = $thread->thread->id;
 						?>
-						<a class="chat_list active_chat" href="<?= Url::to(['index', 'id' => $hash->run(Hash::ENCODE)]) ?>">
+						<a class="chat_list active_chat" href="<?= Url::to(['view', 'id' => $hash->run(Hash::ENCODE)]) ?>">
 							<div class="chat_people">
 								<div class="chat_img">
-									<img src="<?= $thread->thread->message->author->getAvatarSmall() ?>" alt="<?= $thread->thread->message->author->alt ?>">
+									<img src="<?= $thread->thread->messageWriter->author->avatarSmall ?>" alt="<?= $thread->thread->messageWriter->author->alt ?>">
 								</div>
 								<div class="chat_ib" id="thread_<?= $thread->thread->id ?>">
-									<h5><?= $thread->thread->message->author->username ?> <span class="chat_date"><?= date("d M", strtotime($thread->thread->created_at)) ?></span></h5>
-									<p><span class="text"><?= $thread->thread->message->text ?></span> <span class="badge" style="float: right">0</span></p>
+									<h5><?= $thread->thread->messageWriter->author->username ?> <span class="chat_date"><?= date("d M", strtotime($thread->thread->created_at)) ?></span></h5>
+
+									<p>
+										<span class="text">
+											<?php if ($thread->thread->message->author->id == Yii::$app->user->id): ?>
+											<b>You:</b>
+											<?php endif; ?>
+											<?= mb_substr($thread->thread->message->text, 0, 35) ?>...
+										</span>
+										<span class="badge" style="float: right">0</span>
+									</p>
 								</div>
 							</div>
 						</a>

@@ -67,10 +67,10 @@
 					
 					'contact' => 'main/contact/index',
 
-					'message/<id>' => 'message/message/index',
 					'message/create' => 'message/message/create',
-					'message' => 'message/message/index',
 					'message/settings' => 'message/message/settings',
+					'message' => 'message/message/index',
+					'message/<id>' => 'message/message/view',
 
 					'public/list' => 'user/public/list',
 					[

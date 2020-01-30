@@ -44,19 +44,20 @@ use yii\helpers\Html; ?>
 	<div class="row">
 		<div class="col-md-4">
 			<?php if (Yii::$app->user->id != $model->id): ?>
-				<div style="text-align: center;margin: 20px 0;">
+				<?php if (Yii::$app->user->identity->balance >= $model->sms_cost): ?>
+					<div style="text-align: center;margin: 20px 0;">
+						<?php $form = ActiveForm::begin(['action' => \yii\helpers\Url::to(['/message/message/create']), 'method' => 'POST']); ?>
 
-					<?php $form = ActiveForm::begin(['action' => '/message/message/create']); ?>
+						<?= $form->field($messageForm, 'text')->textarea() ?>
+						<?= $form->field($messageForm, 'user_id')->input('hidden', ['value' => $model->id])->label(false) ?>
 
-					<?= $form->field($messageForm, 'text') ?>
-					<input type="hidden" name="user_id" value="<?= $model->id ?>" />
+						<div class="form-group">
+							<?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
+						</div>
 
-					<div class="form-group">
-						<?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
+						<?php ActiveForm::end(); ?>
 					</div>
-
-					<?php ActiveForm::end(); ?>
-				</div>
+				<?php endif; ?>
 			<?php endif; ?>
 			<div class="profile-work">
 				<p>WORK LINK</p>

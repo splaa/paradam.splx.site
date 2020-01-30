@@ -56,6 +56,12 @@ class User extends ActiveRecord implements IdentityInterface
 
 	public const CURRENCY_BIT = 'bit';
 
+	public const TRANSFER_TYPE_SMS = 'sms';
+	public const TRANSFER_TYPE_DONATE = 'donate';
+	public const TRANSFER_TYPE_INVESTMENT = 'investment';
+
+	public const MESSAGE_LENGTH = 250;
+
 	public function behaviors()
 	{
 		return [
@@ -453,5 +459,73 @@ class User extends ActiveRecord implements IdentityInterface
 
 		// Save the current language to user record
 		Yii::$app->language = $event->language;
+	}
+
+	/**
+	 * @param $sender_id
+	 * @param $recipient_id
+	 * @param $type
+	 * @param int $amount
+	 * @param int $factor
+	 */
+	public static function transferBits($sender_id, $recipient_id, $type, $amount = 0, $factor = 1)
+	{
+		$sender = User::findOne($sender_id);
+		$recipient = User::findOne($recipient_id);
+
+		switch ($type) {
+			case self::TRANSFER_TYPE_SMS:
+				if (empty($amount)) {
+					$amount = $recipient->sms_cost * $factor;
+				}
+
+				$sender->balance = $sender->balance - $amount;
+				$sender->save();
+
+				$recipient->balance += $amount;
+				$recipient->save();
+
+				$activity = new Activity();
+				$activity->user_id = $recipient_id;
+				$activity->type = Activity::ACTIVITY_TYPE_MESSAGE;
+				$activity->additional = json_encode([
+					'sender_id' => $sender_id,
+					'username' => $sender->username,
+					'amount' => $amount
+				]);
+				$activity->save();
+
+				$activity = new Activity();
+				$activity->user_id = $sender_id;
+				$activity->type = Activity::ACTIVITY_TYPE_MESSAGE;
+				$activity->additional = json_encode([
+					'amount' => '-' . $amount
+				]);
+				$activity->save();
+				break;
+			case self::TRANSFER_TYPE_DONATE:
+
+				break;
+			case self::TRANSFER_TYPE_INVESTMENT:
+
+				break;
+		}
+	}
+
+	/**
+	 * @param $str
+	 * @param int $l
+	 * @return array|false|string[]
+	 */
+	public static function strSplitUnicode($str, $l = 0) {
+		if ($l > 0) {
+			$ret = array();
+			$len = mb_strlen($str, "UTF-8");
+			for ($i = 0; $i < $len; $i += $l) {
+				$ret[] = mb_substr($str, $i, $l, "UTF-8");
+			}
+			return $ret;
+		}
+		return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
 	}
 }
