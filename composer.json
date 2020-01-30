@@ -31,7 +31,8 @@
     "cboden/ratchet": "dev-master",
     "yohang88/letter-avatar": "2.2.0",
     "yiisoft/yii2-imagine": "2.2.0",
-    "bubasuma/yii2-simplechat": "^2.0"
+    "bubasuma/yii2-simplechat": "^2.0",
+    "unclead/yii2-multiple-input": "~2.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

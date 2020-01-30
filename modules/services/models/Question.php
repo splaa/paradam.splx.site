@@ -3,24 +3,29 @@
 	namespace app\modules\services\models;
 	
 	use Yii;
-    use yii\behaviors\TimestampBehavior;
-    use yii\db\ActiveRecord;
-    use yii\db\Expression;
+	use yii\behaviors\TimestampBehavior;
+	use yii\db\ActiveRecord;
+	use yii\db\Expression;
 
-    /**
-     * This is the model class for table "question".
-     *
-     * @property int $id
-     * @property int|null $created_at
-     * @property int|null $updated_at
-     * @property string $question
-     * @property int|null $status
-     *
-     * @property ServiceQuestion[] $serviceQuestions
-     * @property Service[] $services
+	/**
+	 * This is the model class for table "question".
+	 *
+	 * @property int $id
+	 * @property int|null $created_at
+	 * @property int|null $updated_at
+	 * @property string $question
+	 * @property int|null $status
+	 *
+	 * @property ServiceQuestion[] $serviceQuestions
+	 * @property Service[] $services
 	 */
 	class Question extends \yii\db\ActiveRecord
 	{
+		/**
+		 * @var array виртуальный атрибут для хранения вопросов
+		 */
+		public $questions;
+
 		public function behaviors()
 		{
 			return [
@@ -28,7 +33,7 @@
 					'class' => TimestampBehavior::class,
 					'attributes' => [
 						ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
-						ActiveRecord::EVENT_BEFORE_UPDATE =>['updated_at']
+						ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at']
 					],
 					// можно установить datetime
 					'value' =>new Expression('NOW()'),
@@ -54,6 +59,7 @@
 				['status', 'integer'],
 				[['question'], 'required'],
 				[['question'], 'string', 'max' => 255],
+
 			];
 		}
 		

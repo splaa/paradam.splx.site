@@ -1,37 +1,38 @@
 <?php
-	
+
 	namespace app\modules\services\controllers;
-	
+
 	use app\modules\services\models\Question;
-    use app\modules\services\models\QuestionSearch;
-    use app\modules\services\models\ServiceQuestion;
-    use app\modules\user\controllers\UserController;
-    use Yii;
-    use yii\filters\VerbFilter;
-    use yii\web\NotFoundHttpException;
+	use app\modules\services\models\QuestionSearch;
+	use app\modules\services\models\ServiceQuestion;
+	use app\modules\user\controllers\UserController;
+	use Yii;
+	use yii\base\Model;
+	use yii\filters\VerbFilter;
+	use yii\web\NotFoundHttpException;
 
-    /**
-     * QuestionController implements the CRUD actions for Question model.
-     */
-    class QuestionController extends UserController
-    {
+	/**
+	 * QuestionController implements the CRUD actions for Question model.
+	 */
+	class QuestionController extends UserController
+	{
 
 
-        /**
-         * {@inheritdoc}
-         */
-        public function behaviors()
+		/**
+		 * {@inheritdoc}
+		 */
+		public function behaviors()
 		{
-            return yii\helpers\ArrayHelper::merge(parent::behaviors(), [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]);
+			return yii\helpers\ArrayHelper::merge(parent::behaviors(), [
+				'verbs' => [
+					'class' => VerbFilter::className(),
+					'actions' => [
+						'delete' => ['POST'],
+					],
+				],
+			]);
 		}
-		
+
 		/**
 		 * Lists all Question models.
 		 * @return mixed
@@ -40,13 +41,13 @@
 		{
 			$searchModel = new QuestionSearch();
 			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-			
+
 			return $this->render('index', [
 				'searchModel' => $searchModel,
 				'dataProvider' => $dataProvider,
 			]);
 		}
-		
+
 		/**
 		 * Displays a single Question model.
 		 * @param integer $id
@@ -59,7 +60,7 @@
 				'model' => $this->findModel($id),
 			]);
 		}
-		
+
 		/**
 		 * Creates a new Question model.
 		 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -67,24 +68,60 @@
 		 */
 		public function actionCreate()
 		{
+
 			$model = new Question();
-			
-			$service_id = Yii::$app->request->get('id');
-			
-			if ($model->load(Yii::$app->request->post()) && $model->save()) {
-				$serviceQuestions = new ServiceQuestion();
-				$serviceQuestions->service_id = $service_id;
-				$serviceQuestions->question_id = $model->id;
-				$serviceQuestions->save();
-				
-				return $this->redirect('/services/service-question');
+
+
+			if (Yii::$app->request->post('Question')['questions']) {
+				$questions = Yii::$app->request->post('Question')['questions'];
+
+				foreach ($questions as $question) {
+					$questionModel = new Question();
+					$questionModel->question = $question;
+					$questionModel->save();
+
+				}
 			}
-			
+
+
 			return $this->render('create', [
 				'model' => $model,
 			]);
 		}
-		
+
+		public function actionAddQuestion($id)
+		{
+
+			$model = new Question();
+
+
+			if (Yii::$app->request->post('Question')['questions']) {
+				$questions = Yii::$app->request->post('Question')['questions'];
+
+				foreach ($questions as $question) {
+					$questionModel = new Question();
+					$questionModel->question = $question;
+					$questionModel->save();
+
+					$serviceQuestions = new ServiceQuestion();
+					$serviceQuestions->service_id = $id;
+					$serviceQuestions->question_id = $questionModel->id;
+					$serviceQuestions->save();
+
+				}
+
+				return $this->redirect(['/services/service/view', 'id' => $id]);
+
+			}
+
+
+			return $this->render('create', [
+				'model' => $model,
+			]);
+
+
+		}
+
 		/**
 		 * Updates an existing Question model.
 		 * If update is successful, the browser will be redirected to the 'view' page.
@@ -94,36 +131,49 @@
 		 */
 		public function actionUpdate($id)
 		{
-            $model = $this->findModel($id);
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
 
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
+			$models = ServiceQuestion::find()->indexBy('id')->all();
 
-        /**
-         * Deletes an existing Question model.
-         * If deletion is successful, the browser will be redirected to the 'index' page.
-         * @param integer $id
-         * @return mixed
-         * @throws NotFoundHttpException if the model cannot be found
-         * @throws \Throwable
-         * @throws \yii\db\StaleObjectException
-         */
-        public function actionDelete($id)
-        {
-            $this->findModel($id)->delete();
 
-            return $this->redirect(['index']);
-        }
+			if (Model::loadMultiple($models, Yii::$app->request->post()) && Model::validateMultiple($models)) {
+				var_dump($models);
 
-        /**
-         * Finds the Question model based on its primary key value.
-         * If the model is not found, a 404 HTTP exception will be thrown.
+				die('<br>' . 'Скрипт Остановлен');
+
+
+				foreach ($models as $question) {
+					$question->save(false);
+				}
+
+				return $this->redirect(['view', 'id' => $id]);
+			}
+
+
+			return $this->render('update', [
+				'model' => $models,
+			]);
+		}
+
+		/**
+		 * Deletes an existing Question model.
+		 * If deletion is successful, the browser will be redirected to the 'index' page.
+		 * @param integer $id
+		 * @return mixed
+		 * @throws NotFoundHttpException if the model cannot be found
+		 * @throws \Throwable
+		 * @throws \yii\db\StaleObjectException
+		 */
+		public function actionDelete($id)
+		{
+			$this->findModel($id)->delete();
+
+			return $this->redirect(['index']);
+		}
+
+		/**
+		 * Finds the Question model based on its primary key value.
+		 * If the model is not found, a 404 HTTP exception will be thrown.
 		 * @param integer $id
 		 * @return Question the loaded model
 		 * @throws NotFoundHttpException if the model cannot be found
@@ -133,7 +183,7 @@
 			if (($model = Question::findOne($id)) !== null) {
 				return $model;
 			}
-			
+
 			throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
 		}
 	}
