@@ -15,10 +15,10 @@
 
 	<?php $form = ActiveForm::begin([
 		'enableAjaxValidation' => false,
-		'enableClientValidation' => false,
-		'validateOnChange' => false,
+		'enableClientValidation' => true,
+		'validateOnChange' => true,
 		'validateOnSubmit' => true,
-		'validateOnBlur' => false,
+		'validateOnBlur' => true,
 	]); ?>
 
 
@@ -29,9 +29,12 @@
 		->widget(MultipleInput::className(), ['max' => 4,]); ?>
 
 
-    <div class="form-group">
+
+	<?= $form->field($model, 'convention')->checkbox(); ?>
+
+	<div class="form-group">
 		<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-    </div>
+	</div>
 
 	<?php ActiveForm::end(); ?>
 

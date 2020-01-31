@@ -25,6 +25,10 @@
 		 * @var array виртуальный атрибут для хранения вопросов
 		 */
 		public $questions;
+		/**
+		 * @var @var bool $convention пользовательское соглашение checkbox
+		 */
+		public $convention;
 
 		public function behaviors()
 		{
@@ -59,6 +63,7 @@
 				['status', 'integer'],
 				[['question'], 'required'],
 				[['question'], 'string', 'max' => 255],
+				['convention', 'compare', 'compareValue' => 1, 'message' => 'Выствите чебокс, иначе форма не отправится!'],
 
 			];
 		}
@@ -73,6 +78,7 @@
 				'created_at' => Yii::t('app', 'Created At'),
 				'updated_at' => Yii::t('app', 'Updated At'),
 				'question' => Yii::t('app', 'Question'),
+				'convention' => Yii::t('app', 'Я принимаю пользовательское соглашение.'),
 				'status' => Yii::t('app', 'Status'),
 			];
 		}
