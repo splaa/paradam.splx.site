@@ -12,8 +12,10 @@ use app\modules\user\controllers\UserController;
 use app\modules\user\models\User;
 use Yii;
 use \app\components\Hash;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 use YoHang88\LetterAvatar\LetterAvatar;
 
 /**
@@ -37,7 +39,10 @@ class MessageController extends UserController
 
 		$selected_user_thread = [];
 
+		$model = new SettingsForm();
+
 		return $this->render('index', [
+			'model' => $model,
 			'threads' => $threads,
 			'selected_user_thread' => $selected_user_thread
 		]);
@@ -76,14 +81,18 @@ class MessageController extends UserController
 		$model = new SettingsForm();
 
 		if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->changeSmsCost()) {
-			Yii::$app->getSession()->setFlash('success', 'Спасибо! Стоимость сообщения изменена.');
+			if (!Yii::$app->request->isPjax && !Yii::$app->request->isAjax) {
+				Yii::$app->getSession()->setFlash('success', 'Спасибо! Стоимость сообщения изменена.');
 
-			return $this->refresh();
+				return $this->refresh();
+			}
 		}
 
-		return $this->render('settings', [
-			'model' => $model
-		]);
+		if (!Yii::$app->request->isPjax && !Yii::$app->request->isAjax) {
+			return $this->render('settings', [
+				'model' => $model
+			]);
+		}
 	}
 
 	public function actionCreate()
