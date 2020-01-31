@@ -89,7 +89,7 @@ class MessageController extends UserController
 		}
 
 		if (!Yii::$app->request->isPjax && !Yii::$app->request->isAjax) {
-			return $this->renderAjax('settings', [
+			return $this->render('settings', [
 				'model' => $model
 			]);
 		}
