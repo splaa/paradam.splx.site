@@ -2,10 +2,14 @@
 /**
  * @var \app\modules\message\models\UserThread[] $threads
  * @var \app\modules\message\models\UserThread $selected_user_thread
+ * @var \app\modules\message\forms\SettingsForm $model
  */
 
 use app\components\Hash;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 
 ?>
 <div class="container">
@@ -20,10 +24,15 @@ use yii\helpers\Url;
 					</div>
 					<div class="srch_bar">
 						<div class="stylish-input-group">
-							<input type="text" class="search-bar" placeholder="Search">
-							<span class="input-group-addon" style="display: none">
-                                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                            </span>
+							<?php $form = ActiveForm::begin([
+								'id' => 'settings-form',
+								'action' => Url::to(['settings']),
+								'enableAjaxValidation' => true,
+								]); ?>
+
+							<?= $form->field($model, 'sms_cost')->textInput(['type' => 'number', 'value' => Yii::$app->user->identity->sms_cost]) ?>
+
+							<?php ActiveForm::end(); ?>
 						</div>
 					</div>
 				</div>
@@ -69,3 +78,31 @@ use yii\helpers\Url;
 
 	</div>
 </div>
+<?php
+$js = <<< JS
+$('#settings-form').on('beforeSubmit', function () {
+    let yiiform = $(this);
+    // отправляем данные на сервер
+    $.ajax({
+            type: yiiform.attr('method'),
+            url: yiiform.attr('action'),
+            data: yiiform.serializeArray()
+        }
+    )
+    .done(function(data) {
+       if(data.success) {
+          // данные сохранены
+        } else {
+          // сервер вернул ошибку и не сохранил наши данные
+        }
+    })
+    .fail(function () {
+         // не удалось выполнить запрос к серверу
+    })
+
+    return false; // отменяем отправку данных формы
+})
+JS;
+
+	$this->registerJs($js);
+?>

@@ -73,6 +73,7 @@
 					'message/<id>' => 'message/message/view',
 
 					'public/list' => 'user/public/list',
+					'public/subscribe' => 'user/public/subscribe',
 					[
 						'pattern' => '<username>',
 						'route' => 'user/public',

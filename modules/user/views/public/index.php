@@ -1,11 +1,13 @@
 <?php
-/**
-* @var $model \app\modules\user\models\User
-* @var $messageForm \app\modules\message\forms\MessageForm
- */
+/* @var $model \app\modules\user\models\User */
+/* @var $messageForm \app\modules\message\forms\MessageForm */
+/* @var $this yii\web\View */
+/* @var $subscribe_id integer */
+/* @var $count integer */
 
 use yii\bootstrap\ActiveForm;
-use yii\helpers\Html; ?>
+use yii\helpers\Html;
+use yii\helpers\Url; ?>
 <div class="container emp-profile">
 	<div class="row">
 		<div class="col-md-4">
@@ -46,7 +48,7 @@ use yii\helpers\Html; ?>
 			<?php if (Yii::$app->user->id != $model->id): ?>
 				<?php if (Yii::$app->user->identity->balance >= $model->sms_cost): ?>
 					<div style="text-align: center;margin: 20px 0;">
-						<?php $form = ActiveForm::begin(['action' => \yii\helpers\Url::to(['/message/message/create']), 'method' => 'POST']); ?>
+						<?php $form = ActiveForm::begin(['action' => Url::to(['/message/message/create']), 'method' => 'POST']); ?>
 
 						<?= $form->field($messageForm, 'text')->textarea() ?>
 						<?= $form->field($messageForm, 'user_id')->input('hidden', ['value' => $model->id])->label(false) ?>
@@ -59,6 +61,13 @@ use yii\helpers\Html; ?>
 					</div>
 				<?php endif; ?>
 			<?php endif; ?>
+
+			<?= $this->render('_subscribe_btn', [
+				'subscribe_id' => $subscribe_id,
+				'user_id' => $model->id,
+				'count' => $count
+			]) ?>
+
 			<div class="profile-work">
 				<p>WORK LINK</p>
 				<a href="">Website Link</a><br/>
