@@ -7,7 +7,6 @@
 	use app\modules\services\models\ServiceQuestion;
 	use app\modules\user\controllers\UserController;
 	use Yii;
-	use yii\base\Model;
 	use yii\filters\VerbFilter;
 	use yii\web\NotFoundHttpException;
 
@@ -78,9 +77,10 @@
 				foreach ($questions as $question) {
 					$questionModel = new Question();
 					$questionModel->question = $question;
+					$questionModel->convention = 1;
 					$questionModel->save();
-
 				}
+				return $this->redirect('/services/question');
 			}
 
 
@@ -101,6 +101,7 @@
 				foreach ($questions as $question) {
 					$questionModel = new Question();
 					$questionModel->question = $question;
+					$questionModel->convention = 1;
 					$questionModel->save();
 
 					$serviceQuestions = new ServiceQuestion();
@@ -132,26 +133,21 @@
 		public function actionUpdate($id)
 		{
 
+			$model = $this->findModel($id);
 
-			$models = ServiceQuestion::find()->indexBy('id')->all();
+			if (Yii::$app->request->post('Question')['questions']) {
+				$questions = Yii::$app->request->post('Question')['questions'];
 
-
-			if (Model::loadMultiple($models, Yii::$app->request->post()) && Model::validateMultiple($models)) {
-				var_dump($models);
-
-				die('<br>' . 'Скрипт Остановлен');
-
-
-				foreach ($models as $question) {
-					$question->save(false);
+				foreach ($questions as $question) {
+					$model->question = $question;
+					$model->convention = 1;
+					$model->save();
 				}
-
-				return $this->redirect(['view', 'id' => $id]);
+				return $this->redirect(['view', 'id' => $model->id]);
 			}
 
-
 			return $this->render('update', [
-				'model' => $models,
+				'model' => $model,
 			]);
 		}
 
