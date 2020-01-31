@@ -6,6 +6,7 @@ namespace app\modules\user\controllers;
 
 use app\modules\admin\models\UserSearch;
 use app\modules\message\forms\MessageForm;
+use app\modules\services\models\Service;
 use app\modules\user\models\Subscribe;
 use app\modules\user\models\User;
 use Yii;
@@ -17,6 +18,7 @@ class PublicController extends Controller
 	public function actionIndex($username)
 	{
 		$model = User::findByUsername($username);
+		$services = Service::find()->where('user_id' == $model->id)->all();
 
 		if ($model) {
 			$messageForm = new MessageForm();
@@ -25,7 +27,7 @@ class PublicController extends Controller
 				// Get ID record subscribe
 				$subscriber_id = Yii::$app->user->id;
 				$user_id = $model->id;
-	
+
 				$subscribe_info = Subscribe::checkSubscribe($user_id, $subscriber_id);
 				$subscribe_id = $subscribe_info['subscribe_id'];
 			} else {
@@ -34,6 +36,7 @@ class PublicController extends Controller
 
 			return $this->render('index', [
 				'model' => $model,
+				'services' => $services,
 				'messageForm' => $messageForm,
 				'subscribe_id' => $subscribe_id,
 				'count' => $subscribe_info['count'] ?? 0
