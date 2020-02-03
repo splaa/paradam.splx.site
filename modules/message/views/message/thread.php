@@ -4,6 +4,9 @@
  * @var \yii\web\View $this
  */
 
+use yii\helpers\Url;
+use yii\web\View;
+
 ?>
 
 <div class="msg_history">
@@ -16,7 +19,11 @@
 				<div class="received_msg">
 					<div class="received_withd_msg">
 						<p>
-							<?= $message->text ?>
+							<?php if ($message->audio): ?>
+								<audio controls="" src="<?= Yii::$app->request->hostInfo ?>/uploads/messages/<?= $message->audio ?>"></audio>
+							<?php else: ?>
+								<?= $message->text ?>
+							<?php endif; ?>
 						</p>
 						<span class="time_date"> <?= Yii::$app->formatter->asRelativeTime($message->created_at ) ?>    |    <?= Yii::$app->formatter->asDate($message->created_at ) ?></span>
 					</div>
@@ -26,7 +33,11 @@
 			<div class="outgoing_msg">
 				<div class="sent_msg">
 					<p>
-						<?= $message->text ?>
+						<?php if ($message->audio): ?>
+							<audio controls="" src="<?= Yii::$app->request->hostInfo ?>/uploads/messages/<?= $message->audio ?>"></audio>
+						<?php else: ?>
+							<?= $message->text ?>
+						<?php endif; ?>
 					</p>
 					<span class="time_date"> <?= Yii::$app->formatter->asRelativeTime($message->created_at ) ?>    |    <?= Yii::$app->formatter->asDate($message->created_at ) ?></span>
 				</div>
@@ -37,24 +48,46 @@
 <div class="type_msg">
 	<div class="input_msg_write">
 		<input type="text" class="write_msg" placeholder="Type a message"/>
+		<input type="hidden" class="audio_msg"/>
+		<button class="msg_send_btn record-btn" id="recordButton" type="button"><i class="glyphicon glyphicon-record"aria-hidden="true"></i></button>
 		<button class="msg_send_btn" type="button"><i class="glyphicon glyphicon-send"aria-hidden="true"></i></button>
 	</div>
+	<p><strong>Recordings:</strong></p>
+	<div id="recordingsList"></div>
 </div>
 
-
-
 <?php
-$user_id = Yii::$app->user->id;
-$avatar = Yii::$app->user->identity->avatarSmall;
-$alt = Yii::$app->user->identity->alt;
-$time = date("Y-m-m H:i:s");
+	$host = Yii::$app->request->hostInfo;
+	$user_id = Yii::$app->user->id;
+	$avatar = Yii::$app->user->identity->avatarSmall;
+	$alt = Yii::$app->user->identity->alt;
+	$time = date("Y-m-m H:i:s");
+?>
+<script>
+	let upload_file = '<?= Url::to(['message/upload-audio']) ?>';
+	let sendingData = {
+        message: '',
+        audio: '',
+        user_id: '<?= $user_id ?>',
+        thread_id: '<?= $selected_user_thread->thread_id ?>',
+        avatar: '<?= $avatar ?>',
+        alt: '<?= $alt ?>',
+        time: '<?= $time ?>',
+        date: '<?= $time ?>',
+    };
+</script>
+<?php
 $JS = <<<JS
 	function message(data, me) {
 	    let html = '';
 	    if (me) {
 			html += '<div class="outgoing_msg">';
 				html += '<div class="sent_msg">';
-					html += '<p>' + data.message + '</p>';
+					if (data.audio) {
+						html += '<p><audio controls="" src="{$host}/uploads/messages/' + data.audio + '"></audio></p>';
+					} else {
+					    html += '<p>' + data.message + '</p>';
+					}
 					html += '<span class="time_date"> ' + data.time + '    |    ' + data.date + '</span>';
 				html += '</div>';
 			html += '</div>';
@@ -65,7 +98,11 @@ $JS = <<<JS
 				html += '</div>';
 				html += '<div class="received_msg">';
 					html += '<div class="received_withd_msg">';
-						html += '<p>' + data.message + '</p>';
+						if (data.audio) {
+							html += '<p><audio controls="" src="{$host}/uploads/messages/' + data.audio + '"></audio></p>';
+						} else {
+						    html += '<p>' + data.message + '</p>';
+						}
 						html += '<span class="time_date"> ' + data.time + '    |    ' + data.date + '</span>';
 					html += '</div>';
 				html += '</div>';
@@ -78,30 +115,22 @@ $JS = <<<JS
 	}
 	
 	function send() {
-        let message = {
-            message:$(".write_msg").val(),
-            user_id:'{$user_id}',
-            thread_id:'{$selected_user_thread->thread_id}',
-            avatar: '{$avatar}',
-            alt: '{$alt}',
-            time: '{$time}',
-            date: '{$time}',
-        };
+		sendingData.message = $('.write_msg').val();
 
-        $(".write_msg").val("");
-        
-        socket.send(JSON.stringify(message));
+        if (sendingData.message || sendingData.audio) {
+        	socket.send(JSON.stringify(sendingData));
+            $('#recordingsList').html('');
+            $(".write_msg").val("");
+
+            sendingData.message = '';
+            sendingData.audio = '';
+        }
 	}
-
-	socket = new WebSocket('ws://localhost:8080');//помните про порт: он должен совпадать с тем, который использовался при запуске серверной части
-	socket.onopen = function(e) {
-		//socket.send('{"idUser":{$user_id}}'); //часть моего кода. Сюда вставлять любой валидный json.
-	};
 
 	socket.onmessage = function(e) {
 	    // e.data - данные
 	    let data = JSON.parse(e.data);
-	    
+
 	    if (data.thread_id == '{$selected_user_thread->thread_id}') {
 		    if (data.user_id == '{$user_id}') {
 	            message(data, true);
@@ -109,10 +138,11 @@ $JS = <<<JS
 		        message(data, false);
 	        }
 	    }
-	    
+
 	    $('#thread_' + data.thread_id).find('p > .text').html(data.message);
+
 	    if (data.user_id != '{$user_id}') {
-	    	$('#thread_' + data.thread_id).find('p > .badge').html(1);
+	        $('#thread_' + data.thread_id).find('p > .badge').html(1);
 	    }
 	};
 
@@ -146,6 +176,6 @@ $JS = <<<JS
 	div.scrollTop(div.prop('scrollHeight'));
 JS;
 
-$this->registerJs($JS);
+$this->registerJs($JS, View::POS_END);
 
 ?>

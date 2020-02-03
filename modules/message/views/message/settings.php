@@ -2,7 +2,6 @@
 
 /* @var $this \yii\web\View */
 
-/* @var $model \app\modules\message\forms\SettingsForm */
 
 use app\widgets\Alert;
 use yii\bootstrap\ActiveForm;

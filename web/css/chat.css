@@ -134,6 +134,9 @@ img{ max-width:100%;}
     top: 11px;
     width: 33px;
 }
+.msg_send_btn.record-btn {
+    right: 40px;
+}
 .messaging { padding: 0 0 50px 0;}
 .msg_history {
     height: 516px;

@@ -2,6 +2,7 @@
 	
 	namespace app\modules\main\controllers;
 
+	use JamesHeinrich\GetID3\GetID3;
 	use yii\web\Controller;
 
     /**
@@ -24,13 +25,14 @@
 		 */
 		public function actionIndex()
 		{
-//			$sms = new Smsc('+380980183456', 'Проверка');
-//			$result = $sms->message();
-//			echo "<pre>";print_r($result);exit;
-
-//			$sms = new Telegram('+380980183456', 'Проверка');
-//			$result = $sms->message();
-//			echo "<pre>";print_r($result);exit;
+//			$file = \Yii::getAlias('@web') . 'uploads/messages/2020-02-03T00:57:18.653Z1_1.wav';
+//			$fp = fopen($file, 'rb');
+//			fseek($fp, 28);
+//			$rawheader = fread($fp, 4);
+//
+//			$header = unpack('Vbytespersec', $rawheader);
+//
+//			 echo "<pre>";print_r('Файл '.$file.' продолжительностью '.round((filesize($file)-44)/$header['bytespersec'],2).' сек.');exit;
 
 			return $this->render('index');
 		}

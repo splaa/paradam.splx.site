@@ -13,9 +13,12 @@ use app\modules\user\models\User;
 use Yii;
 use \app\components\Hash;
 use yii\bootstrap\ActiveForm;
+use yii\filters\VerbFilter;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use yii\web\UploadedFile;
+use yii\web\View;
 use YoHang88\LetterAvatar\LetterAvatar;
 
 /**
@@ -23,6 +26,12 @@ use YoHang88\LetterAvatar\LetterAvatar;
  */
 class MessageController extends UserController
 {
+	public function beforeAction($action)
+	{
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+
 	/**
 	 * @param string $id
 	 * @return string
@@ -51,6 +60,9 @@ class MessageController extends UserController
 	public function actionView($id = '')
 	{
 		$this->view->registerCssFile('@web/css/chat.css');
+		$this->view->registerJsFile('@web/js/ws.js');
+		$this->view->registerJsFile('@web/js/recorder.js');
+		$this->view->registerJsFile('@web/js/record.js');
 
 		$threads = UserThread::find()
 			->where(['user_id' => Yii::$app->user->id])
@@ -70,7 +82,10 @@ class MessageController extends UserController
 				->one();
 		}
 
+		$model = new SettingsForm();
+
 		return $this->render('index', [
+			'model' => $model,
 			'threads' => $threads,
 			'selected_user_thread' => $selected_user_thread
 		]);
@@ -119,6 +134,7 @@ class MessageController extends UserController
 				} else {
 					$thread = new Thread();
 					$thread->title = $sender_id . '=>' . $recipient_id;
+					$thread->creator_id = $recipient_id;
 					$thread->save();
 					$thread_id = $thread->id;
 
@@ -155,6 +171,21 @@ class MessageController extends UserController
 			}
 		} else {
 			throw new NotFoundHttpException('Страница не найденна');
+		}
+	}
+
+	public function actionUploadAudio()
+	{
+		if (Yii::$app->request->isPost) {
+			$file = UploadedFile::getInstanceByName('audio_data');
+
+			if ($file) {
+				if (!file_exists(Yii::getAlias('@web') . 'uploads/messages')) {
+					mkdir(Yii::getAlias('@web') . 'uploads/messages', 0777);
+				}
+
+				$file->saveAs(Yii::getAlias('@web') . 'uploads/messages/' . $file->name . '.wav');
+			}
 		}
 	}
 }

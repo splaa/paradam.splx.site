@@ -12,6 +12,7 @@ use yii\db\Expression;
  * @property int $id
  * @property string|null $title
  * @property string|null $created_at
+ * @property int|null $creator_id
  *
  * @property Message[] $messages
  * @property Message[] $message

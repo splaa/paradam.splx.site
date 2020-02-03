@@ -1,6 +1,7 @@
 <?php
 namespace app\commands;
 use app\modules\message\models\Message;
+use app\modules\message\models\Thread;
 use app\modules\message\models\UserMessage;
 use app\modules\message\models\UserThread;
 use app\modules\user\models\User;
@@ -54,7 +55,7 @@ class SocketServer implements MessageComponentInterface
 	private function saveMessageToDB(&$data) {
 		$parse = json_decode($data, true);
 
-		if ((!empty($parse['message'])) && !empty($parse['user_id']) && !empty($parse['thread_id'])) {
+		if ((!empty($parse['message']) || !empty($parse['audio'])) && !empty($parse['user_id']) && !empty($parse['thread_id'])) {
 			$recipient = UserThread::find()
 						->alias('ut')
 						->leftJoin('thread as t', 'ut.thread_id = t.id')
@@ -74,6 +75,7 @@ class SocketServer implements MessageComponentInterface
 				$message->author_id = $parse['user_id'];
 				$message->thread_id = $parse['thread_id'];
 				$message->text = $parse['message'];
+				$message->audio = $parse['audio'];
 				$message->save();
 
 				$user_message = new UserMessage();
@@ -81,14 +83,27 @@ class SocketServer implements MessageComponentInterface
 				$user_message->message_id = $message->id;
 				$user_message->save();
 
-				// Minus from balance
-				if (mb_strlen($parse['message'], 'UTF-8') > USER::MESSAGE_LENGTH) {
-					$factor = count(User::strSplitUnicode($parse['message'], USER::MESSAGE_LENGTH));
-				} else {
-					$factor = 1;
-				}
+				$thread = Thread::findOne($recipient['thread_id']);
+				$factor = 1;
 
-				User::transferBits($parse['user_id'], $recipient_id, User::TRANSFER_TYPE_SMS, 0, $factor);
+				if ($thread->creator_id != $parse['user_id']) {
+					// Minus from balance
+					if (!empty($parse['audio'])) {
+						$file = Yii::getAlias('@web') . 'uploads/messages/' . $parse['audio'];
+						$fp = fopen($file, 'rb');
+						fseek($fp, 28);
+						$rawheader = fread($fp, 4);
+						$header = unpack('Vbytespersec',$rawheader);
+						echo 'Файл '.$file.' продолжительностью '.round((filesize($file)-44)/$header['bytespersec'],2).' сек.';
+
+					} else {
+						if (mb_strlen($parse['message'], 'UTF-8') > USER::MESSAGE_LENGTH) {
+							$factor = count(User::strSplitUnicode($parse['message'], USER::MESSAGE_LENGTH));
+						}
+					}
+
+					User::transferBits($parse['user_id'], $recipient_id, User::TRANSFER_TYPE_SMS, 0, $factor);
+				}
 
 				$parse['time'] = Yii::$app->formatter->asRelativeTime(date('Y-m-d H:i:s'));
 				$parse['date'] = Yii::$app->formatter->asDate(date('Y-m-d H:i:s'));
