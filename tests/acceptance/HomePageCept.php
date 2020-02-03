@@ -3,7 +3,7 @@
 	 * @var \Codeception\Scenario $scenario
 	 */
 	$I = new AcceptanceTester($scenario);
-	$I->wantTo('perform actions and see result');
-	
+	$I->wantTo('выполнить действия и увидеть результат');
+
 	$I->amOnPage('/');
 	

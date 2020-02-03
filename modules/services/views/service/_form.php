@@ -33,9 +33,9 @@
         </div>
         <div class="col-12">
 
-            <!--            --><?php //if ($model->imageFile): ?>
-            <!--                --><? //= Html::img('@web/uploads/' . $model->imageFile, ['width' => '100px']) ?>
-            <!--            --><?php //endif; ?>
+			<?php //if ($model->imageFile): ?>
+			<?php //= Html::img('@web/uploads/' . $model->imageFile, ['width' => '100px']) ?>
+			<?php //endif; ?>
         </div>
     </div>
 
