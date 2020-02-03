@@ -32,8 +32,7 @@
     "yohang88/letter-avatar": "2.2.0",
     "yiisoft/yii2-imagine": "2.2.0",
     "bubasuma/yii2-simplechat": "^2.0",
-    "unclead/yii2-multiple-input": "~2.0",
-    "amphp/http-server": "v2.0.0-rc4"
+    "unclead/yii2-multiple-input": "~2.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
@@ -91,11 +90,5 @@
       "type": "composer",
       "url": "https://asset-packagist.org"
     }
-  ],
-  "autoload": {
-    "files": ["madeline.phar/vendor/autoload.php"],
-    "psr-4": {
-      "TelegramApiServer\\": "telegramapiserver/"
-    }
-  }
+  ]
 }
