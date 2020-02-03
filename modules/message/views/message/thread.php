@@ -56,6 +56,8 @@ use yii\web\View;
 	<div id="recordingsList"></div>
 </div>
 
+
+
 <?php
 	$host = Yii::$app->request->hostInfo;
 	$user_id = Yii::$app->user->id;
