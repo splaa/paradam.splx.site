@@ -7,20 +7,18 @@ use danog\MadelineProto\API;
 use Yii;
 use yii\base\BaseObject;
 
+
 class Telegram extends BaseObject
 {
 	public $telephone;
 	public $message;
 	public $username;
-	public $mp;
 
 	public function __construct($telephone, $message, $username = 'User', $config = [])
 	{
 		parent::__construct($config);
-		$this->mp = new API('session/session.madeline', Yii::$app->params['api']['tg']);
-		$this->mp->start();
 
-		$this->telephone = $telephone;
+		$this->telephone = '+' . trim($telephone);
 		$this->message = $message;
 
 		if ($username != 'User') {
@@ -37,13 +35,38 @@ class Telegram extends BaseObject
 
 	public function message()
 	{
-		$this->mp->contacts->addContact(['add_phone_privacy_exception' => true, 'id' => 'me', 'first_name' => $this->username, 'last_name' => '', 'phone' => $this->telephone]);
-		$import = $this->mp->contacts->importContacts(['contacts' => [['_' => 'inputPhoneContact', 'client_id' => 0, 'phone' => $this->telephone, 'first_name' => $this->username, 'last_name' => '']]]);
+		$request_data = [
+			'data[add_phone_privacy_exception]' => true,
+			'data[id]' => 'me',
+			'data[first_name]' => $this->username,
+			'data[last_name]' => '',
+			'data[phone]' => $this->telephone
+		];
+		$curl = new CurlRequest();
+		$curl->url = Yii::$app->request->hostInfo . ":9503/api/contacts.addContact?" . http_build_query($request_data);
+		$curl->sendGet();
 
-		if (!empty($import['imported'][0]['user_id'])) {
-			$this->mp->messages->sendMessage(['peer' => $import['imported'][0]['user_id'], 'message' => $this->message]);
+		$request_data = [
+			'data[contacts][0][_]' => 'inputPhoneContact',
+			'data[contacts][0][client_id]' => 0,
+			'data[contacts][0][phone]' => $this->telephone,
+			'data[contacts][0][first_name]' => $this->username,
+			'data[contacts][0][last_name]' => ''
+		];
+		$curl = new CurlRequest();
+		$curl->url = Yii::$app->request->hostInfo . ":9503/api/contacts.importContacts?" . http_build_query($request_data);
+		$import =  $curl->sendGet();
 
-			if ($this->mp->updates->getState()) {
+		if (!empty($import['response']['imported'][0]['user_id'])) {
+			$request_data = [
+				'data[peer]' => $import['response']['imported'][0]['user_id'],
+				'data[message]' => $this->message
+			];
+			$curl = new CurlRequest();
+			$curl->url = Yii::$app->request->hostInfo . ":9503/api/messages.sendMessage?" . http_build_query($request_data);
+			$message =  $curl->sendGet();
+
+			if ($message) {
 				return Yii::t('app', 'Сообщение отправленно!'); // TODO-splaandrey: создать категорию для переводом
 			} else {
 				return Yii::t('app', 'Ошибка при отправке сообщения!'); // TODO-splaandrey: создать категорию для переводом

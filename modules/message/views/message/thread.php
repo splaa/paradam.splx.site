@@ -52,9 +52,11 @@ use yii\web\View;
 		<button class="msg_send_btn record-btn" id="recordButton" type="button"><i class="glyphicon glyphicon-record"aria-hidden="true"></i></button>
 		<button class="msg_send_btn" type="button"><i class="glyphicon glyphicon-send"aria-hidden="true"></i></button>
 	</div>
+	<p><strong>Timing: <span>30sec = 100bits</span>/<span id="record_time">0</span> = <span id="record_bits">0 bits</span></strong></p>
 	<p><strong>Recordings:</strong></p>
 	<div id="recordingsList"></div>
 </div>
+
 
 <?php
 	$host = Yii::$app->request->hostInfo;
