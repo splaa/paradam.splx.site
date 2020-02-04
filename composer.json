@@ -17,10 +17,9 @@
     "irc": "irc://irc.freenode.net/yii",
     "source": "https://github.com/yiisoft/yii2"
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "require": {
-    "php": ">=7.4",
-    "facebook/webdriver": "^1.8@dev",
+    "php": ">=7.4.0",
     "yiisoft/yii2": "~2.0.14",
     "yiisoft/yii2-bootstrap": "~2.0.0",
     "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
@@ -32,7 +31,15 @@
     "yohang88/letter-avatar": "2.2.0",
     "yiisoft/yii2-imagine": "2.2.0",
     "bubasuma/yii2-simplechat": "^2.0",
-    "unclead/yii2-multiple-input": "~2.0"
+    "unclead/yii2-multiple-input": "~2.0",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "amphp/http-server": "^2",
+    "amphp/http-server-router": "^1",
+    "amphp/websocket-server": "^2",
+    "amphp/websocket-client": "dev-master#53f7883b325b09864095300ec8ff81e84e772c3b",
+    "vlucas/phpdotenv": "^4",
+    "danog/madelineproto":"^5"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
@@ -55,6 +62,7 @@
       "enabled": false
     }
   },
+  "prefer-stable": true,
   "scripts": {
     "post-install-cmd": [
       "yii\\composer\\Installer::postInstall"
@@ -90,5 +98,10 @@
       "type": "composer",
       "url": "https://asset-packagist.org"
     }
-  ]
+  ],
+  "autoload": {
+    "psr-4": {
+      "TelegramApiServer\\": "services/telegram/src/"
+    }
+  }
 }
