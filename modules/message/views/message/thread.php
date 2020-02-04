@@ -70,6 +70,7 @@ use yii\web\View;
 	let sendingData = {
         message: '',
         audio: '',
+        timing: '',
         user_id: '<?= $user_id ?>',
         thread_id: '<?= $selected_user_thread->thread_id ?>',
         avatar: '<?= $avatar ?>',
@@ -126,6 +127,7 @@ $JS = <<<JS
 
             sendingData.message = '';
             sendingData.audio = '';
+            sendingData.timing = '';
         }
 	}
 
