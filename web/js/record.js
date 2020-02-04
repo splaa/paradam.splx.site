@@ -73,6 +73,14 @@ function startRecording() {
 
         console.log("Recording started");
 
+        setInterval(function(){
+            if (rec.recording) {
+                let record_time = document.getElementById('record_time');
+                let record_bits = document.getElementById('record_bits');
+                record_time.innerText = Math.round(audioContext.currentTime) + 'sec';
+            }
+        }, '1000');
+
     }).catch(function(err) {
         //enable the record button if getUserMedia() fails
         recordButton.disabled = false;
@@ -111,6 +119,15 @@ function stopRecording() {
 
     //stop microphone access
     gumStream.getAudioTracks()[0].stop();
+
+    let record_time = document.getElementById('record_time').innerText;
+    let record_bits = document.getElementById('record_bits');
+
+    if ((parseInt(record_time) % 30) > 0) {
+        //record_bits.innerText = '';
+    }
+
+    console.log("MATH: " + (parseInt(record_time) % 30));
 
     //create the wav blob and pass it on to createDownloadLink
     rec.exportWAV(createDownloadLink);
