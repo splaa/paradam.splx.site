@@ -89,13 +89,10 @@ class SocketServer implements MessageComponentInterface
 				if ($thread->creator_id != $parse['user_id']) {
 					// Minus from balance
 					if (!empty($parse['audio'])) {
-						$file = Yii::getAlias('@web') . 'uploads/messages/' . $parse['audio'];
-						$fp = fopen($file, 'rb');
-						fseek($fp, 28);
-						$rawheader = fread($fp, 4);
-						$header = unpack('Vbytespersec',$rawheader);
-						echo 'Файл '.$file.' продолжительностью '.round((filesize($file)-44)/$header['bytespersec'],2).' сек.';
-
+						$timing = $parse['timing'] ?? 0;
+						if ($timing) {
+							$factor = ceil((int)$timing / 30);
+						}
 					} else {
 						if (mb_strlen($parse['message'], 'UTF-8') > USER::MESSAGE_LENGTH) {
 							$factor = count(User::strSplitUnicode($parse['message'], USER::MESSAGE_LENGTH));
