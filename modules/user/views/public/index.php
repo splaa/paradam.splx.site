@@ -52,20 +52,18 @@
     <div class="row">
         <div class="col-md-4">
 			<?php if (Yii::$app->user->id != $model->id): ?>
-				<?php if (Yii::$app->user->identity->balance >= $model->sms_cost): ?>
-                    <div style="text-align: center;margin: 20px 0;">
-						<?php $form = ActiveForm::begin(['action' => Url::to(['/message/message/create']), 'method' => 'POST']); ?>
+                <div style="text-align: center;margin: 20px 0;">
+					<?php $form = ActiveForm::begin(['action' => Url::to(['/message/message/create']), 'method' => 'POST']); ?>
 
-						<?= $form->field($messageForm, 'text')->textarea() ?>
-						<?= $form->field($messageForm, 'user_id')->input('hidden', ['value' => $model->id])->label(false) ?>
+					<?= $form->field($messageForm, 'text')->textarea() ?>
+					<?= $form->field($messageForm, 'user_id')->input('hidden', ['value' => $model->id])->label(false) ?>
 
-                        <div class="form-group">
-							<?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
-                        </div>
-
-						<?php ActiveForm::end(); ?>
+                    <div class="form-group">
+						<?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
                     </div>
-				<?php endif; ?>
+
+					<?php ActiveForm::end(); ?>
+                </div>
 			<?php endif; ?>
 
 			<?= $this->render('_subscribe_btn', [
