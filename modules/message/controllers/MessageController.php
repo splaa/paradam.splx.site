@@ -175,7 +175,7 @@ class MessageController extends UserController
 					return $this->redirect(Url::to(['view', 'id' => $hash->run(Hash::ENCODE)]));
 				} else {
 					Yii::$app->getSession()->setFlash('error', 'На счету не достаточно средств пожалуйста пополните Ваш аккаунт.');
-					return $this->redirect(Url::to(['user/profile/balance']));
+					return $this->redirect(Url::to(['/user/profile/balance']));
 				}
 			}
 		} else {
