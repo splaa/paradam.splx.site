@@ -7,6 +7,7 @@ services:
       - ./:/app:delegated
     ports:
       - '80:80'
+      - '8080:8080'
       - '9503:9503'
 
     depends_on:
