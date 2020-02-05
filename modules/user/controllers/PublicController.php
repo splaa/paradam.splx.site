@@ -23,6 +23,13 @@ class PublicController extends Controller
 		if ($model) {
 			$services = Service::find()->where(['user_id' => $model->id])->all();
 
+			$avatar = new LetterAvatar($model->username, 'circle', User::SIZE_AVATAR_SMALL);
+			$avatar->saveAs('images/user/avatar/' . $model->id . '-' . User::SIZE_AVATAR_SMALL . '.png');
+			$avatar = new LetterAvatar($model->username, 'square',  User::SIZE_AVATAR_MEDIUM);
+			$avatar->saveAs('images/user/avatar/' . $model->id . '-' . User::SIZE_AVATAR_MEDIUM . '.png');
+			$avatar = new LetterAvatar($model->username, 'square', User::SIZE_AVATAR_BIG);
+			$avatar->saveAs('images/user/avatar/' . $model->id . '-' . User::SIZE_AVATAR_BIG . '.png');
+
 			$messageForm = new MessageForm();
 
 			if (Yii::$app->user->id != $model->id) {

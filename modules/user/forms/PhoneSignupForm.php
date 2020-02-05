@@ -105,11 +105,11 @@
 				}
 
 				$avatar = new LetterAvatar($name, 'circle', User::SIZE_AVATAR_SMALL);
-				$avatar->saveAs('images/user/avatar/' . $this->username . '-' . User::SIZE_AVATAR_SMALL . '.png');
+				$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_SMALL . '.png');
 				$avatar = new LetterAvatar($name, 'square',  User::SIZE_AVATAR_MEDIUM);
-				$avatar->saveAs('images/user/avatar/' . $this->username . '-' . User::SIZE_AVATAR_MEDIUM . '.png');
+				$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_MEDIUM . '.png');
 				$avatar = new LetterAvatar($name, 'square', User::SIZE_AVATAR_BIG);
-				$avatar->saveAs('images/user/avatar/' . $this->username . '-' . User::SIZE_AVATAR_BIG . '.png');
+				$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_BIG . '.png');
 				
 				if ($user->save()) {
 					if ($this->email) {

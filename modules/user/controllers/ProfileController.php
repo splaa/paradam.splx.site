@@ -71,18 +71,18 @@
 				$model->file = UploadedFile::getInstance($model, 'file');
 
 				if ($model->file && $model->validate()) {
-					$model->file->saveAs('images/user/avatar/' . Yii::$app->user->identity->username . '-temp.' . $model->file->extension);
+					$model->file->saveAs('images/user/avatar/' . Yii::$app->user->identity->getId() . '-temp.' . $model->file->extension);
 					// Generate Small Avatar
-					Image::thumbnail('images/user/avatar/' . Yii::$app->user->identity->username . '-temp.' . $model->file->extension, User::SIZE_AVATAR_SMALL, User::SIZE_AVATAR_SMALL)
-						->save('images/user/avatar/' . Yii::$app->user->identity->username . '-' . User::SIZE_AVATAR_SMALL . '.png');
+					Image::thumbnail('images/user/avatar/' . Yii::$app->user->identity->getId() . '-temp.' . $model->file->extension, User::SIZE_AVATAR_SMALL, User::SIZE_AVATAR_SMALL)
+						->save('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_SMALL . '.png');
 					// Generate Medium Avatar
-					Image::thumbnail('images/user/avatar/' . Yii::$app->user->identity->username . '-temp.' . $model->file->extension, User::SIZE_AVATAR_MEDIUM, User::SIZE_AVATAR_MEDIUM)
-						->save('images/user/avatar/' . Yii::$app->user->identity->username . '-' . User::SIZE_AVATAR_MEDIUM . '.png');
+					Image::thumbnail('images/user/avatar/' . Yii::$app->user->identity->getId() . '-temp.' . $model->file->extension, User::SIZE_AVATAR_MEDIUM, User::SIZE_AVATAR_MEDIUM)
+						->save('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_MEDIUM . '.png');
 					// Generate Big Avatar
-					Image::thumbnail('images/user/avatar/' . Yii::$app->user->identity->username . '-temp.' . $model->file->extension, User::SIZE_AVATAR_BIG, User::SIZE_AVATAR_BIG)
-						->save('images/user/avatar/' . Yii::$app->user->identity->username . '-' . User::SIZE_AVATAR_BIG . '.png');
+					Image::thumbnail('images/user/avatar/' . Yii::$app->user->identity->getId() . '-temp.' . $model->file->extension, User::SIZE_AVATAR_BIG, User::SIZE_AVATAR_BIG)
+						->save('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_BIG . '.png');
 
-					unlink('images/user/avatar/' . Yii::$app->user->identity->username . '-temp.' . $model->file->extension);
+					unlink('images/user/avatar/' . Yii::$app->user->identity->getId() . '-temp.' . $model->file->extension);
 				}
 			}
 
