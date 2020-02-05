@@ -55,6 +55,7 @@ AppAsset::register($this);
                         ['label' => Yii::t('app', 'NAV_SERVICES'), 'url' => ['/services/service']],
                         ['label' => Yii::t('app', 'NAV_QUESTIONS'), 'url' => ['/services/question']],
                         ['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
+                        ['label' => Yii::t('app', 'ADMIN_THREAD'), 'url' => ['/admin/thread/index']],
                     ]] :
 					false,
 				!Yii::$app->user->isGuest ?

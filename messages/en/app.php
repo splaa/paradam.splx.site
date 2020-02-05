@@ -18,6 +18,7 @@ return [
     'BUTTON_DELETE' => 'Delete',
 	
 	'ADMIN_USERS' => 'Users',
+	'ADMIN_THREAD' => 'Thread',
 	'USERS' => 'Users',
 	'USER' => 'User',
 
