@@ -19,7 +19,7 @@
 		<?= Html::a(Yii::t('app', 'LINK_PASSWORD_CHANGE'), ['password-change'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(Yii::t('app', 'LINK_TO_PHONE_CHANGE'), ['telephone-change'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(Yii::t('app', 'LINK_TO_MESSAGES'), ['/message/message/index'], ['class' => 'btn btn-primary']) ?>
-		<?= Html::a(Yii::t('app', 'LINK_TO_AVATAR'), ['uploads-avatar'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(Yii::t('app', 'LINK_TO_AVATAR'), ['upload-avatar'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(Yii::t('app', 'LINK_TO_MESSAGE_SETTINGS'), ['/message/message/settings'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_BALANCE'), Yii::$app->user->identity->formatBalance), ['balance'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_NAME'), Yii::$app->user->identity->formatBalance), ['name-change'], ['class' => 'btn btn-primary']) ?>
