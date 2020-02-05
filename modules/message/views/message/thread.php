@@ -72,6 +72,7 @@ use yii\web\View;
 	$time = date("Y-m-m H:i:s");
 ?>
 <script>
+	let WS_HOST = '<?= Yii::$app->params['ws_host'] ?>';
 	let upload_file = '<?= Url::to(['message/upload-audio']) ?>';
 	let sendingData = {
         message: '',
