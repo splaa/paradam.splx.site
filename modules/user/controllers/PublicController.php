@@ -21,7 +21,7 @@ class PublicController extends Controller
 		$model = User::findByUsername($username);
 
 		if ($model) {
-			$name = $this->username;
+			$name = $model->username;
 			if (!empty($model->last_name)) {
 				$name = $model->first_name . ' ' . $model->last_name;
 			}
