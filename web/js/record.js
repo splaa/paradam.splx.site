@@ -3,6 +3,7 @@ URL = window.URL || window.webkitURL;
 var gumStream; 						//stream from getUserMedia()
 var rec; 							//Recorder.js object
 var input; 							//MediaStreamAudioSourceNode we'll be recording
+let counterClick = 0;
 
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext //audio context to help us record
@@ -18,59 +19,66 @@ function startRecording() {
     recordButton.disabled = false;
 
     navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-        audioContext = new AudioContext();
+        if (counterClick) {
+            audioContext = new AudioContext();
 
-        gumStream = stream;
+            gumStream = stream;
 
-        input = audioContext.createMediaStreamSource(stream);
+            input = audioContext.createMediaStreamSource(stream);
 
-        rec = new Recorder(input,{numChannels:1})
+            rec = new Recorder(input, {numChannels: 1})
 
-        //start the recording process
-        rec.record()
+            //start the recording process
+            rec.record()
 
-        setInterval(function(){
-            if (rec.recording) {
-                let record_time = document.getElementById('record_time');
-                let record_bits = document.getElementById('record_bits');
-                record_time.innerText = Math.round(audioContext.currentTime) + 'sec';
-                record_bits.innerText = Math.ceil(parseInt(record_time.innerText) / 30) * 100 + ' bits';
+            setInterval(function () {
+                if (rec.recording) {
+                    let record_time = document.getElementById('record_time');
+                    let record_bits = document.getElementById('record_bits');
+                    record_time.innerText = Math.round(audioContext.currentTime) + 'sec';
+                    record_bits.innerText = Math.ceil(parseInt(record_time.innerText) / 30) * 100 + ' bits';
 
-                if (parseInt(record_time.innerText) > 30) {
-                    record_time.style.color = 'darkred';
-                    record_time.style.fontWeight = 'bold';
+                    if (parseInt(record_time.innerText) > 30) {
+                        record_time.style.color = 'darkred';
+                        record_time.style.fontWeight = 'bold';
+                    }
                 }
-            }
-        }, '1000');
+            }, '1000');
+        }
 
+        counterClick++;
     }).catch(function(err) {
         recordButton.disabled = false;
     });
 }
 
 function pauseRecording(){
-    if (rec.recording){
-        //pause
-        rec.stop();
-        pauseButton.innerHTML="Resume";
-    }else{
-        //resume
-        rec.record()
-        pauseButton.innerHTML="Pause";
+    if (counterClick) {
+        if (rec.recording) {
+            //pause
+            rec.stop();
+            pauseButton.innerHTML = "Resume";
+        } else {
+            //resume
+            rec.record()
+            pauseButton.innerHTML = "Pause";
 
+        }
     }
 }
 
 function stopRecording() {
-    console.log("stopButton clicked");
+    if (counterClick) {
+        console.log("stopButton clicked");
 
-    recordButton.disabled = false;
+        recordButton.disabled = false;
 
-    rec.stop();
+        rec.stop();
 
-    gumStream.getAudioTracks()[0].stop();
+        gumStream.getAudioTracks()[0].stop();
 
-    rec.exportWAV(createDownloadLink);
+        rec.exportWAV(createDownloadLink);
+    }
 }
 
 function createDownloadLink(blob) {

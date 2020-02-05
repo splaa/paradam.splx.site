@@ -19,7 +19,10 @@ use yii\web\View;
 				<div class="received_msg">
 					<div class="received_withd_msg">
 						<p>
-							<?php if ($message->audio): ?>
+							<?php if ($message->text && $message->audio): ?>
+								<?= $message->text ?>
+								<audio controls="" src="<?= Yii::$app->request->hostInfo ?>/uploads/messages/<?= $message->audio ?>"></audio>
+							<?php elseif ($message->audio): ?>
 								<audio controls="" src="<?= Yii::$app->request->hostInfo ?>/uploads/messages/<?= $message->audio ?>"></audio>
 							<?php else: ?>
 								<?= $message->text ?>
@@ -33,7 +36,10 @@ use yii\web\View;
 			<div class="outgoing_msg">
 				<div class="sent_msg">
 					<p>
-						<?php if ($message->audio): ?>
+						<?php if ($message->text && $message->audio): ?>
+							<?= $message->text ?>
+							<audio controls="" src="<?= Yii::$app->request->hostInfo ?>/uploads/messages/<?= $message->audio ?>"></audio>
+						<?php elseif ($message->audio): ?>
 							<audio controls="" src="<?= Yii::$app->request->hostInfo ?>/uploads/messages/<?= $message->audio ?>"></audio>
 						<?php else: ?>
 							<?= $message->text ?>
@@ -86,10 +92,15 @@ $JS = <<<JS
 	    if (me) {
 			html += '<div class="outgoing_msg">';
 				html += '<div class="sent_msg">';
-					if (data.audio) {
+					if (data.message && data.audio) {
+					    html += '<p>' + data.message + '<audio controls="" src="{$host}/uploads/messages/' + data.audio + '"></audio></p>';
+					} else if (data.audio) {
 						html += '<p><audio controls="" src="{$host}/uploads/messages/' + data.audio + '"></audio></p>';
 					} else {
 					    html += '<p>' + data.message + '</p>';
+					}
+					if (data.error) {
+					    html += '<span class="balance_error">' + data.error + '</span>';
 					}
 					html += '<span class="time_date"> ' + data.time + '    |    ' + data.date + '</span>';
 				html += '</div>';
@@ -101,7 +112,9 @@ $JS = <<<JS
 				html += '</div>';
 				html += '<div class="received_msg">';
 					html += '<div class="received_withd_msg">';
-						if (data.audio) {
+						if (data.message && data.audio) {
+						    html += '<p>' + data.message + '<audio controls="" src="{$host}/uploads/messages/' + data.audio + '"></audio></p>';
+						} else if (data.audio) {
 							html += '<p><audio controls="" src="{$host}/uploads/messages/' + data.audio + '"></audio></p>';
 						} else {
 						    html += '<p>' + data.message + '</p>';

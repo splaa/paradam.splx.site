@@ -31,11 +31,17 @@ class SocketServer implements MessageComponentInterface
 
 		$this->saveMessageToDB($msg);
 
-		foreach ($this->clients as $client) {
-			//if ($from !== $client) {
-				// The sender is not the receiver, send to each client connected
-				$client->send($msg);
-			//}
+		$parse = json_decode($msg, true);
+
+		if (isset($parse['error'])) {
+			$from->send($msg);
+		} else {
+			foreach ($this->clients as $client) {
+				//if ($from !== $client) {
+					// The sender is not the receiver, send to each client connected
+					$client->send($msg);
+				//}
+			}
 		}
 	}
 
@@ -71,35 +77,52 @@ class SocketServer implements MessageComponentInterface
 					$recipient_id = $recipient['creator_id'];
 				}
 
-				$message = new Message();
-				$message->author_id = $parse['user_id'];
-				$message->thread_id = $parse['thread_id'];
-				$message->text = $parse['message'];
-				$message->audio = $parse['audio'];
-				$message->save();
-
-				$user_message = new UserMessage();
-				$user_message->user_id = $parse['user_id'];
-				$user_message->message_id = $message->id;
-				$user_message->save();
-
 				$thread = Thread::findOne($recipient['thread_id']);
-				$factor = 1;
 
-				if ($thread->creator_id != $parse['user_id']) {
+				if (User::validateSendMessage($parse['user_id'], $recipient_id, 0)) {
+					$message = new Message();
+					$message->author_id = $parse['user_id'];
+					$message->thread_id = $parse['thread_id'];
+					$message->text = $parse['message'];
+					$message->audio = $parse['audio'];
+					$message->save();
+
+					$user_message = new UserMessage();
+					$user_message->user_id = $parse['user_id'];
+					$user_message->message_id = $message->id;
+					$user_message->save();
+
+					$factor = 0;
+
 					// Minus from balance
-					if (!empty($parse['audio'])) {
-						$timing = $parse['timing'] ?? 0;
-						if ($timing) {
-							$factor = ceil((int)$timing / 30);
-						}
-					} else {
-						if (mb_strlen($parse['message'], 'UTF-8') > USER::MESSAGE_LENGTH) {
-							$factor = count(User::strSplitUnicode($parse['message'], USER::MESSAGE_LENGTH));
-						}
-					}
+					if ($thread->creator_id != $parse['user_id']) {
+						if (!empty($parse['audio']) && !empty($parse['message'])) {
+							$timing = $parse['timing'] ?? 0;
+							if ($timing) {
+								$factor += ceil((int)$timing / 30);
+							}
 
-					User::transferBits($parse['user_id'], $recipient_id, User::TRANSFER_TYPE_SMS, 0, $factor);
+							if (mb_strlen($parse['message'], 'UTF-8') > USER::MESSAGE_LENGTH) {
+								$factor += count(User::strSplitUnicode($parse['message'], USER::MESSAGE_LENGTH));
+							}
+						} elseif (!empty($parse['audio'])) {
+							$timing = $parse['timing'] ?? 0;
+							if ($timing) {
+								$factor = ceil((int)$timing / 30);
+							}
+						} else {
+							if (mb_strlen($parse['message'], 'UTF-8') > USER::MESSAGE_LENGTH) {
+								$factor = count(User::strSplitUnicode($parse['message'], USER::MESSAGE_LENGTH));
+							}
+						}
+						
+						if (!$factor)
+							$factor = 1;
+
+						User::transferBits($parse['user_id'], $recipient_id, User::TRANSFER_TYPE_SMS, 0, $factor);
+					}
+				} else {
+					$parse['error'] = 'На счету не достаточно средств пожалуйста пополните Ваш баланс.';
 				}
 
 				$parse['time'] = Yii::$app->formatter->asRelativeTime(date('Y-m-d H:i:s'));

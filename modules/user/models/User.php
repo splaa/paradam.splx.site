@@ -536,4 +536,28 @@ class User extends ActiveRecord implements IdentityInterface
 		}
 		return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
 	}
+
+
+	/**
+	 * @param $sender_id
+	 * @param $recipient_id
+	 * @param int $creator_id
+	 * @return bool|string
+	 */
+	public static function validateSendMessage($sender_id, $recipient_id, $creator_id = 0) {
+		if ($sender_id && $recipient_id) {
+			$sender = User::findOne($sender_id);
+			$recipient = User::findOne($recipient_id);
+
+			if ($sender->balance < $recipient->sms_cost) {
+				if ($creator_id != $sender_id) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+
+		return true;
+	}
 }

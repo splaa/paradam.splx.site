@@ -119,10 +119,7 @@ class MessageController extends UserController
 				$sender_id = Yii::$app->user->id;
 				$recipient_id = $model->user_id;
 
-				$sender = User::findOne($sender_id);
-				$recipient = User::findOne($recipient_id);
-
-				if ($sender->balance >= $recipient->balance) {
+				if (User::validateSendMessage($sender_id, $recipient_id, 0)) {
 					$text = $model->text;
 
 					$thread = Thread::find()->alias('t')
