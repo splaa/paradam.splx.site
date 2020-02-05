@@ -118,56 +118,65 @@ class MessageController extends UserController
 			if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 				$sender_id = Yii::$app->user->id;
 				$recipient_id = $model->user_id;
-				$text = $model->text;
 
-				$thread = Thread::find()->alias('t')
-					->innerJoin('user_thread as ut1', 't.id = ut1.thread_id')
-					->innerJoin('user_thread as ut2', 't.id = ut2.thread_id')
-					->where(['ut1.user_id' => $sender_id, 'ut2.user_id' => $recipient_id])
-					->orWhere(['ut1.user_id' => $recipient_id, 'ut2.user_id' => $sender_id])
-					->groupBy('t.id')
-					->asArray()
-					->one();
+				$sender = User::findOne($sender_id);
+				$recipient = User::findOne($recipient_id);
 
-				if ($thread) {
-					$thread_id = $thread['id'];
+				if ($sender->balance >= $recipient->balance) {
+					$text = $model->text;
+
+					$thread = Thread::find()->alias('t')
+						->innerJoin('user_thread as ut1', 't.id = ut1.thread_id')
+						->innerJoin('user_thread as ut2', 't.id = ut2.thread_id')
+						->where(['ut1.user_id' => $sender_id, 'ut2.user_id' => $recipient_id])
+						->orWhere(['ut1.user_id' => $recipient_id, 'ut2.user_id' => $sender_id])
+						->groupBy('t.id')
+						->asArray()
+						->one();
+
+					if ($thread) {
+						$thread_id = $thread['id'];
+					} else {
+						$thread = new Thread();
+						$thread->title = $sender_id . '=>' . $recipient_id;
+						$thread->creator_id = $recipient_id;
+						$thread->save();
+						$thread_id = $thread->id;
+
+						$user_thread = new UserThread();
+						$user_thread->user_id = $recipient_id;
+						$user_thread->thread_id = $thread_id;
+						$user_thread->save();
+					}
+
+					$message = new Message();
+					$message->author_id = $sender_id;
+					$message->thread_id = $thread_id;
+					$message->text = $text;
+					$message->save();
+
+					$user_message = new UserMessage();
+					$user_message->user_id = $sender_id;
+					$user_message->message_id = $message->id;
+					$user_message->save();
+
+					// Minus from balance
+					if (mb_strlen($text, 'UTF-8') > USER::MESSAGE_LENGTH) {
+						$factor = count(User::strSplitUnicode($text, USER::MESSAGE_LENGTH));
+					} else {
+						$factor = 1;
+					}
+
+					User::transferBits($sender_id, $recipient_id, User::TRANSFER_TYPE_SMS, 0, $factor);
+
+					$hash = new Hash();
+					$hash->string = $thread_id;
+
+					return $this->redirect(Url::to(['view', 'id' => $hash->run(Hash::ENCODE)]));
 				} else {
-					$thread = new Thread();
-					$thread->title = $sender_id . '=>' . $recipient_id;
-					$thread->creator_id = $recipient_id;
-					$thread->save();
-					$thread_id = $thread->id;
-
-					$user_thread = new UserThread();
-					$user_thread->user_id = $recipient_id;
-					$user_thread->thread_id = $thread_id;
-					$user_thread->save();
+					Yii::$app->getSession()->setFlash('error', 'На счету не достаточно средств пожалуйста пополните Ваш аккаунт.');
+					return $this->goBack();
 				}
-
-				$message = new Message();
-				$message->author_id = $sender_id;
-				$message->thread_id = $thread_id;
-				$message->text = $text;
-				$message->save();
-
-				$user_message = new UserMessage();
-				$user_message->user_id = $sender_id;
-				$user_message->message_id = $message->id;
-				$user_message->save();
-
-				// Minus from balance
-				if (mb_strlen($text, 'UTF-8') > USER::MESSAGE_LENGTH) {
-					$factor = count(User::strSplitUnicode($text, USER::MESSAGE_LENGTH));
-				} else {
-					$factor = 1;
-				}
-
-				User::transferBits($sender_id, $recipient_id, User::TRANSFER_TYPE_SMS, 0, $factor);
-
-				$hash = new Hash();
-				$hash->string = $thread_id;
-
-				return $this->redirect(Url::to(['view', 'id' => $hash->run(Hash::ENCODE)]));
 			}
 		} else {
 			throw new NotFoundHttpException('Страница не найденна');
