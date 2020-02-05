@@ -84,7 +84,7 @@ class Thread extends \yii\db\ActiveRecord
      */
     public function getMessageWriter()
     {
-        return $this->hasOne(Message::className(), ['thread_id' => 'id'])->where(['<>', 'author_id', \Yii::$app->user->id]);
+        return $this->hasOne(Message::className(), ['thread_id' => 'id']);
     }
 
     /**

@@ -144,6 +144,11 @@ class MessageController extends UserController
 						$user_thread->user_id = $recipient_id;
 						$user_thread->thread_id = $thread_id;
 						$user_thread->save();
+
+						$user_thread = new UserThread();
+						$user_thread->user_id = $sender_id;
+						$user_thread->thread_id = $thread_id;
+						$user_thread->save();
 					}
 
 					$message = new Message();
