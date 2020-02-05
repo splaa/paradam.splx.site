@@ -1,6 +1,7 @@
 <?php
 	/* @var $model \app\modules\user\models\User */
 	/* @var $messageForm \app\modules\message\forms\MessageForm */
+	/* @var $services \app\modules\services\models\Service[] */
 	/* @var $this yii\web\View */
 	/* @var $subscribe_id integer */
 
@@ -36,10 +37,12 @@
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                            aria-controls="profile" aria-selected="false">Timeline</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="service-tab" data-toggle="tab" href="#service" role="tab"
-                           aria-controls="service" aria-selected="false">Service(Услуги)</a>
-                    </li>
+	                <?php if ($services): ?>
+	                    <li class="nav-item">
+	                        <a class="nav-link" id="service-tab" data-toggle="tab" href="#service" role="tab"
+	                           aria-controls="service" aria-selected="false">Service(Услуги)</a>
+	                    </li>
+	                <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -171,21 +174,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane active" id="service" role="tabpanel" aria-labelledby="service-tab">
-					<?php foreach ($services as $service): ?>
-		                <div class="row">
-	                        <div class="col-md-3">
-	                            <label><?= $service->name ?></label>
-	                        </div>
-	                        <div class="col-md-3">
-	                            <label><?= $service->price ?></label>
-	                        </div>
-	                        <div class="col-md-6">
-	                            <label><?= Html::submitButton('Заказать услугу', ['class' => 'btn btn-success']) ?></label>
-	                        </div>
-		                </div>
-					<?php endforeach; ?>
-                </div>
+	            <?php if ($services): ?>
+	                <div class="tab-pane active" id="service" role="tabpanel" aria-labelledby="service-tab">
+						<?php foreach ($services as $service): ?>
+			                <div class="row">
+		                        <div class="col-md-3">
+		                            <label><?= $service->name ?></label>
+		                        </div>
+		                        <div class="col-md-3">
+		                            <label><?= $service->price ?></label>
+		                        </div>
+		                        <div class="col-md-6">
+		                            <label><?= Html::submitButton('Заказать услугу', ['class' => 'btn btn-success']) ?></label>
+		                        </div>
+			                </div>
+						<?php endforeach; ?>
+	                </div>
+	            <?php endif; ?>
             </div>
         </div>
     </div>
