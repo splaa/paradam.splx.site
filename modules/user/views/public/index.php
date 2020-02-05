@@ -175,7 +175,7 @@
                     </div>
                 </div>
 	            <?php if ($services): ?>
-	                <div class="tab-pane active" id="service" role="tabpanel" aria-labelledby="service-tab">
+	                <div class="tab-pane fade" id="service" role="tabpanel" aria-labelledby="service-tab">
 						<?php foreach ($services as $service): ?>
 			                <div class="row">
 		                        <div class="col-md-3">
