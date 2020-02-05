@@ -95,7 +95,7 @@
 			$model = new Question();
 
 
-			if (Yii::$app->request->post('Question')['questions']) {
+			if (Yii::$app->request->post('Question')) {
 				$questions = Yii::$app->request->post('Question')['questions'];
 
 				foreach ($questions as $question) {

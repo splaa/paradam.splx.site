@@ -38,9 +38,9 @@ class ServiceQuestionController extends UserController
         $searchModel = new ServiceQuestionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+        return $this->render("index", [
+	        'searchModel' => $searchModel,
+	        'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -71,9 +71,9 @@ class ServiceQuestionController extends UserController
             return $this->redirect(['view', 'service_id' => $model->service_id, 'question_id' => $model->question_id]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+	    return $this->render("//" . 'create', [
+		    'model' => $model,
+	    ]);
     }
 
     /**
