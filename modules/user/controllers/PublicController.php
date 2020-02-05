@@ -21,7 +21,7 @@ class PublicController extends Controller
 		$model = User::findByUsername($username);
 
 		if ($model) {
-			$services = Service::find()->where('user_id' == $model->id)->all();
+			$services = Service::find()->where(['user_id' => $model->id])->all();
 
 			$messageForm = new MessageForm();
 
