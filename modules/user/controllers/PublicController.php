@@ -18,9 +18,10 @@ class PublicController extends Controller
 	public function actionIndex($username)
 	{
 		$model = User::findByUsername($username);
-		$services = Service::find()->where('user_id' == $model->id)->all();
 
 		if ($model) {
+			$services = Service::find()->where('user_id' == $model->id)->all();
+
 			$messageForm = new MessageForm();
 
 			if (Yii::$app->user->id != $model->id) {

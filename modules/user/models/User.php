@@ -193,6 +193,14 @@ class User extends ActiveRecord implements IdentityInterface
 	/**
 	 * @return string
 	 */
+	public function getBalance()
+	{
+		return $this->balance;
+	}
+
+	/**
+	 * @return string
+	 */
 	public function getAvatarSmall()
 	{
 		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->username . '-' . self::SIZE_AVATAR_SMALL . '.png';
