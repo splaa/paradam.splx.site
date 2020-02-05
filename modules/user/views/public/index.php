@@ -172,21 +172,19 @@
                     </div>
                 </div>
                 <div class="tab-pane active" id="service" role="tabpanel" aria-labelledby="service-tab">
-                    <div class="row">
-						<?php foreach ($services as $service): ?>
-                            <div class="col-md-3">
-                                <label><?= $service->name ?></label>
-                            </div>
-                            <div class="col-md-3">
-                                <label><?= $service->price ?></label>
-                            </div>
-                            <div class="col-md-6">
-                                <label><?= Html::submitButton('Заказать услугу', ['class' => 'btn btn-success']) ?></label>
-                            </div>
-
-						<?php endforeach; ?>
-
-                    </div>
+					<?php foreach ($services as $service): ?>
+		                <div class="row">
+	                        <div class="col-md-3">
+	                            <label><?= $service->name ?></label>
+	                        </div>
+	                        <div class="col-md-3">
+	                            <label><?= $service->price ?></label>
+	                        </div>
+	                        <div class="col-md-6">
+	                            <label><?= Html::submitButton('Заказать услугу', ['class' => 'btn btn-success']) ?></label>
+	                        </div>
+		                </div>
+					<?php endforeach; ?>
                 </div>
             </div>
         </div>
