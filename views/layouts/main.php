@@ -42,7 +42,6 @@ AppAsset::register($this);
 			'items' => array_filter([
 				['label' => Yii::t('app', 'NAV_HOME'), 'url' => ['/main/default/index']],
 				['label' => Yii::t('app', 'NAV_USERS'), 'url' => ['/user/public/list']],
-				['label' => Yii::t('app', 'NAV_CONTACT'), 'url' => ['/main/contact/index']],
 				Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_SIGNUP'), 'url' => ['/user/phoneidentity/index']] :
 					false,
