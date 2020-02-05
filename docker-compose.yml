@@ -6,9 +6,9 @@ services:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - ./:/app:delegated
     ports:
-      - '80:80'
-      - '9505:9505'
-      - '9503:9503'
+      - "80:80"
+      - "9505:9505"
+      - "9503:9503"
 
     depends_on:
       - mysql
