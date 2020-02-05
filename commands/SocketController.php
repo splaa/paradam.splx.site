@@ -7,7 +7,7 @@ use Ratchet\WebSocket\WsServer;
 
 class SocketController extends  \yii\console\Controller
 {
-	public function actionStartSocket($port=8080)
+	public function actionStartSocket($port=9505)
 	{
 		$server = IoServer::factory(
 			new HttpServer(
