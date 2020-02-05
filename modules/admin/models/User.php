@@ -29,8 +29,8 @@
 		{
 			
 			$scenarios = parent::scenarios();
-			$scenarios[self::SCENARIO_ADMIN_CREATE] = ['username', 'email', 'status', 'newPassword', 'newPasswordRepeat'];
-			$scenarios[self::SCENARIO_ADMIN_UPDATE] = ['username', 'email', 'status', 'newPassword', 'newPasswordRepeat'];
+			$scenarios[self::SCENARIO_ADMIN_CREATE] = ['username', 'email', 'balance', 'status', 'newPassword', 'newPasswordRepeat'];
+			$scenarios[self::SCENARIO_ADMIN_UPDATE] = ['username', 'email', 'balance', 'status', 'newPassword', 'newPasswordRepeat'];
 			return $scenarios;
 		}
 		
