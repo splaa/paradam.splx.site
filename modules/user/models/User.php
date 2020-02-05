@@ -203,7 +203,7 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	public function getAvatarSmall()
 	{
-		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->username . '-' . self::SIZE_AVATAR_SMALL . '.png';
+		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->id . '-' . self::SIZE_AVATAR_SMALL . '.png';
 	}
 
 	/**
@@ -211,7 +211,7 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	public function getAvatarMedium()
 	{
-		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->username . '-' . self::SIZE_AVATAR_MEDIUM . '.png';
+		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->id . '-' . self::SIZE_AVATAR_MEDIUM . '.png';
 	}
 
 	/**
@@ -219,7 +219,7 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	public function getAvatarBig()
 	{
-		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->username . '-' . self::SIZE_AVATAR_BIG . '.png';
+		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->id . '-' . self::SIZE_AVATAR_BIG . '.png';
 	}
 
 	/**
