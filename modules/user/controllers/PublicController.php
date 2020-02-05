@@ -21,16 +21,6 @@ class PublicController extends Controller
 		$model = User::findByUsername($username);
 
 		if ($model) {
-			$name = $model->username;
-			if (!empty($model->last_name)) {
-				$name = $model->first_name . ' ' . $model->last_name;
-			}
-			$avatar = new LetterAvatar($name, 'circle', User::SIZE_AVATAR_SMALL);
-			$avatar->saveAs('images/user/avatar/' . $model->username . '-' . User::SIZE_AVATAR_SMALL . '.png');
-			$avatar = new LetterAvatar($name, 'square',  User::SIZE_AVATAR_MEDIUM);
-			$avatar->saveAs('images/user/avatar/' . $model->username . '-' . User::SIZE_AVATAR_MEDIUM . '.png');
-			$avatar = new LetterAvatar($name, 'square', User::SIZE_AVATAR_BIG);
-			$avatar->saveAs('images/user/avatar/' . $model->username . '-' . User::SIZE_AVATAR_BIG . '.png');
 			$services = Service::find()->where('user_id' == $model->id)->all();
 
 			$messageForm = new MessageForm();
