@@ -30,7 +30,7 @@ use yii\widgets\Pjax;
 								'enableAjaxValidation' => true,
 								]); ?>
 
-							<?= $form->field($model, 'sms_cost')->textInput(['type' => 'number', 'value' => Yii::$app->user->identity->sms_cost]) ?>
+							<?= $form->field($model, 'sms_cost')->textInput(['type' => 'number', 'value' => Yii::$app->user->identity->sms_cost, 'step' => 5]) ?> = <?= Yii::$app->user->identity->convertSmsCostToUSD ?>
 
 							<?php ActiveForm::end(); ?>
 						</div>

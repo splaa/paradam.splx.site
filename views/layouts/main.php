@@ -60,7 +60,7 @@ AppAsset::register($this);
 				!Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_PROFILE'), 'items' => [
 						['label' => Yii::t('app', 'NAV_PROFILE'), 'url' => ['/user/profile/index']],
-						['label' => sprintf(Yii::t('app', 'NAV_PROFILE_BALANCE'), Yii::$app->user->identity->formatBalance), 'url' => ['/user/profile/balance']],
+						['label' => sprintf(Yii::t('app', 'NAV_PROFILE_BALANCE'), Yii::$app->user->identity->formatBalance, Yii::$app->user->identity->convertBalanceToUSD), 'url' => ['/user/profile/balance']],
 						['label' => Yii::t('app', 'NAV_LOGOUT'),
 							'url' => ['/user/default/logout'],
 							'linkOptions' => ['data-method' => 'post']]

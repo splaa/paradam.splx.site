@@ -19,8 +19,20 @@ class SettingsForm extends Model
 	{
 		return [
 			['sms_cost', 'required'],
-			['sms_cost', 'number', 'min' => 1],
+			['sms_cost', 'number', 'min' => 5],
+			['sms_cost', 'validateMultiplicity'],
 		];
+	}
+
+	/**
+	 * @param $attribute
+	 * @param $params
+	 */
+	public function validateMultiplicity($attribute, $params)
+	{
+		if (($this->$attribute % 5) != 0) {
+			$this->addError($attribute, 'Число должно быть кратно 5.');
+		}
 	}
 
 	public function attributeLabels()

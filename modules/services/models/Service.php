@@ -2,6 +2,7 @@
 
 	namespace app\modules\services\models;
 
+	use app\components\Currency;
 	use app\modules\admin\models\User;
 	use app\modules\user\models\query\UserQuery;
 	use Yii;
@@ -22,6 +23,8 @@
 	 * @property string|null $link_foto_video_file
 	 * @property int $created_at
 	 * @property int $updated_at
+	 * @property string $formatPrice
+	 * @property string $convertPriceToUSD
 	 *
 	 * @property User $user
 	 * @property ServiceQuestion[] $serviceQuestions
@@ -183,5 +186,22 @@
 			}
 
 			return '/' . $image->getFolder() . 'no-image.png';
+		}
+
+		/**
+		 * @return string
+		 */
+		public function getConvertPriceToUSD()
+		{
+			$number = Currency::convert($this->price, Currency::BITS_CURRENCY, Currency::USD_CURRENCY);
+			return Currency::format($number, Currency::USD_CURRENCY);
+		}
+
+		/**
+		 * @return string
+		 */
+		public function getFormatPrice()
+		{
+			return Currency::format($this->price, Currency::BITS_CURRENCY);
 		}
 	}

@@ -8,7 +8,7 @@
 		'NAV_SIGNUP' => 'Регистрация',
 		'NAV_LOGIN' => 'Вход',
 		'NAV_PROFILE' => 'Профиль',
-		'NAV_PROFILE_BALANCE' => 'Баланс (%s)',
+		'NAV_PROFILE_BALANCE' => 'Баланс (%s) = (%s)',
 		'NAV_LOGOUT' => 'Выход',
 		'NAV_ADMIN' => 'Админка',
 		'NAV_ADMIN_USERS' => 'Пользователи',

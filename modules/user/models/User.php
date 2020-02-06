@@ -2,6 +2,7 @@
 
 namespace app\modules\user\models;
 
+use app\components\Currency;
 use app\modules\user\models\query\UserQuery;
 use Yii;
 use yii\base\InvalidConfigException;
@@ -40,6 +41,8 @@ use yii\web\IdentityInterface;
  * @property string $avatarBig
  * @property string $formatBalance
  * @property string $formatSmsCost
+ * @property string $convertSmsCostToUSD
+ * @property string $convertBalanceToUSD
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -235,7 +238,16 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	public function getFormatBalance()
 	{
-		return number_format($this->balance, 2, '.', '') . ' ' . self::CURRENCY_BIT;
+		return Currency::format($this->balance, Currency::BITS_CURRENCY);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getConvertBalanceToUSD()
+	{
+		$number = Currency::convert($this->balance, Currency::BITS_CURRENCY, Currency::USD_CURRENCY);
+		return Currency::format($number, Currency::USD_CURRENCY);
 	}
 
 	/**
@@ -243,7 +255,16 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	public function getFormatSmsCost()
 	{
-		return number_format($this->sms_cost, 2, '.', '') . ' ' . self::CURRENCY_BIT;
+		return Currency::format($this->sms_cost, Currency::BITS_CURRENCY);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getConvertSmsCostToUSD()
+	{
+		$number = Currency::convert($this->sms_cost, Currency::BITS_CURRENCY, Currency::USD_CURRENCY);
+		return Currency::format($number, Currency::USD_CURRENCY);
 	}
 	
 	/**

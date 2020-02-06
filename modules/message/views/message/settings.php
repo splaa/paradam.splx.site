@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+/* @var $currency string */
 
 
 use app\widgets\Alert;
@@ -22,6 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			<?php $form = ActiveForm::begin(['id' => 'settings-form']); ?>
 
 			<?= $form->field($model, 'sms_cost')->textInput(['type' => 'number', 'value' => Yii::$app->user->identity->sms_cost]) ?>
+
+			<p>=</p>
+			<p><?= Yii::$app->user->identity->convertSmsCostToUSD ?></p>
 
 			<div class="form-group">
 				<?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
