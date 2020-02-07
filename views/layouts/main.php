@@ -1,17 +1,17 @@
 <?php
 
-/* @var $this \yii\web\View */
+	/* @var $this \yii\web\View */
 
-/* @var $content string */
+	/* @var $content string */
 
-use app\assets\AppAsset;
-use app\widgets\Alert;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
+	use app\assets\AppAsset;
+	use app\widgets\Alert;
+	use yii\bootstrap\Nav;
+	use yii\bootstrap\NavBar;
+	use yii\helpers\Html;
+	use yii\widgets\Breadcrumbs;
 
-AppAsset::register($this);
+	AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
+	<?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
 	<?php $this->head() ?>
 </head>
@@ -50,12 +50,12 @@ AppAsset::register($this);
 					false,
 				!Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_ADMIN'), 'items' => [
-                        ['label' => Yii::t('app', 'NAV_ADMIN'), 'url' => ['/admin/default/index']],
-                        ['label' => Yii::t('app', 'NAV_SERVICES'), 'url' => ['/services/service']],
-                        ['label' => Yii::t('app', 'NAV_QUESTIONS'), 'url' => ['/services/question']],
-                        ['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
-                        ['label' => Yii::t('app', 'ADMIN_THREAD'), 'url' => ['/admin/thread/index']],
-                    ]] :
+						['label' => Yii::t('app', 'NAV_ADMIN'), 'url' => ['/admin/default/index']],
+						['label' => Yii::t('app', 'NAV_SERVICES'), 'url' => ['/services/service']],
+						['label' => Yii::t('app', 'NAV_QUESTIONS'), 'url' => ['/services/question']],
+						['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
+						['label' => Yii::t('app', 'ADMIN_THREAD'), 'url' => ['/admin/thread/index']],
+					]] :
 					false,
 				!Yii::$app->user->isGuest ?
 					['label' => Yii::t('app', 'NAV_PROFILE'), 'items' => [
@@ -78,8 +78,8 @@ AppAsset::register($this);
 				Yii::$app->language === 'ru' ?
 					['label' => Yii::t('app', 'English'), 'url' => ['/', 'language' => 'en']] :
 					false,
-			
-			
+
+
 			]),
 		]);
 		NavBar::end();
@@ -101,6 +101,23 @@ AppAsset::register($this);
     </div>
 </footer>
 
+<?php
+	//	var_dump(Yii::$app->params['modalTitle']);
+	//	var_dump($this->title);
+	\yii\bootstrap\Modal::begin([
+		'id' => 'order',
+		'size' => 'modal-lg',
+		'header' => '<h2>Услуги</h2>',
+		'footer' => '<button type="button" class="btn btn-info" data-dismiss="modal">Продолжить</button>
+        <button type="button" class="btn btn-warning" onclick="clearOrder()">Очистить</button>
+        <button type="button" class="btn btn-danger" on>Оформить</button>'
+	]);
+
+?>
+
+<?php
+	\yii\bootstrap\Modal::end();
+?>
 <?php $this->endBody() ?>
 </body>
 </html>
