@@ -82,7 +82,9 @@
           "web/session": "0777",
           "web/images": "-R 0777",
           "web/upload": "0777",
+          "web/uploads/messages": "0777",
           "web/images/user/avatar": "0777",
+          "web/images/services/uploads": "0777",
           "yii": "0755"
         }
       ]
