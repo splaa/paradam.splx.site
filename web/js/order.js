@@ -83,7 +83,8 @@ $('a.answer-the-questions').on('click', function (e) {
         }
     });
 });
-$('span.glyphicon-question-sign').on('click', function (e) {
+$('#order .modal-body').on('click', '.answer-questions-glyph', function (e) {
+
     e.preventDefault();
     var id = $(this).data('id');
     $.ajax({

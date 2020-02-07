@@ -1,7 +1,5 @@
 <?php
 
-	use yii\helpers\Html;
-
 	$this->title = "Услуги";
 	Yii::$app->params['modalTitle'] = 'Услуги'
 ?>
@@ -29,7 +27,9 @@
                     <td><?= $item['qty']; ?></td>
                     <td><?= $item['price']; ?></td>
                     <th>
-						<?= Html::a('<span class="glyphicon glyphicon-question-sign text-info" ></span>', ['#'], ['id' => 'answer-the-questions-' . $id, 'data-id' => $id, 'class' => 'answer-questions-glyph']) ?>
+                    <td><span data-id="<?= $id ?> "
+                              class="glyphicon  glyphicon-question-sign text-info answer-questions-glyph"></span></td>
+
                     <th>
                     <td><span data-id="<?= $id ?> "
                               class="glyphicon glyphicon-remove text-danger del-item"></span></td>
