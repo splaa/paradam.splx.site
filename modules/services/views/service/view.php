@@ -29,22 +29,49 @@
     </p>
 
 	<?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'user_id',
-            'name',
-            'description:ntext',
-            'price',
-            'periodOfExecution',
-            'link_foto_video_file',
-            'created_at',
-            'updated_at',
-        ],
-    ]) ?>
+		'model' => $model,
+		'attributes' => [
+			'id',
+			'user_id',
+			'name',
+			'description:ntext',
+			'price',
+			'periodOfExecution',
+			'link_foto_video_file',
+			'created_at',
+			'updated_at',
+		],
+	]) ?>
 
     <!--    // Todo-splaa: Реализовать загрузку картинки с изображением (отображением картинки)-->
     <!--    // Review-Serik: Проверить код-->
     <!--	Review-[splx] -->
+    <div>
+        <h2>Вопросы</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Вопрос</th>
+                <th scope="col">статус</th>
 
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+				<?php
+					$i = 0;
+				?>
+				<?php foreach ($model->questions as $questions): ?>
+            <tr>
+                <th scope="row"><?= $i += 1 ?></th>
+                <td><?= $questions->id ?></td>
+                <td><?= $questions->question ?></td>
+                <td><?= $questions->status ?></td>
+            </tr>
+			<?php endforeach; ?>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
