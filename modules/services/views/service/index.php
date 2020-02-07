@@ -33,6 +33,13 @@
 			'name',
 			'description:ntext',
 			'price',
+			[
+				'format' => 'text',
+				'label' => 'Price format',
+				'value' => function($data) {
+					return $data->formatPrice . ' = ' . $data->convertPriceToUSD;
+				}
+			],
 			//'periodOfExecution',
 			//'link_foto_video_file',
 			[

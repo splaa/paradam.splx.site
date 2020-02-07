@@ -2,6 +2,7 @@
 
 namespace app\modules\message\controllers;
 
+use app\components\Currency;
 use app\modules\message\forms\MessageForm;
 use app\modules\message\forms\SettingsForm;
 use app\modules\message\models\Message;
