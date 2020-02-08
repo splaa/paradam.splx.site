@@ -19,6 +19,8 @@
 	 */
 	class Answer extends \yii\db\ActiveRecord
 	{
+		public array $answers = [];
+
 		/**
 		 * {@inheritdoc}
 		 */
@@ -58,6 +60,7 @@
 				[['question_id', 'order_id'], 'integer'],
 				[['created_at', 'updated_at'], 'safe'],
 				[['answer'], 'string', 'max' => 255],
+				['answers', 'safe']
 			];
 		}
 

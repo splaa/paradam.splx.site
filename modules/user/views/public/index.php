@@ -7,16 +7,12 @@
 
 	/* @var $count integer */
 
-	use app\assets\AppAsset;
 	use yii\bootstrap\ActiveForm;
 	use yii\helpers\Html;
 	use yii\helpers\Url;
 
-	//	$this->title = 'Услуги';
-	$this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depends' => [AppAsset::class]]);
 ?>
 <div class="container emp-profile">
-    <a href="#" class="btn btn-success" onclick="return getOrder()">Показать Вси Заказани</a>
 
     <div class="row">
         <div class="col-md-4">
@@ -190,9 +186,7 @@
                                     <label><?= $service->price ?></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <label><?= Html::a('New Заказать услугу', ['/user/order/'], ['class' => 'btn btn-danger']) ?></label>
-                                    <label><?= Html::a('Заказать услугу', [''], ['id' => $service->id, 'data-id' => $service->id, 'class' => 'btn btn-success make-order']) ?></label>
-                                    <label><?= Html::a('Ответить на вопросы', [''], ['id' => 'answer-the-questions-' . $service->id, 'data-id' => $service->id, 'class' => 'btn btn-primary answer-the-questions']) ?></label>
+                                    <label><?= $this->render('_modal-order-save', compact('service', 'answers', 'comment')) ?></label>
                                 </div>
                             </div>
 						<?php endforeach; ?>
