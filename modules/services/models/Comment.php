@@ -33,8 +33,8 @@
 				'timestamp' => [
 					'class' => TimestampBehavior::className(),
 					'attributes' => [
-						\yii\db\BaseActiveRecord::EVENT_BEFORE_INSERT => ['createdAt'],
-						\yii\db\BaseActiveRecord::EVENT_BEFORE_UPDATE => ['updatedAt'],
+						\yii\db\BaseActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+						\yii\db\BaseActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
 
 					],
 					//можно использовать 'value' => new \yii\db\Expression('NOW()'),

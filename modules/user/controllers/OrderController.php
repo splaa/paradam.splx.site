@@ -4,6 +4,7 @@
 	namespace app\modules\user\controllers;
 
 
+	use app\modules\services\models\Answer;
 	use app\modules\services\models\AnswerTheQuestions;
 	use app\modules\services\models\Comment;
 	use app\modules\services\models\OrderService;
@@ -30,7 +31,6 @@
 
 				return $this->render('order-modal', compact('session'));
 			}
-			return;
 		}
 
 		public function actionAnswerQuestions($id = null)
@@ -99,5 +99,24 @@
 			$session->open();
 
 			return $this->render('order-modal', compact('session'));
+		}
+
+		public function actionComment()
+		{
+			$message = null;
+
+
+			$comment = new Comment();
+			$answer = new Answer();
+
+			if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
+				$message = 'Comment Successes <br>';
+			}
+			if ($answer->load(Yii::$app->request->post()) && $answer->save()) {
+				$message .= 'Answer Successes<br>';
+			}
+
+			return $this->render('comment', compact('comment', 'answer', 'message'));
+
 		}
 	}
