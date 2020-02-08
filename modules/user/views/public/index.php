@@ -190,6 +190,7 @@
                                     <label><?= $service->price ?></label>
                                 </div>
                                 <div class="col-md-6">
+                                    <label><?= Html::a('New Заказать услугу', ['/user/order/'], ['class' => 'btn btn-danger']) ?></label>
                                     <label><?= Html::a('Заказать услугу', [''], ['id' => $service->id, 'data-id' => $service->id, 'class' => 'btn btn-success make-order']) ?></label>
                                     <label><?= Html::a('Ответить на вопросы', [''], ['id' => 'answer-the-questions-' . $service->id, 'data-id' => $service->id, 'class' => 'btn btn-primary answer-the-questions']) ?></label>
                                 </div>

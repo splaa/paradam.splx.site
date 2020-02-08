@@ -1,7 +1,13 @@
 <?php
+	/** @var Answer $answer */
+	/** @var Service $service */
+	/** @var Comment $comment */
 ?>
 
-<?php use yii\helpers\Html;
+<?php use app\modules\services\models\Answer;
+	use app\modules\services\models\Comment;
+	use app\modules\services\models\Service;
+	use yii\helpers\Html;
 	use yii\widgets\ActiveForm;
 
 	if (!empty($session['order'])): ?>
@@ -13,25 +19,28 @@
                     <th>Вопрос</th>
                 </tr>
                 </thead>
-
                 <tbody>
 				<?php $form = ActiveForm::begin(); ?>
 				<?php foreach ($service->questions as $item): ?>
                     <tr>
                         <td>
-							<?= $item->question; ?>
+							<?= $form->field($answer, 'answer')->label($item->question) ?>
                         </td>
-                        <td>
-
-							<?= $form->field($answer, 'answer') ?>
-                            <div class="form-group">
-								<?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
-                            </div>
-
-                        </td>
-
                     </tr>
 				<?php endforeach;; ?>
+                <tr>
+                    <td>
+						<?= $form->field($comment, 'comment')->textarea()->label('Оставь Свой Коментарий:') ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+							<?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
+                        </div>
+                    </td>
+                </tr>
+
 				<?php ActiveForm::end(); ?>
                 </tbody>
             </table>
