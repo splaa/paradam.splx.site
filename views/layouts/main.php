@@ -110,7 +110,7 @@
 		'header' => '<h2>Услуги</h2>',
 		'footer' => '<button type="button" class="btn btn-info" data-dismiss="modal">Продолжить</button>
         <button type="button" class="btn btn-warning" onclick="clearOrder()">Очистить</button>
-        <button type="button" class="btn btn-danger" >Оплатить</button>'
+        <button type="button" class="btn btn-danger" onclick="saveOrder()">Оплатить</button>'
 	]);
 
 ?>

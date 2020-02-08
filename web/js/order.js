@@ -34,6 +34,20 @@ function clearOrder() {
     });
 }
 
+function saveOrder() {
+    $.ajax({
+        url: '/user/order/save',
+        type: 'GET',
+        success: function (res) {
+            if (!res) alert('Ошибка!!!');
+            showOrder(res);
+        },
+        error: function () {
+            alert('Error');
+        }
+    });
+}
+
 $('#order .modal-body').on('click', '.del-item', function () {
     var id = $(this).data('id');
     $.ajax({

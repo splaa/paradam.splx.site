@@ -58,6 +58,13 @@
 
 		}
 
+		public function actionSave()
+		{
+			$this->layout = false;
+			$message = 'Success is Saved!!';
+			return $this->render('save', compact('message'));
+		}
+
 		public function actionClear()
 		{
 			$this->layout = false;
