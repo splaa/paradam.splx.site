@@ -4,6 +4,7 @@
  * @var \yii\web\View $this
  */
 
+use app\modules\services\models\OrderService;
 use yii\helpers\Url;
 use yii\web\View;
 
@@ -27,6 +28,24 @@ use yii\web\View;
 							<?php else: ?>
 								<?= $message->text ?>
 							<?php endif; ?>
+
+							<?php if (!empty($message->orderService)): ?>
+								<?php if ($message->orderService->status == 0): ?>
+									<span class="service__button">
+										<button type="button" class="btn btn-success" onclick="confirmTask(this, <?= $message->order_service_id ?>, 1, '<?= Url::to(['confirm-task']) ?>');">Задание выполнено</button>
+										<button type="button" class="btn btn-danger" onclick="confirmTask(this, <?= $message->order_service_id ?>, 2, '<?= Url::to(['confirm-task']) ?>');">Отказаться от задания</button>
+									</span>
+									<span class="service__time"></span>
+								<?php else: ?>
+									<span class="service__finish">
+										<b><?= OrderService::getStatusByType($message->orderService->status) ?></b>
+									</span>
+								<?php endif; ?>
+							<?php elseif($message->order_service_id): ?>
+								<span class="service__finish">
+									<b><?= OrderService::getStatusByType() ?></b>
+								</span>
+							<?php endif; ?>
 						</p>
 						<span class="time_date"> <?= Yii::$app->formatter->asRelativeTime($message->created_at ) ?>    |    <?= Yii::$app->formatter->asDate($message->created_at ) ?></span>
 					</div>
@@ -43,6 +62,25 @@ use yii\web\View;
 							<audio controls="" src="<?= Yii::$app->request->hostInfo ?>/uploads/messages/<?= $message->audio ?>"></audio>
 						<?php else: ?>
 							<?= $message->text ?>
+						<?php endif; ?>
+
+						<?php if (!empty($message->orderService)): ?>
+							<?php if ($message->orderService->status == 1): ?>
+								<span class="service__button">
+									<b><?= OrderService::getStatusByType($message->orderService->status) ?></b>
+
+									<button type="button" class="btn btn-success" onclick="confirmTask(this, <?= $message->order_service_id ?>, 3, '<?= Url::to(['confirm-task']) ?>');">Подтвердить выполнение</button>
+									<button type="button" class="btn btn-danger" onclick="confirmTask(this, <?= $message->order_service_id ?>, 4, '<?= Url::to(['confirm-task']) ?>');">Открыть Диспут</button>
+								</span>
+							<?php else: ?>
+								<span class="service__finish">
+									<b><?= OrderService::getStatusByType($message->orderService->status) ?></b>
+								</span>
+							<?php endif; ?>
+						<?php elseif($message->order_service_id): ?>
+							<span class="service__finish">
+								<b><?= OrderService::getStatusByType() ?></b>
+							</span>
 						<?php endif; ?>
 					</p>
 					<span class="time_date"> <?= Yii::$app->formatter->asRelativeTime($message->created_at ) ?>    |    <?= Yii::$app->formatter->asDate($message->created_at ) ?></span>

@@ -60,8 +60,10 @@ class User extends ActiveRecord implements IdentityInterface
 	public const CURRENCY_BIT = 'bit';
 
 	public const TRANSFER_TYPE_SMS = 'sms';
+	public const TRANSFER_TYPE_SERVICE = 'service';
 	public const TRANSFER_TYPE_DONATE = 'donate';
 	public const TRANSFER_TYPE_INVESTMENT = 'investment';
+	public const TRANSFER_TYPE_TRANSFER = 'transfer';
 
 	public const MESSAGE_LENGTH = 250;
 
@@ -513,31 +515,49 @@ class User extends ActiveRecord implements IdentityInterface
 
 				$recipient->balance += $amount;
 				$recipient->save();
-
-				$activity = new Activity();
-				$activity->user_id = $recipient_id;
-				$activity->type = Activity::ACTIVITY_TYPE_MESSAGE;
-				$activity->additional = json_encode([
-					'sender_id' => $sender_id,
-					'username' => $sender->username,
-					'amount' => $amount
-				]);
-				$activity->save();
-
-				$activity = new Activity();
-				$activity->user_id = $sender_id;
-				$activity->type = Activity::ACTIVITY_TYPE_MESSAGE;
-				$activity->additional = json_encode([
-					'amount' => '-' . $amount
-				]);
-				$activity->save();
 				break;
-			case self::TRANSFER_TYPE_DONATE:
+			case self::TRANSFER_TYPE_SERVICE:
+				if (empty($amount)) {
+					$amount = $recipient->sms_cost * $factor;
+				}
 
+				$sender->balance = $sender->balance - $amount;
+				$sender->save();
 				break;
-			case self::TRANSFER_TYPE_INVESTMENT:
+			case self::TRANSFER_TYPE_TRANSFER:
+				$recipient->balance += $amount;
+				$recipient->save();
+				break;
+		}
 
-				break;
+		$activity_type = Activity::ACTIVITY_TYPE_MESSAGE;
+
+		if ($type == self::TRANSFER_TYPE_SERVICE) {
+			$activity_type = Activity::ACTIVITY_TYPE_SERVICE;
+		} elseif ($type == self::TRANSFER_TYPE_TRANSFER) {
+			$activity_type = Activity::ACTIVITY_TYPE_TRANSFER;
+		}
+
+		if ($type != self::TRANSFER_TYPE_SERVICE) {
+			$activity = new Activity();
+			$activity->user_id = $recipient_id;
+			$activity->type = $activity_type;
+			$activity->additional = json_encode([
+				'sender_id' => $sender_id,
+				'username' => $sender->username,
+				'amount' => $amount
+			]);
+			$activity->save();
+		}
+
+		if ($type != self::TRANSFER_TYPE_TRANSFER) {
+			$activity = new Activity();
+			$activity->user_id = $sender_id;
+			$activity->type = $activity_type;
+			$activity->additional = json_encode([
+				'amount' => '-' . $amount
+			]);
+			$activity->save();
 		}
 	}
 
@@ -563,14 +583,19 @@ class User extends ActiveRecord implements IdentityInterface
 	 * @param $sender_id
 	 * @param $recipient_id
 	 * @param int $creator_id
+	 * @param int $amount
 	 * @return bool|string
 	 */
-	public static function validateSendMessage($sender_id, $recipient_id, $creator_id = 0) {
+	public static function validateSendMessage($sender_id, $recipient_id, $creator_id = 0, $amount = 0) {
 		if ($sender_id && $recipient_id) {
 			$sender = User::findOne($sender_id);
 			$recipient = User::findOne($recipient_id);
 
-			if ($sender->balance < $recipient->sms_cost) {
+			if (empty($amount)) {
+				$amount = $recipient->sms_cost;
+			}
+
+			if ($sender->balance < $amount) {
 				if ($creator_id != $sender_id) {
 					return false;
 				} else {

@@ -19,6 +19,7 @@ return [
 	
 	'ADMIN_USERS' => 'Users',
 	'ADMIN_THREAD' => 'Thread',
+	'ADMIN_ORDERS' => 'Orders Services',
 	'USERS' => 'Users',
 	'USER' => 'User',
 

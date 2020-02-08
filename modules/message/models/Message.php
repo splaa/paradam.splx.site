@@ -2,6 +2,8 @@
 
 namespace app\modules\message\models;
 
+use app\modules\services\models\OrderService;
+use app\modules\services\models\Service;
 use app\modules\user\models\User;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -13,6 +15,7 @@ use yii\db\Expression;
  * @property int $id
  * @property int|null $author_id
  * @property int|null $thread_id
+ * @property int|null $order_service_id
  * @property string|null $text
  * @property string|null $created_at
  * @property string $audio
@@ -20,6 +23,7 @@ use yii\db\Expression;
  * @property User $author
  * @property Thread $thread
  * @property UserMessage[] $userMessages
+ * @property OrderService $orderService
  */
 class Message extends \yii\db\ActiveRecord
 {
@@ -92,5 +96,13 @@ class Message extends \yii\db\ActiveRecord
     public function getUserMessages()
     {
         return $this->hasMany(UserMessage::className(), ['message_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderService()
+    {
+        return $this->hasOne(OrderService::className(), ['id' => 'order_service_id']);
     }
 }

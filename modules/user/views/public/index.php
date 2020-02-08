@@ -16,8 +16,6 @@
 	$this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depends' => [AppAsset::class]]);
 ?>
 <div class="container emp-profile">
-    <a href="#" class="btn btn-success" onclick="return getOrder()">Показать Вси Заказани</a>
-
     <div class="row">
         <div class="col-md-4">
             <div class="profile-img">
@@ -187,12 +185,13 @@
                                     <label><?= $service->name ?></label>
                                 </div>
                                 <div class="col-md-3">
-                                    <label><?= $service->price ?></label>
+                                    <label><?= $service->formatPrice ?> - <?= $service->convertPriceToUSD ?></label>
                                 </div>
-                                <div class="col-md-6">
-                                    <label><?= Html::a('Заказать услугу', [''], ['id' => $service->id, 'data-id' => $service->id, 'class' => 'btn btn-success make-order']) ?></label>
-                                    <label><?= Html::a('Ответить на вопросы', [''], ['id' => 'answer-the-questions-' . $service->id, 'data-id' => $service->id, 'class' => 'btn btn-primary answer-the-questions']) ?></label>
-                                </div>
+	                            <?php if (Yii::$app->user->id != $model->id): ?>
+	                                <div class="col-md-6">
+	                                    <label><?= Html::a('Заказать услугу', '', ['data-id' => $service->id, 'data-user-id' => $model->id, 'class' => 'btn btn-success make-order']) ?></label>
+	                                </div>
+	                            <?php endif; ?>
                             </div>
 						<?php endforeach; ?>
 	                </div>

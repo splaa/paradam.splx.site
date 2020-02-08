@@ -1,14 +1,15 @@
 <?php
 
-namespace app\modules\services\models;
+namespace app\modules\admin\models;
 
+use app\modules\services\models\OrderService;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * ServiceSearch represents the model behind the search form of `app\modules\services\models\Service`.
+ * OrderServiceSearch represents the model behind the search form of `app\modules\admin\models\OrderService`.
  */
-class ServiceSearch extends Service
+class OrderServiceSearch extends OrderService
 {
     /**
      * {@inheritdoc}
@@ -16,9 +17,8 @@ class ServiceSearch extends Service
     public function rules()
     {
         return [
-            [['id', 'periodOfExecution', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'description', 'link_foto_video_file'], 'safe'],
-            [['price'], 'number'],
+            [['id', 'customer_id', 'executor_id', 'service_id', 'status', 'amount'], 'integer'],
+            [['answers', 'comment', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class ServiceSearch extends Service
      */
     public function search($params)
     {
-        $query = Service::find()->where(['user_id' => \Yii::$app->user->id]);
+        $query = OrderService::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +59,17 @@ class ServiceSearch extends Service
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'price' => $this->price,
-            'periodOfExecution' => $this->periodOfExecution,
+            'customer_id' => $this->customer_id,
+            'executor_id' => $this->executor_id,
+            'service_id' => $this->service_id,
+            'status' => $this->status,
+            'amount' => $this->amount,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'link_foto_video_file', $this->link_foto_video_file]);
+        $query->andFilterWhere(['like', 'answers', $this->answers])
+            ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;
     }

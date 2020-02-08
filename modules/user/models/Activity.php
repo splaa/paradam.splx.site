@@ -27,6 +27,7 @@ class Activity extends \yii\db\ActiveRecord
 	public const ACTIVITY_TYPE_PRODUCTS = 5;
 	public const ACTIVITY_TYPE_INVESTMENT = 6;
 	public const ACTIVITY_TYPE_MESSAGE = 7;
+	public const ACTIVITY_TYPE_TRANSFER = 7;
 
     /**
      * {@inheritdoc}

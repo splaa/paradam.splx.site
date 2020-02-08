@@ -63,6 +63,7 @@
 		'TITLE_RESET_PASSWORD' => 'TITLE_RESET_PASSWORD',
 		'ADMIN_USERS' => 'Пользователи',
 		'ADMIN_THREAD' => 'Диалоги',
+		'ADMIN_ORDERS' => 'Заказы Услуг',
 		'The requested page does not exist.' => 'The requested page does not exist.',
 		'TITLE_UPDATE' => 'TITLE_UPDATE',
 		'USER_USERNAME' => 'USER_USERNAME',

@@ -10,9 +10,6 @@ class m200206_214852_change_field_sms_cost_to_integer extends Migration
     /**
      * {@inheritdoc}
      */
-	/**
-	 * {@inheritdoc}
-	 */
 	public function safeUp()
 	{
 		$this->alterColumn('user', 'sms_cost', $this->integer(11));

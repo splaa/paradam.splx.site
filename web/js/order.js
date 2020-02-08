@@ -1,62 +1,97 @@
+//sender FORMS
+var sender = {
+    'validate': function(form){
+        var er = 0;
+        //var form=$(this).parents('form');
+        $.each(form.find('.req'), function(index, val) {
+            if ($(this).attr('name') == 'email' || $(this).hasClass('email')) {
+                if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test($(this).val()))) {
+                    er++;
+                    $(this).addClass('err');
+                    if ($(this).data('error') && $(this).data('error') != '' && $(this).parent().find('.form__error').length == 0) {
+                        $(this).parent().append('<div class="form__error">' + $(this).data('error') + '</div>');
+                    }
+                } else {
+                    $(this).removeClass('err');
+                    $(this).parent().find('.form__error').remove();
+                }
+            } else {
+                if ($(this).val() == '' || $(this).val() == $(this).attr('data-value')) {
+                    er++;
+                    if ($(this).parents('.select-block').length > 0) {
+                        $(this).parents('.select-block').addClass('err');
+                    } else {
+                        $(this).addClass('err');
+                        $(this).parent().addClass('err');
+                        if ($(this).data('error') && $(this).data('error') != '' && $(this).parent().find('.form__error').length == 0) {
+                            $(this).parent().append('<div class="form__error">' + $(this).data('error') + '</div>');
+                        }
+                    }
+                } else {
+                    if ($(this).parents('.select-block').length > 0) {
+                        $(this).parents('.select-block').removeClass('err');
+                    } else {
+                        $(this).removeClass('err');
+                        $(this).parent().removeClass('err');
+                        $(this).parent().find('.form__error').remove();
+                    }
+                }
+            }
+
+            if ($(this).attr('type') == 'checkbox') {
+                if ($(this).prop('checked') == true) {
+                    $(this).removeClass('err').parent().removeClass('err');
+                } else {
+                    er++;
+                    $(this).addClass('err').parent().addClass('err');
+                    $(this).parent().append('<div class="form__error">' + $(this).data('error') + '</div>');
+                }
+            }
+        });
+        if (form.find('.pass').eq(0).val() != form.find('.pass').eq(1).val()) {
+            er++;
+            form.find('.pass').addClass('err');
+        } else {
+            form.find('.pass').removeClass('err');
+        }
+        if (er == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    'error': function(form, error) {
+        $.each(error, function(index, val) {
+            if (index == 'message' || index == 'comment' || index == 'enquiry') {
+                form.find('textarea[name=' + index + ']').addClass('err');
+                form.find('textarea[name=' + index + ']').after('<div class="form__error">' + val + '</div>');
+                form.find('textarea[name=' + index + ']').parents('div').addClass('err');
+            } else if (index == 'theme_id') {
+                form.find('select[name=' + index + ']').addClass('err');
+                form.find('select[name=' + index + ']').after('<div class="form__error">' + val + '</div>');
+                form.find('select[name=' + index + ']').parents('div').addClass('err');
+            } else {
+                form.find('input[name=' + index + ']').after('<div class="form__error">' + val + '</div>');
+                form.find('input[name=' + index + ']').parents('div').addClass('err');
+            }
+        });
+    },
+    'clean': function(form, message) {
+        form.parent().html(message);
+    }
+}
 function showOrder(order) {
     $('#order .modal-body').html(order);
     $('#order').modal();
 }
 
-function getOrder() {
-
-    $.ajax({
-        url: '/user/order/show',
-        type: 'GET',
-        success: function (res) {
-            if (!res) alert('Ошибка!!!');
-            showOrder(res);
-        },
-        error: function () {
-            alert('Error');
-        }
-    });
-    return false;
-}
-
-
-function clearOrder() {
-    $.ajax({
-        url: '/user/order/clear',
-        type: 'GET',
-        success: function (res) {
-            if (!res) alert('Ошибка!!!');
-            showOrder(res);
-        },
-        error: function () {
-            alert('Error');
-        }
-    });
-}
-
-$('#order .modal-body').on('click', '.del-item', function () {
-    var id = $(this).data('id');
-    $.ajax({
-        url: '/user/order/del-item',
-        data: {id: id},
-        type: 'GET',
-        success: function (res) {
-            if (!res) alert('Ошибка!!!');
-            showOrder(res);
-        },
-        error: function () {
-            alert('Error');
-        }
-    });
-});
-
-
 $('a.make-order').on('click', function (e) {
     e.preventDefault();
-    var id = $(this).data('id');
+    let id = $(this).data('id');
+    let user_id = $(this).data('user-id');
     $.ajax({
         url: '/user/order/index',
-        data: {id: id},
+        data: {id: id, user_id: user_id},
         type: 'GET',
         success: function (res) {
             if (!res) alert('Ошибка!!!');
@@ -67,36 +102,33 @@ $('a.make-order').on('click', function (e) {
         }
     });
 });
-$('a.answer-the-questions').on('click', function (e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-    $.ajax({
-        url: '/user/order/answer-questions',
-        data: {id: id},
-        type: 'GET',
-        success: function (res) {
-            if (!res) alert('Ошибка!!!');
-            showOrder(res);
-        },
-        error: function () {
-            alert('Error');
-        }
-    });
-});
-$('#order .modal-body').on('click', '.answer-questions-glyph', function (e) {
 
+$(document).on('click', '#checkout_service', function (e) {
     e.preventDefault();
-    var id = $(this).data('id');
-    $.ajax({
-        url: '/user/order/answer-questions',
-        data: {id: id},
-        type: 'GET',
-        success: function (res) {
-            if (!res) alert('Ошибка!!!');
-            showOrder(res);
-        },
-        error: function () {
-            alert('Error');
-        }
-    });
+    let form = $('#order .modal-body').find('#send_service_form');
+    if (sender.validate(form)) {
+        $.ajax({
+            url: form.attr('action'),
+            type: 'post',
+            data: form.serialize(),
+            dataType: 'json',
+            beforeSend: function () {
+                $('#order .modal-body').prepend('<span id="loading">loading......</span>');
+            },
+            complete: function () {
+                $('#order .modal-body').find('#loading').remove();
+            },
+            success: function (json) {
+                if (json['redirect']) {
+                    location.href = json['redirect'];
+                }
+                if (json['error']) {
+                    $('#order .modal-body').prepend('<div class="alert alert-danger">' + json['error'] + '</div>');
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    }
 });

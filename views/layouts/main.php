@@ -6,7 +6,8 @@
 
 	use app\assets\AppAsset;
 	use app\widgets\Alert;
-	use yii\bootstrap\Nav;
+use yii\bootstrap\Modal;
+use yii\bootstrap\Nav;
 	use yii\bootstrap\NavBar;
 	use yii\helpers\Html;
 	use yii\widgets\Breadcrumbs;
@@ -55,6 +56,7 @@
 						['label' => Yii::t('app', 'NAV_QUESTIONS'), 'url' => ['/services/question']],
 						['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
 						['label' => Yii::t('app', 'ADMIN_THREAD'), 'url' => ['/admin/thread/index']],
+						['label' => Yii::t('app', 'ADMIN_ORDERS'), 'url' => ['/admin/order-service/index']],
 					]] :
 					false,
 				!Yii::$app->user->isGuest ?
@@ -102,21 +104,17 @@
 </footer>
 
 <?php
-	//	var_dump(Yii::$app->params['modalTitle']);
-	//	var_dump($this->title);
-	\yii\bootstrap\Modal::begin([
+	Modal::begin([
 		'id' => 'order',
 		'size' => 'modal-lg',
 		'header' => '<h2>Услуги</h2>',
-		'footer' => '<button type="button" class="btn btn-info" data-dismiss="modal">Продолжить</button>
-        <button type="button" class="btn btn-warning" onclick="clearOrder()">Очистить</button>
-        <button type="button" class="btn btn-danger" >Оплатить</button>'
+		'footer' => '<button type="button" class="btn btn-danger" data-dismiss="modal">Отменить</button><button type="button" class="btn btn-info" id="checkout_service">Оформить</button>'
 	]);
 
 ?>
 
 <?php
-	\yii\bootstrap\Modal::end();
+	Modal::end();
 ?>
 <?php $this->endBody() ?>
 </body>

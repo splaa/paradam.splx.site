@@ -81,12 +81,21 @@
 		}
 
 
-		public function errorIfPriceLessSmsCost()
+		/**
+		 * @param $attribute
+		 * @param $params
+		 */
+		public function errorIfPriceLessSmsCost($attribute, $params)
 		{
 			$user = User::findIdentity(Yii::$app->user->id);
-			if ($user->sms_cost > $this->price) {
-				$this->addError('price', 'Цена дожна быть выше за ' . Yii::t('app', 'USER_SMS_COST'));
-			};
+
+			if (($this->$attribute % 5) != 0) {
+				$this->addError($attribute, 'Число должно быть кратно 5.');
+			}
+
+			if ($user->sms_cost > $this->$attribute) {
+				$this->addError($attribute, 'Цена должна быть выше за ' . Yii::$app->user->identity->formatSmsCost);
+			}
 
 		}
 

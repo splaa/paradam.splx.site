@@ -110,6 +110,9 @@ img{ max-width:100%;}
     display: block;
     margin: 5px 0 0 0;
 }
+.sent_msg p > span, .received_withd_msg p > span{
+    display: block;
+}
 .outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
 .sent_msg {
     float: right;

@@ -2,25 +2,21 @@
 
 namespace app\modules\message\controllers;
 
-use app\components\Currency;
 use app\modules\message\forms\MessageForm;
 use app\modules\message\forms\SettingsForm;
 use app\modules\message\models\Message;
 use app\modules\message\models\Thread;
 use app\modules\message\models\UserMessage;
 use app\modules\message\models\UserThread;
+use app\modules\services\models\OrderService;
 use app\modules\user\controllers\UserController;
 use app\modules\user\models\User;
 use Yii;
 use \app\components\Hash;
-use yii\bootstrap\ActiveForm;
-use yii\filters\VerbFilter;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
 use yii\web\UploadedFile;
-use yii\web\View;
-use YoHang88\LetterAvatar\LetterAvatar;
 
 /**
  * Default controller for the `message` module
@@ -41,6 +37,7 @@ class MessageController extends UserController
 	public function actionIndex()
 	{
 		$this->view->registerCssFile('@web/css/chat.css');
+		$this->view->registerJsFile('@web/js/chat.js');
 
 		$threads = UserThread::find()
 			->where(['user_id' => Yii::$app->user->id])
@@ -64,6 +61,7 @@ class MessageController extends UserController
 		$this->view->registerJsFile('@web/js/ws.js');
 		$this->view->registerJsFile('@web/js/recorder.js');
 		$this->view->registerJsFile('@web/js/record.js');
+		$this->view->registerJsFile('@web/js/chat.js');
 
 		$threads = UserThread::find()
 			->where(['user_id' => Yii::$app->user->id])
@@ -197,6 +195,35 @@ class MessageController extends UserController
 				}
 
 				$file->saveAs(Yii::getAlias('@web') . 'uploads/messages/' . $file->name . '.wav');
+			}
+		}
+	}
+
+	public function actionConfirmTask()
+	{
+		if (Yii::$app->request->isPost) {
+			$service_order_id = Yii::$app->request->post('order_id');
+			$type = Yii::$app->request->post('type');
+
+			$orderService = OrderService::findOne($service_order_id);
+
+			if ($orderService && ($orderService->status != 2 || $orderService->status != 3)) {
+				$orderService->status = $type;
+				$orderService->save();
+
+				if ($type == 2) {
+					User::transferBits($orderService->executor_id, $orderService->customer_id, User::TRANSFER_TYPE_TRANSFER, $orderService->amount, 1);
+				} elseif ($type == 3) {
+					User::transferBits($orderService->customer_id, $orderService->executor_id, User::TRANSFER_TYPE_TRANSFER, $orderService->amount, 1);
+				}
+
+				return Json::encode([
+					'success' => OrderService::getStatusByType($type)
+				]);
+			} else {
+				return Json::encode([
+					'error' => 'Не верный заказ'
+				]);
 			}
 		}
 	}
