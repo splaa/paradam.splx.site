@@ -22,7 +22,7 @@ class Currency
 		self::USD_CURRENCY => [
 			'symbol_left' => '$',
 			'symbol_right' => '',
-			'decimal_place' => 2,
+			'decimal_place' => 0,
 			'value' => self::COURSE[self::USD_CURRENCY]
 		],
 		self::BITS_CURRENCY => [
