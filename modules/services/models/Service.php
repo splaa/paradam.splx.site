@@ -68,7 +68,7 @@
 		public function rules()
 		{
 			return [
-				['price', 'required'],
+				[['price', 'link_foto_video_file'], 'required'],
 				[['imageFile'], 'file', 'extensions' => 'png, jpg, mp4'],
 				[['user_id', 'periodOfExecution'], 'integer'],
 				[['description'], 'string'],
