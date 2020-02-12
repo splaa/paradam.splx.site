@@ -102,8 +102,8 @@ class SocketServer implements MessageComponentInterface
 								$factor += ceil((int)$timing / 30);
 							}
 
-							if (mb_strlen($parse['message'], 'UTF-8') > USER::MESSAGE_LENGTH) {
-								$factor += count(User::strSplitUnicode($parse['message'], USER::MESSAGE_LENGTH));
+							if (mb_strlen($parse['message'], 'UTF-8') > User::MESSAGE_LENGTH) {
+								$factor += count(User::strSplitUnicode($parse['message'], User::MESSAGE_LENGTH));
 							}
 						} elseif (!empty($parse['audio'])) {
 							$timing = $parse['timing'] ?? 0;
@@ -111,8 +111,8 @@ class SocketServer implements MessageComponentInterface
 								$factor = ceil((int)$timing / 30);
 							}
 						} else {
-							if (mb_strlen($parse['message'], 'UTF-8') > USER::MESSAGE_LENGTH) {
-								$factor = count(User::strSplitUnicode($parse['message'], USER::MESSAGE_LENGTH));
+							if (mb_strlen($parse['message'], 'UTF-8') > User::MESSAGE_LENGTH) {
+								$factor = count(User::strSplitUnicode($parse['message'], User::MESSAGE_LENGTH));
 							}
 						}
 						
