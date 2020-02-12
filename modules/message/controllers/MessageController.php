@@ -214,7 +214,7 @@ class MessageController extends UserController
 				if ($type == 2) {
 					User::transferBits($orderService->executor_id, $orderService->customer_id, User::TRANSFER_TYPE_TRANSFER, $orderService->amount, 1);
 				} elseif ($type == 3) {
-					User::transferBits($orderService->customer_id, $orderService->executor_id, User::TRANSFER_TYPE_TRANSFER, $orderService->amount, 1);
+					User::transferBits($orderService->customer_id, $orderService->executor_id, User::TRANSFER_TYPE_TRANSFER, $orderService->amount, 1, true);
 				}
 
 				return Json::encode([

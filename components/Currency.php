@@ -22,7 +22,7 @@ class Currency
 		self::USD_CURRENCY => [
 			'symbol_left' => '$',
 			'symbol_right' => '',
-			'decimal_place' => 0,
+			'decimal_place' => 2,
 			'value' => self::COURSE[self::USD_CURRENCY]
 		],
 		self::BITS_CURRENCY => [
@@ -69,14 +69,14 @@ class Currency
 	}
 
 	public static function convert($value, $from, $to) {
-		if (isset(self::CURRENCIES[$from])) {
-			$from = self::CURRENCIES[$from]['value'];
+		if (isset(self::COURSE[$from])) {
+			$from = self::COURSE[$from];
 		} else {
 			$from = 1;
 		}
 
-		if (isset(self::CURRENCIES[$to])) {
-			$to = self::CURRENCIES[$to]['value'];
+		if (isset(self::COURSE[$to])) {
+			$to = self::COURSE[$to];
 		} else {
 			$to = 1;
 		}

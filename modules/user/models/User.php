@@ -67,6 +67,8 @@ class User extends ActiveRecord implements IdentityInterface
 
 	public const MESSAGE_LENGTH = 250;
 
+	public const COMMISSION_PERCENT = 20;
+
 	public function behaviors()
 	{
 		return [
@@ -249,7 +251,8 @@ class User extends ActiveRecord implements IdentityInterface
 	public function getConvertBalanceToUSD()
 	{
 		$number = Currency::convert($this->balance, Currency::BITS_CURRENCY, Currency::USD_CURRENCY);
-		return Currency::format($number, Currency::USD_CURRENCY);
+
+		return Currency::format($number, Currency::USD_CURRENCY, 1);
 	}
 
 	/**
@@ -266,7 +269,7 @@ class User extends ActiveRecord implements IdentityInterface
 	public function getConvertSmsCostToUSD()
 	{
 		$number = Currency::convert($this->sms_cost, Currency::BITS_CURRENCY, Currency::USD_CURRENCY);
-		return Currency::format($number, Currency::USD_CURRENCY);
+		return Currency::format($number, Currency::USD_CURRENCY, 1);
 	}
 	
 	/**
@@ -498,8 +501,9 @@ class User extends ActiveRecord implements IdentityInterface
 	 * @param $type
 	 * @param int $amount
 	 * @param int $factor
+	 * @param bool $commission
 	 */
-	public static function transferBits($sender_id, $recipient_id, $type, $amount = 0, $factor = 1)
+	public static function transferBits($sender_id, $recipient_id, $type, $amount = 0, $factor = 1, $commission = false)
 	{
 		$sender = User::findOne($sender_id);
 		$recipient = User::findOne($recipient_id);
@@ -525,7 +529,12 @@ class User extends ActiveRecord implements IdentityInterface
 				$sender->save();
 				break;
 			case self::TRANSFER_TYPE_TRANSFER:
-				$recipient->balance += $amount;
+				if ($commission) {
+					$recipient->balance += ($amount - self::getPercent($amount));
+				} else {
+					$recipient->balance += $amount;
+				}
+
 				$recipient->save();
 				break;
 		}
@@ -545,7 +554,8 @@ class User extends ActiveRecord implements IdentityInterface
 			$activity->additional = json_encode([
 				'sender_id' => $sender_id,
 				'username' => $sender->username,
-				'amount' => $amount
+				'amount' => Currency::format($amount, Currency::BITS_CURRENCY),
+				'commission' => ($commission ? Currency::format(self::getPercent($amount), Currency::BITS_CURRENCY) : 0),
 			]);
 			$activity->save();
 		}
@@ -555,7 +565,7 @@ class User extends ActiveRecord implements IdentityInterface
 			$activity->user_id = $sender_id;
 			$activity->type = $activity_type;
 			$activity->additional = json_encode([
-				'amount' => '-' . $amount
+				'amount' => '-' . Currency::format($amount, Currency::BITS_CURRENCY),
 			]);
 			$activity->save();
 		}
@@ -605,5 +615,13 @@ class User extends ActiveRecord implements IdentityInterface
 		}
 
 		return true;
+	}
+
+	/**
+	 * @param $amount
+	 * @return float|int
+	 */
+	private static function getPercent($amount) {
+		return $amount * self::COMMISSION_PERCENT / 100;
 	}
 }

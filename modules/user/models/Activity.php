@@ -126,11 +126,15 @@ class Activity extends \yii\db\ActiveRecord
 			$parse = json_decode($additional, true);
 
 			if (isset($parse['amount'])) {
-				$html = '<span class="label label-primary">Amount: ' . $parse['amount'] . ' ' . User::CURRENCY_BIT . '</span><br>';
+				$html = '<span class="label label-primary">Amount: ' . $parse['amount'] . '</span><br>';
 			}
 
 			if (isset($parse['username'])) {
 				$html .= '<span class="label label-primary">Username: ' . $parse['username'] . '</span><br>';
+			}
+
+			if (isset($parse['commission'])) {
+				$html .= '<span class="label label-primary">Commission: ' . $parse['commission'] . '</span><br>';
 			}
 
 			return $html;

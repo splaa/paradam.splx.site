@@ -68,7 +68,7 @@
 		public function rules()
 		{
 			return [
-				[['price', 'link_foto_video_file'], 'required'],
+				[['price'], 'required'],
 				[['imageFile'], 'file', 'extensions' => 'png, jpg, mp4'],
 				[['user_id', 'periodOfExecution'], 'integer'],
 				[['description'], 'string'],
@@ -203,7 +203,7 @@
 		public function getConvertPriceToUSD()
 		{
 			$number = Currency::convert($this->price, Currency::BITS_CURRENCY, Currency::USD_CURRENCY);
-			return Currency::format($number, Currency::USD_CURRENCY);
+			return Currency::format($number, Currency::USD_CURRENCY, 1);
 		}
 
 		/**
