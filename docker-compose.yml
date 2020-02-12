@@ -29,3 +29,7 @@ services:
     restart: always
     ports:
       - "8888:8080"
+  supervisor:
+    image: supervisorg/workers
+    volumes:
+      - ./:/app
