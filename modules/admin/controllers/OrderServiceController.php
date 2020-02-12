@@ -3,8 +3,10 @@
 namespace app\modules\admin\controllers;
 
 use app\modules\services\models\OrderService;
+use app\modules\user\models\User;
 use Yii;
 use app\modules\admin\models\OrderServiceSearch;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -87,6 +89,14 @@ class OrderServiceController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+	        if ($model->status != 2 || $model->status != 3) {
+		        if ($model->status == 2) {
+			        User::transferBits($model->executor_id, $model->customer_id, User::TRANSFER_TYPE_TRANSFER, $model->amount, 1);
+		        } elseif ($model->status == 3) {
+			        User::transferBits($model->customer_id, $model->executor_id, User::TRANSFER_TYPE_TRANSFER, $model->amount, 1);
+		        }
+	        }
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
