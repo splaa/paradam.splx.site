@@ -3,6 +3,7 @@
  * @var \app\modules\message\models\UserThread[] $threads
  * @var \app\modules\message\models\UserThread $selected_user_thread
  * @var \app\modules\message\forms\SettingsForm $model
+ * @var integer $froze
  */
 
 use app\components\Hash;
@@ -69,7 +70,8 @@ use yii\widgets\Pjax;
 				<?php if (!empty($selected_user_thread)): ?>
 					<?=
 						$this->render('thread', [
-							'selected_user_thread' => $selected_user_thread
+							'selected_user_thread' => $selected_user_thread,
+							'froze' => $froze,
 						]);
 					?>
 				<?php endif; ?>

@@ -4,6 +4,7 @@ namespace app\modules\message\controllers;
 
 use app\modules\message\forms\MessageForm;
 use app\modules\message\forms\SettingsForm;
+use app\modules\message\models\Froze;
 use app\modules\message\models\Message;
 use app\modules\message\models\Thread;
 use app\modules\message\models\UserMessage;
@@ -17,6 +18,7 @@ use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
+use yii\web\View;
 
 /**
  * Default controller for the `message` module
@@ -45,12 +47,14 @@ class MessageController extends UserController
 			->all();
 
 		$selected_user_thread = [];
+		$froze = 0;
 
 		$model = new SettingsForm();
 
 		return $this->render('index', [
 			'model' => $model,
 			'threads' => $threads,
+			'froze' => $froze,
 			'selected_user_thread' => $selected_user_thread
 		]);
 	}
@@ -58,10 +62,10 @@ class MessageController extends UserController
 	public function actionView($id = '')
 	{
 		$this->view->registerCssFile('@web/css/chat.css');
-		$this->view->registerJsFile('@web/js/ws.js');
-		$this->view->registerJsFile('@web/js/recorder.js');
-		$this->view->registerJsFile('@web/js/record.js');
-		$this->view->registerJsFile('@web/js/chat.js');
+		$this->view->registerJsFile('@web/js/ws.js', ['depends' => 'yii\web\YiiAsset', 'position' => View::POS_END]);
+		$this->view->registerJsFile('@web/js/recorder.js', ['depends' => 'yii\web\YiiAsset', 'position' => View::POS_END]);
+		$this->view->registerJsFile('@web/js/record.js', ['depends' => 'yii\web\YiiAsset', 'position' => View::POS_END]);
+		$this->view->registerJsFile('@web/js/chat.js', ['depends' => 'yii\web\YiiAsset', 'position' => View::POS_END]);
 
 		$threads = UserThread::find()
 			->where(['user_id' => Yii::$app->user->id])
@@ -69,6 +73,7 @@ class MessageController extends UserController
 			->all();
 
 		$selected_user_thread = [];
+		$froze = 0;
 
 		if ($id) {
 			// Decode Hash
@@ -79,6 +84,10 @@ class MessageController extends UserController
 				->where(['thread_id' =>  $hash->run(Hash::DECODE)])
 				->andWhere(['user_id' => Yii::$app->user->id])
 				->one();
+
+			if ($selected_user_thread) {
+				$froze = Froze::find()->where(['thread_id' => $selected_user_thread->thread->id])->andWhere(['status' => 0])->count();
+			}
 		}
 
 		$model = new SettingsForm();
@@ -86,6 +95,7 @@ class MessageController extends UserController
 		return $this->render('index', [
 			'model' => $model,
 			'threads' => $threads,
+			'froze' => $froze,
 			'selected_user_thread' => $selected_user_thread
 		]);
 	}
@@ -168,7 +178,7 @@ class MessageController extends UserController
 						$factor = 1;
 					}
 
-					User::transferBits($sender_id, $recipient_id, User::TRANSFER_TYPE_SMS, 0, $factor);
+					User::transferBits($sender_id, $recipient_id, User::TRANSFER_TYPE_SMS_FROZE, 0, $factor, false, $message->id, $thread_id);
 
 					$hash = new Hash();
 					$hash->string = $thread_id;

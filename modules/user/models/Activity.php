@@ -28,6 +28,7 @@ class Activity extends \yii\db\ActiveRecord
 	public const ACTIVITY_TYPE_INVESTMENT = 6;
 	public const ACTIVITY_TYPE_MESSAGE = 7;
 	public const ACTIVITY_TYPE_TRANSFER = 8;
+	public const ACTIVITY_TYPE_REMOVE_THREAD = 9;
 
     /**
      * {@inheritdoc}
@@ -116,6 +117,9 @@ class Activity extends \yii\db\ActiveRecord
 		    case 8:
 		    	return 'Transfer';
 		    	break;
+		    case 9:
+		    	return 'Remove Thread';
+		    	break;
 	    }
     }
 
@@ -135,6 +139,10 @@ class Activity extends \yii\db\ActiveRecord
 
 			if (isset($parse['commission'])) {
 				$html .= '<span class="label label-primary">Commission: ' . $parse['commission'] . '</span><br>';
+			}
+
+			if (isset($parse['text'])) {
+				$html .= '<span class="label label-primary">' . $parse['text'] . '</span><br>';
 			}
 
 			return $html;

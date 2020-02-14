@@ -19,6 +19,7 @@ use yii\db\Expression;
  * @property string|null $text
  * @property string|null $created_at
  * @property string $audio
+ * @property int $cancel
  *
  * @property User $author
  * @property Thread $thread
@@ -54,7 +55,7 @@ class Message extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['author_id', 'thread_id'], 'integer'],
+            [['author_id', 'thread_id', 'cancel'], 'integer'],
             [['text', 'audio'], 'string'],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
             [['thread_id'], 'exist', 'skipOnError' => true, 'targetClass' => Thread::className(), 'targetAttribute' => ['thread_id' => 'id']],

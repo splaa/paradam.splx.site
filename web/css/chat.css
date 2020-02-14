@@ -154,3 +154,18 @@ img{ max-width:100%;}
     font-size:11px;
     font-weight: bold;
 }
+.button-message-confirm {
+    margin: 20px 0;
+    border: 1px solid #ccc;
+}
+.button-message-confirm button {
+    width: 49%;
+    display: inline-block;
+    border: 0;
+    background: transparent;
+    text-align: center;
+}
+.reason_cancel {
+    color: darkred;
+    font-weight: bold;
+}

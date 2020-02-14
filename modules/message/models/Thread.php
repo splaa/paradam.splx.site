@@ -2,6 +2,7 @@
 
 namespace app\modules\message\models;
 
+use app\modules\user\models\User;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
@@ -18,6 +19,7 @@ use yii\db\Expression;
  * @property Message[] $message
  * @property Message[] $messageWriter
  * @property UserThread[] $userThreads
+ * @property User $creator
  */
 class Thread extends \yii\db\ActiveRecord
 {
@@ -93,5 +95,13 @@ class Thread extends \yii\db\ActiveRecord
     public function getUserThreads()
     {
         return $this->hasMany(UserThread::className(), ['thread_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreator()
+    {
+        return $this->hasOne(User::className(), ['id' => 'creator_id']);
     }
 }

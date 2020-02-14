@@ -3,6 +3,7 @@
 namespace app\modules\user\models;
 
 use app\components\Currency;
+use app\modules\message\models\Froze;
 use app\modules\user\models\query\UserQuery;
 use Yii;
 use yii\base\InvalidConfigException;
@@ -60,6 +61,7 @@ class User extends ActiveRecord implements IdentityInterface
 	public const CURRENCY_BIT = 'bit';
 
 	public const TRANSFER_TYPE_SMS = 'sms';
+	public const TRANSFER_TYPE_SMS_FROZE = 'sms_froze';
 	public const TRANSFER_TYPE_SERVICE = 'service';
 	public const TRANSFER_TYPE_DONATE = 'donate';
 	public const TRANSFER_TYPE_INVESTMENT = 'investment';
@@ -502,14 +504,16 @@ class User extends ActiveRecord implements IdentityInterface
 	 * @param int $amount
 	 * @param int $factor
 	 * @param bool $commission
+	 * @param int $message_id
+	 * @param int $thread_id
 	 */
-	public static function transferBits($sender_id, $recipient_id, $type, $amount = 0, $factor = 1, $commission = false)
+	public static function transferBits($sender_id, $recipient_id, $type, $amount = 0, $factor = 1, $commission = false, $message_id = 0, $thread_id = 0)
 	{
 		$sender = User::findOne($sender_id);
 		$recipient = User::findOne($recipient_id);
 
 		switch ($type) {
-			case self::TRANSFER_TYPE_SMS:
+			case self::TRANSFER_TYPE_SMS_FROZE:
 				if (empty($amount)) {
 					$amount = $recipient->sms_cost * $factor;
 				}
@@ -517,8 +521,34 @@ class User extends ActiveRecord implements IdentityInterface
 				$sender->balance = $sender->balance - $amount;
 				$sender->save();
 
-				$recipient->balance += $amount;
-				$recipient->save();
+				$froze = new Froze();
+				$froze->amount = $amount;
+				$froze->message_id = $message_id;
+				$froze->thread_id = $thread_id;
+				$froze->status = 0;
+				$froze->save();
+				break;
+			case self::TRANSFER_TYPE_SMS:
+				$frozeData = Froze::find()->where(['thread_id' => $thread_id])->asArray()->all();
+				if (!empty($frozeData)) {
+					$amount = 0;
+
+					foreach ($frozeData as $item) {
+						$amount += $item['amount'];
+
+						$froze = Froze::findOne($item['id']);
+						$froze->status = 1;
+						$froze->save();
+					}
+
+					if ($commission) {
+						$recipient->balance += ($amount - self::getPercent($amount));
+					} else {
+						$recipient->balance += $amount;
+					}
+
+					$recipient->save();
+				}
 				break;
 			case self::TRANSFER_TYPE_SERVICE:
 				if (empty($amount)) {

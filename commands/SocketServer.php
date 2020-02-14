@@ -1,5 +1,6 @@
 <?php
 namespace app\commands;
+use app\modules\message\models\Froze;
 use app\modules\message\models\Message;
 use app\modules\message\models\Thread;
 use app\modules\message\models\UserMessage;
@@ -85,6 +86,7 @@ class SocketServer implements MessageComponentInterface
 					$message->thread_id = $parse['thread_id'];
 					$message->text = $parse['message'];
 					$message->audio = $parse['audio'];
+					$message->cancel = $parse['cancel'];
 					$message->save();
 
 					$user_message = new UserMessage();
@@ -119,7 +121,9 @@ class SocketServer implements MessageComponentInterface
 						if (!$factor)
 							$factor = 1;
 
-						User::transferBits($parse['user_id'], $recipient_id, User::TRANSFER_TYPE_SMS, 0, $factor);
+						User::transferBits($parse['user_id'], $recipient_id, User::TRANSFER_TYPE_SMS_FROZE, 0, $factor, false, $message->id, $thread->id);
+					} elseif (Froze::find()->where(['thread_id' => $thread->id])->andWhere(['status' => 0])->count()) {
+						User::transferBits($recipient_id, $parse['user_id'], User::TRANSFER_TYPE_SMS, 0, 1, true, $message->id, $thread->id);
 					}
 				} else {
 					$parse['error'] = 'На счету не достаточно средств пожалуйста пополните Ваш баланс.';
