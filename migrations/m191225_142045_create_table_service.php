@@ -65,19 +65,4 @@ class m191225_142045_create_table_service extends Migration
 
         return false;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191225_142045_create_table_service cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }
