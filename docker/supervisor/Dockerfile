@@ -9,3 +9,8 @@ RUN mkdir /var/log/websocket/
 COPY conf.d/supervisord.conf /etc/supervisor/supervisord.conf
 COPY conf.d/telegram_api_server.conf /etc/supervisor/conf.d/telegram_api_server.conf
 COPY conf.d/websocket_server.conf /etc/supervisor/conf.d/websocket_server.conf
+
+EXPOSE 80
+EXPOSE 443
+EXPOSE 9503
+EXPOSE 9505
