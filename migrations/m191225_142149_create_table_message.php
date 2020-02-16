@@ -62,15 +62,6 @@ class m191225_142149_create_table_message extends Migration
 			'id',
 			'CASCADE'
 		);
-
-		$this->addForeignKey(
-			'fk-message-id_service',
-			'message',
-			'id_service',
-			'service',
-			'id',
-			'CASCADE'
-		);
 	}
 
 	/**
@@ -85,11 +76,6 @@ class m191225_142149_create_table_message extends Migration
 
 		$this->dropForeignKey(
 			'fk-message-id_recipient',
-			'message'
-		);
-
-		$this->dropForeignKey(
-			'fk-message-id_service',
 			'message'
 		);
 
@@ -117,19 +103,4 @@ class m191225_142149_create_table_message extends Migration
 
 		return false;
 	}
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191225_142149_create_table_message cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }
