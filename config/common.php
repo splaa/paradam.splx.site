@@ -35,6 +35,23 @@
 			'message' => [
 				'class' => 'app\modules\message\Module',
 			],
+			'robotsTxt' => [
+				'class' => 'execut\robotsTxt\Module',
+				'components'    => [
+					'generator' => [
+						'class' => \execut\robotsTxt\Generator::class,
+						'userAgent' => [
+							'*' => [
+								'Disallow' => [
+									"/"
+								],
+								'Allow' => [
+								],
+							],
+						],
+					],
+				],
+			],
 		],
 		'aliases' => [
 			'@bower' => '@vendor/bower-asset',
@@ -62,6 +79,7 @@
 				'enableLanguagePersistence' => true,
 				'on languageChanged' => 'app\modules\user\models\User::onLanguageChanged',
 				'rules' => [
+					['pattern' => 'robots', 'route' => 'robotsTxt/web/index', 'suffix' => '.txt'],
 					'' => 'main/default/index',
 					'site/about' => 'main/default/about',
 					
