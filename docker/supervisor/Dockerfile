@@ -9,11 +9,9 @@ RUN mkdir /var/log/websocket/
 COPY conf.d/supervisord.conf /etc/supervisor/supervisord.conf
 COPY conf.d/telegram_api_server.conf /etc/supervisor/conf.d/telegram_api_server.conf
 COPY conf.d/websocket_server.conf /etc/supervisor/conf.d/websocket_server.conf
-RUN a2enmod ssl
-RUN a2ensite default-ssl
-COPY conf.d/server.pem /etc/ssl/certs/ssl-cert-snakeoil.pem
-COPY conf.d/server.key /etc/ssl/private/ssl-cert-snakeoil.key
-RUN service apache2 reload 
+COPY conf.d/server.pem /etc/ssl/certs/server.pem
+COPY conf.d/server.key /etc/ssl/private/server.key
+COPY conf.d/apache_ssl.conf /etc/apache2/sites-available/new-default-ssl.conf
 
 EXPOSE 80
 EXPOSE 443
