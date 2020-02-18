@@ -68,3 +68,4 @@ composer.lock
 /web/images/services/uploads/*
 !/web/images/services/uploads/.gitkeep
 !/web/images/services/uploads/no-image.png
+.gitignore

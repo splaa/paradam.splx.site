@@ -1,5 +1,0 @@
-vendor
-.env.example
-*.madeline
-*.madeline.lock
-madeline.phar*
