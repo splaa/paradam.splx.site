@@ -43,8 +43,9 @@ class Telegram extends BaseObject
 			'data[phone]' => $this->telephone
 		];
 		$curl = new CurlRequest();
-		$curl->url = Yii::$app->request->hostInfo . ":9503/api/contacts.addContact?" . http_build_query($request_data);
-		$curl->sendGet();
+		$curl->url = "telegram:9503/api/contacts.addContact?" . http_build_query($request_data);
+		$RES = $curl->sendGet();
+
 
 		$request_data = [
 			'data[contacts][0][_]' => 'inputPhoneContact',
@@ -54,7 +55,7 @@ class Telegram extends BaseObject
 			'data[contacts][0][last_name]' => ''
 		];
 		$curl = new CurlRequest();
-		$curl->url = Yii::$app->request->hostInfo . ":9503/api/contacts.importContacts?" . http_build_query($request_data);
+		$curl->url = "telegram:9503/api/contacts.importContacts?" . http_build_query($request_data);
 		$import =  $curl->sendGet();
 
 		if (!empty($import['response']['imported'][0]['user_id'])) {
@@ -63,7 +64,7 @@ class Telegram extends BaseObject
 				'data[message]' => $this->message
 			];
 			$curl = new CurlRequest();
-			$curl->url = Yii::$app->request->hostInfo . ":9503/api/messages.sendMessage?" . http_build_query($request_data);
+			$curl->url = "telegram:9503/api/messages.sendMessage?" . http_build_query($request_data);
 			$message =  $curl->sendGet();
 
 			if ($message) {
