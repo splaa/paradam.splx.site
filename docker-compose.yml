@@ -17,6 +17,7 @@ services:
       - default
     depends_on:
       - mysql
+      - telegram
   mysql:
     image: mysql:5.7
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
@@ -36,5 +37,8 @@ services:
       - "8888:8080"
   telegram:
     build: docker/telegram/
+    restart: always
+    expose:
+      - "9503"
     ports:
       - "9503:9503"
