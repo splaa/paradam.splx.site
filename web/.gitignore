@@ -1,0 +1,7 @@
+.htaccess
+/index.php
+/index-test.php
+/images/user/avatar/*
+!/images/user/avatar/.gitkeep
+/uploads/*
+!/uploads/.gitkeep
