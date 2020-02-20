@@ -21,6 +21,7 @@
 		'modules' => [
 			'admin' => [
 				'class' => 'app\modules\admin\Module',
+				'layout' => 'main'
 			],
 			'main' => [
 				'class' => 'app\modules\main\Module',

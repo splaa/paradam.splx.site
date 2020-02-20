@@ -41,6 +41,7 @@
     "vlucas/phpdotenv": "^4",
     "danog/madelineproto":"^5",
     "execut/yii2-robots-txt": "dev-master",
+    "dmstr/yii2-adminlte-asset": "2.*"
     "kartik-v/yii2-widget-typeahead": "dev-master"
   },
   "require-dev": {
