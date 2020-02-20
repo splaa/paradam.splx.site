@@ -42,14 +42,24 @@ use yii\widgets\Pjax;
 						<?php
 							$hash = new Hash();
 							$hash->string = $thread->thread->id;
+
+							if ($thread->thread->messageWriter) {
+								$avatarSmall = $thread->thread->messageWriter->author->avatarSmall;
+								$username = $thread->thread->messageWriter->author->username;
+								$alt = $thread->thread->messageWriter->author->alt;
+							} else {
+								$avatarSmall = $thread->thread->creator->avatarSmall;
+								$username = $thread->thread->creator->username;
+								$alt = $thread->thread->creator->alt;
+							}
 						?>
 						<a class="chat_list active_chat" href="<?= Url::to(['view', 'id' => $hash->run(Hash::ENCODE)]) ?>">
 							<div class="chat_people">
 								<div class="chat_img">
-									<img src="<?= $thread->thread->messageWriter->author->avatarSmall ?>" alt="<?= $thread->thread->messageWriter->author->alt ?>">
+									<img src="<?= $avatarSmall ?>" alt="<?= $alt ?>">
 								</div>
 								<div class="chat_ib" id="thread_<?= $thread->thread->id ?>">
-									<h5><?= $thread->thread->messageWriter->author->username ?> <span class="chat_date"><?= date("d M", strtotime($thread->thread->created_at)) ?></span></h5>
+									<h5><?= $username ?> <span class="chat_date"><?= date("d M", strtotime($thread->thread->created_at)) ?></span></h5>
 
 									<p>
 										<span class="text">
