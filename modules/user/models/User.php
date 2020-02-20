@@ -212,7 +212,7 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	public function getAvatarSmall()
 	{
-		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->id . '-' . self::SIZE_AVATAR_SMALL . '.png';
+		return self::getNormalizeAvatar(self::SIZE_AVATAR_SMALL, $this->id);
 	}
 
 	/**
@@ -220,7 +220,7 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	public function getAvatarMedium()
 	{
-		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->id . '-' . self::SIZE_AVATAR_MEDIUM . '.png';
+		return self::getNormalizeAvatar(self::SIZE_AVATAR_MEDIUM, $this->id);
 	}
 
 	/**
@@ -228,7 +228,7 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	public function getAvatarBig()
 	{
-		return Yii::$app->request->hostInfo . '/images/user/avatar/' . $this->id . '-' . self::SIZE_AVATAR_BIG . '.png';
+		return self::getNormalizeAvatar(self::SIZE_AVATAR_SMALL, $this->id);
 	}
 
 	/**
@@ -653,5 +653,21 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	private static function getPercent($amount) {
 		return $amount * self::COMMISSION_PERCENT / 100;
+	}
+
+	/**
+	 * @param $size
+	 * @param $id
+	 * @return string
+	 */
+	private static function getNormalizeAvatar($size, $id) {
+		$path_to_file = Yii::getAlias( '@web' ).'images/user/avatar/' . $id . '-' . $size . '.png';
+		if(file_exists($path_to_file)){
+			$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/' . $id . '-' . $size . '.png';
+		} else {
+			$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/none.png';
+		}
+
+		return $avatar;
 	}
 }
