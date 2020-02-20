@@ -23,7 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 	
 	<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-	
+
+    <div class="box">
+        <div class="box-body">
 	<?= GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
@@ -61,6 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			['class' => 'app\components\grid\ActionColumn'],
 		],
 	]) ?>
-
+        </div>
+    </div>
 
 </div>
