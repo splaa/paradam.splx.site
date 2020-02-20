@@ -5,12 +5,16 @@
 	/* @var $content string */
 
 	use app\assets\AppAsset;
-	use app\widgets\Alert;
+use app\modules\user\models\User;
+use app\widgets\Alert;
+use kartik\typeahead\Typeahead;
 use yii\bootstrap\Modal;
 use yii\bootstrap\Nav;
 	use yii\bootstrap\NavBar;
 	use yii\helpers\Html;
-	use yii\widgets\Breadcrumbs;
+use yii\helpers\Url;
+use yii\web\JsExpression;
+use yii\widgets\Breadcrumbs;
 
 	AppAsset::register($this);
 ?>
@@ -87,11 +91,48 @@ use yii\bootstrap\Nav;
 		NavBar::end();
 	?>
 
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<?php $template = '<a href="{{link}}" class="search-top clearfix"><img src="{{avatar}}"><span class="search-username">{{value}}</span><span class="search-fullname">{{full_name}}</span></a>';?>
+				<?=
+					Typeahead::widget([
+						'name' => 'user',
+						'id' => 'userTypeahead',
+						'options' => ['placeholder' => 'Search user ...'],
+						'scrollable' => true,
+						'dataset' => [
+							[
+								'display' => 'value',
+								'limit' => 50,
+								'remote' => [
+									'url' => Url::to(['/user/search/index']) . '?q=%QUERY',
+									'wildcard' => '%QUERY',
+									'rateLimitWait' => 1000
+								],
+								'templates' => [
+									'notFound' => '<div class="text-danger" style="padding:0 8px">Ничего не найдено.</div>',
+									'suggestion' => new JsExpression("Handlebars.compile('{$template}')")
+								]
+							]
+						],
+						'pluginOptions' => [
+							'highlight' => true,
+							'minLength' => 1,
+							'val' => ''
+						],
+					]);
+				?>
+			</div><!-- /.col-lg-6 -->
+		</div><!-- /.row -->
+	</div>
+
     <div class="container">
 		<?= Breadcrumbs::widget([
 			'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 		]) ?>
 		<?= Alert::widget() ?>
+
 		<?= $content ?>
     </div>
 </div>

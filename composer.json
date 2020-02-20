@@ -40,7 +40,8 @@
     "amphp/websocket-client": "dev-master#53f7883b325b09864095300ec8ff81e84e772c3b",
     "vlucas/phpdotenv": "^4",
     "danog/madelineproto":"^5",
-    "execut/yii2-robots-txt": "dev-master"
+    "execut/yii2-robots-txt": "dev-master",
+    "kartik-v/yii2-widget-typeahead": "dev-master"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

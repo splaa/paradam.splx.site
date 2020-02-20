@@ -233,4 +233,15 @@ a.desc:after {
 .err {
     position: relative;
 }
+.search-top a {
+    cursor: pointer;
+}
+.search-top img {
+    width: 45px;
+    float: left;
+    margin-right: 20px;
+}
+.search-top .search-fullname {
+display: block;
+}
 /*END PROFILE*/
