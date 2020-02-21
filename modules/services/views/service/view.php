@@ -27,7 +27,8 @@
 			],
 		]) ?>
     </p>
-
+    <div class="box">
+        <div class="box-body">
 	<?= DetailView::widget([
 		'model' => $model,
 		'attributes' => [
@@ -42,12 +43,15 @@
 			'updated_at',
 		],
 	]) ?>
-
+        </div>
+    </div>
     <!--    // Todo-splaa: Реализовать загрузку картинки с изображением (отображением картинки)-->
     <!--    // Review-Serik: Проверить код-->
     <!--	Review-[splx] -->
     <div>
         <h2>Вопросы</h2>
+        <div class="box">
+            <div class="box-body">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -73,5 +77,8 @@
             </tr>
             </tbody>
         </table>
+            </div>
+        </div>
     </div>
+
 </div>
