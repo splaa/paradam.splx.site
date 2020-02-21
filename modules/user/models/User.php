@@ -228,7 +228,7 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	public function getAvatarBig()
 	{
-		return self::getNormalizeAvatar(self::SIZE_AVATAR_SMALL, $this->id);
+		return self::getNormalizeAvatar(self::SIZE_AVATAR_BIG, $this->id);
 	}
 
 	/**
