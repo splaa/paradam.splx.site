@@ -101,7 +101,8 @@
 						'normalizer' => false, // disable normalizer for this rule
 					],
 
-					'/site/contact' => 'main/contact/index',
+					'search' => 'user/search/index',
+
 					'<_a:error>' => 'main/default/<_a>',
 					'<_a:(login|logout|signup|confirm-email|request-password-reset|reset-password)>' => 'user/default/<_a>',
 					
