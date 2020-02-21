@@ -30,12 +30,52 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+                    ['label' => 'Панель Администратора', 'options' => ['class' => 'header']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
-                        'label' => 'Some tools',
+                        'label' => 'Admin Tools',
+                        'icon' => 'file-code-o',
+                        'url' => '/admin',
+                        'items' => [
+                            [
+                                'label' => 'Пользователи',
+                                'icon' => 'file-code-o',
+                                'url' => '/admin/users',
+                                'items' => [
+                                    ['label' => 'Создать пользователя', 'icon' => 'circle-o', 'url' => '/admin/users/create',],
+                                    [
+                                        'label' => 'Level Two',
+                                        'icon' => 'circle-o',
+                                        'url' => '#',
+                                        'items' => [
+                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                            [
+                                'label' => 'Услуги',
+                                'icon' => 'file-code-o',
+                                'url' => '/services/service',
+                                'items' => [
+                                    ['label' => 'Услуги', 'icon' => 'circle-o', 'url' => '/services/service',],
+                                    ['label' => 'Добавить Услугу', 'icon' => 'circle-o', 'url' => '/services/service/create',],
+                                    [
+                                        'label' => 'Level Two',
+                                        'icon' => 'circle-o',
+                                        'url' => '#',
+                                        'items' => [
+                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    [
+                        'label' => 'Инструменты Разработчика',
                         'icon' => 'share',
                         'url' => '#',
                         'items' => [

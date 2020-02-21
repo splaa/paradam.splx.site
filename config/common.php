@@ -21,7 +21,7 @@
 		'modules' => [
 			'admin' => [
 				'class' => 'app\modules\admin\Module',
-				'layout' => 'main'
+				'layout' => '/admin/main'
 			],
 			'main' => [
 				'class' => 'app\modules\main\Module',
@@ -32,6 +32,7 @@
 			],
 			'services' => [
 				'class' => 'app\modules\services\Module',
+				'layout' => '/admin/main'
 			],
 			'message' => [
 				'class' => 'app\modules\message\Module',
