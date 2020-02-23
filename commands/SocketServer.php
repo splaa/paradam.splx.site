@@ -78,8 +78,6 @@ class SocketServer implements MessageComponentInterface
 					$recipient_id = $recipient['creator_id'];
 				}
 
-				$thread = Thread::findOne($recipient['thread_id']);
-
 				if (User::validateSendMessage($parse['user_id'], $recipient_id, 0)) {
 					$message = new Message();
 					$message->author_id = $parse['user_id'];
@@ -95,6 +93,10 @@ class SocketServer implements MessageComponentInterface
 					$user_message->save();
 
 					$factor = 0;
+
+					$thread = Thread::findOne($recipient['thread_id']);
+					$thread->updated_at = date("Y-m-d H:i:s");
+					$thread->save();
 
 					// Minus from balance
 					if ($thread->creator_id != $parse['user_id']) {

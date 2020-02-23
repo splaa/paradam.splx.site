@@ -7,9 +7,11 @@
  */
 
 use app\components\Hash;
+use kartik\typeahead\Typeahead;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\JsExpression;
 use yii\widgets\Pjax;
 
 ?>
@@ -38,6 +40,35 @@ use yii\widgets\Pjax;
 					</div>
 				</div>
 				<div class="inbox_chat">
+					<?php $template = '<a href="{{link}}" class="search-top clearfix"><img src="{{avatar}}"><span class="search-username">{{value}}</span><span class="search-fullname">{{full_name}}</span><span class="search-fullname">{{text}}</span></a>';?>
+					<?=
+					Typeahead::widget([
+						'name' => 'user-message',
+						'id' => 'userMessageTypeahead',
+						'options' => ['placeholder' => 'Search thread message ...'],
+						'scrollable' => true,
+						'dataset' => [
+							[
+								'display' => 'value',
+								'limit' => 50,
+								'remote' => [
+									'url' => Url::to(['/message/message/search']) . '?q=%QUERY',
+									'wildcard' => '%QUERY',
+									'rateLimitWait' => 1000
+								],
+								'templates' => [
+									'notFound' => '<div class="text-danger" style="padding:0 8px">Ничего не найдено.</div>',
+									'suggestion' => new JsExpression("Handlebars.compile('{$template}')")
+								]
+							]
+						],
+						'pluginOptions' => [
+							'highlight' => true,
+							'minLength' => 1,
+							'val' => ''
+						],
+					]);
+					?>
 					<?php foreach ($threads as $thread): ?>
 						<?php
 							$hash = new Hash();

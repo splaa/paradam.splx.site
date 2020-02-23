@@ -14,6 +14,7 @@ use app\modules\user\controllers\UserController;
 use app\modules\user\models\User;
 use Yii;
 use \app\components\Hash;
+use yii\base\InvalidConfigException;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
@@ -41,9 +42,9 @@ class MessageController extends UserController
 		$this->view->registerCssFile('@web/css/chat.css');
 		$this->view->registerJsFile('@web/js/chat.js');
 
-		$threads = UserThread::find()
+		$threads = UserThread::find()->joinWith('thread')
 			->where(['user_id' => Yii::$app->user->id])
-			->orderBy(['id' => SORT_DESC])
+			->orderBy(['thread.updated_at' => SORT_DESC])
 			->all();
 
 		$selected_user_thread = [];
@@ -67,9 +68,9 @@ class MessageController extends UserController
 		$this->view->registerJsFile('@web/js/record.js', ['depends' => 'yii\web\YiiAsset', 'position' => View::POS_END]);
 		$this->view->registerJsFile('@web/js/chat.js', ['depends' => 'yii\web\YiiAsset', 'position' => View::POS_END]);
 
-		$threads = UserThread::find()
+		$threads = UserThread::find()->joinWith('thread')
 			->where(['user_id' => Yii::$app->user->id])
-			->orderBy(['id' => SORT_DESC])
+			->orderBy(['thread.updated_at' => SORT_DESC])
 			->all();
 
 		$selected_user_thread = [];
@@ -236,5 +237,40 @@ class MessageController extends UserController
 				]);
 			}
 		}
+	}
+
+	public function actionSearch($q = null)
+	{
+		try {
+			$sql = "SELECT t.creator_id,m.text, ut.`thread_id` , u.`id` , u.`username` AS `value` , CONCAT( u.first_name, ' ', u.last_name ) AS `full_name` FROM user_thread AS ut ";
+			$sql .= "LEFT JOIN message AS m ON m.thread_id = ut.thread_id ";
+			$sql .= "LEFT JOIN thread AS t ON t.id = ut.thread_id ";
+			$sql .= "LEFT JOIN user AS u ON u.id = t.creator_id ";
+			$sql .= "WHERE ut.user_id =1 AND (m.text LIKE :q OR CONCAT( u.first_name, ' ', u.last_name ) LIKE :q OR u.username LIKE :q)";
+			$users = Yii::$app->db->createCommand($sql)->bindValue(':q', '%' . $q . '%')->queryAll();
+
+			if ($users) {
+				foreach ($users as $key => $user) {
+					$path_to_file = Yii::getAlias( '@web' ).'images/user/avatar/' . $user['id'] . '-' . User::SIZE_AVATAR_SMALL . '.png';
+
+					if(file_exists($path_to_file)){
+						$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/' . $user['id'] . '-' . User::SIZE_AVATAR_SMALL . '.png';
+					} else {
+						$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/none.png';
+					}
+
+					$users[$key]['avatar'] = $avatar;
+
+					$hash = new Hash();
+					$hash->string = $user['thread_id'];
+
+					$users[$key]['link'] = Url::to(['view', 'id' => $hash->run(Hash::ENCODE)]);
+				}
+			}
+		} catch (InvalidConfigException $e) {
+			$users = [];
+		}
+
+		return Json::encode($users);
 	}
 }

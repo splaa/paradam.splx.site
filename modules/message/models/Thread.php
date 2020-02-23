@@ -13,6 +13,7 @@ use yii\db\Expression;
  * @property int $id
  * @property string|null $title
  * @property string|null $created_at
+ * @property string|null $updated_at
  * @property int|null $creator_id
  *
  * @property Message[] $messages
@@ -37,7 +38,7 @@ class Thread extends \yii\db\ActiveRecord
 			[
 				'class' => TimestampBehavior::className(),
 				'attributes' => [
-					ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+					ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
 				],
 				'value' => new Expression('NOW()'),
 			]
