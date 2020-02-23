@@ -95,9 +95,13 @@ use yii\widgets\Pjax;
 									<p>
 										<span class="text">
 											<?php if ($thread->thread->message->author->id == Yii::$app->user->id): ?>
-											<b>You:</b>
+												<b>You:</b>
 											<?php endif; ?>
-											<?= mb_substr($thread->thread->message->text, 0, 35) ?>...
+											<?php if ($thread->thread->message->audio): ?>
+												Voice message
+											<?php else: ?>
+												<?= mb_substr($thread->thread->message->text, 0, 35) ?>...
+											<?php endif; ?>
 										</span>
 										<span class="badge" style="float: right">0</span>
 									</p>
