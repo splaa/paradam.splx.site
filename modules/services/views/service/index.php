@@ -21,7 +21,8 @@
 
 	<?php Pjax::begin(); ?>
 	<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <div class="box">
+        <div class="box-body">
 	<?= GridView::widget([
 		'dataProvider' => $dataProvider,
 		'filterModel' => $searchModel,
@@ -55,7 +56,8 @@
 			['class' => 'app\components\ActionColumn'],
 		],
 	]); ?>
-
+        </div>
+    </div>
 	<?php Pjax::end(); ?>
 
 </div>

@@ -61,15 +61,6 @@
                                 'items' => [
                                     ['label' => 'Услуги', 'icon' => 'circle-o', 'url' => '/services/service',],
                                     ['label' => 'Добавить Услугу', 'icon' => 'circle-o', 'url' => '/services/service/create',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],
                                 ],
                             ],
                         ],

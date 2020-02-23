@@ -14,18 +14,20 @@
 ?>
 <div class="service-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <div class="box">
+        <div class="box-body">
 	<?= $this->render('_form', [
 		'model' => $model,
 	]) ?>
-
+        </div>
+    </div>
 </div>
 
 
 <div>
-    <h2>Вопросы</h2>
-
+    <h3>Вопросы</h3>
+    <div class="box">
+        <div class="box-body">
 	<?php
 		$form = \yii\bootstrap\ActiveForm::begin()
 	?>
@@ -36,7 +38,6 @@
 
 	<?php endforeach; ?>
 	<?php \yii\bootstrap\ActiveForm::end(); ?>
-    </tr>
-    </tbody>
-    </table>
+        </div>
+    </div>
 </div>
