@@ -5,7 +5,9 @@
 	
 	use app\modules\user\models\PhoneRecord;
     use app\modules\user\models\User;
-    use Yii;
+	use borales\extensions\phoneInput\PhoneInputBehavior;
+	use borales\extensions\phoneInput\PhoneInputValidator;
+	use Yii;
     use yii\base\Model;
     use YoHang88\LetterAvatar\LetterAvatar;
 
@@ -26,6 +28,15 @@
 		public $reCaptcha;
 		public $subscribe;
 
+	    public function behaviors()
+	    {
+		    return [
+			    [
+				    'class' => PhoneInputBehavior::className(),
+			    ],
+		    ];
+	    }
+
 		public function rules()
 		{
 			return [
@@ -45,8 +56,10 @@
 				['email', 'email'],
 				['email', 'unique', 'targetClass' => User::className(), 'message' => 'This email address has already been taken.'],
 
-				['telephone', 'filter', 'filter' => 'trim'],
-				['telephone', 'match', 'pattern' => '/^\+380\d{3}\d{2}\d{2}\d{2}$/'],
+//				['telephone', 'filter', 'filter' => 'trim'],
+//				['telephone', 'match', 'pattern' => '/^\+380\d{3}\d{2}\d{2}\d{2}$/'],
+				['telephone', 'string'],
+				[['telephone'], PhoneInputValidator::className()],
 				['telephone', 'unique', 'targetClass' => PhoneRecord::class, 'message' => 'This telephone address has already been taken.'],
 
 				['password', 'string', 'min' => 8],

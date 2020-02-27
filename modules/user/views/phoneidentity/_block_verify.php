@@ -1,9 +1,17 @@
 <?php
 
+use borales\extensions\phoneInput\PhoneInput;
 use yii\helpers\Html;
 
 ?>
-<?= $form->field($model, 'telephone') ?>
+<?= $form->field($model, 'telephone')->widget(PhoneInput::className(), [
+	'jsOptions' => [
+		'nationalMode' => false,
+		'allowExtensions' => true,
+		'preferredCountries' => ['ua', 'ru', 'pl'],
+	]
+]);?>
+
 <?= $form->field($model, 'verifyCodeTelephone') ?>
 
 <div class="form-group">

@@ -42,9 +42,10 @@ $url = Url::to(['phoneidentity/telephone-code-confirm']);
 $js = <<< JS
 $(document).ready(function() {
 	$('.confirm_btn').click(function(){
+	    let input = $('#phonesignupform-telephone');
 		$.ajax({
 			url: '{$url}',
-			data: 'type=' + $(this).data('type') + '&telephone=' + $('#phonesignupform-telephone').val(),
+			data: 'type=' + $(this).data('type') + '&telephone=' + input.val(),
 			type: 'POST',
 			success: function (res) {
 				console.log(res);

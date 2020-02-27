@@ -42,7 +42,8 @@
     "danog/madelineproto":"^5",
     "execut/yii2-robots-txt": "dev-master",
     "dmstr/yii2-adminlte-asset": "2.*",
-    "kartik-v/yii2-widget-typeahead": "dev-master"
+    "kartik-v/yii2-widget-typeahead": "dev-master",
+    "borales/yii2-phone-input": "0.3.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

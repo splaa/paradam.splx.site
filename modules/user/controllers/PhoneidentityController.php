@@ -5,8 +5,8 @@
 	use app\components\Smsc;
     use app\components\Telegram;
     use app\modules\user\forms\PhoneSignupForm;
-    use app\modules\user\models\PhoneRecord;
-    use Yii;
+	use app\modules\user\models\PhoneRecord;
+	use Yii;
     use yii\filters\VerbFilter;
     use yii\helpers\Url;
     use yii\web\Controller;
