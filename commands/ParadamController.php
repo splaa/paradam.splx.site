@@ -36,7 +36,7 @@ class ParadamController extends \yii\console\Controller
 					if (file_exists(Yii::getAlias('web') . '/images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_ORIGINAL . '.png')) {
 						$file = Yii::getAlias('web') . '/images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_ORIGINAL . '.png';
 					} elseif (file_exists(Yii::getAlias('web') . '/images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_ORIGINAL . '.jpg')) {
-						$file = Yii::getAlias('@web') . '/images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_ORIGINAL . '.jpg';
+						$file = Yii::getAlias('web') . '/images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_ORIGINAL . '.jpg';
 					}
 
 					if (!empty($file)) {
