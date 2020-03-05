@@ -44,6 +44,10 @@ header {
     margin: auto;
 }
 
+.userPhoto img {
+    border-radius: 20px;
+}
+
 .backButton-style {
 
 }
