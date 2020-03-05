@@ -697,6 +697,6 @@ class User extends ActiveRecord implements IdentityInterface
 			$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/none.png';
 		}
 
-		return $avatar;
+		return $avatar . '?' . rand(0, 100);
 	}
 }
