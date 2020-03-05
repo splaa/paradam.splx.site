@@ -201,11 +201,11 @@ class MessageController extends UserController
 			$file = UploadedFile::getInstanceByName('audio_data');
 
 			if ($file) {
-				if (!file_exists(Yii::getAlias('@web') . 'uploads/messages')) {
-					mkdir(Yii::getAlias('@web') . 'uploads/messages', 0777);
+				if (!file_exists(Yii::getAlias('web') . 'uploads/messages')) {
+					mkdir(Yii::getAlias('web') . 'uploads/messages', 0777);
 				}
 
-				$file->saveAs(Yii::getAlias('@web') . 'uploads/messages/' . $file->name . '.wav');
+				$file->saveAs(Yii::getAlias('web') . 'uploads/messages/' . $file->name . '.wav');
 			}
 		}
 	}

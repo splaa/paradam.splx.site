@@ -39,7 +39,7 @@
 		 */
 		public function getFolder(): string
 		{
-			return \Yii::getAlias('@web') . 'images/services/uploads/';
+			return \Yii::getAlias('web') . 'images/services/uploads/';
 		}
 
 		/**

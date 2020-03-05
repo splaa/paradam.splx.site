@@ -57,9 +57,10 @@ class User extends ActiveRecord implements IdentityInterface
 	public const STATUS_WAIT = 2;
 	public const STATUS_TEST = 3;
 
-	public const SIZE_AVATAR_SMALL = 64;
+	public const SIZE_AVATAR_SMALL = 72;
 	public const SIZE_AVATAR_MEDIUM = 150;
 	public const SIZE_AVATAR_BIG = 250;
+	public const SIZE_AVATAR_ORIGINAL = 'original';
 
 	public const CURRENCY_BIT = 'bit';
 

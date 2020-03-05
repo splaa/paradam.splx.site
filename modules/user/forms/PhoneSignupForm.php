@@ -117,7 +117,7 @@
 					$name = $this->first_name . ' ' . $this->last_name;
 				}
 
-				$avatar = new LetterAvatar($name, 'circle', User::SIZE_AVATAR_SMALL);
+				$avatar = new LetterAvatar($name, 'square', User::SIZE_AVATAR_SMALL);
 				$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_SMALL . '.png');
 				$avatar = new LetterAvatar($name, 'square',  User::SIZE_AVATAR_MEDIUM);
 				$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_MEDIUM . '.png');

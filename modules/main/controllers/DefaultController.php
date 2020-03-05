@@ -25,7 +25,7 @@
 		 */
 		public function actionIndex()
 		{
-//			$file = \Yii::getAlias('@web') . 'uploads/messages/2020-02-03T00:57:18.653Z1_1.wav';
+//			$file = \Yii::getAlias('web') . 'uploads/messages/2020-02-03T00:57:18.653Z1_1.wav';
 //			$fp = fopen($file, 'rb');
 //			fseek($fp, 28);
 //			$rawheader = fread($fp, 4);
