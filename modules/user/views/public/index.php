@@ -14,9 +14,9 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 ?>
 <header>
 	<div class="headerContainer">
-        <a href="<?= Url::previous() ?>" class="backButton">
+        <span onclick="main.back()" class="backButton">
             <img src="<?= Yii::getAlias('@web') ?>/images/paradam/back_arrow.svg" alt="">
-        </a>
+        </span>
 		<h2><?= $model->first_name . ' ' . $model->last_name ?></h2>
 	</div>
 </header>
