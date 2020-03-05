@@ -3,9 +3,67 @@
 	/* @var $this yii\web\View */
 	
 	$this->title = Yii::$app->name;
-?>
-<div class="main-default-index">
 
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar; ?>
+<div class="main-default-index">
+	<?php
+	NavBar::begin([
+		'brandLabel' => Yii::$app->name,
+		'brandUrl' => Yii::$app->homeUrl,
+		'options' => [
+			'class' => 'navbar-inverse navbar-fixed-top',
+		],
+	]);
+	echo Nav::widget([
+		'options' => ['class' => 'navbar-nav navbar-right'],
+		'activateParents' => true,
+		'items' => array_filter([
+			['label' => Yii::t('app', 'NAV_HOME'), 'url' => ['/main/default/index']],
+			['label' => Yii::t('app', 'NAV_USERS'), 'url' => ['/user/public/list']],
+			Yii::$app->user->isGuest ?
+				['label' => Yii::t('app', 'NAV_SIGNUP'), 'url' => ['/user/phoneidentity/index']] :
+				false,
+			Yii::$app->user->isGuest ?
+				['label' => Yii::t('app', 'NAV_LOGIN'), 'url' => ['/user/default/phonelogin']] :
+				false,
+			!Yii::$app->user->isGuest ?
+				['label' => Yii::t('app', 'NAV_ADMIN'), 'items' => [
+					['label' => Yii::t('app', 'NAV_ADMIN'), 'url' => ['/admin/default/index']],
+					['label' => Yii::t('app', 'NAV_SERVICES'), 'url' => ['/services/service']],
+					['label' => Yii::t('app', 'NAV_QUESTIONS'), 'url' => ['/services/question']],
+					['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
+					['label' => Yii::t('app', 'ADMIN_THREAD'), 'url' => ['/admin/thread/index']],
+					['label' => Yii::t('app', 'ADMIN_ORDERS'), 'url' => ['/admin/order-service/index']],
+				]] :
+				false,
+			!Yii::$app->user->isGuest ?
+				['label' => Yii::t('app', 'NAV_PROFILE'), 'items' => [
+					['label' => Yii::t('app', 'NAV_PROFILE'), 'url' => ['/user/profile/index']],
+					['label' => sprintf(Yii::t('app', 'NAV_PROFILE_BALANCE'), Yii::$app->user->identity->formatBalance, Yii::$app->user->identity->convertBalanceToUSD), 'url' => ['/user/profile/balance']],
+					['label' => Yii::t('app', 'NAV_LOGOUT'),
+						'url' => ['/user/default/logout'],
+						'linkOptions' => ['data-method' => 'post']]
+				]] :
+				false,
+			Yii::$app->user->can('admin') ?
+				['label' => Yii::t('app', 'NAV_ADMIN'), 'items' => [
+					['label' => Yii::t('app', 'NAV_ADMIN'), 'url' => ['/admin/default/index']],
+					['label' => Yii::t('app', 'ADMIN_USERS'), 'url' => ['/admin/users/index']],
+				]] :
+				false,
+			Yii::$app->language === 'en' ?
+				['label' => Yii::t('app', 'Русский'), 'url' => ['/', 'language' => 'ru']] :
+				false,
+			Yii::$app->language === 'ru' ?
+				['label' => Yii::t('app', 'English'), 'url' => ['/', 'language' => 'en']] :
+				false,
+
+
+		]),
+	]);
+	NavBar::end();
+	?>
     <div class="jumbotron">
         <h1><?= Yii::t('app', 'Congratulations') ?>!</h1>
 
