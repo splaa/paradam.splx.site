@@ -42,7 +42,7 @@ class PublicController extends Controller
 				'services' => $services,
 				'messageForm' => $messageForm,
 				'subscribe_id' => $subscribe_id,
-				'count' => $subscribe_info['count'] ?? 0
+				'count' => Subscribe::find()->where(['user_id' => $model->id])->count()
 			]);
 
 		} else {
