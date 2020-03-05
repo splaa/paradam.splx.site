@@ -16,6 +16,8 @@ use YoHang88\LetterAvatar\LetterAvatar;
 
 class PublicController extends Controller
 {
+	public $layout = 'public';
+
 	public function actionIndex($username)
 	{
 		$model = User::findByUsername($username);

@@ -12,9 +12,128 @@
 	use yii\helpers\Html;
 	use yii\helpers\Url;
 
-	//	$this->title = 'Услуги';
 	$this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depends' => [AppAsset::class]]);
 ?>
+<header>
+	<div class="headerContainer">
+                <span class="backButton">
+                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/back_arrow.svg" alt="">
+                </span>
+		<h2>Alex Wayne</h2>
+	</div>
+</header>
+
+<section>
+
+	<div class="mainContainer">
+
+		<div class="userProfileTop">
+			<div class="userPhoto">
+				<img src="<?= Yii::getAlias('@web') ?>/images/paradam/alexwayne_avatar.jpg" alt="">
+			</div>
+			<div class="userInformation">
+				<h2 class="userName">Alex Wayne</h2>
+				<h3 class="userNickName">@alexwayne483</h3>
+				<div class="userBookMarks">
+					<div class="ubm_counter">3979</div>
+					<span>on bookmarks</span>
+				</div>
+			</div>
+			<div class="addToFavorite">
+				<img src="<?= Yii::getAlias('@web') ?>/images/paradam/star.svg" alt="">
+			</div>
+		</div>
+
+		<div class="userProfileDescription">
+			<div class="upd_text">
+				Lorem ipsum dolor sit amet, consectetur
+				adipisicing elit, sed do eiusmod tempor
+				incididunt ut labore et  dolore magna aliqua.
+			</div>
+			<div class="upd_link">
+				<a href="www.google.com">my-site.com</a>
+			</div>
+			<div class="upd_lang"></div>
+			<div class="upd_button">
+				<input type="button" id="send_msg" value="Send message 0.5$"></input>
+			</div>
+		</div>
+
+		<div class="userServices">
+			<p class="us_title">My Services</p>
+
+			<div class="us_itemsContainer">
+				<div class="usic_item">
+					<div class="usici_top">
+						<div class="usicit_name">Birthday Congratulations</div>
+						<div class="usicit_price">100$</div>
+					</div>
+					<div class="usici_mid">
+						<div class="usicim_description">
+							Lorem ipsum dolor sit amet, consectetur
+							adipisicing elit, sed do eiusmod tempor
+							incididunt ut labore et  dolore magna aliqua.
+						</div>
+						<span class="usicim_favorite">
+                                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg" alt="">
+                                </span>
+					</div>
+				</div>
+				<div class="usic_item">
+					<div class="usici_top">
+						<div class="usicit_name">Birthday Congratulations</div>
+						<div class="usicit_price">100$</div>
+					</div>
+					<div class="usici_mid">
+						<div class="usicim_description">
+							Lorem ipsum dolor sit amet, consectetur
+							adipisicing elit, sed do eiusmod tempor
+							incididunt ut labore et  dolore magna aliqua.
+						</div>
+						<span class="usicim_favorite">
+                                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg" alt="">
+                                </span>
+					</div>
+				</div>
+				<div class="usic_item">
+					<div class="usici_top">
+						<div class="usicit_name">Birthday Congratulations</div>
+						<div class="usicit_price">100$</div>
+					</div>
+					<div class="usici_mid">
+						<div class="usicim_description">
+							Lorem ipsum dolor sit amet, consectetur
+							adipisicing elit, sed do eiusmod tempor
+							incididunt ut labore et  dolore magna aliqua.
+						</div>
+						<span class="usicim_favorite">
+                                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg" alt="">
+                                </span>
+					</div>
+				</div>
+				<div class="usic_item">
+					<div class="usici_top">
+						<div class="usicit_name">Birthday Congratulations</div>
+						<div class="usicit_price">100$</div>
+					</div>
+					<div class="usici_mid">
+						<div class="usicim_description">
+							Lorem ipsum dolor sit amet, consectetur
+							adipisicing elit, sed do eiusmod tempor
+							incididunt ut labore et  dolore magna aliqua.
+						</div>
+						<span class="usicim_favorite">
+                                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg" alt="">
+                                </span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</section>
+<?php /*
 <div class="container emp-profile">
     <div class="row">
         <div class="col-md-4">
@@ -200,3 +319,4 @@
         </div>
     </div>
 </div>
+ */ ?>

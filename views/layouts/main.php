@@ -4,14 +4,14 @@
 
 	/* @var $content string */
 
-	use app\assets\AppAsset;
+use app\assets\AppAsset;
 use app\modules\user\models\User;
 use app\widgets\Alert;
 use kartik\typeahead\Typeahead;
 use yii\bootstrap\Modal;
 use yii\bootstrap\Nav;
-	use yii\bootstrap\NavBar;
-	use yii\helpers\Html;
+use yii\bootstrap\NavBar;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\JsExpression;
 use yii\widgets\Breadcrumbs;

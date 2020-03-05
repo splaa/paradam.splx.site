@@ -48,7 +48,6 @@ web/assets/*
 
 /web/MadelineProto.log
 
-/assets/*
 /MadelineProto.log
 
 .phpunit.result.cache

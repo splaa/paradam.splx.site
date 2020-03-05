@@ -1,0 +1,203 @@
+body, h2, h3, ul{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --light-grey: #ccc;
+    --blue-grey: #8E95A4;
+    --darkus: #272A31;
+    --border-grey: #E5E5E5;
+    --main-blue: #1D70FF;
+    --text-grey: #67696E;
+}
+
+header {
+    display: block;
+    width: 100%;
+    height: 57px;
+    background: #fff;
+    border-bottom: 1px solid;
+    border-color: var(--light-grey);
+}
+
+.headerContainer {
+    display: flex;
+    line-height: 57px;
+}
+
+.headerContainer h2 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.backButton {
+    width: 48px;
+    height: 58px;
+    display: flex;
+    justify-content: center;
+}
+
+.backButton img {
+    margin: auto;
+}
+
+.backButton-style {
+
+}
+
+section {
+
+}
+
+.mainContainer {
+    padding: 16px 16px 0px;
+}
+
+.userProfileTop {
+    display: flex;
+}
+
+.userInformation {
+    margin-left: 8px;
+}
+
+.userName {
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.userNickName {
+    color: var(--light-grey);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.userBookMarks {
+    color: var(--light-grey);
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.ubm_counter {
+    color: var(--darkus);
+    font-size: 18px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.addToFavorite {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid;
+    border-radius: 7px;
+    border-color: var(--border-grey);
+}
+
+.userProfileDescription {
+
+}
+
+.upd_text {
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.upd_link a {
+    font-size: 14px;
+    font-weight: 500;
+    display: block;
+    text-decoration: none;
+    color: var(--main-blue);
+    margin: 11px 0px 16px;
+}
+
+.upd_button input[type="button"] {
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    width: 100%;
+    height: 51px;
+    background: var(--main-blue);
+    color: #fff;
+}
+
+.us_title {
+    color: var(--darkus);
+    font-size: 14px;
+    margin: 15px 0px;
+    font-weight: 600;
+}
+
+.usic_item {
+    padding: 16px;
+    border: 1px solid;
+    border-radius: 7px;
+    border-color: var(--border-grey);
+    margin-top: 6px;
+}
+
+.usici_top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.usici_top {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.usicit_name {
+    color: var(--darkus);
+}
+
+.usicit_price {
+    color: var(--main-blue);
+}
+
+.usici_mid {
+    display: flex;
+}
+
+.usicim_description {
+    margin-top: 13px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--text-grey);
+}
+
+.usicim_favorite {
+    margin-top: auto;
+}
+
+.navigationBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 51px;
+    background: #fff;
+    border-top: 1px solid;
+    border-color: var(--light-grey);
+}
+
+.navigationBar ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigationBar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 51px;
+    width: 92px;
+}
