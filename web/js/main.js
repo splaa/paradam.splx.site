@@ -1,9 +1,10 @@
 let main = {
     back: function() {
-        if(history.length === 1){
-            window.location = window.location.origin
-        } else {
-            history.back();
+        let referrer = document.referrer;
+        if (!referrer.match('paradam')) {
+            window.location = '/';
+            return;
         }
+        window.history.back();
     }
 }
