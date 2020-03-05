@@ -15,7 +15,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 <header>
 	<div class="headerContainer">
         <span onclick="main.back()" class="backButton">
-            <img src="<?= Yii::getAlias('web') ?>/images/paradam/back_arrow.svg" alt="">
+            <img src="<?= Yii::getAlias('@web') ?>/images/paradam/back_arrow.svg" alt="">
         </span>
 		<h2><?= $model->first_name . ' ' . $model->last_name ?></h2>
 	</div>
@@ -74,7 +74,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 									<?= $service->description ?>
 								</div>
 								<span class="usicim_favorite">
-		                            <img src="<?= Yii::getAlias('web') ?>/images/paradam/heart.svg" alt="">
+		                            <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg" alt="">
 		                        </span>
 							</div>
 						</div>
