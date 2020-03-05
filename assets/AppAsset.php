@@ -20,11 +20,12 @@
 		public $basePath = '@webroot';
 		public $baseUrl = '@web';
 		public $css = [
+			'css/paradam.css',
 			'css/site.css',
 			'css/order.css'
 		];
 		public $js = [
-//            'question/js/jquery.js'
+
 		];
 		public $depends = [
 			'yii\web\YiiAsset',

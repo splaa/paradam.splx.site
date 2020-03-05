@@ -1,136 +1,87 @@
 <?php
-	/* @var $model \app\modules\user\models\User */
-	/* @var $messageForm \app\modules\message\forms\MessageForm */
-	/* @var $services \app\modules\services\models\Service[] */
-	/* @var $this yii\web\View */
-	/* @var $subscribe_id integer */
+/* @var $model \app\modules\user\models\User */
+/* @var $messageForm \app\modules\message\forms\MessageForm */
+/* @var $services \app\modules\services\models\Service[] */
+/* @var $this yii\web\View */
+/* @var $subscribe_id integer */
 
-	/* @var $count integer */
+/* @var $count integer */
 
-	use app\assets\AppAsset;
-	use yii\bootstrap\ActiveForm;
-	use yii\helpers\Html;
-	use yii\helpers\Url;
+use app\assets\AppAsset;
+use yii\helpers\Url;
 
-	$this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depends' => [AppAsset::class]]);
+$this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depends' => [AppAsset::class]]);
 ?>
 <header>
 	<div class="headerContainer">
-                <span class="backButton">
-                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/back_arrow.svg" alt="">
-                </span>
-		<h2>Alex Wayne</h2>
+        <a href="<?= Url::previous() ?>" class="backButton">
+            <img src="<?= Yii::getAlias('@web') ?>/images/paradam/back_arrow.svg" alt="">
+        </a>
+		<h2><?= $model->first_name . ' ' . $model->last_name ?></h2>
 	</div>
 </header>
 
 <section>
-
 	<div class="mainContainer">
-
 		<div class="userProfileTop">
 			<div class="userPhoto">
-				<img src="<?= Yii::getAlias('@web') ?>/images/paradam/alexwayne_avatar.jpg" alt="">
+				<img src="<?= $model->avatarSmall ?>" alt="">
 			</div>
 			<div class="userInformation">
-				<h2 class="userName">Alex Wayne</h2>
-				<h3 class="userNickName">@alexwayne483</h3>
+				<h2 class="userName"><?= $model->first_name . ' ' . $model->last_name ?></h2>
+				<h3 class="userNickName">@<?= $model->username ?></h3>
 				<div class="userBookMarks">
-					<div class="ubm_counter">3979</div>
-					<span>on bookmarks</span>
+					<div class="ubm_counter"><?= $count ?></div>
+					<span>followers</span>
 				</div>
 			</div>
-			<div class="addToFavorite">
-				<img src="<?= Yii::getAlias('@web') ?>/images/paradam/star.svg" alt="">
-			</div>
+			<?= $this->render('_subscribe_btn', [
+				'subscribe_id' => $subscribe_id,
+				'user_id' => $model->id
+			]) ?>
 		</div>
 
 		<div class="userProfileDescription">
 			<div class="upd_text">
-				Lorem ipsum dolor sit amet, consectetur
-				adipisicing elit, sed do eiusmod tempor
-				incididunt ut labore et  dolore magna aliqua.
+				<?= $model->description ?>
 			</div>
 			<div class="upd_link">
-				<a href="www.google.com">my-site.com</a>
+				<a href="<?= $model->link ?>" target="_blank"><?= $model->linkFormat ?></a>
 			</div>
 			<div class="upd_lang"></div>
 			<div class="upd_button">
-				<input type="button" id="send_msg" value="Send message 0.5$"></input>
+				<input type="button" id="send_msg" value="Send message <?= $model->formatSmsCost ?>" />
 			</div>
 		</div>
 
-		<div class="userServices">
-			<p class="us_title">My Services</p>
+		<?php if ($services): ?>
+			<div class="userServices">
+				<p class="us_title">My Services</p>
 
-			<div class="us_itemsContainer">
-				<div class="usic_item">
-					<div class="usici_top">
-						<div class="usicit_name">Birthday Congratulations</div>
-						<div class="usicit_price">100$</div>
-					</div>
-					<div class="usici_mid">
-						<div class="usicim_description">
-							Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit, sed do eiusmod tempor
-							incididunt ut labore et  dolore magna aliqua.
+				<div class="us_itemsContainer">
+					<?php foreach ($services as $service): ?>
+						<?php if (Yii::$app->user->id != $model->id): ?>
+							<div class="usic_item make-order" data-id="<?= $service->id ?>" data-user-id="<?= $model->id ?>">
+						<?php else: ?>
+							<div class="usic_item">
+						<?php endif; ?>
+							<div class="usici_top">
+								<div class="usicit_name"><?= $service->name ?></div>
+								<div class="usicit_price"><?= $service->formatPrice ?></div>
+							</div>
+							<div class="usici_mid">
+								<div class="usicim_description">
+									<?= $service->description ?>
+								</div>
+								<span class="usicim_favorite">
+		                            <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg" alt="">
+		                        </span>
+							</div>
 						</div>
-						<span class="usicim_favorite">
-                                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg" alt="">
-                                </span>
-					</div>
-				</div>
-				<div class="usic_item">
-					<div class="usici_top">
-						<div class="usicit_name">Birthday Congratulations</div>
-						<div class="usicit_price">100$</div>
-					</div>
-					<div class="usici_mid">
-						<div class="usicim_description">
-							Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit, sed do eiusmod tempor
-							incididunt ut labore et  dolore magna aliqua.
-						</div>
-						<span class="usicim_favorite">
-                                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg" alt="">
-                                </span>
-					</div>
-				</div>
-				<div class="usic_item">
-					<div class="usici_top">
-						<div class="usicit_name">Birthday Congratulations</div>
-						<div class="usicit_price">100$</div>
-					</div>
-					<div class="usici_mid">
-						<div class="usicim_description">
-							Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit, sed do eiusmod tempor
-							incididunt ut labore et  dolore magna aliqua.
-						</div>
-						<span class="usicim_favorite">
-                                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg" alt="">
-                                </span>
-					</div>
-				</div>
-				<div class="usic_item">
-					<div class="usici_top">
-						<div class="usicit_name">Birthday Congratulations</div>
-						<div class="usicit_price">100$</div>
-					</div>
-					<div class="usici_mid">
-						<div class="usicim_description">
-							Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit, sed do eiusmod tempor
-							incididunt ut labore et  dolore magna aliqua.
-						</div>
-						<span class="usicim_favorite">
-                                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg" alt="">
-                                </span>
-					</div>
+					<?php endforeach; ?>
 				</div>
 			</div>
-
-		</div>
-
+		<?php endif; ?>
 	</div>
 </section>
 <?php /*

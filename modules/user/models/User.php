@@ -32,6 +32,8 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $telephone
  * @property mixed $statusName
+ * @property string $description
+ * @property string $link
  * @property string $password
  * @property string $authKey
  * @property int $status
@@ -44,6 +46,7 @@ use yii\web\IdentityInterface;
  * @property string $formatSmsCost
  * @property string $convertSmsCostToUSD
  * @property string $convertBalanceToUSD
+ * @property string $linkFormat
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -273,6 +276,14 @@ class User extends ActiveRecord implements IdentityInterface
 		$number = Currency::convert($this->sms_cost, Currency::BITS_CURRENCY, Currency::USD_CURRENCY);
 		return Currency::format($number, Currency::USD_CURRENCY, 1);
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getLinkFormat()
+	{
+		return str_replace(['https://', 'http://', 'www.'], '', $this->link);
+	}
 	
 	/**
 	 * Returns a key that can be used to check the validity of a given identity ID.
@@ -381,6 +392,24 @@ class User extends ActiveRecord implements IdentityInterface
 	public function setUserName($username)
 	{
 		$this->username = $username;
+	}
+
+	/**
+	 * @param string $description
+	 * @throws \yii\base\Exception
+	 */
+	public function setDescription($description)
+	{
+		$this->description = $description;
+	}
+
+	/**
+	 * @param string $link
+	 * @throws \yii\base\Exception
+	 */
+	public function setLink($link)
+	{
+		$this->link = $link;
 	}
 
 	/**

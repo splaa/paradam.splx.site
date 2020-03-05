@@ -25,7 +25,13 @@
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_NAME'), Yii::$app->user->identity->formatBalance), ['name-change'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_USER_NAME'), Yii::$app->user->identity->formatBalance), ['user-name-change'], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a(sprintf(Yii::t('app', 'NAV_PROFILE_CHANGE_DATE'), Yii::$app->user->identity->formatBalance), ['date-change'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(Yii::t('app', 'LINK_TO_DESCRIPTION_CHANGE'), ['description-change'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(Yii::t('app', 'LINK_TO_LINK_CHANGE'), ['link-change'], ['class' => 'btn btn-primary']) ?>
 
+
+
+		<?= Html::a(Yii::t('app', 'NAV_SERVICES'), ['/services/service'], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a(Yii::t('app', 'NAV_QUESTIONS'), ['/services/question'], ['class' => 'btn btn-primary']) ?>
     </p>
 	<?php
 		//var_dump($model);

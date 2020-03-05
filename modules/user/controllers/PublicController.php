@@ -10,13 +10,12 @@ use app\modules\services\models\Service;
 use app\modules\user\models\Subscribe;
 use app\modules\user\models\User;
 use Yii;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use YoHang88\LetterAvatar\LetterAvatar;
 
 class PublicController extends Controller
 {
-	public $layout = 'public';
 
 	public function actionIndex($username)
 	{
@@ -64,30 +63,38 @@ class PublicController extends Controller
 
 	public function actionSubscribe()
 	{
-		if (Yii::$app->request->isAjax && Yii::$app->user->id != Yii::$app->request->post('user_id')) {
-			// Get ID record subscribe
-			$subscriber_id = Yii::$app->user->id;
-			$user_id = Yii::$app->request->post('user_id');
-			$subscribe_info = Subscribe::checkSubscribe($user_id, $subscriber_id);
-
-			if (!$subscribe_info['subscribe_id']) {
-				$subscribe = new Subscribe();
-				$subscribe->subscriber_id = $subscriber_id;
-				$subscribe->user_id = $user_id;
-				$subscribe->save();
-
-				$subscribe_id = $subscribe->id;
+		if (!Yii::$app->user->isGuest) {
+			if (Yii::$app->request->isAjax && Yii::$app->user->id != Yii::$app->request->post('user_id')) {
+				// Get ID record subscribe
+				$subscriber_id = Yii::$app->user->id;
+				$user_id = Yii::$app->request->post('user_id');
 				$subscribe_info = Subscribe::checkSubscribe($user_id, $subscriber_id);
-			} else {
-				Subscribe::findOne($subscribe_info['subscribe_id'])->delete();
-				$subscribe_id = 0;
-				$subscribe_info = Subscribe::checkSubscribe($user_id, $subscriber_id);
+
+				if (!$subscribe_info['subscribe_id']) {
+					$subscribe = new Subscribe();
+					$subscribe->subscriber_id = $subscriber_id;
+					$subscribe->user_id = $user_id;
+					$subscribe->save();
+
+					$subscribe_id = $subscribe->id;
+					$subscribe_info = Subscribe::checkSubscribe($user_id, $subscriber_id);
+				} else {
+					Subscribe::findOne($subscribe_info['subscribe_id'])->delete();
+					$subscribe_id = 0;
+					$subscribe_info = Subscribe::checkSubscribe($user_id, $subscriber_id);
+				}
+
+				return Json::encode([
+					'html' => $this->renderAjax('__subscribe_btn_block', [
+						'subscribe_id' => $subscribe_id,
+						'user_id' => $user_id,
+					]),
+					'count' => $subscribe_info['count']
+				]);
 			}
-
-			return $this->renderAjax('__subscribe_btn_block', [
-				'subscribe_id' => $subscribe_id,
-				'user_id' => $user_id,
-				'count' => $subscribe_info['count']
+		} else {
+			return Json::encode([
+				'login' => true
 			]);
 		}
 	}

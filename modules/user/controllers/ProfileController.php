@@ -6,6 +6,8 @@
 
 	use app\modules\admin\models\User;
 	use app\modules\user\forms\DateChangeForm;
+	use app\modules\user\forms\DescriptionChangeForm;
+	use app\modules\user\forms\LinkChangeForm;
 	use app\modules\user\forms\NameChangeForm;
 	use app\modules\user\forms\PasswordChangeForm;
 	use app\modules\user\forms\ProfileUpdateForm;
@@ -151,6 +153,38 @@
 				return $this->refresh();
 			} else {
 				return $this->render('userNameChange', [
+					'model' => $model,
+				]);
+			}
+		}
+
+		public function actionDescriptionChange()
+		{
+			$user = $this->findModel();
+			$model = new DescriptionChangeForm($user);
+
+			if ($model->load(Yii::$app->request->post()) && $model->changeDescription()) {
+				Yii::$app->getSession()->setFlash('success', 'Спасибо! Description успешно изменёно.');
+
+				return $this->redirect(['index']);
+			} else {
+				return $this->render('descriptionChange', [
+					'model' => $model,
+				]);
+			}
+		}
+
+		public function actionLinkChange()
+		{
+			$user = $this->findModel();
+			$model = new LinkChangeForm($user);
+
+			if ($model->load(Yii::$app->request->post()) && $model->changeLink()) {
+				Yii::$app->getSession()->setFlash('success', 'Спасибо! Link успешно изменёно.');
+
+				return $this->redirect(['index']);
+			} else {
+				return $this->render('linkChange', [
 					'model' => $model,
 				]);
 			}
