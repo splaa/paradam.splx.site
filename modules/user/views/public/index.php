@@ -44,7 +44,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 				<div class="profileUserInfo">
 					<div class="pui_top">
 						<div class="pui_left">
-							<div class="userAvatarMIn" style="background: url(<?= $model->avatarSmall ?>)">
+							<div class="userAvatarMIn" style="background: url(<?= $model->avatarSmall ?>);background-size: 100%;">
 							</div>
 						</div>
 						<div class="pui_right">
