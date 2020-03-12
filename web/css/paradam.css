@@ -1,8 +1,13 @@
 body, h2, h3, ul{
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
     line-height: inherit;
     font-family: 'Roboto', sans-serif;
+}
+
+@font-face {
+    font-family: Pacifico;
+    src: url(../fonts/Pacifico-Regular.ttf);
 }
 
 :root {
@@ -10,7 +15,7 @@ body, h2, h3, ul{
     --blue-grey: #8E95A4;
     --darkus: #272A31;
     --border-grey: #E5E5E5;
-    --main-blue: #1D70FF;
+    --main-blue: #4884fc;
     --text-grey: #67696E;
 }
 
@@ -23,14 +28,31 @@ header {
     border-color: var(--light-grey);
 }
 
+.profileHeader {
+    z-index: 100;
+    background: none;
+    border: none;
+    position: absolute;
+}
+
 .headerContainer {
     display: flex;
     line-height: 57px;
 }
 
-.headerContainer h2 {
-    font-size: 22px;
-    font-weight: 700;
+.headerContainer-black {
+    filter: contrast(1%) brightness(50%);
+}
+
+.headerContainer-profile {
+    justify-content: space-between;
+}
+
+.headerContainer-profile h2 {
+    font-weight: normal;
+    color: #fff;
+    font-size: 40px;
+    font-family: Pacifico;
 }
 
 .backButton {
@@ -41,11 +63,8 @@ header {
 }
 
 .backButton img {
+    width: 21px;
     margin: auto;
-}
-
-.userPhoto img {
-    border-radius: 20px;
 }
 
 .backButton-style {
@@ -60,7 +79,61 @@ section {
     padding: 16px 16px 0px;
 }
 
-.userProfileTop {
+.profileUserPhoto {
+    width: 100%;
+    height: 50vh;
+}
+
+.black {
+    color: black!important;
+}
+
+.cc_header_bg {
+    width: 100%;
+    height: 100px;
+    background: var(--main-blue);
+}
+
+.userAvatarMIn {
+    width: 88px;
+    height: 88px;
+    background: url(../images/paradam/avatar.png);
+    border-radius: 14px;
+    background-size: cover;
+}
+
+.pup_fader {
+    width: 100%;
+    height: 122px;
+    position: absolute;
+    background: transparent linear-gradient(0deg, #00000000 0%, #0000009C 100%) 0% 0% no-repeat padding-box;
+}
+
+.profileUserPhoto img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.profileUserContainer {
+    margin: 16px;
+    top: -45px;
+    position: relative;
+}
+
+.profileUserInfo {
+    position: absolute;
+    border-radius: 14px;
+    background: #fff;
+    padding: 16px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+}
+
+.pui_right {
+    margin-left: 15px;
+}
+
+.pui_top {
     display: flex;
 }
 
@@ -75,9 +148,15 @@ section {
 }
 
 .userNickName {
+    color: var(--darkus);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.userNickName_container span{
     color: var(--light-grey);
     font-size: 14px;
-    font-weight: 400;
+    margin-top: 15px;
 }
 
 .userBookMarks {
@@ -90,7 +169,6 @@ section {
     color: var(--darkus);
     font-size: 18px;
     font-weight: 700;
-    display: inline-block;
 }
 
 .addToFavorite {
@@ -124,20 +202,63 @@ section {
     margin: 11px 0px 16px;
 }
 
+.upd_button {
+}
+
+.upd_lang li {
+    font-size: 14px;
+    list-style: none;
+    display: inline-block;
+    padding-left: 20px;
+}
+.upd_lang {
+
+}
+
+.cc_active .is-selected > .headerContainer-profile h2 {
+    color: black!important;
+}
+
+
+.cc_img_blur {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: -20;
+    width: 104%;
+    height: 104%;
+    background: url(../images/paradam/avatar.png);
+    background-size: cover;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+.updl_eng {
+    background: url(../images/paradam/uk.svg);
+    background-repeat: no-repeat;
+}
+
+.updl_ru {
+    background: url(../images/paradam/russia.svg);
+    background-repeat: no-repeat;
+}
+
 .upd_button input[type="button"] {
     outline: none;
     border: none;
-    border-radius: 7px;
+    font-size: 16px;
     width: 100%;
-    height: 51px;
-    background: var(--main-blue);
+    height: 64px;
+    font-weight: 600;
+    background: transparent linear-gradient(180deg, #4884FC 0%, #485AFC 100%) 0% 0% no-repeat padding-box;
     color: #fff;
 }
 
 .us_title {
+    text-align: center;
     color: var(--darkus);
-    font-size: 14px;
-    margin: 15px 0px;
+    font-size: 18px;
+    margin: 0px 0px 15px;
     font-weight: 600;
 }
 
@@ -205,4 +326,9 @@ section {
     align-items: center;
     height: 51px;
     width: 92px;
+}
+
+.carousell_cell {
+    width: 100%;
+    height: 50vh;
 }

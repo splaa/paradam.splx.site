@@ -5,7 +5,7 @@
 	use JamesHeinrich\GetID3\GetID3;
 	use yii\web\Controller;
 
-    /**
+	/**
      * Default controller for the `main` module
      */
     class DefaultController extends Controller

@@ -42,6 +42,7 @@ use yii\web\IdentityInterface;
  * @property string $avatarSmall
  * @property string $avatarMedium
  * @property string $avatarBig
+ * @property string $avatarOrigin
  * @property string $formatBalance
  * @property string $formatSmsCost
  * @property string $convertSmsCostToUSD
@@ -233,6 +234,14 @@ class User extends ActiveRecord implements IdentityInterface
 	public function getAvatarBig()
 	{
 		return self::getNormalizeAvatar(self::SIZE_AVATAR_BIG, $this->id);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAvatarOrigin()
+	{
+		return self::getNormalizeAvatar(self::SIZE_AVATAR_ORIGINAL, $this->id);
 	}
 
 	/**

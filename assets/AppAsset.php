@@ -21,11 +21,13 @@
 		public $baseUrl = '@web';
 		public $css = [
 			'css/paradam.css',
+			'css/flickity.css',
 			'css/site.css',
 			'css/order.css'
 		];
 		public $js = [
-			'js/main.js'
+			'js/flickity.pkgd.min.js',
+			'js/main.js',
 		];
 		public $depends = [
 			'yii\web\YiiAsset',

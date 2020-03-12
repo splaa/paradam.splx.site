@@ -27,7 +27,7 @@ class Currency
 		],
 		self::BITS_CURRENCY => [
 			'symbol_left' => '',
-			'symbol_right' => 'bits',
+			'symbol_right' => ' BITS',
 			'decimal_place' => 0,
 			'value' => self::COURSE[self::BITS_CURRENCY]
 		]
