@@ -76,13 +76,13 @@
 					$model->file->saveAs('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_ORIGINAL . '.' . $model->file->extension);
 					// Generate Small Avatar
 					Image::thumbnail('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_ORIGINAL . '.' . $model->file->extension, User::SIZE_AVATAR_SMALL, User::SIZE_AVATAR_SMALL)
-						->save('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_SMALL . $model->file->extension);
+						->save('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_SMALL . '.' . $model->file->extension);
 					// Generate Medium Avatar
 					Image::thumbnail('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_ORIGINAL . '.' . $model->file->extension, User::SIZE_AVATAR_MEDIUM, User::SIZE_AVATAR_MEDIUM)
-						->save('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_MEDIUM . $model->file->extension);
+						->save('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_MEDIUM . '.' . $model->file->extension);
 					// Generate Big Avatar
 					Image::thumbnail('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_ORIGINAL . '.' . $model->file->extension, User::SIZE_AVATAR_BIG, User::SIZE_AVATAR_BIG)
-						->save('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_BIG . $model->file->extension);
+						->save('images/user/avatar/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_BIG . '.' . $model->file->extension);
 				}
 			}
 
