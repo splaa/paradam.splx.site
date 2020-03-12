@@ -700,9 +700,10 @@ class User extends ActiveRecord implements IdentityInterface
 	 * @return string
 	 */
 	private static function getNormalizeAvatar($size, $id) {
-		$path_to_file = Yii::getAlias( '@web' ).'images/user/avatar/' . $id . '-' . $size . '.png';
-		if(file_exists($path_to_file)){
+		if(file_exists(Yii::getAlias( '@web' ).'images/user/avatar/' . $id . '-' . $size . '.png')){
 			$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/' . $id . '-' . $size . '.png';
+		} elseif(file_exists(Yii::getAlias( '@web' ).'images/user/avatar/' . $id . '-' . $size . '.jpg')){
+			$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/' . $id . '-' . $size . '.jpg';
 		} else {
 			$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/none.png';
 		}
