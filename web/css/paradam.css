@@ -99,7 +99,7 @@ section {
     height: 88px;
     background: url(../images/paradam/avatar.png);
     border-radius: 14px;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .pup_fader {
