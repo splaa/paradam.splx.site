@@ -68,7 +68,7 @@
 		public function rules()
 		{
 			return [
-				[['price'], 'required'],
+				[['price', 'name', 'description'], 'required'],
 				[['imageFile'], 'file', 'extensions' => 'png, jpg, mp4'],
 				[['user_id', 'periodOfExecution'], 'integer'],
 				[['description'], 'string'],
@@ -93,8 +93,8 @@
 				$this->addError($attribute, 'Число должно быть кратно 5.');
 			}
 
-			if ($user->sms_cost > $this->$attribute) {
-				$this->addError($attribute, 'Цена должна быть выше за ' . Yii::$app->user->identity->formatSmsCost);
+			if ($user->convertSmsCostToUSD > $this->$attribute) {
+				$this->addError($attribute, 'Цена должна быть выше за ' . $user->convertSmsCostToUSD);
 			}
 
 		}

@@ -9,14 +9,38 @@
 	$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Services'), 'url' => ['index']];
 	$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="service-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <div class="box">
-        <div class="box-body">
-			<?= $this->render('_form', [
-				'model' => $model,
-			]) ?>
-        </div>
-    </div>
-</div>
+
+<!-- HEADER -->
+<header>
+	<div class="headerContainer">
+        <span onclick="main.back()" class="backButton">
+            <img src="<?= Yii::getAlias('@web') ?>/images/paradam/back_arrow.svg" alt="">
+        </span>
+		<h2><?= Html::encode($this->title) ?></h2>
+	</div>
+</header>
+
+<!-- HEADER FIN -->
+
+<section id="service_block_form">
+	<?= $this->render('_form', [
+		'model' => $model,
+	]) ?>
+</section>
+
+
+<section>
+	<div class="stepsButtons">
+		<div class="stepsButtonsContainer">
+			<div class="sb_button sb_back">
+				<a href="#" onclick="main.back()">
+					<span><img src="<?= Yii::getAlias('@web') ?>/images/paradam/btn-back.svg" alt="">Back</span>
+				</a>
+			</div>
+			<div class="sb_button sb_next">
+				<a href="#" onclick="$('#service_block_form').find('form').submit();">Next<img src="<?= Yii::getAlias('@web') ?>/images/paradam/btn-next.svg" alt=""></a>
+			</div>
+		</div>
+	</div>
+</section>

@@ -31,8 +31,7 @@
 				'passwordResetTokenExpire' => 3600,
 			],
 			'services' => [
-				'class' => 'app\modules\services\Module',
-				'layout' => '/admin/main'
+				'class' => 'app\modules\services\Module'
 			],
 			'message' => [
 				'class' => 'app\modules\message\Module',

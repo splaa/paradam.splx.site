@@ -8,6 +8,7 @@
 	use app\modules\user\controllers\UserController;
 	use Yii;
 	use yii\filters\VerbFilter;
+	use yii\helpers\Url;
 	use yii\web\NotFoundHttpException;
 
 	/**
@@ -83,6 +84,7 @@
 				return $this->redirect('/services/question');
 			}
 
+			$this->view->blocks['hideNavigationBar'] = true;
 
 			return $this->render('create', [
 				'model' => $model,
@@ -115,9 +117,11 @@
 
 			}
 
+			$this->view->blocks['hideNavigationBar'] = true;
 
 			return $this->render('create', [
 				'model' => $model,
+				'back' => Url::to(['/services/service/update', 'id' => $id])
 			]);
 
 

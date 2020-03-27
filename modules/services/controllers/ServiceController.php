@@ -80,6 +80,9 @@
 					return $this->redirect(['/services/question/add-question', 'id' => $model->id]);
 				}
 			}
+
+			$this->view->blocks['hideNavigationBar'] = true;
+
 			return $this->render('create', [
 				'model' => $model,
 			]);
@@ -97,8 +100,10 @@
 			$model = $this->findModel($id);
 			$model->user_id = Yii::$app->user->id;
 			if ($model->load(Yii::$app->request->post()) && $model->save()) {
-				return $this->redirect(['view', 'id' => $model->id]);
+				return $this->redirect(['/services/question/add-question', 'id' => $model->id]);
 			}
+
+			$this->view->blocks['hideNavigationBar'] = true;
 
 			return $this->render('update', [
 				'model' => $model,
