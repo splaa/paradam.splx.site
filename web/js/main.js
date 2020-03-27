@@ -1,5 +1,7 @@
 let main = {
-    back: function() {
+    back: function(e) {
+        e.preventDefault();
+
         let referrer = document.referrer;
         if (!referrer.match('paradam')) {
             window.location = '/';
@@ -38,3 +40,29 @@ if (pageService !== null) {
         outputDay.innerHTML = this.value + ' Days';
     };
 }
+
+$(document).on('click', '#button_add_question', function () {
+    $('.ib_add_button').trigger('click');
+    //$('.inputBlock').find('input').length;
+})
+
+$('.multiple-input').on('afterInit', function(){
+    // calls on after initialization event
+    $('.field-question-questions-0').before('<p>Question for buyers 1</p>');
+}).on('beforeAddRow', function(e, row, currentIndex) {
+    // calls on before add row event
+}).on('afterAddRow', function(e, row, currentIndex) {
+    // calls on after add row event
+    //console.log(currentIndex);
+    $(row).prepend('<p>Question for buyers ' + (parseInt(currentIndex)+1) + '</p>');
+}).on('beforeDeleteRow', function(e, row, currentIndex){
+    // row - HTML container of the current row for removal.
+    // For TableRenderer it is tr.multiple-input-list__item
+    // calls on before remove row event.
+    return confirm('Are you sure you want to delete row?')
+}).on('afterDeleteRow', function(e, row, currentIndex){
+    // calls on after remove row event
+    // console.log(row);
+}).on('afterDropRow', function(e, item){
+    // console.log('calls on after drop row', item);
+});

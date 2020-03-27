@@ -665,3 +665,12 @@ section {
 .agreePpTu input:checked ~ .checkmark:after {
     display: block;
 }
+.list-cell__questions {
+    display: flex;
+}
+.list-cell__questions > div {
+    width: 100%;
+}
+.field-question-questions-0  .list-cell__button, .ib_add_button  {
+    display: none;
+}

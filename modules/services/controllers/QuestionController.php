@@ -150,6 +150,8 @@
 				return $this->redirect(['view', 'id' => $model->id]);
 			}
 
+			$this->view->blocks['hideNavigationBar'] = true;
+
 			return $this->render('update', [
 				'model' => $model,
 			]);

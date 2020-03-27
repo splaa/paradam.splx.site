@@ -2,7 +2,8 @@
 
 	use app\modules\services\models\Question;
 	use unclead\multipleinput\MultipleInput;
-	use yii\bootstrap\ActiveForm;
+use unclead\multipleinput\MultipleInputColumn;
+use yii\bootstrap\ActiveForm;
 	use yii\helpers\Html;
 
 
@@ -10,36 +11,6 @@
 	/* @var $model Question */
 
 ?>
-
-<div class="user-form">
-
-	<?php $form = ActiveForm::begin([
-		'enableAjaxValidation' => false,
-		'enableClientValidation' => true,
-		'validateOnChange' => true,
-		'validateOnSubmit' => true,
-		'validateOnBlur' => true,
-	]); ?>
-
-
-
-
-
-	<?= $form->field($model, 'questions')->widget(MultipleInput::className(), ['max' => 4,]); ?>
-
-
-
-	<?= $form->field($model, 'convention')->checkbox(); ?>
-
-	<div class="form-group">
-		<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-	</div>
-
-	<?php ActiveForm::end(); ?>
-
-
-</div>
-
 <div class="mainContainer">
 	<div class="steps_container">
 		<div class="steps step_active_two">
@@ -63,29 +34,31 @@
 		<div class="questions_container">
 			<div class="inputBlock inputBlock-text">
 				<?= $form->field($model, 'questions')->widget(MultipleInput::className(), [
-					'max' => 4,
+					'max' => 10,
 					'theme' => MultipleInput::THEME_DEFAULT,
 					'rendererClass' => \unclead\multipleinput\renderers\DivRenderer::className(),
 					'addButtonPosition' => MultipleInput::POS_FOOTER,
+					'addButtonOptions' => [
+						'class' => 'ib_add_button'
+					],
 					'removeButtonOptions' => [
-						'class' => 'ib_remover flex-icon'
-					]
-				]); ?>
-			</div>
-			<div class="inputBlock inputBlock-text">
-				<p>Question for buyers 1</p>
-				<input type="text" placeholder="Name">
-			</div>
-			<div class="inputBlock inputBlock-text">
-				<p>Question for buyers 1</p>
-				<div class="ib_removeble_container">
-					<input type="text" placeholder="Name">
-					<span class="ib_remover flex-icon"><img src="<?= Yii::getAlias('@web') ?>/images/paradam/input_eraser.svg" alt=""></span>
-				</div>
+						'class' => 'ib_remover flex-icon',
+						'label' => Html::tag('img', null, ['src' => Yii::getAlias('@web') . '/images/paradam/input_eraser.svg'])
+					],
+					'columns' => [
+						[
+							'name' => 'questions',
+							'type' => MultipleInputColumn::TYPE_TEXT_INPUT,
+							'options' => [
+								'placeholder' => 'Name',
+							],
+						],
+					],
+				])->label(false); ?>
 			</div>
 			<div class="inputBlock inputBlock-adder">
 				<p>Add question</p>
-				<input type="button" placeholder="Name">
+				<input type="button" id="button_add_question" placeholder="Name" />
 			</div>
 		</div>
 	<?php ActiveForm::end(); ?>
