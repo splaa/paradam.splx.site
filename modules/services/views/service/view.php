@@ -1,7 +1,8 @@
 <?php
 
 	use yii\helpers\Html;
-	use yii\widgets\DetailView;
+use yii\helpers\Url;
+use yii\widgets\DetailView;
 
 	/* @var $this yii\web\View */
 	/* @var $model app\modules\services\models\Service */
@@ -11,74 +12,83 @@
 	$this->params['breadcrumbs'][] = $this->title;
 	\yii\web\YiiAsset::register($this);
 ?>
-<div class="service-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<!-- HEADER -->
+<header>
+	<div class="headerContainer">
+        <span onclick="main.back()" class="backButton">
+            <img src="<?= Yii::getAlias('@web') ?>/images/paradam/back_arrow.svg" alt="">
+        </span>
+		<h2><?= Html::encode($this->title) ?></h2>
+	</div>
+</header>
 
-    <p>
-		<?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-		<?= Html::a(Yii::t('app', 'SET_IMAGE_SERVICE'), ['set-image', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
-		<?= Html::a(Yii::t('app', 'SET_QUESTION_SERVICE'), ['/services/question/add-question', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
-		<?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-			'class' => 'btn btn-danger',
-			'data' => [
-				'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-				'method' => 'post',
-			],
-		]) ?>
-    </p>
-    <div class="box">
-        <div class="box-body">
-	<?= DetailView::widget([
-		'model' => $model,
-		'attributes' => [
-			'id',
-			'user_id',
-			'name',
-			'description:ntext',
-			'price',
-			'periodOfExecution',
-			'link_foto_video_file',
-			'created_at',
-			'updated_at',
-		],
-	]) ?>
-        </div>
-    </div>
-    <!--    // Todo-splaa: Реализовать загрузку картинки с изображением (отображением картинки)-->
-    <!--    // Review-Serik: Проверить код-->
-    <!--	Review-[splx] -->
-    <div>
-        <h2>Вопросы</h2>
-        <div class="box">
-            <div class="box-body">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Вопрос</th>
-                <th scope="col">статус</th>
+<!-- HEADER FIN -->
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-				<?php
-					$i = 0;
-				?>
-				<?php foreach ($model->questions as $questions): ?>
-            <tr>
-                <th scope="row"><?= $i += 1 ?></th>
-                <td><?= $questions->id ?></td>
-                <td><?= $questions->question ?></td>
-                <td><?= $questions->status ?></td>
-            </tr>
-			<?php endforeach; ?>
-            </tr>
-            </tbody>
-        </table>
-            </div>
-        </div>
-    </div>
+<section>
 
-</div>
+	<div class="mainContainer">
+		<div class="steps_container">
+			<div class="steps step_active_three">
+				<ul>
+					<li><img src="<?= Yii::getAlias('@web') ?>/images/paradam/tick.svg" alt=""></li>
+					<li><img src="<?= Yii::getAlias('@web') ?>/images/paradam/tick.svg" alt=""></li>
+					<li>3</li>
+				</ul>
+				<div class="stepsProgress stepsProgress_3"></div>
+			</div>
+			<p>Step 3</p>
+		</div>
+
+		<h2>Service information</h2>
+
+		<div class="textblock">
+			<p>Service name</p>
+			<span><?= $model->name ?></span>
+		</div>
+		<div class="textblock textBlock-number">
+			<p>Service cost</p>
+			<span><?= $model->convertPriceToUSD ?></span>
+		</div>
+		<div class="textblock">
+			<p>Service description</p>
+			<span><?= $model->description ?></span>
+		</div>
+		<div class="textblock textBlock-number">
+			<p>Days term</p>
+			<span><?= $model->periodOfExecution ?></span>
+		</div>
+
+		<h2>Questions for buyer</h2>
+
+		<?php foreach ($model->questions as $key => $questions): ?>
+			<div class="textblock">
+				<p>Question for buyer <?= $key + 1 ?></p>
+				<span><?= $questions->question ?></span>
+			</div>
+		<?php endforeach; ?>
+
+		<label class="agreePpTu flex">
+			<input type="checkbox" name="" id="">
+			<span class="checkmark"></span>
+			<p>I agree to the <a href="#">Privacy Policy</a> and <a href="#">terms of use</a></p>
+		</label>
+
+	</div>
+</section>
+
+
+<section>
+	<div class="stepsButtons">
+		<div class="stepsButtonsContainer">
+			<div class="sb_button sb_back">
+				<a href="<?= $back; ?>">
+					<span><img src="<?= Yii::getAlias('@web') ?>/images/paradam/btn-back.svg" alt="">Back</span>
+				</a>
+			</div>
+			<div class="sb_button sb_next">
+				<a href="<?= Url::to(['/user/public/', 'username' => $model->user->username]) ?>">Create <img src="<?= Yii::getAlias('@web') ?>/images/paradam/btn-next.svg" alt=""></a>
+			</div>
+		</div>
+	</div>
+</section>

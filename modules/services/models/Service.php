@@ -124,7 +124,7 @@
 		 */
 		public function getUser()
 		{
-			return $this->hasOne(User::className(), ['id' => 'user_id'])->inverseOf('services');
+			return $this->hasOne(User::className(), ['id' => 'user_id']);
 		}
 
 		/**

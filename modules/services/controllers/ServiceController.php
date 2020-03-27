@@ -2,12 +2,14 @@
 
 	namespace app\modules\services\controllers;
 
+	use app\components\Currency;
 	use app\modules\services\models\ImageUpload;
 	use app\modules\services\models\Service;
 	use app\modules\services\models\ServiceSearch;
 	use app\modules\user\controllers\UserController;
 	use Yii;
 	use yii\filters\VerbFilter;
+	use yii\helpers\Url;
 	use yii\web\NotFoundHttpException;
 	use yii\web\UploadedFile;
 
@@ -49,13 +51,19 @@
 		/**
 		 * Displays a single Service model.
 		 * @param integer $id
+		 * @param integer $change_status
 		 * @return mixed
 		 * @throws NotFoundHttpException if the model cannot be found
 		 */
-		public function actionView($id)
+		public function actionView($id, $change_status = false)
 		{
+			if ($change_status) {
+				return $this->redirect(['/user/public/', 'id' => Yii::$app->user->id]);
+			}
+
 			return $this->render('view', [
 				'model' => $this->findModel($id),
+				'back' => Url::to(['/services/service/update', 'id' => $id])
 			]);
 		}
 
@@ -76,8 +84,11 @@
 					$model->saveImage($modelImage->uploadFile($model->imageFile, $model->link_foto_video_file));
 				}
 				$model->user_id = Yii::$app->user->id;
-				if ($model->load(Yii::$app->request->post()) && $model->save()) {
-					return $this->redirect(['/services/question/add-question', 'id' => $model->id]);
+				if ($model->load(Yii::$app->request->post())) {
+					$model->price = Currency::convert($model->price, Currency::USD_CURRENCY, Currency::BITS_CURRENCY);
+					if ($model->save()) {
+						return $this->redirect(['/services/question/add-question', 'id' => $model->id]);
+					}
 				}
 			}
 

@@ -39,7 +39,7 @@
 				</a>
 			</div>
 			<div class="sb_button sb_next">
-				<a href="#" onclick="$('#service_block_form').find('form').submit();">Next<img src="<?= Yii::getAlias('@web') ?>/images/paradam/btn-next.svg" alt=""></a>
+				<a href="#" onclick="$('#service_block_form').find('form').submit();return false;">Next<img src="<?= Yii::getAlias('@web') ?>/images/paradam/btn-next.svg" alt=""></a>
 			</div>
 		</div>
 	</div>
