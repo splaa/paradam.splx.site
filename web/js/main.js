@@ -1,7 +1,5 @@
 let main = {
-    back: function(e) {
-        e.preventDefault();
-
+    back: function() {
         let referrer = document.referrer;
         if (!referrer.match('paradam')) {
             window.location = '/';
@@ -43,12 +41,13 @@ if (pageService !== null) {
 
 $(document).on('click', '#button_add_question', function () {
     $('.ib_add_button').trigger('click');
-    //$('.inputBlock').find('input').length;
 })
 
 $('.multiple-input').on('afterInit', function(){
     // calls on after initialization event
-    $('.field-question-questions-0').before('<p>Question for buyers 1</p>');
+    $('.multiple-input-list__item').each(function(k, v){
+        $(v).prepend('<p>Question for buyers ' + (parseInt(k) + 1) + '</p>');
+    });
 }).on('beforeAddRow', function(e, row, currentIndex) {
     // calls on before add row event
 }).on('afterAddRow', function(e, row, currentIndex) {

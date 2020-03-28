@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
+/* @var $service app\modules\services\models\Service */
 /* @var $model app\modules\services\models\Question */
 /* @var $back string */
 
@@ -25,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <section id="question_block_form">
 	<?= $this->render('_form', [
+		'service' => $service,
 		'model' => $model,
 	]) ?>
 </section>

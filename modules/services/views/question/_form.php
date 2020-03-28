@@ -1,13 +1,15 @@
 <?php
 
 	use app\modules\services\models\Question;
-	use unclead\multipleinput\MultipleInput;
+use app\modules\services\models\Service;
+use unclead\multipleinput\MultipleInput;
 use unclead\multipleinput\MultipleInputColumn;
 use yii\bootstrap\ActiveForm;
 	use yii\helpers\Html;
 
 
 	/* @var $this yii\web\View */
+	/* @var $service Service */
 	/* @var $model Question */
 
 ?>
@@ -33,7 +35,7 @@ use yii\bootstrap\ActiveForm;
 	]); ?>
 		<div class="questions_container">
 			<div class="inputBlock inputBlock-text">
-				<?= $form->field($model, 'questions')->widget(MultipleInput::className(), [
+				<?= $form->field($service, 'questions')->widget(MultipleInput::className(), [
 					'max' => 10,
 					'theme' => MultipleInput::THEME_DEFAULT,
 					'rendererClass' => \unclead\multipleinput\renderers\DivRenderer::className(),
@@ -49,6 +51,9 @@ use yii\bootstrap\ActiveForm;
 						[
 							'name' => 'questions',
 							'type' => MultipleInputColumn::TYPE_TEXT_INPUT,
+							'value' => function($data) {
+								return $data->question ?? '';
+							},
 							'options' => [
 								'placeholder' => 'Name',
 							],

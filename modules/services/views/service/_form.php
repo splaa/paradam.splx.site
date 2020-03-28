@@ -25,11 +25,11 @@
 		<h2>Service information</h2>
 		<div class="inputBlock inputBlock-text">
 			<p>Service name</p>
-			<?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => 'Name', 'class' => ''])->label(false) ?>
+			<?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => 'Name', 'class' => ''])->label(false)->label(false) ?>
 		</div>
 		<div class="inputBlock inputBlock-number">
 			<p>Service cost in $</p>
-			<?= $form->field($model, 'price')->input('range', ['id' => 'costRange', 'min' => 1, 'max' => 50, 'class' => '']) ?>
+			<?= $form->field($model, 'price')->input('range', ['id' => 'costRange', 'min' => 1, 'max' => 50, 'class' => ''])->label(false) ?>
 			<output id="totalPrice"></output>
 			<div class="ib_tax">-5% <img src="<?= Yii::getAlias('@web') ?>/images/paradam/info.svg" alt=""></div>
 		</div>
@@ -41,7 +41,7 @@
 
 		<div class="inputBlock inputBlock-number">
 			<p>Days term</p>
-			<?= $form->field($model, 'periodOfExecution')->input('range', ['id' => 'dayRange', 'min' => 1, 'max' => 14, 'class' => '']) ?>
+			<?= $form->field($model, 'periodOfExecution')->input('range', ['id' => 'dayRange', 'min' => 1, 'max' => 14, 'class' => ''])->label(false) ?>
 			<output id="totalDay"></output>
 		</div>
 	<?php ActiveForm::end(); ?>

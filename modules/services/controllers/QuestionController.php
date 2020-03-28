@@ -4,6 +4,7 @@
 
 	use app\modules\services\models\Question;
 	use app\modules\services\models\QuestionSearch;
+	use app\modules\services\models\Service;
 	use app\modules\services\models\ServiceQuestion;
 	use app\modules\user\controllers\UserController;
 	use Yii;
@@ -93,12 +94,12 @@
 
 		public function actionAddQuestion($id)
 		{
-
+			$service = Service::findOne($id);
 			$model = new Question();
 
-
-			if (Yii::$app->request->post('Question')) {
-				$questions = Yii::$app->request->post('Question')['questions'];
+			if (Yii::$app->request->post('Service')) {
+				$questions = Yii::$app->request->post('Service')['questions'];
+				Yii::$app->db->createCommand()->delete('service_question', ['service_id' => $id])->execute();
 
 				foreach ($questions as $question) {
 					$questionModel = new Question();
@@ -120,6 +121,7 @@
 			$this->view->blocks['hideNavigationBar'] = true;
 
 			return $this->render('create', [
+				'service' => $service,
 				'model' => $model,
 				'back' => Url::to(['/services/service/update', 'id' => $id])
 			]);

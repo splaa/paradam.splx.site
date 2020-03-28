@@ -78,9 +78,26 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 		</div>
 	</div>
 
-	<div class="upd_button">
-		<input type="button" id="send_msg" value="Send message for <?= $model->formatSmsCost ?>" />
-	</div>
+	<?php if (Yii::$app->user->id != $model->id): ?>
+		<div class="upd_button">
+			<input type="button" id="send_msg" value="Send message for <?= $model->formatSmsCost ?>" />
+		</div>
+	<?php else: ?>
+		<div class="balance_btn">
+			<div class="bb_container flex-center">
+            <span class="bb_wallet">
+                <img src="<?= Yii::getAlias('@web') ?>/images/paradam/wallet.svg" alt="">
+            </span>
+				<div class="balance_counter flex-center">
+					<span><?= $model->convertBalanceToUSD ?> </span>
+					<p>Balance</p>
+				</div>
+				<a href="#" class="bb_deposit flex-icon">
+					<img src="<?= Yii::getAlias('@web') ?>/images/paradam/balance_add.svg" alt="">
+				</a>
+			</div>
+		</div>
+	<?php endif; ?>
 
 	<div class="mainContainer">
 
@@ -88,6 +105,12 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 			<p class="us_title"><?= $model->first_name . ' ' . $model->last_name ?> offers:</p>
 
 			<div class="us_itemsContainer">
+				<?php if (Yii::$app->user->id == $model->id): ?>
+					<a href="<?= Url::to(['/services/service/create']) ?>" class="usic_item_button">
+						<span>Add new service <b>+</b></span>
+					</a>
+				<?php endif; ?>
+
 				<?php foreach ($services as $service): ?>
 					<?php if (Yii::$app->user->id != $model->id): ?>
 						<div class="usic_item make-order" data-id="<?= $service->id ?>" data-user-id="<?= $model->id ?>">

@@ -63,7 +63,7 @@
 
 			return $this->render('view', [
 				'model' => $this->findModel($id),
-				'back' => Url::to(['/services/service/update', 'id' => $id])
+				'back' => Url::to(['/services/question/add-question', 'id' => $id])
 			]);
 		}
 
