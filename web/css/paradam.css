@@ -967,21 +967,21 @@ header {
 /* NAVIGATION */
 
 
-.nav {
-    width: 280px;
-    min-width: 280px;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    margin: 0;
-    left: -320px;
-    -webkit-transition: left 0.3s;
-    -moz-transition: left 0.3s;
-    transition: left 0.3s;
-    background: #fff;
-    z-index: 2000;
-}
+/*.nav {*/
+/*    width: 280px;*/
+/*    min-width: 280px;*/
+/*    height: 100%;*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    bottom: 0;*/
+/*    margin: 0;*/
+/*    left: -320px;*/
+/*    -webkit-transition: left 0.3s;*/
+/*    -moz-transition: left 0.3s;*/
+/*    transition: left 0.3s;*/
+/*    background: #fff;*/
+/*    z-index: 2000;*/
+/*}*/
 
 .nav-toggle {
     position: fixed;
@@ -1525,4 +1525,12 @@ header {
     height: 712px;
     -webkit-transition: height .5s, height .5s;
 }
-
+.list-cell__questions {
+    display: flex;
+}
+.list-cell__questions > div {
+    width: 100%;
+}
+.field-service-questions-0  .list-cell__button, .ib_add_button  {
+    display: none;
+}
