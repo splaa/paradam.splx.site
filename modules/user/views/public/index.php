@@ -70,7 +70,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 							<div class="upd_lang">
 								<ul>
 									<?php foreach(Yii::$app->user->identity->languageArray as $language): ?>
-										<li class="updl_eng"><?= $language ?></li>
+										<li><?= $language ?></li>
 									<?php endforeach; ?>
 								</ul>
 							</div>
