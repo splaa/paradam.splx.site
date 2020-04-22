@@ -54,6 +54,7 @@ return [
 	'TITLE_PASSWORD_CHANGE' => 'TITLE_PASSWORD_CHANGE',
 	'LINK_TO_DESCRIPTION_CHANGE' => 'Change description',
 	'LINK_TO_LINK_CHANGE' => 'Change link',
+	'LINK_TO_LINK_ADD_LANGUAGES' => 'Add Languages',
 	'Are you sure you want to delete this item?' => 'Are you sure you want to delete this item?',
 	'TITLE_RESET_PASSWORD' => 'TITLE_RESET_PASSWORD',
 	'The requested page does not exist.' => 'The requested page does not exist.',

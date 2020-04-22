@@ -34,6 +34,7 @@ use yii\web\IdentityInterface;
  * @property mixed $statusName
  * @property string $description
  * @property string $link
+ * @property string $languages
  * @property string $password
  * @property string $authKey
  * @property int $status
@@ -48,6 +49,7 @@ use yii\web\IdentityInterface;
  * @property string $convertSmsCostToUSD
  * @property string $convertBalanceToUSD
  * @property string $linkFormat
+ * @property string $languageArray
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -420,6 +422,24 @@ class User extends ActiveRecord implements IdentityInterface
 	public function setLink($link)
 	{
 		$this->link = $link;
+	}
+
+	/**
+	 * @param string $languages
+	 * @throws \yii\base\Exception
+	 */
+	public function setLanguages($languages)
+	{
+		$this->languages = $languages;
+	}
+
+	/**
+	 * @param string $languages
+	 * @throws \yii\base\Exception
+	 */
+	public function getLanguageArray()
+	{
+		$this->languageArray = explode(',', $this->languages);
 	}
 
 	/**

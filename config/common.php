@@ -55,6 +55,7 @@
 			],
 		],
 		'aliases' => [
+			'@languages' => '@vendor/annexare/countries-list/dist',
 			'@bower' => '@vendor/bower-asset',
 			'@npm' => '@vendor/npm-asset',
 			'@tests' => '@app/tests',

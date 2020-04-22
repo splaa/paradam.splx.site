@@ -7,6 +7,7 @@
 	use app\modules\admin\models\User;
 	use app\modules\user\forms\DateChangeForm;
 	use app\modules\user\forms\DescriptionChangeForm;
+	use app\modules\user\forms\LanguageAddForm;
 	use app\modules\user\forms\LinkChangeForm;
 	use app\modules\user\forms\NameChangeForm;
 	use app\modules\user\forms\PasswordChangeForm;
@@ -208,5 +209,41 @@
 					]);
 				}
 			}
+		}
+
+		public function actionAddLanguages()
+		{
+			$user = $this->findModel();
+			$model = new LanguageAddForm($user);
+			$languages = $this->getLanguages();
+
+			if ($model->load(Yii::$app->request->post()) && $model->addLanguages()) {
+				Yii::$app->getSession()->setFlash('success', 'Спасибо! Языки успешно добавлены.');
+
+				return $this->redirect(['index']);
+			} else {
+				return $this->render('addLanguages', [
+					'model' => $model,
+					'languages'  => $languages
+				]);
+			}
+		}
+		
+		private function getLanguages() {
+			$languages = [];
+			$temp = [];
+
+			if (file_exists(Yii::getAlias('@languages') . '/languages.all.min.json')) {
+				$temp = file_get_contents(Yii::getAlias('@languages') . '/languages.all.min.json');
+			}
+			
+			if ($temp) {
+				$temp = json_decode($temp, true);
+				foreach ($temp as $item) {
+					$languages[$item['native']] = $item['native'];
+				}
+			}
+
+			return $languages;
 		}
 	}

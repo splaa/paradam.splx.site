@@ -81,6 +81,7 @@
 		'LINK_TO_PHONE_CHANGE' => 'Изменить телефон',
 		'LINK_TO_DESCRIPTION_CHANGE' => 'Изменить описание',
 		'LINK_TO_LINK_CHANGE' => 'Изменить ссылку',
+		'LINK_TO_LINK_ADD_LANGUAGES' => 'Добавить Языки',
 		'NAV_PROFILE_CHANGE_NAME' => 'Изменить имя',
 		'NAV_PROFILE_CHANGE_USER_NAME' => 'Изменить username',
         'Article ID' => 'Article ID',
