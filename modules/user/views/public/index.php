@@ -66,7 +66,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 						<div class="upd_link">
 							<a href="<?= $model->link ?>" target="_blank"><?= $model->linkFormat ?></a>
 						</div>
-						<?php if(Yii::$app->user->identity->languages): ?>
+						<?php if(Yii::$app->user->identity->languageArray): ?>
 							<div class="upd_lang">
 								<ul>
 									<?php foreach(Yii::$app->user->identity->languageArray as $language): ?>

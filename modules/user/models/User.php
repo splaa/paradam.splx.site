@@ -49,7 +49,7 @@ use yii\web\IdentityInterface;
  * @property string $convertSmsCostToUSD
  * @property string $convertBalanceToUSD
  * @property string $linkFormat
- * @property string $languageArray
+ * @property array $languageArray
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -434,12 +434,11 @@ class User extends ActiveRecord implements IdentityInterface
 	}
 
 	/**
-	 * @param string $languages
 	 * @throws \yii\base\Exception
 	 */
 	public function getLanguageArray()
 	{
-		$this->languageArray = explode(',', $this->languages);
+		return explode(',', $this->languages);
 	}
 
 	/**
