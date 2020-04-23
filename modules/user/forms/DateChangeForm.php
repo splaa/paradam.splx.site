@@ -34,7 +34,28 @@ class DateChangeForm extends Model
 	{
 		return [
 			[['newDate'], 'required'],
+			[['newDate'], 'checkAge'],
 		];
+	}
+
+	/**
+	 * @param $attribute
+	 * @param $params
+	 */
+	public function checkAge($attribute, $params)
+	{
+		if ($this->getAge($this->$attribute) < 14) {
+			$this->addError($attribute, 'Вам должно быть больше 13 лет.');
+		}
+	}
+
+	private function getAge($birthday) {
+		$birthday_timestamp = strtotime($birthday);
+		$age = date('Y') - date('Y', $birthday_timestamp);
+		if (date('md', $birthday_timestamp) > date('md')) {
+			$age--;
+		}
+		return $age;
 	}
 
 	public function attributeLabels()
