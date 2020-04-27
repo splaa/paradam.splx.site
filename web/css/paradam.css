@@ -734,6 +734,10 @@ header {
     font-weight: 600;
 }
 
+.questionblock > div {
+    margin-bottom: 20px;
+}
+
 .questionblock textarea {
     resize: none;
 }
@@ -1551,19 +1555,4 @@ header {
 .hover_block.slide {
     left: 0;
     background: white;
-}
-.hover_block > .title {
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    border-bottom: 1px solid #dedede;
-    padding: 15px 0 15px 50px;
-    position: relative;
-}
-.hover_block .desc {
-    padding: 15px;
-    background: #fafafa;
-    font-size: 17px;
-    line-height: normal;
-    height: auto;
 }

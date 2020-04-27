@@ -66,8 +66,8 @@ $('.multiple-input').on('afterInit', function(){
     // console.log('calls on after drop row', item);
 });
 
-$(document).on('click', '.backButton', function(){
-    $(this).parent().parent().toggleClass("slide");
+$('.hover_block').on('click', '.backButton', function(){
+    $(this).parents('section').toggleClass("slide");
     $('html, body, #app_container').removeAttr('style');
 });
 

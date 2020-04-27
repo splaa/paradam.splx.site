@@ -35,85 +35,91 @@
 
 		public function actionSave() {
 			if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
-				$sender_id = Yii::$app->user->id;
-				$recipient_id = Yii::$app->request->post('user_id');
-				$service = Yii::$app->request->post('answered');
-				$comment = Yii::$app->request->post('comment');
-				$terms_of_use = Yii::$app->request->post('terms_of_use');
+				if (Yii::$app->user->isGuest) {
+					return Json::encode([
+						'error' => 'Авторизируйтесь или ввойдите'
+					]);
+				} else {
+					$sender_id = Yii::$app->user->id;
+					$recipient_id = Yii::$app->request->post('user_id');
+					$service = Yii::$app->request->post('answered');
+					$comment = Yii::$app->request->post('comment');
+					$terms_of_use = Yii::$app->request->post('terms_of_use');
 
-				if ($recipient_id && $service) {
-					$service_id = array_key_first($service);
-					$service_info = Service::findOne($service_id);
+					if ($recipient_id && $service) {
+						$service_id = array_key_first($service);
+						$service_info = Service::findOne($service_id);
 
-					if (User::validateSendMessage($sender_id, $recipient_id, 0, $service_info->price)) {
-						$questions_ids = $service[$service_id] ?? [];
-						$text = $this->createMessage($service_info, $questions_ids, $comment);
+						if (User::validateSendMessage($sender_id, $recipient_id, 0, $service_info->price)) {
+							$questions_ids = $service[$service_id] ?? [];
+							$text = $this->createMessage($service_info, $questions_ids, $comment);
 
-						$thread = Thread::find()->alias('t')
-							->innerJoin('user_thread as ut1', 't.id = ut1.thread_id')
-							->innerJoin('user_thread as ut2', 't.id = ut2.thread_id')
-							->where(['ut1.user_id' => $sender_id, 'ut2.user_id' => $recipient_id])
-							->orWhere(['ut1.user_id' => $recipient_id, 'ut2.user_id' => $sender_id])
-							->groupBy('t.id')
-							->asArray()
-							->one();
+							$thread = Thread::find()->alias('t')
+								->innerJoin('user_thread as ut1', 't.id = ut1.thread_id')
+								->innerJoin('user_thread as ut2', 't.id = ut2.thread_id')
+								->where(['ut1.user_id' => $sender_id, 'ut2.user_id' => $recipient_id])
+								->orWhere(['ut1.user_id' => $recipient_id, 'ut2.user_id' => $sender_id])
+								->groupBy('t.id')
+								->asArray()
+								->one();
 
-						if ($thread) {
-							$thread_id = $thread['id'];
+							if ($thread) {
+								$thread_id = $thread['id'];
+							} else {
+								$thread = new Thread();
+								$thread->title = $sender_id . '=>' . $recipient_id;
+								$thread->creator_id = $recipient_id;
+								$thread->save();
+								$thread_id = $thread->id;
+
+								$user_thread = new UserThread();
+								$user_thread->user_id = $recipient_id;
+								$user_thread->thread_id = $thread_id;
+								$user_thread->save();
+
+								$user_thread = new UserThread();
+								$user_thread->user_id = $sender_id;
+								$user_thread->thread_id = $thread_id;
+								$user_thread->save();
+							}
+
+							$order = new OrderService();
+							$order->customer_id = $sender_id;
+							$order->executor_id = $recipient_id;
+							$order->service_id = $service_id;
+							$order->answers = $text['json'];
+							$order->comment = $comment;
+							$order->amount = $service_info->price;
+							$order->save();
+
+							$message = new Message();
+							$message->author_id = $sender_id;
+							$message->thread_id = $thread_id;
+							$message->order_service_id = $order->id;
+							$message->text = $text['html'];
+							$message->save();
+
+							$user_message = new UserMessage();
+							$user_message->user_id = $sender_id;
+							$user_message->message_id = $message->id;
+							$user_message->save();
+
+							// Minus from balance
+							User::transferBits($sender_id, $recipient_id, User::TRANSFER_TYPE_SERVICE, $service_info->price, 1);
+
+							$hash = new Hash();
+							$hash->string = $thread_id;
+
+							Yii::$app->getSession()->setFlash('success', 'Спасибо! Услуга заказана ожидайте ответ исполнителя.');
+
+							return Json::encode([
+								'redirect' => Url::to(['/message/message/view', 'id' => $hash->run(Hash::ENCODE)])
+							]);
 						} else {
-							$thread = new Thread();
-							$thread->title = $sender_id . '=>' . $recipient_id;
-							$thread->creator_id = $recipient_id;
-							$thread->save();
-							$thread_id = $thread->id;
-
-							$user_thread = new UserThread();
-							$user_thread->user_id = $recipient_id;
-							$user_thread->thread_id = $thread_id;
-							$user_thread->save();
-
-							$user_thread = new UserThread();
-							$user_thread->user_id = $sender_id;
-							$user_thread->thread_id = $thread_id;
-							$user_thread->save();
+							return Json::encode([
+								'error' => 'На счету не достаточно средств пожалуйста пополните Ваш баланс.'
+							]);
 						}
-
-						$order = new OrderService();
-						$order->customer_id = $sender_id;
-						$order->executor_id = $recipient_id;
-						$order->service_id = $service_id;
-						$order->answers = $text['json'];
-						$order->comment = $comment;
-						$order->amount = $service_info->price;
-						$order->save();
-
-						$message = new Message();
-						$message->author_id = $sender_id;
-						$message->thread_id = $thread_id;
-						$message->order_service_id = $order->id;
-						$message->text = $text['html'];
-						$message->save();
-
-						$user_message = new UserMessage();
-						$user_message->user_id = $sender_id;
-						$user_message->message_id = $message->id;
-						$user_message->save();
-
-						// Minus from balance
-						User::transferBits($sender_id, $recipient_id, User::TRANSFER_TYPE_SERVICE, $service_info->price, 1);
-
-						$hash = new Hash();
-						$hash->string = $thread_id;
-
-						Yii::$app->getSession()->setFlash('success', 'Спасибо! Услуга заказана ожидайте ответ исполнителя.');
-
-						return Json::encode([
-							'redirect' => Url::to(['/message/message/view', 'id' => $hash->run(Hash::ENCODE)])
-						]);
-					} else {
-						return Json::encode([
-							'error' => 'На счету не достаточно средств пожалуйста пополните Ваш баланс.'
-						]);
 					}
 				}
 			}

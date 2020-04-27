@@ -101,7 +101,7 @@ $(document).on('click', '.make-order', function (e) {
 
 $(document).on('click', '#checkout_service', function (e) {
     e.preventDefault();
-    let form = $('#order .modal-body').find('#send_service_form');
+    let form = $(this).parents('form');
     if (sender.validate(form)) {
         $.ajax({
             url: form.attr('action'),
@@ -109,17 +109,17 @@ $(document).on('click', '#checkout_service', function (e) {
             data: form.serialize(),
             dataType: 'json',
             beforeSend: function () {
-                $('#order .modal-body').prepend('<span id="loading">loading......</span>');
+                $(form).prepend('<span id="loading">loading......</span>');
             },
             complete: function () {
-                $('#order .modal-body').find('#loading').remove();
+                $(form).find('#loading').remove();
             },
             success: function (json) {
                 if (json['redirect']) {
                     location.href = json['redirect'];
                 }
                 if (json['error']) {
-                    $('#order .modal-body').prepend('<div class="alert alert-danger">' + json['error'] + '</div>');
+                    $(form).prepend('<div class="alert alert-danger">' + json['error'] + '</div>');
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {

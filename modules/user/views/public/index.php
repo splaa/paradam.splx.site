@@ -139,11 +139,5 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 	</div>
 </section>
 <section class="hover_block" id="page_service">
-	<div class="headerContainer">
-        <span class="backButton">
-            <img src="<?= Yii::getAlias('@web') ?>/images/paradam/back_arrow.svg" alt="">
-        </span>
-		<h2>Birthday congratulations</h2>
-	</div>
 	<div class="desc not_swipe"></div>
 </section>
