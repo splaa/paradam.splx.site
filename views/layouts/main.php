@@ -29,36 +29,38 @@ AppAsset::register($this);
 
 	<?= Alert::widget() ?>
 
-	<?= $content ?>
+	<div id="app_container">
+		<?= $content ?>
 
-	<?php if (!isset($this->blocks['hideNavigationBar'])): ?>
-		<section>
-			<nav class="navigationBar">
-				<ul>
-					<li>
-						<a href="">
-							<img src="<?= Yii::getAlias('@web') ?>/images/paradam/discover.svg" alt="">
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<img src="<?= Yii::getAlias('@web') ?>/images/paradam/search.svg" alt="">
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<img src="<?= Yii::getAlias('@web') ?>/images/paradam/messages.svg" alt="">
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<img src="<?= Yii::getAlias('@web') ?>/images/paradam/notification.svg" alt="">
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</section>
-	<?php endif; ?>
+		<?php if (!isset($this->blocks['hideNavigationBar'])): ?>
+			<section>
+				<nav class="navigationBar">
+					<ul>
+						<li>
+							<a href="">
+								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/discover.svg" alt="">
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/search.svg" alt="">
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/messages.svg" alt="">
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/notification.svg" alt="">
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</section>
+		<?php endif; ?>
+	</div>
 	<?php $this->endBody() ?>
 	</body>
 	</html>

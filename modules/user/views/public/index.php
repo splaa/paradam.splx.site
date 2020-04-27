@@ -66,10 +66,10 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 						<div class="upd_link">
 							<a href="<?= $model->link ?>" target="_blank"><?= $model->linkFormat ?></a>
 						</div>
-						<?php if(Yii::$app->user->identity->languageArray): ?>
+						<?php if($model->languageArray): ?>
 							<div class="upd_lang">
 								<ul>
-									<?php foreach(Yii::$app->user->identity->languageArray as $language): ?>
+									<?php foreach($model->languageArray as $language): ?>
 										<li><?= $language ?></li>
 									<?php endforeach; ?>
 								</ul>
@@ -137,4 +137,13 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 			</div>
 		</div>
 	</div>
+</section>
+<section class="hover_block" id="page_service">
+	<div class="headerContainer">
+        <span class="backButton">
+            <img src="<?= Yii::getAlias('@web') ?>/images/paradam/back_arrow.svg" alt="">
+        </span>
+		<h2>Birthday congratulations</h2>
+	</div>
+	<div class="desc not_swipe"></div>
 </section>

@@ -80,12 +80,8 @@ var sender = {
         form.parent().html(message);
     }
 }
-function showOrder(order) {
-    $('#order .modal-body').html(order);
-    $('#order').modal();
-}
 
-$('a.make-order').on('click', function (e) {
+$(document).on('click', '.make-order', function (e) {
     e.preventDefault();
     let id = $(this).data('id');
     let user_id = $(this).data('user-id');
@@ -95,10 +91,10 @@ $('a.make-order').on('click', function (e) {
         type: 'GET',
         success: function (res) {
             if (!res) alert('Ошибка!!!');
-            showOrder(res);
+            windowLoaderFunk(res);
         },
         error: function () {
-            alert('Error');
+            console.log('Error');
         }
     });
 });

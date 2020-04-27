@@ -65,3 +65,21 @@ $('.multiple-input').on('afterInit', function(){
 }).on('afterDropRow', function(e, item){
     // console.log('calls on after drop row', item);
 });
+
+$(document).on('click', '.backButton', function(){
+    $(this).parent().parent().toggleClass("slide");
+    $('html, body, #app_container').removeAttr('style');
+});
+
+// Open slide page
+function windowLoaderFunk(html){
+    $('html, body, #app_container').css({
+        'overflow' : 'hidden',
+        '-moz-overscroll-behavior-y' : 'none',
+        '-o-overscroll-behavior-y' : 'none',
+        '-webkit-overscroll-behavior-y' : 'none',
+        'overscroll-behavior-y' : 'none'
+    });
+    $('#page_service').find('.desc').html(html);
+    $('#page_service').toggleClass("slide");
+}
