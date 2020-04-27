@@ -21,11 +21,11 @@
 		<p>Step 1</p>
 	</div>
 
-	<?php $form = ActiveForm::begin(['options' => ['class' => 'stepTwoBlock', 'enctype' => 'multipart/form-data'], 'fieldConfig' => ['options' => ['tag' => false, 'class' => '']]]); ?>
+	<?php $form = ActiveForm::begin(['options' => ['class' => 'stepTwoBlock', 'enctype' => 'multipart/form-data']]); ?>
 		<h2>Service information</h2>
 		<div class="inputBlock inputBlock-text">
 			<p>Service name</p>
-			<?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => 'Name', 'class' => ''])->label(false)->label(false) ?>
+			<?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => 'Name', 'class' => ''])->label(false); ?>
 		</div>
 		<div class="inputBlock inputBlock-number">
 			<p>Service cost in $</p>
