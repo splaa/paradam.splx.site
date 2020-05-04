@@ -21,22 +21,29 @@ if (pageService !== null) {
     let slider = document.getElementById("costRange");
     let output = document.getElementById("totalPrice");
 
-    output.innerHTML = slider.value;
-
-    slider.oninput = function () {
-        output.innerHTML = this.value + '$';
+    if (output) {
+        output.innerHTML = slider.value;
     }
 
+    if (slider) {
+        slider.oninput = function () {
+            output.innerHTML = this.value + '$';
+        }
+    }
 
 // DAY COUNTER
     let sliderDay = document.getElementById("dayRange");
     let outputDay = document.getElementById("totalDay");
 
-    outputDay.innerHTML = sliderDay.value;
+    if (outputDay) {
+        outputDay.innerHTML = sliderDay.value + ' дня';
+    }
 
-    sliderDay.oninput = function () {
-        outputDay.innerHTML = this.value + ' Days';
-    };
+    if (sliderDay) {
+        sliderDay.oninput = function () {
+            outputDay.innerHTML = this.value + ' дня';
+        }
+    }
 }
 
 $(document).on('click', '#button_add_question', function () {

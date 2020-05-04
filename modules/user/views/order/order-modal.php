@@ -29,46 +29,37 @@ $this->title = "Услуги";
 	<form action="<?= Url::to(['order/save']) ?>" id="send_service_form">
 		<div class="form__error"></div>
 		<section>
-			<div class="mainContainer">
+			<div class="mainContainer like-page">
 				<?php if (!empty($service)): ?>
-					<h2>Service information</h2>
-
-					<div class="textblock">
-						<p>Service name</p>
-						<span><?= $service->name; ?></span>
-					</div>
-					<div class="textblock">
-						<p>Service description</p>
-						<span><?= $service->description; ?></span>
-					</div>
-					<div class="textblock textBlock-number">
-						<p>Days term</p>
-						<span><?= $service->periodOfExecution; ?></span>
+					<div class="info">
+						<div class="info-text"><?= $service->description; ?></div>
 					</div>
 
-					<div class="questionblock">
-						<?php foreach ($service->questions as $question): ?>
-							<div>
-								<p><?= $question->question ?></p>
-								<input type="text" name="answered[<?= $service->id ?>][<?= $question->id ?>]" placeholder="Answer" value="" class="req" data-error="Обязательно для заполнения" />
+					<?php foreach ($service->questions as $question): ?>
+						<div class="inputBlock inputBlock-text">
+							<div class="inputBlock-top">
+								<label for="question" class="inputBlock-top__label">
+									<span class="inputBlock-top__title"><?= $question->question ?> <span class="required">*</span></span>
+								</label>
 							</div>
-						<?php endforeach; ?>
-
-						<div>
-							<p>Comment</p>
-							<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Comment"></textarea>
+							<input type="text" placeholder="Ответ" name="answered[<?= $service->id ?>][<?= $question->id ?>]" class="req" data-error="Обязательно для заполнения">
 						</div>
-					</div>
+					<?php endforeach; ?>
 
-					<p>&nbsp;</p>
-
-					<div class="form-group clearfix">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="terms_of_use" value="1" checked> Согласен с пользовательским соглашением
+					<div class="inputBlock inputBlock-text">
+						<div class="inputBlock-top">
+							<label for="question" class="inputBlock-top__label">
+								<span class="inputBlock-top__title">Ваш комментарий</span>
 							</label>
 						</div>
+						<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Comment"></textarea>
 					</div>
+
+					<label class="agreePpTu flex">
+						<input type="checkbox" name="terms_of_use" value="1" id="" class="req" data-error="Обязательно для заполнения" />
+						<span class="checkmark"></span>
+						<p>Согласен с <a href="#"> Условиями</a></p>
+					</label>
 				<?php else: ?>
 					<div class="alert alert-danger">Пусто</div>
 				<?php endif; ?>
@@ -78,15 +69,8 @@ $this->title = "Услуги";
 		<?php if (!empty($service)): ?>
 			<section>
 				<div class="stepsButtons">
-					<div class="stepsButtonsContainer">
-						<div class="checkout_price flex">
-							<p>Total</p>
-							<span><?= $service->convertPriceToUSD ?></span>
-
-						</div>
-						<div class="sb_button sb_checkout sb_next">
-							<a href="#" id="checkout_service">Checkout payment</a>
-						</div>
+					<div class="stepsButtonsContainer create">
+						<a href="#" id="checkout_service" class="create-btn">Заказать за  <strong> <?= $service->convertPriceToUSD ?></strong></a>
 					</div>
 				</div>
 			</section>
