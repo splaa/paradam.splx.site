@@ -19,15 +19,25 @@ let pageService = document.getElementById("service_block_form");
 if (pageService !== null) {
 // SERVICE COST
     let slider = document.getElementById("costRange");
-    let output = document.getElementById("totalPrice");
+    let price = document.getElementById("totalPrice");
+    let output = document.getElementById("totalPriceOutput");
+
+    if (price) {
+        price.innerHTML = getCurrencyValue(slider.value);
+    }
 
     if (output) {
-        output.innerHTML = slider.value;
+        output.innerHTML = getPercentPrice(slider.value, true);
     }
 
     if (slider) {
         slider.oninput = function () {
-            output.innerHTML = this.value + '$';
+            price.innerHTML = getCurrencyValue(this.value);
+            output.innerHTML = getPercentPrice(this.value, true);
+        }
+
+        slider.onmouseup = function () {
+            $('#costRange').val(getPercentPrice($('#costRange').val(), false));
         }
     }
 
@@ -53,14 +63,14 @@ $(document).on('click', '#button_add_question', function () {
 $('.multiple-input').on('afterInit', function(){
     // calls on after initialization event
     $('.multiple-input-list__item').each(function(k, v){
-        $(v).prepend('<p>Question for buyers ' + (parseInt(k) + 1) + '</p>');
+        $(v).prepend('<label class="inputBlock-top__label">Вопрос ' + (parseInt(k) + 1) + '</label>');
     });
 }).on('beforeAddRow', function(e, row, currentIndex) {
     // calls on before add row event
 }).on('afterAddRow', function(e, row, currentIndex) {
     // calls on after add row event
     //console.log(currentIndex);
-    $(row).prepend('<p>Question for buyers ' + (parseInt(currentIndex)+1) + '</p>');
+    $(row).prepend('<label class="inputBlock-top__label">Вопрос ' + (parseInt(currentIndex)+1) + '</label>');
 }).on('beforeDeleteRow', function(e, row, currentIndex){
     // row - HTML container of the current row for removal.
     // For TableRenderer it is tr.multiple-input-list__item
@@ -78,6 +88,16 @@ $('.hover_block').on('click', '.backButton', function(){
     $('html, body, #app_container').removeAttr('style');
 });
 
+$(document).on('input', '#desc_servise, #name_servise', function () {
+    let max = $(this).attr('data-max');
+
+    if($(this).val().length <= max){
+        $(this).parents('.inputBlock').find('.inputBlock-top__current').text($(this).val().length);
+    } else{
+        $(this).val($(this).val().substr(0, max));
+    }
+});
+
 // Open slide page
 function windowLoaderFunk(html){
     $('html, body, #app_container').css({
@@ -89,4 +109,14 @@ function windowLoaderFunk(html){
     });
     $('#page_service').find('.desc').html(html);
     $('#page_service').toggleClass("slide");
+}
+function getCurrencyValue(amount) {
+    return amount + currency_bits;
+}
+function getPercentPrice(amount, format) {
+    if (format) {
+        return getCurrencyValue(Math.round(parseFloat(amount) * (100 - commision_percent_service)) / 100);
+    } else {
+        return Math.round(parseFloat(amount) * (100 - commision_percent_service)) / 100;
+    }
 }

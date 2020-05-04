@@ -77,6 +77,7 @@ class User extends ActiveRecord implements IdentityInterface
 	public const MESSAGE_LENGTH = 250;
 
 	public const COMMISSION_PERCENT = 20;
+	public const COMMISSION_PERCENT_SERVICE = 5;
 
 	public function behaviors()
 	{

@@ -29,15 +29,9 @@
 	]) ?>
 </section>
 
-
 <section>
 	<div class="stepsButtons">
 		<div class="stepsButtonsContainer">
-			<div class="sb_button sb_back">
-				<a href="#" onclick="main.back()">
-					<span><img src="<?= Yii::getAlias('@web') ?>/images/paradam/btn-back.svg" alt="">Back</span>
-				</a>
-			</div>
 			<div class="sb_button sb_next">
 				<a href="#" onclick="$('#service_block_form').find('form').submit();return false;">Next<img src="<?= Yii::getAlias('@web') ?>/images/paradam/btn-next.svg" alt=""></a>
 			</div>

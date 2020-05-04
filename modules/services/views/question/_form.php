@@ -23,9 +23,17 @@ use yii\bootstrap\ActiveForm;
 			</ul>
 			<div class="stepsProgress stepsProgress_2"></div>
 		</div>
-		<p>Step 2</p>
 	</div>
-	<h2>Questions for buyer</h2>
+
+	<div class="info">
+		<div class="info-text">
+			Здесь вы можете получить нужную вам информацию от заказчика, задав ему один или несколько вопросов.
+		</div>
+		<div class="info-link">
+			<a href="" class="">Нажмите</a>, чтобы посмотреть пример.
+		</div>
+	</div>
+
 	<?php $form = ActiveForm::begin([
 		'enableAjaxValidation' => false,
 		'enableClientValidation' => true,
@@ -61,9 +69,8 @@ use yii\bootstrap\ActiveForm;
 					],
 				])->label(false); ?>
 			</div>
-			<div class="inputBlock inputBlock-adder">
-				<p>Add question</p>
-				<input type="button" id="button_add_question" placeholder="Name" />
+			<div class="inputBlock inputBlock-add" id="button_add_question">
+				Добавить вопрос +
 			</div>
 		</div>
 	<?php ActiveForm::end(); ?>

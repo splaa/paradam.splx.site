@@ -37,58 +37,59 @@ use yii\widgets\DetailView;
 				</ul>
 				<div class="stepsProgress stepsProgress_3"></div>
 			</div>
-			<p>Step 3</p>
 		</div>
 
-		<h2>Service information</h2>
+		<div class="consultation">
+			<div class="consultation-info">
+				<div class="consultation-info__title"><?= $model->name ?></div>
+				<div class="consultation-info__text"><?= $model->description ?></div>
+			</div>
+			<div class="consultation-panel">
+				<ul class="consultation-panel-list">
+					<li class="consultation-panel-list__item">
+						<span class="consultation-panel-list__title">цена</span>
+						<span class="consultation-panel-list__info"><?= $model->price ?></span>
+					</li>
+					<li class="consultation-panel-list__item">
+                        <span class="consultation-panel-list__title">
+                            <img src="<?= Yii::getAlias('@web') ?>/images/paradam/heart.svg">
+                        </span>
+						<span class="consultation-panel-list__info">228</span>
+					</li>
+					<li class="consultation-panel-list__item">
+						<span class="consultation-panel-list__title">исполнение</span>
+						<span class="consultation-panel-list__info"><?= $model->periodOfExecution ?> дня</span>
+					</li>
+				</ul>
+			</div>
+		</div>
 
-		<div class="textblock">
-			<p>Service name</p>
-			<span><?= $model->name ?></span>
-		</div>
-		<div class="textblock textBlock-number">
-			<p>Service cost</p>
-			<span><?= $model->convertPriceToUSD ?></span>
-		</div>
-		<div class="textblock">
-			<p>Service description</p>
-			<span><?= $model->description ?></span>
-		</div>
-		<div class="textblock textBlock-number">
-			<p>Days term</p>
-			<span><?= $model->periodOfExecution ?></span>
-		</div>
 
-		<h2>Questions for buyer</h2>
 
 		<?php foreach ($model->questions as $key => $questions): ?>
-			<div class="textblock">
-				<p>Question for buyer <?= $key + 1 ?></p>
-				<span><?= $questions->question ?></span>
+			<div class="inputBlock inputBlock-text">
+				<div class="inputBlock-top">
+					<label for="name_servise" class="inputBlock-top__label">
+						<span class="inputBlock-top__title">Вопрос#<?= $key + 1 ?></span>
+					</label>
+				</div>
+				<input type="text" name="name_servise" id="name_servise" value="<?= $questions->question ?>" readonly="true">
 			</div>
 		<?php endforeach; ?>
 
 		<label class="agreePpTu flex">
 			<input type="checkbox" name="" id="">
 			<span class="checkmark"></span>
-			<p>I agree to the <a href="#">Privacy Policy</a> and <a href="#">terms of use</a></p>
+			<p>Согласен с <a href="#"> Условиями</a></p>
 		</label>
-
 	</div>
 </section>
 
 
 <section>
 	<div class="stepsButtons">
-		<div class="stepsButtonsContainer">
-			<div class="sb_button sb_back">
-				<a href="<?= $back; ?>">
-					<span><img src="<?= Yii::getAlias('@web') ?>/images/paradam/btn-back.svg" alt="">Back</span>
-				</a>
-			</div>
-			<div class="sb_button sb_next">
-				<a href="<?= Url::to(['/user/public/', 'username' => $model->user->username]) ?>">Create <img src="<?= Yii::getAlias('@web') ?>/images/paradam/btn-next.svg" alt=""></a>
-			</div>
+		<div class="stepsButtonsContainer create">
+			<a href="<?= Url::to(['/user/public/', 'username' => $model->user->username]) ?>" class="create-btn">Опубликовать</a>
 		</div>
 	</div>
 </section>

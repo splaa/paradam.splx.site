@@ -7,11 +7,13 @@
 	use app\modules\services\models\Service;
 	use app\modules\services\models\ServiceSearch;
 	use app\modules\user\controllers\UserController;
+	use app\modules\user\models\User;
 	use Yii;
 	use yii\filters\VerbFilter;
 	use yii\helpers\Url;
 	use yii\web\NotFoundHttpException;
 	use yii\web\UploadedFile;
+	use yii\web\View;
 
 	/**
 	 * ServiceController implements the CRUD actions for Service model.
@@ -61,6 +63,8 @@
 				return $this->redirect(['/user/public/', 'id' => Yii::$app->user->id]);
 			}
 
+			$this->view->blocks['hideNavigationBar'] = true;
+
 			return $this->render('view', [
 				'model' => $this->findModel($id),
 				'back' => Url::to(['/services/question/add-question', 'id' => $id])
@@ -85,7 +89,7 @@
 				}
 				$model->user_id = Yii::$app->user->id;
 				if ($model->load(Yii::$app->request->post())) {
-					$model->price = Currency::convert($model->price, Currency::USD_CURRENCY, Currency::BITS_CURRENCY);
+//					$model->price = Currency::convert($model->price, Currency::USD_CURRENCY, Currency::BITS_CURRENCY);
 					if ($model->save()) {
 						return $this->redirect(['/services/question/add-question', 'id' => $model->id]);
 					}
@@ -93,6 +97,8 @@
 			}
 
 			$this->view->blocks['hideNavigationBar'] = true;
+
+			$this->registerJsGlobalVariable();
 
 			return $this->render('create', [
 				'model' => $model,
@@ -115,6 +121,8 @@
 			}
 
 			$this->view->blocks['hideNavigationBar'] = true;
+
+			$this->registerJsGlobalVariable();
 
 			return $this->render('update', [
 				'model' => $model,
@@ -173,5 +181,17 @@
 			}
 
 			return $this->render('image', compact('model'));
+		}
+
+		private function registerJsGlobalVariable() {
+			// Global JS Settings
+			$COMMISSION_PERCENT_SERVICE = User::COMMISSION_PERCENT_SERVICE;
+			$CURRENCY_BITS = Currency::CURRENCIES[Currency::BITS_CURRENCY]['symbol_right'];
+			$js = <<<JS
+	window.commision_percent_service = '{$COMMISSION_PERCENT_SERVICE}';
+	window.currency_bits = '{$CURRENCY_BITS}';
+JS;
+
+			$this->getView()->registerJs($js, View::POS_BEGIN);
 		}
 	}

@@ -3,6 +3,9 @@ body, h2, h3, ul, input, textarea{
     margin: 0px;
     line-height: inherit;
 }
+label {
+    font-weight: normal;
+}
 
 body, h2, h3, ul, input, textarea{
     font-family: 'Roboto', sans-serif;
@@ -11,6 +14,9 @@ body, h2, h3, ul, input, textarea{
 @font-face {
     font-family: Pacifico;
     src: url(../fonts/Pacifico-Regular.ttf);
+}
+output {
+    display: inline;
 }
 
 :root {
@@ -571,7 +577,6 @@ header {
     font-weight: 700;
     margin-right: 5px;
 }
-
 .inputBlock input[type=number],input[type=text],textarea{
     width: 100%;
     padding: 17px;
@@ -1540,8 +1545,8 @@ input[readonly="true"]{
 
 #show-more-btn {
     float: right;
-    text-align: 14px;
-    vertical-align: bo;
+    text-align: center;
+    vertical-align: baseline;
     font-size: 14px;
     color: var(--main-blue);
     margin-top: 5px;
@@ -1661,6 +1666,40 @@ input[readonly="true"]{
     color: #F63E3E;
     font-size: 16px;
     font-weight: bold;
+}
+.price{
+    color: #272A31;
+    font-size: 20px;
+    font-weight: 900;
+}
+.rezult-price{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #CCCCCC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.rezult-price__title{
+    color: #272A31;
+    font-size: 16px;
+}
+[id='show-more']:checked ~ .discroverTopPeople ul {
+    height: 350px;
+    -webkit-transition: height .5s, height .5s;
+}
+
+[id='show-more-service']:checked ~ .discoverTopService ul {
+    height: 712px;
+    -webkit-transition: height .5s, height .5s;
+}
+.list-cell__questions {
+    display: flex;
+}
+.list-cell__questions > div {
+    width: 100%;
+}
+.field-service-questions-0  .list-cell__button, .ib_add_button  {
+    display: none;
 }
 
 /* Swipe Block */
