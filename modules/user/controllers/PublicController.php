@@ -86,8 +86,7 @@ class PublicController extends Controller
 
 				return Json::encode([
 					'html' => $this->renderAjax('__subscribe_btn_block', [
-						'subscribe_id' => $subscribe_id,
-						'user_id' => $user_id,
+						'subscribe_id' => $subscribe_id
 					]),
 					'count' => $subscribe_info['count']
 				]);

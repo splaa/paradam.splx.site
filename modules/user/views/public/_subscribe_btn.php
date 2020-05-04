@@ -6,12 +6,13 @@
 
 ?>
 
-<?= $this->render('__subscribe_btn_block', [
-	'subscribe_id' => $subscribe_id,
-	'user_id' => $user_id
-]) ?>
+<?php if (Yii::$app->user->id != $user_id) { ?>
+<div id="btn-subscribe">
+	<?= $this->render('__subscribe_btn_block', [
+		'subscribe_id' => $subscribe_id
+	]) ?>
 
-<?php
+	<?php
 	$action = Url::to(['public/subscribe']);
 	$js = <<< JS
 		$(document).on('click', '#btn-subscribe', function(){
@@ -23,7 +24,7 @@
 			    }
 			).done(function(json) {
 			    if (json.html) {
-					$(this).html(json.html);
+					$('#btn-subscribe').html(json.html);
 				}
 
 			    if (json.count) {
@@ -36,3 +37,5 @@ JS;
 	$this->registerJs($js);
 
 ?>
+</div>
+<?php } ?>
