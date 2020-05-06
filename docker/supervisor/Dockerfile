@@ -1,6 +1,4 @@
 FROM yiisoftware/yii-php:7.4-apache
-COPY . /var/www/html
-
 USER root
 
 RUN apt-get update && apt-get install -y openssh-server apache2 supervisor
