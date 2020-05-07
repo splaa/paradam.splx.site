@@ -1,6 +1,7 @@
 <?php
 // paradam.me.loc/passwordChange.php
 
+use app\components\widgets\menu\MenuWidget;
 use app\widgets\Alert;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -9,35 +10,46 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 ?>
-<div class="user-profile-password-change">
-	<?= Alert::widget() ?>
+<!-- HEADER -->
+<header class="flex-center">
+<span class="profileButton">
+    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
+</span>
+	<h2><?= Html::encode($this->title) ?></h2>
+	<input type="checkbox" id="nav-toggle" hidden>
 
-	<h1><?= Html::encode($this->title) ?></h1>
+	<?= MenuWidget::widget() ?>
+</header>
+<!-- HEADER FIN -->
 
-	<div class="user-form">
+<section>
+	<div class="mainContainer">
+		<?= Alert::widget() ?>
 
-		<?php $form = ActiveForm::begin(); ?>
+		<div class="user-form">
 
-		<?= $form->field($model, 'currentPassword')->passwordInput(['maxlength' => true]) ?>
-		<?= $form->field($model, 'telephone')->textInput(['value' => Yii::$app->user->identity->telephone]) ?>
-		<?= $form->field($model, 'verifyCodeTelephone') ?>
+			<?php $form = ActiveForm::begin(); ?>
 
-		<div class="form-group">
-			<div class="btn-group" role="group" aria-label="...">
-				<?= Html::button('Телеграм', ['type' => 'button', 'class' => 'btn btn-primary confirm_btn', 'data-type' => 'telegram']) ?>
-				<?= Html::button('Звонок', ['type' => 'button', 'class' => 'btn btn-primary confirm_btn', 'data-type' => 'call']) ?>
+			<?= $form->field($model, 'currentPassword')->passwordInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'telephone')->textInput(['value' => Yii::$app->user->identity->telephone]) ?>
+			<?= $form->field($model, 'verifyCodeTelephone') ?>
+
+			<div class="form-group">
+				<div class="btn-group" role="group" aria-label="...">
+					<?= Html::button('Телеграм', ['type' => 'button', 'class' => 'btn btn-primary confirm_btn', 'data-type' => 'telegram']) ?>
+					<?= Html::button('Звонок', ['type' => 'button', 'class' => 'btn btn-primary confirm_btn', 'data-type' => 'call']) ?>
+				</div>
 			</div>
+
+			<div class="form-group">
+				<?= Html::submitButton(Yii::t('app', 'BUTTON_SAVE'), ['class' => 'btn btn-primary']) ?>
+			</div>
+
+			<?php ActiveForm::end(); ?>
+
 		</div>
-
-		<div class="form-group">
-			<?= Html::submitButton(Yii::t('app', 'BUTTON_SAVE'), ['class' => 'btn btn-primary']) ?>
-		</div>
-
-		<?php ActiveForm::end(); ?>
-
 	</div>
-
-</div>
+</section>
 
 <?php
 $url = Url::to(['phoneidentity/telephone-code-confirm']);

@@ -1,28 +1,40 @@
 <?php
 // paradam.me.loc/passwordChange.php
 
+use app\components\widgets\menu\MenuWidget;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 
 ?>
-<div class="user-profile-password-change">
 
-	<h1>Изменить Username</h1>
+<!-- HEADER -->
+<header class="flex-center">
+    <span class="profileButton">
+        <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
+    </span>
+	<h2>Изменить Username</h2>
+	<input type="checkbox" id="nav-toggle" hidden>
 
-	<div class="user-form">
+	<?= MenuWidget::widget() ?>
+</header>
+<!-- HEADER FIN -->
 
-		<?php $form = ActiveForm::begin(); ?>
+<section>
+	<div class="mainContainer">
+		<div class="user-form">
 
-		<?= $form->field($model, 'newUserName')->textInput(['value' => Yii::$app->user->identity->username]) ?>
+			<?php $form = ActiveForm::begin(); ?>
 
-		<div class="form-group">
-			<?= Html::submitButton(Yii::t('app', 'BUTTON_SAVE'), ['class' => 'btn btn-primary']) ?>
+			<?= $form->field($model, 'newUserName')->textInput(['value' => Yii::$app->user->identity->username]) ?>
+
+			<div class="form-group">
+				<?= Html::submitButton(Yii::t('app', 'BUTTON_SAVE'), ['class' => 'btn btn-primary']) ?>
+			</div>
+
+			<?php ActiveForm::end(); ?>
+
 		</div>
-
-		<?php ActiveForm::end(); ?>
-
 	</div>
-
-</div>
+</section>

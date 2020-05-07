@@ -1,6 +1,7 @@
 <?php
 // paradam.me.loc/passwordChange.php
 
+use app\components\widgets\menu\MenuWidget;
 use kartik\date\DatePicker;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -8,28 +9,36 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 
 ?>
-<div class="user-profile-password-change">
+<!-- HEADER -->
+<header class="flex-center">
+	<span class="profileButton">
+	    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
+	</span>
+	<h2>Изменить Дату рождения</h2>
+	<input type="checkbox" id="nav-toggle" hidden>
 
-	<h1>Изменить Дату рождения</h1>
+	<?= MenuWidget::widget() ?>
+</header>
+<!-- HEADER FIN -->
 
-	<div class="user-form">
+<section>
+	<div class="mainContainer"
+		<div class="user-form">
+			<?php $form = ActiveForm::begin(); ?>
 
-		<?php $form = ActiveForm::begin(); ?>
+			<?= $form->field($model, 'newDate')->widget(DatePicker::className(),[
+				'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+				'pluginOptions' => [
+					'autoclose'=>true,
+					'format' => 'dd.mm.yyyy'
+				]
+			]) ?>
 
-		<?= $form->field($model, 'newDate')->widget(DatePicker::className(),[
-			'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-			'pluginOptions' => [
-				'autoclose'=>true,
-				'format' => 'dd.mm.yyyy'
-			]
-		]) ?>
+			<div class="form-group">
+				<?= Html::submitButton(Yii::t('app', 'BUTTON_SAVE'), ['class' => 'btn btn-primary']) ?>
+			</div>
 
-		<div class="form-group">
-			<?= Html::submitButton(Yii::t('app', 'BUTTON_SAVE'), ['class' => 'btn btn-primary']) ?>
+			<?php ActiveForm::end(); ?>
 		</div>
-
-		<?php ActiveForm::end(); ?>
-
 	</div>
-
-</div>
+</section>

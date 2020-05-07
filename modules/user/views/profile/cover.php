@@ -1,15 +1,35 @@
 <?php
 
+use app\components\widgets\menu\MenuWidget;
 use yii\widgets\ActiveForm;
 
 ?>
 
-<img src="<?= Yii::$app->user->identity->cover ?>" alt="<?= Yii::$app->user->identity->alt ?>" />
 
-<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+<!-- HEADER -->
+<header class="flex-center">
+	<span class="profileButton">
+	    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
+	</span>
+	<h2>Изменить Обложку</h2>
+	<input type="checkbox" id="nav-toggle" hidden>
 
-<?= $form->field($model, 'file')->fileInput() ?>
+	<?= MenuWidget::widget() ?>
+</header>
+<!-- HEADER FIN -->
 
-	<button>Отправить</button>
+<section>
+	<div class="mainContainer"
+		<div class="user-form">
+			<img src="<?= Yii::$app->user->identity->cover ?>" alt="<?= Yii::$app->user->identity->alt ?>" />
 
-<?php ActiveForm::end() ?>
+			<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+
+			<?= $form->field($model, 'file')->fileInput() ?>
+
+			<button>Отправить</button>
+
+			<?php ActiveForm::end() ?>
+		</div>
+	</div>
+</section>

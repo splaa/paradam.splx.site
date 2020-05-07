@@ -1,5 +1,6 @@
 <?php
 
+use app\components\widgets\menu\MenuWidget;
 use yii\grid\GridView;
 use yii\helpers\Html;
 
@@ -8,22 +9,33 @@ use yii\helpers\Html;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 ?>
-<div class="user-index">
 
-	<h1>Список пользователей</h1>
+<!-- HEADER -->
+<header class="flex-center">
+    <span class="profileButton">
+        <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
+    </span>
+	<h2>Список пользователей</h2>
+	<input type="checkbox" id="nav-toggle" hidden>
 
-	<?= GridView::widget([
-		'dataProvider' => $dataProvider,
-		'columns' => [
-			[
-				'attribute' => 'username',
-				'format' => 'raw',
-				'value' => function($data) {
-					return Html::a($data->username, ['public/', 'username' => $data->username]);
-				}
+	<?= MenuWidget::widget() ?>
+</header>
+<!-- HEADER FIN -->
+
+<section>
+	<div class="mainContainer">
+		<?= GridView::widget([
+			'dataProvider' => $dataProvider,
+			'columns' => [
+				[
+					'attribute' => 'username',
+					'format' => 'raw',
+					'value' => function($data) {
+						return Html::a($data->username, ['public/', 'username' => $data->username]);
+					}
+				],
 			],
-		],
-	]) ?>
-
-
-</div>
+		]) ?>
+		<p>&nbsp;<br><br></p>
+	</div>
+</section>

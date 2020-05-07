@@ -4,6 +4,7 @@
 /* @var $currency string */
 
 
+use app\components\widgets\menu\MenuWidget;
 use app\widgets\Alert;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -11,15 +12,24 @@ use yii\helpers\Html;
 $this->title = 'Settings Message';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-default-reset-password">
-	<?= Alert::widget() ?>
 
-	<h1><?= Html::encode($this->title) ?></h1>
+<!-- HEADER -->
+<header class="flex-center">
+    <span class="profileButton">
+        <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
+    </span>
+	<h2><?= Html::encode($this->title) ?></h2>
+	<input type="checkbox" id="nav-toggle" hidden>
 
-	<p>Settings Message Form</p>
+	<?= MenuWidget::widget() ?>
+</header>
+<!-- HEADER FIN -->
 
-	<div class="row">
-		<div class="col-lg-5">
+<section>
+	<div class="mainContainer">
+		<?= Alert::widget() ?>
+
+		<div class="user-form">
 			<?php $form = ActiveForm::begin(['id' => 'settings-form']); ?>
 
 			<?= $form->field($model, 'sms_cost')->textInput(['type' => 'number', 'value' => Yii::$app->user->identity->sms_cost]) ?>
@@ -34,4 +44,4 @@ $this->params['breadcrumbs'][] = $this->title;
 			<?php ActiveForm::end(); ?>
 		</div>
 	</div>
-</div>
+</section>

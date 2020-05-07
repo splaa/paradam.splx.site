@@ -3,8 +3,10 @@
 /* @var $content string */
 
 use app\assets\AppAsset;
+use app\components\widgets\menu\MenuWidget;
 use app\widgets\Alert;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
 
 AppAsset::register($this);
@@ -37,22 +39,22 @@ AppAsset::register($this);
 				<nav class="navigationBar">
 					<ul>
 						<li>
-							<a href="">
+							<a href="<?= Yii::$app->homeUrl ?>">
 								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/discover.svg" alt="">
 							</a>
 						</li>
 						<li>
-							<a href="">
+							<a href="<?= Url::to(['/user/public/list']) ?>">
 								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/search.svg" alt="">
 							</a>
 						</li>
 						<li>
-							<a href="">
+							<a href="<?= Url::to(['/user/profile/index']) ?>">
 								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/messages.svg" alt="">
 							</a>
 						</li>
 						<li>
-							<a href="">
+							<a href="<?= Url::to(['/services/service']) ?>">
 								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/notification.svg" alt="">
 							</a>
 						</li>

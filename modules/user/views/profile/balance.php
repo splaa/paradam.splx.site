@@ -3,43 +3,60 @@
  * @var $dataProvider
  */
 
+use app\components\widgets\menu\MenuWidget;
 use yii\grid\GridView;
 use yii\helpers\Html;
 
 ?>
-<div class="container">
-	<h1>Баланс: <?= Yii::$app->user->identity->formatBalance ?></h1>
+<!-- HEADER -->
+<header class="flex-center">
+	<span class="profileButton">
+	    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
+	</span>
+	<h2>Баланс: <?= Yii::$app->user->identity->formatBalance ?></h2>
+	<input type="checkbox" id="nav-toggle" hidden>
 
-	<?= Html::button('Пополнить', ['class' => 'btn btn-success', 'type' => 'button']) ?>
-	<?= Html::button('Вывести', ['class' => 'btn btn-danger', 'type' => 'button']) ?>
+	<?= MenuWidget::widget() ?>
+</header>
+<!-- HEADER FIN -->
 
-	<?=
-		GridView::widget([
-			'dataProvider' => $dataProvider,
-			'columns' => [
-				['class' => 'yii\grid\SerialColumn'],
-				[
-					'attribute' => 'type',
-					'format' => 'html',
-					'value' => function($data){
-						return $data->getNameType($data->type);
-					}
+<section>
+	<div class="mainContainer"
+		<div class="list-group">
+			<?= Html::a('Пополнить', '#', ['class' => 'list-group-item']) ?>
+			<?= Html::a('Вывести', '#', ['class' => 'list-group-item']) ?>
+		</div>
+		<div class="user-form">
+			<?=
+			GridView::widget([
+				'dataProvider' => $dataProvider,
+				'columns' => [
+					['class' => 'yii\grid\SerialColumn'],
+					[
+						'attribute' => 'type',
+						'format' => 'html',
+						'value' => function($data){
+							return $data->getNameType($data->type);
+						}
+					],
+					[
+						'attribute' => 'additional',
+						'format' => 'html',
+						'value' => function($data){
+							return $data->getAdditionalFormated($data->additional);
+						}
+					],
+					[
+						'attribute' => 'created_at',
+						'format' => 'text',
+						'value' => function($data){
+							return Yii::$app->formatter->asDatetime($data->created_at);
+						}
+					]
 				],
-				[
-					'attribute' => 'additional',
-					'format' => 'html',
-					'value' => function($data){
-						return $data->getAdditionalFormated($data->additional);
-					}
-				],
-				[
-					'attribute' => 'created_at',
-					'format' => 'text',
-					'value' => function($data){
-						return Yii::$app->formatter->asDatetime($data->created_at);
-					}
-				]
-			],
-		]);
-	?>
-</div>
+			]);
+			?>
+			<p>&nbsp;<br><br></p>
+		</div>
+	</div>
+</section>
