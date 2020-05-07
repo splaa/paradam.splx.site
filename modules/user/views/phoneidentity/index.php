@@ -1,5 +1,6 @@
 <?php
 
+use app\components\widgets\menu\MenuWidget;
 use himiklab\yii2\recaptcha\ReCaptcha2;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -8,34 +9,44 @@ use yii\helpers\Url;
 $this->title = 'PhoneSignup';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-default-signup">
-	<div class="row">
-		<div class="col-lg-12">
-			<h1><?= Html::encode($this->title) ?></h1>
-			<?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-				<?= $this->render('_block_form', [
-					'model' => $model,
-					'form' => $form
-				]) ?>
+<!-- HEADER -->
+<header class="flex-center">
+<span class="profileButton">
+    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
+</span>
+	<h2><?= Html::encode($this->title) ?></h2>
+	<input type="checkbox" id="nav-toggle" hidden>
 
-				<?= $this->render('_block_verify', [
-					'model' => $model,
-					'form' => $form
-				]) ?>
+	<?= MenuWidget::widget() ?>
+</header>
+<!-- HEADER FIN -->
 
-				<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha2::className(),[]) ?>
+<section>
+	<div class="mainContainer">
+		<?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+		<?= $this->render('_block_form', [
+			'model' => $model,
+			'form' => $form
+		]) ?>
 
-				<div class="row">
-				<?= $form->field($model, 'subscribe')->checkbox() ?>
-				</div>
+		<?= $this->render('_block_verify', [
+			'model' => $model,
+			'form' => $form
+		]) ?>
 
-				<div class="form-group">
-					<?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-				</div>
-			<?php ActiveForm::end(); ?>
+		<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha2::className(),[]) ?>
+
+		<div class="row">
+			<?= $form->field($model, 'subscribe')->checkbox() ?>
 		</div>
+
+		<div class="form-group">
+			<?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+		</div>
+		<?php ActiveForm::end(); ?>
 	</div>
-</div>
+</section>
+
 
 <?php
 $url = Url::to(['phoneidentity/telephone-code-confirm']);

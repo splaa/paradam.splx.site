@@ -1,4 +1,6 @@
 <?php
+
+use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
 <!-- LEFT MENU -->
@@ -121,7 +123,13 @@ use yii\helpers\Url;
 	                <span>
 	                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/rectangle.png" alt="">
 	                </span>
-					<a href="<?= Url::to(['/user/default/logout']) ?>"><?= Yii::t('app', 'NAV_LOGOUT') ?></a>
+					<?= Html::a(Yii::t('app', 'NAV_LOGOUT'), ['/user/default/logout'], [
+							'data' => [
+								'method' => 'post'
+							],
+							['class' => '']
+						]
+					);?>
 				</li>
 			</ul>
 		</div>
