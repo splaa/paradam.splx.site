@@ -76,6 +76,7 @@
 		'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS',
 		'LINK_TO_MESSAGES' => 'Сообщения',
 		'LINK_TO_AVATAR' => 'Сменить Аватар',
+		'LINK_TO_COVER' => 'Сменить Обложку',
         'USER_SUBSCRIBE' => 'Получения новостей и уведомлений',
 		'LINK_TO_MESSAGE_SETTINGS' => 'Настройка сообщений',
 		'LINK_TO_PHONE_CHANGE' => 'Изменить телефон',

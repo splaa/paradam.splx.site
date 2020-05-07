@@ -44,6 +44,7 @@ use yii\web\IdentityInterface;
  * @property string $avatarMedium
  * @property string $avatarBig
  * @property string $avatarOrigin
+ * @property string $cover
  * @property string $formatBalance
  * @property string $formatSmsCost
  * @property string $convertSmsCostToUSD
@@ -245,6 +246,14 @@ class User extends ActiveRecord implements IdentityInterface
 	public function getAvatarOrigin()
 	{
 		return self::getNormalizeAvatar(self::SIZE_AVATAR_ORIGINAL, $this->id);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCover()
+	{
+		return self::getNormalizeCover(self::SIZE_AVATAR_ORIGINAL, $this->id);
 	}
 
 	/**
@@ -726,6 +735,25 @@ class User extends ActiveRecord implements IdentityInterface
 			$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/' . $id . '-' . $size . '.jpg';
 		} else {
 			$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/none.png';
+		}
+
+		return $avatar . '?' . rand(0, 100);
+	}
+
+	/**
+	 * @param $size
+	 * @param $id
+	 * @return string
+	 */
+	private static function getNormalizeCover($size, $id) {
+		if(file_exists(Yii::getAlias( '@web' ).'images/user/cover/' . $id . '-' . $size . '.png')){
+			$avatar = Yii::$app->request->hostInfo . '/images/user/avatar/' . $id . '-' . $size . '.png';
+		} elseif(file_exists(Yii::getAlias( '@web' ).'images/user/cover/' . $id . '-' . $size . '.jpg')){
+			$avatar = Yii::$app->request->hostInfo . '/images/user/cover/' . $id . '-' . $size . '.jpg';
+		} elseif(file_exists(Yii::getAlias( '@web' ).'images/user/cover/' . $id . '-' . $size . '.jpeg')){
+			$avatar = Yii::$app->request->hostInfo . '/images/user/cover/' . $id . '-' . $size . '.jpeg';
+		} else {
+			$avatar = Yii::$app->request->hostInfo . '/images/user/cover/none.png';
 		}
 
 		return $avatar . '?' . rand(0, 100);

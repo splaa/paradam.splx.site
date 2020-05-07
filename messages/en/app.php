@@ -69,6 +69,7 @@ return [
 	'ERROR_USERNAME_EXISTS' => 'ERROR_USERNAME_EXISTS',
 	'LINK_TO_MESSAGES' => 'Messages',
 	'LINK_TO_AVATAR' => 'Change Avatar',
+	'LINK_TO_COVER' => 'Change Cover',
 	'USER_SUBSCRIBE' => 'Get new and notification',
 	'LINK_TO_MESSAGE_SETTINGS' => 'Message Settings',
 	'LINK_TO_PHONE_CHANGE' => 'Change telephone',

@@ -14,6 +14,7 @@
 	use app\modules\user\forms\ProfileUpdateForm;
 	use app\modules\user\forms\TelephoneChangeForm;
 	use app\modules\user\forms\UploadAvatar;
+	use app\modules\user\forms\UploadCover;
 	use app\modules\user\forms\UserNameChangeForm;
 	use app\modules\user\models\Activity;
 	use yii\data\ActiveDataProvider;
@@ -88,6 +89,23 @@
 			}
 
 			return $this->render('avatar', [
+				'model' => $model
+			]);
+		}
+
+		public function actionUploadCover()
+		{
+			$model = new UploadCover();
+
+			if (Yii::$app->request->isPost) {
+				$model->file = UploadedFile::getInstance($model, 'file');
+
+				if ($model->file && $model->validate()) {
+					$model->file->saveAs('images/user/cover/' . Yii::$app->user->identity->getId() . '-' . User::SIZE_AVATAR_ORIGINAL . '.' . $model->file->extension);
+				}
+			}
+
+			return $this->render('cover', [
 				'model' => $model
 			]);
 		}

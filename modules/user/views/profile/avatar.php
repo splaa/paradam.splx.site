@@ -4,7 +4,7 @@ use yii\widgets\ActiveForm;
 
 ?>
 
-<img src="<?= Yii::$app->user->identity->getAvatarBig() ?>?<?= rand(0, 1000) ?>" alt="<?= Yii::$app->user->identity->alt ?>" />
+<img src="<?= Yii::$app->user->identity->avatarBig ?>" alt="<?= Yii::$app->user->identity->alt ?>" />
 
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 

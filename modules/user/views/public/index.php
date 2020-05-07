@@ -34,7 +34,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 		<div class="carousell_cell">
 			<div class="pup_fader"></div>
 			<div class="profileUserPhoto">
-				<img src="<?= $model->avatarOrigin ?>" alt="">
+				<img src="<?= $model->cover ?>" alt="">
 			</div>
 
 		</div>
