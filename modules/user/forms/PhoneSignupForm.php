@@ -28,14 +28,14 @@
 		public $reCaptcha;
 		public $subscribe;
 
-	    public function behaviors()
-	    {
-		    return [
-			    [
-				    'class' => PhoneInputBehavior::className(),
-			    ],
-		    ];
-	    }
+//	    public function behaviors()
+//	    {
+//		    return [
+//			    [
+//				    'class' => PhoneInputBehavior::className(),
+//			    ],
+//		    ];
+//	    }
 
 		public function rules()
 		{
