@@ -116,15 +116,15 @@
 				if (!empty($this->last_name)) {
 					$name = $this->first_name . ' ' . $this->last_name;
 				}
-
-				$avatar = new LetterAvatar($name, 'square', User::SIZE_AVATAR_SMALL);
-				$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_SMALL . '.png');
-				$avatar = new LetterAvatar($name, 'square',  User::SIZE_AVATAR_MEDIUM);
-				$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_MEDIUM . '.png');
-				$avatar = new LetterAvatar($name, 'square', User::SIZE_AVATAR_BIG);
-				$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_BIG . '.png');
 				
 				if ($user->save()) {
+					$avatar = new LetterAvatar($name, 'square', User::SIZE_AVATAR_SMALL);
+					$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_SMALL . '.png');
+					$avatar = new LetterAvatar($name, 'square',  User::SIZE_AVATAR_MEDIUM);
+					$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_MEDIUM . '.png');
+					$avatar = new LetterAvatar($name, 'square', User::SIZE_AVATAR_BIG);
+					$avatar->saveAs('images/user/avatar/' . $user->id . '-' . User::SIZE_AVATAR_BIG . '.png');
+
 					if ($this->email) {
 						Yii::$app->mailer->compose(['html' => '@app/modules/user/mails/phoneConfirm'], ['user' => $user])
 							->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])

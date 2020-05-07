@@ -21,7 +21,7 @@ class UploadAvatar extends Model
 	public function rules()
 	{
 		return [
-			[['file'], 'file', 'extensions' => 'png, jpg'],
+			[['file'], 'file', 'extensions' => 'png, jpg, jpeg'],
 		];
 	}
 }
