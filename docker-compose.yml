@@ -4,7 +4,7 @@ services:
     build: docker/supervisor/
     volumes:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./:/var/www/html:delegated
+      - ./:/app/public:delegated
     expose:
       - "80"
       - "443"
