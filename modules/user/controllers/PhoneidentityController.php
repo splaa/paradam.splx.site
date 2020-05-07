@@ -47,8 +47,6 @@
 					return $this->redirect(Url::to('/user/default/phonelogin'));
 				}
 			}
-
-			$this->view->blocks['hideNavigationBar'] = true;
 			
 			return $this->render('index', [
 				'message' => 'Ok',
