@@ -77,7 +77,7 @@
 				'class' => 'codemix\localeurls\UrlManager',
 				'enablePrettyUrl' => true,
 				'showScriptName' => false,
-				'languages' => ['ru', 'en'],
+				'languages' => ['ru'], // en
 				'enableLanguagePersistence' => true,
 				'on languageChanged' => 'app\modules\user\models\User::onLanguageChanged',
 				'rules' => [
