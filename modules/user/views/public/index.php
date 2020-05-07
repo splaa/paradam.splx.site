@@ -116,7 +116,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 
 				<?php foreach ($services as $service): ?>
 					<?php if (Yii::$app->user->id != $model->id): ?>
-						<div class="usic_item make-order" data-id="<?= $service->id ?>" data-user-id="<?= $model->id ?>">
+						<div class="usic_item make-order-preview" data-id="<?= $service->id ?>" data-user-id="<?= $model->id ?>">
 					<?php else: ?>
 						<div class="usic_item">
 					<?php endif; ?>
@@ -138,6 +138,9 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 		</div>
 	</div>
 </section>
+<div class="popup-like-wrap" id="popup-like">
+
+</div>
 <section class="hover_block" id="page_service">
 	<div class="desc not_swipe"></div>
 </section>

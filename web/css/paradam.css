@@ -1702,6 +1702,114 @@ input[readonly="true"]{
     display: none;
 }
 
+.popup-like-wrap{
+    background: #0000004D;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    transition: all .5s ease;
+    z-index: -1;
+    visibility: hidden;
+    opacity: 0;
+}
+.popup-like-wrap.active{
+    z-index: 11111;
+    visibility: visible;
+    opacity: 1;
+}
+.popup-like{
+    background: #FFFFFF;
+    border-radius: 28px 28px 0px 0px;
+    padding: 30px;
+    width: 100%;
+    height: auto;
+    overflow: scroll;
+    max-height: 100%;
+    transform: translateY(100%);
+    transition: all 0.6s ease;
+}
+.popup-like-wrap.active .popup-like{
+    transform: translateY(0);
+}
+.popup-like__title{
+    color: #272A31;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.servise-list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-left: 0;
+    list-style: none;
+}
+.servise-list__item{
+    background: #F5F9FF;
+    border-radius: 14px;
+    width: 47%;
+    padding: 15px;
+    text-align: center;
+}
+.servise-list__title{
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #272A31;
+    opacity: 0.8;
+    font-size: 12px;
+}
+.servise-list__text{
+    letter-spacing: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #4884FC;
+}
+.popup-like__text{
+    font-size: 16px;
+    line-height: 30px;
+    color: #272A31;
+    margin-bottom: 50px;
+}
+.popup-like-btn{
+    display: flex;
+    justify-content: space-between;
+}
+.like-btn{
+    border: 1px solid #CCCCCC;
+    border-radius: 7px;
+    background: #FFFFFF;
+    text-decoration: none;
+}
+.like-btn__count{
+    font-size: 16px;
+    color: #4884FC;
+    font-weight: bold;
+}
+.btn{
+    display: inline-block;
+    text-decoration: none;
+    background: #4884FC;
+    border-radius: 7px;
+    color: #FFFFFF;
+    font-size: 14px;
+    letter-spacing: 0px;
+}
+.popup-like-btn__apply{
+    flex: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.popup-like-btn .like-btn{
+    padding: 15px;
+    margin-right: 20px;
+}
+
 /* Swipe Block */
 .hover_block {
     position: fixed;

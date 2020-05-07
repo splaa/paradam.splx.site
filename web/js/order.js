@@ -81,8 +81,35 @@ var sender = {
     }
 }
 
-$(document).on('click', '.make-order', function (e) {
+$(document).on('click', function(e){
+    e.stopPropagation();
+
+    $("#popup-like").removeClass('active');
+});
+
+$(document).on('click', '.make-order-preview', function (e) {
     e.preventDefault();
+
+    let id = $(this).data('id');
+    let user_id = $(this).data('user-id');
+    $.ajax({
+        url: '/user/order/preview',
+        data: {id: id, user_id: user_id},
+        type: 'GET',
+        success: function (res) {
+            if (!res) alert('Ошибка!!!');
+            $('#popup-like').html(res);
+            $("#popup-like").addClass('active');
+        },
+        error: function () {
+            console.log('Error');
+        }
+    });
+});
+
+$('#popup-like').on('click', '.make-order', function (e) {
+    e.preventDefault();
+
     let id = $(this).data('id');
     let user_id = $(this).data('user-id');
     $.ajax({

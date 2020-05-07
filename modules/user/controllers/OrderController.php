@@ -33,6 +33,20 @@
 
 		}
 
+		public function actionPreview($id = null)
+		{
+			if ($id) {
+				$id = Yii::$app->request->get('id');
+				$user_id = Yii::$app->request->get('user_id');
+				$service = Service::findOne($id);
+
+				if (empty($service)) return false;
+
+				return $this->render('order-preview', compact('service', 'user_id'));
+			}
+
+		}
+
 		public function actionSave() {
 			if (Yii::$app->request->isPost && Yii::$app->request->isAjax) {
 				if (Yii::$app->user->isGuest) {
