@@ -578,7 +578,7 @@ header {
     font-weight: 700;
     margin-right: 5px;
 }
-.inputBlock input[type=number],input[type=text],textarea{
+.inputBlock input[type=number]:not(.inputTelCode__input),input[type=password]:not(.inputTelCode__input),input[type=text]:not(.inputTelCode__input),textarea{
     width: 100%;
     padding: 17px;
     border-radius: 7px;
@@ -1826,4 +1826,224 @@ input[readonly="true"]{
 .hover_block.slide {
     left: 0;
     background: white;
+}
+
+/* Login Page */
+.loginHeader,
+.welcomeHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+.loginHeader {
+    border: none;
+}
+.loginHeader h2,
+.welcomeHeader h2 {
+    font-size: 40px;
+    font-family: Pacifico;
+    font-weight: normal;
+}
+.loginForm {
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+.loginForm__form,
+.registration__form {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 380px;
+}
+.loginForm__inputWrapper {
+    margin-bottom: 30px;
+}
+.restorePassword__linkWrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+.restorePassword__linkWrapper a {
+    text-decoration: none;
+    color: #4884fc;
+    font-weight: 500;
+    font-size: 14px;
+}
+.loginForm__restorePassword {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+.loginForm__registrationLink {
+    display: flex;
+    flex-wrap: wrap;
+    color: #888888;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.loginForm__registrationLink a {
+    text-decoration: none;
+    color: #4884fc;
+    font-weight: 600;
+    display: inline-block;
+    margin-left: 2px;
+}
+
+.pButton {
+    width: 100%;
+    height: 51px;
+    border-radius: 7px;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    background: #4884fc;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+.pButton_link {
+    color: #4884fc;
+    background: transparent;
+}
+.tabs {
+}
+.tabs__control {
+    display: flex;
+    align-items: center;
+}
+.tabs__item {
+    flex: 0 1 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 5px 15px;
+    border-bottom: 1px solid #cccccc;
+    font-weight: 500;
+}
+.tabs__item_active {
+    border-bottom: 1px solid #000000;
+}
+.tabs__container {
+    display: none;
+    width: 100%;
+}
+.registration__wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.registration__tabs {
+    margin-top: 30px;
+}
+.registration__control {
+    padding: 0;
+}
+.registration__inputWrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.registration__title,
+.welcome__title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.registration__description,
+.welcome__description {
+    display: flex;
+    flex-wrap: wrap;
+    color: #888888;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.registration__description a {
+    text-decoration: none;
+    color: #4884fc;
+    font-weight: 600;
+    display: inline-block;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.inputTelCode {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    width: 100%;
+    border-radius: 7px;
+    border: 1px solid var(--light-grey);
+    color: var(--darkus);
+    position: relative;
+}
+.inputTelCode .help-block-error {
+    position: absolute;
+    bottom: -30px;
+}
+.inputTelCode__selector {
+    flex: 0 1 auto;
+    position: relative;
+}
+.inputTelCode__label {
+    font-weight: 600;
+    color: #4884fc;
+    padding: 0 10px;
+    border-right: 1px solid #cccccc;
+    cursor: pointer;
+}
+.inputTelCode__dropdown {
+    position: absolute;
+    top: calc(100% + 19px);
+    left: 0;
+    max-height: 200px;
+    background: #ffffff;
+    border-radius: 7px;
+    border: 1px solid var(--light-grey);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: none;
+}
+.inputTelCode__dropdown.open {
+    display: block;
+}
+.inputTelCode__dropdownItem {
+    border: none;
+    font-weight: 600;
+    padding: 3px 10px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.inputTelCode__input {
+    font-size: 18px;
+    padding: 0 10px;
+    border: none;
+    outline: none;
+}
+.inputTelCode__input:focus {
+    outline: none;
+}
+.welcome {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 380px;
+    padding: 0 20px;
+}
+.welcome__img {
+    width: 64px;
+    margin: 0 auto;
+}
+.welcome__control {
+    padding-top: 20px;
+}
+.welcome__control a {
+    margin-bottom: 10px;
 }

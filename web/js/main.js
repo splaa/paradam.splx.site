@@ -60,6 +60,58 @@ $(document).on('click', '#button_add_question', function () {
     $('.ib_add_button').trigger('click');
 })
 
+//Tabs
+$(document).on("click", ".tabs__item", function () {
+    $(".tabs__item").removeClass("tabs__item_active");
+    $(this).addClass("tabs__item_active");
+    $(".tabs__container").hide();
+
+    let type = $(this).data('type');
+    $(this).parents('form').find('input[name="type"]').val(type);
+});
+
+//Mask phone
+//TODO: babel transpiler to old browser`s
+if ($(".inputTelCode").length > 0) {
+    var settingsMask = phoneCodes.find((e) => e.cc === "UA");
+    phoneCodes.map((c) => {
+        $(".inputTelCode__dropdown").append(
+            `<div class="inputTelCode__dropdownItem" data-code="${c.code}" data-cc="${c.cc}" data-mask="${c.mask}">${c.cc} ${c.code}</div>`
+        );
+    });
+
+    $(".inputTelCode input[type=tel]").inputmask({
+        mask: settingsMask.mask,
+        autoUnmask: true,
+        clearIncomplete: true,
+    });
+
+    $(document).on("click", ".inputTelCode__label", function () {
+        var $dropDown = $(".inputTelCode__dropdown");
+        if (!$dropDown.hasClass("open")) $dropDown.addClass("open");
+        else $dropDown.removeClass("open");
+    });
+
+    $(document).on("click", function (e) {
+        var $dropDown = $(".inputTelCode__dropdown");
+        var $dropOpener = $(".inputTelCode__label");
+        if (!$dropDown.is(e.target) && !$dropOpener.is(e.target)) {
+            $dropDown.removeClass("open");
+        }
+    });
+
+    $(document).on("click", ".inputTelCode__dropdownItem", function () {
+        $(".inputTelCode__label").html($(this).html());
+        $(".inputTelCode input[name=code]").val($(this).data("code"));
+        $(".inputTelCode input[name=cc]").val($(this).data("cc"));
+        $(".inputTelCode input[type=tel]").inputmask({
+            mask: $(this).data("mask"),
+            autoUnmask: true,
+            clearMaskOnLostFocus: false,
+        });
+    });
+}
+
 $('.multiple-input').on('afterInit', function(){
     // calls on after initialization event
     $('.multiple-input-list__item').each(function(k, v){

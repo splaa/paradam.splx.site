@@ -27,6 +27,7 @@
 		];
 		public $js = [
 			'js/flickity.pkgd.min.js',
+			'js/jquery.inputmask.min.js',
 			'js/main.js',
 		];
 		public $depends = [

@@ -15,49 +15,51 @@ use yii\helpers\Html;
 $this->title = 'PhoneLogin';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<!-- HEADER -->
-<header class="flex-center">
-<span class="profileButton">
-    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
-</span>
-	<h2><?= Html::encode($this->title) ?></h2>
-	<input type="checkbox" id="nav-toggle" hidden>
 
-	<?= MenuWidget::widget() ?>
+
+<header class="loginHeader">
+	<h2>Paradam,</h2>
 </header>
-<!-- HEADER FIN -->
 
-<section>
-	<div class="mainContainer">
+<section class="mainContainer">
+	<div class="loginForm">
 		<?php $form = ActiveForm::begin([
 			'id' => 'login-form',
+			'options' => [
+				'class' => 'loginForm__form',
+			],
 			'layout' => 'horizontal',
 			'fieldConfig' => [
-				'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-				'labelOptions' => ['class' => 'col-lg-1 control-label'],
+				'template' => "{input}\n<div>{error}</div>",
+				'labelOptions' => ['class' => ''],
+				'options' => [
+
+				]
 			],
 		]); ?>
-
-		<?= $form->field($model, 'phone')->textInput(['autofocus' => true]) ?>
-
-		<?= $form->field($model, 'password')->passwordInput() ?>
-
-		<?= $form->field($model, 'rememberMe')->checkbox([
-			'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-		]) ?>
-
-		<?php if ($show_captcha): ?>
-			<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha2::className(),[]) ?>
-		<?php endif; ?>
-
-		<div class="form-group">
-			<div class="col-lg-offset-1 col-lg-11">
-				<?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+			<div class="loginForm__inputWrapper">
+				<?= $form->field($model, 'phone')->textInput(['autofocus' => true, 'class' => '', 'placeholder' => 'Номер телефону, имя пользователя или эл.почта'])->label(false) ?>
 			</div>
-		</div>
+			<div class="loginForm__inputWrapper">
+				<?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль', 'class' => ''])->label(false) ?>
+			</div>
+			<div class="restorePassword__linkWrapper loginForm__restorePassword">
+				<?= Html::a('Забыли пароль?', ['/user/default/phone-forgotten'], ['class' => '']) ?>
+			</div>
 
+			<?php if ($show_captcha): ?>
+				<div class="loginForm__inputWrapper">
+					<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha2::className(),[]) ?>
+				</div>
+			<?php endif; ?>
+
+			<div class="loginForm__inputWrapper">
+				<?= Html::submitButton('Ввойти', ['class' => 'pButton', 'name' => 'login-button']) ?>
+			</div>
+			<div class="loginForm__registrationLink">
+				<span>Не имеете учетной записи?</span>
+				<?= Html::a('Зарегестрируйтесь', ['/user/phoneidentity/index'], ['class' => '']) ?>
+			</div>
 		<?php ActiveForm::end(); ?>
-
-		<p>&nbsp;<br><br></p>
 	</div>
 </section>
