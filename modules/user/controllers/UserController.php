@@ -1,6 +1,4 @@
 <?php
-// paradam.me.loc/ProfileController.php
-
 namespace app\modules\user\controllers;
 
 use yii\filters\AccessControl;
