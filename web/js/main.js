@@ -72,7 +72,7 @@ $(document).on("click", ".tabs__item", function () {
 
 //Mask phone
 //TODO: babel transpiler to old browser`s
-if ($(".inputTelCode").length > 0) {
+if ($(".inputTelCode1").length > 0) {
     var settingsMask = phoneCodes.find((e) => e.cc === "UA");
     phoneCodes.map((c) => {
         $(".inputTelCode__dropdown").append(

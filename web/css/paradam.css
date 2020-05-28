@@ -578,7 +578,7 @@ header {
     font-weight: 700;
     margin-right: 5px;
 }
-.inputBlock input[type=number]:not(.inputTelCode__input),input[type=password]:not(.inputTelCode__input),input[type=text]:not(.inputTelCode__input),textarea{
+.inputBlock input[type=number]:not(.inputTelCode__input),input[type=password]:not(.inputTelCode__input),input[type=email]:not(.inputTelCode__input),input[type=text]:not(.inputTelCode__input),textarea{
     width: 100%;
     padding: 17px;
     border-radius: 7px;
@@ -1935,6 +1935,10 @@ input[readonly="true"]{
     padding-left: 20px;
     padding-right: 20px;
 }
+.registration__wrapper .g-recaptcha {
+    display: flex;
+    justify-content: center;
+}
 .registration__tabs {
     margin-top: 30px;
 }
@@ -1944,6 +1948,9 @@ input[readonly="true"]{
 .registration__inputWrapper {
     padding-top: 20px;
     padding-bottom: 20px;
+}
+.registration__inputWrapper .inputTelCode > div {
+    flex: 1;
 }
 .registration__title,
 .welcome__title {
@@ -2024,6 +2031,7 @@ input[readonly="true"]{
     padding: 0 10px;
     border: none;
     outline: none;
+    width: 100%;
 }
 .inputTelCode__input:focus {
     outline: none;

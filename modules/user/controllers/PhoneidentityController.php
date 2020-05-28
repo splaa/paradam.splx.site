@@ -8,7 +8,8 @@
 	use app\modules\user\models\PhoneRecord;
 	use Yii;
     use yii\filters\VerbFilter;
-    use yii\helpers\Url;
+	use yii\helpers\Html;
+	use yii\helpers\Url;
     use yii\web\Controller;
     use yii\web\NotFoundHttpException;
 
@@ -39,7 +40,25 @@
 		 */
 		public function actionIndex()
 		{
+//			$this->view->registerJsFile('@web/js/phone-codes.js');
+
 			$model = new PhoneSignupForm();
+
+			if (Yii::$app->request->isAjax) {
+				if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+					return $this->asJson(['success' => true]);
+				}
+
+				$result = [];
+				// The code below comes from ActiveForm::validate(). We do not need to validate the model
+				// again, as it was already validated by save(). Just collect the messages.
+				foreach ($model->getErrors() as $attribute => $errors) {
+					$result[Html::getInputId($model, $attribute)] = $errors;
+				}
+
+				return $this->asJson(['validation' => $result]);
+			}
+
 			if ($model->load(Yii::$app->request->post())) {
 				if ($user = $model->signup()) {
 					Yii::$app->getSession()->setFlash('success', 'Ваш аккаунт успешно создан.');

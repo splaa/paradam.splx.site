@@ -1,8 +1,6 @@
 <?php
-// paradam.me.loc/SignupForm.php
-	
 	namespace app\modules\user\forms;
-	
+
 	use app\modules\user\models\PhoneRecord;
     use app\modules\user\models\User;
 	use borales\extensions\phoneInput\PhoneInputBehavior;
@@ -12,15 +10,15 @@
     use yii\base\Model;
     use YoHang88\LetterAvatar\LetterAvatar;
 
-    /**
-     * Signup form
-     */
-    class PhoneSignupForm extends Model
-    {
-        public $username;
-        public $email;
-        public $telephone;
-        public $password;
+	/**
+	 * Register form
+	 */
+	class RegisterForm extends Model
+	{
+		public $username;
+		public $email;
+		public $telephone;
+		public $password;
 		public $first_name;
 		public $last_name;
 		public $birthday;
@@ -29,11 +27,16 @@
 		public $reCaptcha;
 		public $subscribe;
 
+		/* @const */
+		const SCENARIO_STEP_1 = "step_1";
+		const SCENARIO_STEP_2 = "step_2";
+		const SCENARIO_STEP_3 = 'step_3';
+		const SCENARIO_STEP_4 = 'step_4';
 
 		public function rules()
 		{
-			return [
-				[['first_name', 'username', 'telephone', 'password', 'verifyCodeTelephone'], 'required'],
+			$rules = [
+				[['first_name', 'last_name', 'username', 'telephone', 'password', 'verifyCodeTelephone'], 'required'],
 
 				['username', 'filter', 'filter' => 'trim'],
 				['username', 'string', 'min' => 4, 'max' => 255],
@@ -44,26 +47,37 @@
 					'message' => 'Это имя пользователя уже занято.',
 				],
 
-//				['email', 'filter', 'filter' => 'trim'],
-//				['email', 'email'],
-//				['email', 'unique', 'targetClass' => User::className(), 'message' => 'Этот адрес электронной почты уже занят.'],
-
 				['telephone', 'string'],
-				[['telephone'], PhoneInputValidator::className()],
 				['telephone', 'unique', 'targetClass' => PhoneRecord::class, 'message' => 'Этот телефон уже занят.'],
+
+				['email', 'filter', 'filter' => 'trim'],
+				['email', 'email'],
+				['email', 'unique', 'targetClass' => User::className(), 'message' => 'Этот адрес электронной почты уже занят.'],
 
 				['password', 'string', 'min' => 8],
 
 				['first_name', 'string', 'min' => 1],
 
-//				['birthday', 'string'],
-
 				['verifyCodeTelephone', 'validateVerifyCode'],
-
-//				['subscribe', 'compare', 'compareValue' => 1, 'message' => 'Выствите чебокс, иначе форма не отправится!'],
-
-				['reCaptcha', ReCaptchaValidator2::className(), 'uncheckedMessage' => 'Пожалуйста, подтвердите, что вы не бот.', 'message' => 'Некорректный код'],
 			];
+
+			if (!Yii::$app->request->isAjax) {
+				$rules[] = ['reCaptcha', ReCaptchaValidator2::className(), 'uncheckedMessage' => 'Пожалуйста, подтвердите, что вы не бот.', 'message' => 'Некорректный код'];
+			}
+
+			return $rules;
+		}
+
+		public function scenarios()
+		{
+			$scenarios = parent::scenarios();
+
+			$scenarios[self::SCENARIO_STEP_1] = ['telephone', 'reCaptcha'];
+			$scenarios[self::SCENARIO_STEP_2] = ['verifyCodeTelephone'];
+			$scenarios[self::SCENARIO_STEP_3] = ['first_name', 'last_name', 'email', 'username', 'password'];
+			$scenarios[self::SCENARIO_STEP_4] = ['telephone', 'first_name', 'last_name', 'email', 'username', 'password'];
+
+			return $scenarios;
 		}
 
 		/**
@@ -84,7 +98,7 @@
 		 * @return User|null the saved model or null if saving fails
 		 * @throws \yii\base\Exception
 		 */
-		public function signup()
+		public function save()
 		{
 			if ($this->validate()) {
 				$user = new PhoneRecord();
