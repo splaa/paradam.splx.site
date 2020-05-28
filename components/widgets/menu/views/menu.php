@@ -43,7 +43,7 @@ use yii\helpers\Url;
 	                <span>
 	                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/rectangle.png" alt="">
 	                </span>
-					<a href="<?= Url::to(['/user/phoneidentity/index']) ?>"><?= Yii::t('app', 'NAV_SIGNUP') ?></a>
+					<a href="<?= Url::to(['/user/register']) ?>"><?= Yii::t('app', 'NAV_SIGNUP') ?></a>
 				</li>
 			<?php endif; ?>
 			<li>
