@@ -37,13 +37,13 @@ use yii\helpers\Url;
 	                <span>
 	                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/rectangle.png" alt="">
 	                </span>
-					<a href="<?= Url::to(['/user/default/phonelogin']) ?>"><?= Yii::t('app', 'NAV_LOGIN') ?></a>
+					<a href="<?= Url::to(['login']) ?>"><?= Yii::t('app', 'NAV_LOGIN') ?></a>
 				</li>
 				<li>
 	                <span>
 	                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/rectangle.png" alt="">
 	                </span>
-					<a href="<?= Url::to(['/user/register']) ?>"><?= Yii::t('app', 'NAV_SIGNUP') ?></a>
+					<a href="<?= Url::to(['register']) ?>"><?= Yii::t('app', 'NAV_SIGNUP') ?></a>
 				</li>
 			<?php endif; ?>
 			<li>

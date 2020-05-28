@@ -14,9 +14,8 @@ use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class PublicController extends Controller
+class PublicController extends UserController
 {
-
 	public function actionIndex($username)
 	{
 		$model = User::findByUsername($username);

@@ -82,16 +82,18 @@
 				'on languageChanged' => 'app\modules\user\models\User::onLanguageChanged',
 				'rules' => [
 					['pattern' => 'robots', 'route' => 'robotsTxt/web/index', 'suffix' => '.txt'],
+
 					'' => 'main/default/index',
 					'site/about' => 'main/default/about',
-					
 					'contact' => 'main/contact/index',
 
+					// Messages
 					'message/create' => 'message/message/create',
 					'message/settings' => 'message/message/settings',
 					'message' => 'message/message/index',
 					'message/<id>' => 'message/message/view',
 
+					// Public user
 					'public/list' => 'user/public/list',
 					'public/subscribe' => 'user/public/subscribe',
 					[
@@ -101,11 +103,13 @@
 						'normalizer' => false, // disable normalizer for this rule
 					],
 
+					// Search
 					'search' => 'user/search/index',
 
 					'<_a:error>' => 'main/default/<_a>',
-					'<_a:(login|logout|signup|confirm-email|request-password-reset|reset-password|password-reset)>' => '/user/default/<_a>',
-					
+					'<_a:(login|logout|forgotten)>' => '/user/default/<_a>',
+					'<_a:(register)>' => 'user/<_a>',
+
 					'<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>' => '<_m>/<_c>/view',
 					'<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>/<_a:[\w\-]+>' => '<_m>/<_c>/<_a>',
 					'<_m:[\w\-]+>' => '<_m>/default/index',

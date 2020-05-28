@@ -26,13 +26,13 @@ use yii\widgets\ActiveForm;
 		<div class="registration__description">
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 			<div class="registration__inputWrapper">
-				<a href="<?= Url::to(['/user/default/phonelogin']) ?>">Изменить имя пользователя</a>
+				<a href="<?= Url::to(['login']) ?>">Изменить имя пользователя</a>
 			</div>
 		</div>
 	</div>
 	<div class="registration__inputWrapper">
 		<div class="registration__control">
-			<?= Html::a('Ввойти', ['/user/default/phonelogin'],
+			<?= Html::a('Ввойти', ['login'],
 				[
 					'class' => 'pButton actionValidate',
 					'name' => 'signup-button'

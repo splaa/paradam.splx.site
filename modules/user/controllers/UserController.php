@@ -4,6 +4,7 @@
 namespace app\modules\user\controllers;
 
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 class UserController extends Controller
@@ -15,9 +16,20 @@ class UserController extends Controller
 				'class' => AccessControl::className(),
 				'rules' => [
 					[
+						'actions' => ['login', 'register', 'forgotten'],
 						'allow' =>true,
-						'roles' =>['@']
 					],
+					[
+						'actions' => ['index', 'logout'],
+						'allow' => true,
+						'roles' => ['@'],
+					],
+				],
+			],
+			'verbs' => [
+				'class' => VerbFilter::className(),
+				'actions' => [
+					'logout' => ['post'],
 				],
 			],
 		];

@@ -46,6 +46,6 @@ $form = ActiveForm::begin([
 	</div>
 	<div class="loginForm__registrationLink">
 		<span>Уже имею учетную запись!</span>
-		<?= Html::a('Ввойти', ['/user/default/phonelogin'], ['class' => '']) ?>
+		<?= Html::a('Ввойти', ['/user/default/login'], ['class' => '']) ?>
 	</div>
 <?php ActiveForm::end(); ?>

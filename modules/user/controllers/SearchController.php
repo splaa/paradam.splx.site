@@ -11,7 +11,7 @@ use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 
-class SearchController extends Controller
+class SearchController extends UserController
 {
 	public function actionIndex($q = null) {
 		try {

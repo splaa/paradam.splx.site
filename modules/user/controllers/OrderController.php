@@ -11,11 +11,13 @@
 	use app\modules\services\models\Service;
 	use app\modules\user\models\User;
 	use Yii;
+	use yii\filters\AccessControl;
+	use yii\filters\VerbFilter;
 	use yii\helpers\Json;
 	use yii\helpers\Url;
 	use yii\web\Controller;
 
-	class OrderController extends Controller
+	class OrderController extends UserController
 	{
 		public $layout = false;
 

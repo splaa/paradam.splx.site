@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					</div>
 				</div>
 				<div class="restorePassword__linkWrapper loginForm__restorePassword">
-					<?= Html::a('Вспомнили пароль?', ['/user/default/phonelogin'], ['class' => '']) ?>
+					<?= Html::a('Вспомнили пароль?', ['login'], ['class' => '']) ?>
 				</div>
 			</div>
 			<div class="registration__wrapper">

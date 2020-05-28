@@ -39,6 +39,8 @@
 		 */
 		public function actionIndex()
 		{
+			$this->view->blocks['hideNavigationBar'] = true;
+
 			return $this->render('index', [
 				'step_1' => $this->actionStep1(),
 				'step_2' => $this->actionStep2(),
