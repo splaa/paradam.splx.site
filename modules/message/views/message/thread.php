@@ -108,6 +108,7 @@ $time = date("Y-m-m H:i:s");
 	<?php if ($selected_user_thread->thread->message->order_service_id): ?>
 		<div class="">
 			<p>Вы получаете: <?= $selected_user_thread->thread->message->orderService->service->formatPrice ?></p>
+			<p>Время на выполнение: <?= OrderService::downcounter(date('Y-m-d H:i:s', strtotime($selected_user_thread->thread->message->orderService->created_at) + $selected_user_thread->thread->message->orderService->service->periodOfExecution * 24 * 3600)) ?>д.</p>
 			<p>Время на выполнение: <?= $selected_user_thread->thread->message->orderService->service->periodOfExecution ?>д.</p>
 		</div>
 	<?php else: ?>
