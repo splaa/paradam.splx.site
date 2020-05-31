@@ -8,7 +8,9 @@
 /* @var $count integer */
 
 use app\assets\AppAsset;
+use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
 $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depends' => [AppAsset::class]]);
 ?>
@@ -83,14 +85,18 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 
 	<?php if (Yii::$app->user->id != $model->id): ?>
 		<div class="upd_button">
-			<input type="button" id="send_msg" value="Send message for <?= $model->formatSmsCost ?>" />
+			<?php $form = ActiveForm::begin(['action' => Url::to(['/message/message/create']), 'method' => 'POST']); ?>
+				<?= $form->field($messageForm, 'user_id')->input('hidden', ['value' => $model->id])->label(false) ?>
+				<?= $form->field($messageForm, 'text')->input('hidden', ['value' => ''])->label(false) ?>
+				<?= Html::submitButton('Отправить  сообщение ' . $model->formatSmsCost, ['class' => '', 'id' => 'send_msg']) ?>
+			<?php ActiveForm::end(); ?>
 		</div>
 	<?php else: ?>
 		<div class="balance_btn">
 			<div class="bb_container flex-center">
-            <span class="bb_wallet">
-                <img src="<?= Yii::getAlias('@web') ?>/images/paradam/wallet.svg" alt="">
-            </span>
+				<span class="bb_wallet">
+					<img src="<?= Yii::getAlias('@web') ?>/images/paradam/wallet.svg" alt="">
+				</span>
 				<div class="balance_counter flex-center">
 					<span><?= $model->convertBalanceToUSD ?> </span>
 					<p>Balance</p>

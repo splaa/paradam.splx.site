@@ -19,7 +19,7 @@ class MessageForm extends Model
 	public function rules()
 	{
 		return [
-			['text', 'required'],
+			['text', 'safe'],
 			['user_id', 'required'],
 		];
 	}

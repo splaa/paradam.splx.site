@@ -161,25 +161,28 @@ class MessageController extends UserController
 						$user_thread->save();
 					}
 
-					$message = new Message();
-					$message->author_id = $sender_id;
-					$message->thread_id = $thread_id;
-					$message->text = $text;
-					$message->save();
+					if ($text) {
+						$message = new Message();
+						$message->author_id = $sender_id;
+						$message->thread_id = $thread_id;
+						$message->text = $text;
+						$message->save();
 
-					$user_message = new UserMessage();
-					$user_message->user_id = $sender_id;
-					$user_message->message_id = $message->id;
-					$user_message->save();
+						$user_message = new UserMessage();
+						$user_message->user_id = $sender_id;
+						$user_message->message_id = $message->id;
+						$user_message->save();
 
-					// Minus from balance
-					if (mb_strlen($text, 'UTF-8') > USER::MESSAGE_LENGTH) {
-						$factor = count(User::strSplitUnicode($text, USER::MESSAGE_LENGTH));
-					} else {
-						$factor = 1;
+
+						// Minus from balance
+						if (mb_strlen($text, 'UTF-8') > USER::MESSAGE_LENGTH) {
+							$factor = count(User::strSplitUnicode($text, USER::MESSAGE_LENGTH));
+						} else {
+							$factor = 1;
+						}
+
+						User::transferBits($sender_id, $recipient_id, User::TRANSFER_TYPE_SMS_FROZE, 0, $factor, false, $message->id, $thread_id);
 					}
-
-					User::transferBits($sender_id, $recipient_id, User::TRANSFER_TYPE_SMS_FROZE, 0, $factor, false, $message->id, $thread_id);
 
 					$hash = new Hash();
 					$hash->string = $thread_id;

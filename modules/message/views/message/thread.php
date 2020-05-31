@@ -6,6 +6,7 @@
  */
 
 use app\modules\services\models\OrderService;
+use app\modules\user\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
@@ -104,6 +105,17 @@ $time = date("Y-m-m H:i:s");
 	<?php endforeach; ?>
 </div>
 <?php if ($selected_user_thread->thread->creator_id == $user_id && $froze): ?>
+	<?php if ($selected_user_thread->thread->message->order_service_id): ?>
+		<div class="">
+			<p>Вы получаете: <?= $selected_user_thread->thread->message->orderService->service->formatPrice ?></p>
+			<p>Время на выполнение: <?= $selected_user_thread->thread->message->orderService->service->periodOfExecution ?>д.</p>
+		</div>
+	<?php else: ?>
+		<div class="">
+			<p>Вы получаете: <?= Yii::$app->user->identity->formatSmsCostPercent ?></p>
+			<p>Время на выполнение: <?= User::MESSAGE_LIVE_TIME ?>д.</p>
+		</div>
+	<?php endif; ?>
 	<div class="button-message-confirm">
 		<?= Html::button('Ответить', ['class' => 'confirm_message', 'data-confirm_message' => 1]) ?>
 		<?= Html::button('Отказаться', ['class' => 'confirm_message', 'data-confirm_message' => 0]) ?>

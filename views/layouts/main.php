@@ -49,7 +49,7 @@ AppAsset::register($this);
 							</a>
 						</li>
 						<li>
-							<a href="<?= Url::to(['/user/profile/index']) ?>">
+							<a href="<?= Url::to(['/message']) ?>">
 								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/messages.svg" alt="">
 							</a>
 						</li>

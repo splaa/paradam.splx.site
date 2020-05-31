@@ -315,7 +315,7 @@ header {
 	background-repeat: no-repeat;
 }
 
-.upd_button input[type="button"] {
+.upd_button button {
 	outline: none;
 	border: none;
 	font-size: 16px;

@@ -18,7 +18,7 @@ class FrozeController extends \yii\console\Controller
 	{
 		$thread_ids = [];
 
-		$frozeData = Froze::find()->where(['status' => 0])->andWhere('created_at <= NOW() - INTERVAL 3 DAY')->asArray()->all();
+		$frozeData = Froze::find()->where(['status' => 0])->andWhere('created_at <= NOW() - INTERVAL ' . (int)User::MESSAGE_LIVE_TIME . ' DAY')->asArray()->all();
 
 		if ($frozeData) {
 			foreach ($frozeData as $item) {

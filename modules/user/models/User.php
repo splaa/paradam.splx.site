@@ -47,6 +47,7 @@ use yii\web\IdentityInterface;
  * @property string $cover
  * @property string $formatBalance
  * @property string $formatSmsCost
+ * @property string $formatSmsCostPercent
  * @property string $convertSmsCostToUSD
  * @property string $convertBalanceToUSD
  * @property string $linkFormat
@@ -78,7 +79,9 @@ class User extends ActiveRecord implements IdentityInterface
 	public const MESSAGE_LENGTH = 250;
 
 	public const COMMISSION_PERCENT = 20;
-	public const COMMISSION_PERCENT_SERVICE = 5;
+	public const COMMISSION_PERCENT_SERVICE = 20;
+
+	public const MESSAGE_LIVE_TIME = 3;
 
 	public function behaviors()
 	{
@@ -288,6 +291,14 @@ class User extends ActiveRecord implements IdentityInterface
 	public function getFormatSmsCost()
 	{
 		return Currency::format($this->sms_cost, Currency::BITS_CURRENCY);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getFormatSmsCostPercent()
+	{
+		return Currency::format($this->sms_cost-self::getPercent($this->sms_cost), Currency::BITS_CURRENCY);
 	}
 
 	/**

@@ -7,6 +7,8 @@
  */
 
 use app\components\Hash;
+use app\components\widgets\icon_menu\IconMenuWidget;
+use app\components\widgets\menu\MenuWidget;
 use kartik\typeahead\Typeahead;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -15,7 +17,18 @@ use yii\web\JsExpression;
 use yii\widgets\Pjax;
 
 ?>
-<div class="container">
+<!-- HEADER -->
+<header class="flex-center">
+	<?= IconMenuWidget::widget() ?>
+	<h2>Сообщения</h2>
+	<input type="checkbox" id="nav-toggle" hidden>
+
+	<?= MenuWidget::widget() ?>
+</header>
+<!-- HEADER FIN -->
+
+<section>
+	<div class="container">
 	<h3 class=" text-center">Messaging</h3>
 
 	<div class="messaging">
@@ -92,19 +105,21 @@ use yii\widgets\Pjax;
 								<div class="chat_ib" id="thread_<?= $thread->thread->id ?>">
 									<h5><?= $username ?> <span class="chat_date"><?= date("d M", strtotime($thread->thread->created_at)) ?></span></h5>
 
-									<p>
-										<span class="text">
-											<?php if ($thread->thread->message->author->id == Yii::$app->user->id): ?>
-												<b>You:</b>
-											<?php endif; ?>
-											<?php if ($thread->thread->message->audio): ?>
-												Voice message
-											<?php else: ?>
-												<?= mb_substr($thread->thread->message->text, 0, 35) ?>...
-											<?php endif; ?>
-										</span>
-										<span class="badge" style="float: right">0</span>
-									</p>
+									<?php if (!empty($thread->thread->message->author)): ?>
+										<p>
+											<span class="text">
+												<?php if ($thread->thread->message->author->id == Yii::$app->user->id): ?>
+													<b>You:</b>
+												<?php endif; ?>
+												<?php if ($thread->thread->message->audio): ?>
+													Voice message
+												<?php else: ?>
+													<?= mb_substr($thread->thread->message->text, 0, 35) ?>...
+												<?php endif; ?>
+											</span>
+											<span class="badge" style="float: right">0</span>
+										</p>
+									<?php endif; ?>
 								</div>
 							</div>
 						</a>
@@ -125,6 +140,7 @@ use yii\widgets\Pjax;
 
 	</div>
 </div>
+</section>
 <?php
 $js = <<< JS
 $('#settings-form').on('beforeSubmit', function () {
