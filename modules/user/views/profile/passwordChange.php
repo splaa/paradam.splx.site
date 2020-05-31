@@ -1,6 +1,7 @@
 <?php
 // paradam.me.loc/passwordChange.php
 
+use app\components\widgets\icon_menu\IconMenuWidget;
 use app\components\widgets\menu\MenuWidget;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -14,9 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- HEADER -->
 <header class="flex-center">
-<span class="profileButton">
-    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
-</span>
+	<?= IconMenuWidget::widget() ?>
 	<h2><?= Html::encode($this->title) ?></h2>
 	<input type="checkbox" id="nav-toggle" hidden>
 

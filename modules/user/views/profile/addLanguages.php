@@ -1,5 +1,6 @@
 <?php
 
+use app\components\widgets\icon_menu\IconMenuWidget;
 use app\components\widgets\menu\MenuWidget;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -11,9 +12,7 @@ use kartik\select2\Select2;
 ?>
 <!-- HEADER -->
 <header class="flex-center">
-	<span class="profileButton">
-	    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
-	</span>
+	<?= IconMenuWidget::widget() ?>
 	<h2>Изменить Язык</h2>
 	<input type="checkbox" id="nav-toggle" hidden>
 

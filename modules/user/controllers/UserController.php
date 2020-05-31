@@ -18,7 +18,6 @@ class UserController extends Controller
 						'allow' =>true,
 					],
 					[
-						'actions' => ['index', 'logout'],
 						'allow' => true,
 						'roles' => ['@'],
 					],

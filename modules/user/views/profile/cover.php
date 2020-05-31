@@ -1,5 +1,6 @@
 <?php
 
+use app\components\widgets\icon_menu\IconMenuWidget;
 use app\components\widgets\menu\MenuWidget;
 use yii\widgets\ActiveForm;
 
@@ -8,9 +9,7 @@ use yii\widgets\ActiveForm;
 
 <!-- HEADER -->
 <header class="flex-center">
-	<span class="profileButton">
-	    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
-	</span>
+	<?= IconMenuWidget::widget() ?>
 	<h2>Изменить Обложку</h2>
 	<input type="checkbox" id="nav-toggle" hidden>
 

@@ -1,5 +1,6 @@
 <?php
 
+use app\components\widgets\icon_menu\IconMenuWidget;
 use app\components\widgets\menu\MenuWidget;
 use yii\grid\GridView;
 use yii\helpers\Html;
@@ -12,9 +13,7 @@ use yii\helpers\Html;
 
 <!-- HEADER -->
 <header class="flex-center">
-    <span class="profileButton">
-        <img src="<?= Yii::getAlias('@web') ?>/images/paradam/user.svg" alt="">
-    </span>
+	<?= IconMenuWidget::widget() ?>
 	<h2>Список пользователей</h2>
 	<input type="checkbox" id="nav-toggle" hidden>
 
