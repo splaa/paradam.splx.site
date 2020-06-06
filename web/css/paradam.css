@@ -48,6 +48,13 @@ output {
 	align-items: center;
 }
 
+.flex-center-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
 header {
 	display: block;
 	width: 100%;
@@ -1170,7 +1177,7 @@ input[readonly="true"]{
 
 .nm_profile {
 	display: flex;
-	justify-content: center;
+	/*justify-content: center;*/
 	margin-right: 16px;
 }
 
@@ -2055,4 +2062,367 @@ input[readonly="true"]{
 }
 .welcome__control a {
 	margin-bottom: 10px;
+}
+
+/*userAvatar block*/
+.userAvatar img {
+	border-radius: 7px;
+	object-fit: cover;
+}
+
+.userAvatar_size_medium img {
+	width: 38px;
+	height: 38px;
+
+}
+
+.userAvatar_size_small img {
+	width: 32px;
+	height: 32px;
+}
+/*userInfo block*/
+.userInfo {
+	display: flex;
+	flex-direction: column;
+}
+
+.userInfo__name {
+	font-size: 18px;
+	line-height: 24px;
+	font-weight: 600;
+}
+
+.userInfo__login {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+
+/*dialogs*/
+.headerDialogs {
+	flex: 0 1 100%;
+	display: flex;
+	align-items: center;
+}
+.headerDialogs__user {
+	flex: 0 1 100%;
+	display: flex;
+	align-items: center;
+}
+.headerDialogs__userInfo {
+	margin-left: 10px;
+}
+.headerDialogs__control {
+	flex: 0 1 auto;
+	padding: 0 15px;
+}
+.dialogContainer {
+
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 59px);
+}
+.dialogContainer__priceCard {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.dialogContainer__messages {
+	flex: 0 1 100%;
+	padding: 10px 15px;
+	overflow-y: auto;
+}
+.dialogContainer__cotrol {
+	flex: 0 1 auto;
+}
+
+.dialogContainer__buttonGroup {
+	padding: 20px 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/*dialog message*/
+#recordingsList {
+	text-align: center;
+}
+.dialogMessage {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.dialogMessage_me {
+	justify-content: flex-end;
+}
+
+.dialogMessage__body {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+.dialogMessage_me .dialogMessage__body {
+	justify-content: flex-end;
+}
+.dialogMessage__content {
+	flex: 0 1 auto;
+	max-width: 80%;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	padding: 8px 15px;
+	margin-left: 8px;
+	background-color: #4884fc;
+	border-radius: 15px 15px 15px 0;
+	color: #fff;
+}
+.dialogMessage_me .dialogMessage__content {
+	border-radius: 15px 15px  0 15px;
+	background-color: #E5E5E5;
+	color: #000;
+}
+.dialogMessage__note {
+	font-size: 14px;
+	line-height: 17px;
+}
+.dialogMessage__note > span {
+	display: block;
+}
+.dialogMessage__time{
+	margin: 8px 0 8px 40px ;
+	color: #8E95A4;
+	font-size: 14px;
+}
+.dialogMessage_me .dialogMessage__time {
+	text-align: right;
+}
+
+
+/*balance button */
+.balanceButton {
+	outline: none;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent linear-gradient(180deg, #4884fc 0%, #485afc 100%) 0%
+	0% no-repeat padding-box;
+	color: #fff;
+}
+.balanceButton__label {
+	font-weight: 400;
+}
+.balanceButton__price {
+	font-weight: 600;
+}
+.balanceButton_size_small {
+	font-size: 14px;
+	min-width: 120px;
+	min-height: 36px;
+	border-radius: 7px;
+}
+/*ellipseButton*/
+.ellipseButton {
+	flex: 0 1 auto;
+	border: none;
+	outline: none;
+	display: flex;
+	align-items: center;
+	margin: 0;
+	justify-content: center;
+	text-align: left;
+	font-size: 14px;
+	line-height: 17px;
+}
+.ellipseButton_c_danger {
+	color: #fff;
+	background: #F86250;
+}
+.ellipseButton_c_default {
+	color: #fff;
+	background: #8E95A4;
+}
+.ellipseButton_с_success {
+	color: #fff;
+	background: #2CC136;
+}
+.ellipseButton_s_large {
+	width: 64px;
+	height: 64px;
+	border-radius: 32px;
+}
+.ellipseButton_w_large {
+	width: 160px;
+	height: 64px;
+	border-radius: 32px;
+}
+.ellipseButton_w_large span {
+	margin-right: 10px;
+}
+.ellipseButton_w_large img{
+	width: 12px;
+}
+.ellipseButton_s_small {
+	width: 34px;
+	height: 34px;
+	border-radius: 17px;
+}
+/*balance info*/
+.balanceInfo {
+	display: flex;
+	align-items: center;
+	font-weight: 600;
+}
+.balanceInfo__price {
+	color: #4884fc;
+	font-size: 18px;
+	line-height: 22px;
+	white-space: nowrap;
+}
+.balanceInfo__icon {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	background: #4884fc;
+	width: 16px;
+	height: 16px;
+	border-radius: 6px;
+	font-weight: 600;
+	color: #fff;
+}
+
+/*price card*/
+.priceCard {
+	border: 1px solid #CCCCCC;
+	padding: 15px;
+	border-radius: 14px;
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+.priceCard__item {
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.priceCard__item:last-child {
+	margin-bottom: 0px;
+}
+.priceCard__label {
+	flex: 0 1 100%;
+	font-size: 14px;
+	line-height: 22px;
+	color: #272A31;
+	padding-right: 10px;
+}
+.priceCard__time {
+	flex: 0 1 auto;
+	white-space: nowrap;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 22px;
+	color: #272A31;
+	opacity: 1;
+}
+
+/*buttonSendMessage*/
+.buttonSendMessage {
+	width: 100%;
+	display: flex;
+	outline: none;
+	border: none;
+	background: transparent linear-gradient(180deg, #4884fc 0%, #485afc 100%) 0%
+	0% no-repeat padding-box;
+	color: #fff;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 40px;
+	height: 94px;
+	border-radius: 84px 0 0 0;
+}
+.buttonSendMessage__label {
+	font-weight: 400;
+	color: #FFFFFF;
+}
+
+/*button with info*/
+
+.buttonWithInfo {
+	position: relative;
+}
+.buttonWithInfo__bistCounter {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border-radius: 84px 0px 0px 0px;
+}
+
+/*bitsCounter*/
+.bitsCounter {
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 30px;
+	height: 40px;
+	width: 100%;
+}
+.bitsCounter__countContainer {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	font: Regular 14px/17px Roboto;
+	letter-spacing: 0px;
+	color: #272A31;
+}
+.bitsCounter__info {
+	display: flex;
+	align-items: center;
+	color: #8E95A4;
+}
+.bitsCounter__info span {
+	margin-left: 5;
+	font-size: 14px;
+	line-height: 17px;
+}
+/* message field */
+.messageField {
+	padding: 15px;
+	border-top: 1px solid #00000033;
+}
+.messageField__wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 26px;
+	padding: 8px;
+	border: 1px solid #CCCCCC;
+}
+.messageField__input {
+	flex: 0 1 100%;
+	border: none!important;
+	padding: 0 8px!important;
+	margin: 0;
+	height: 17px;
+	line-height: 17px;
+	font-size: 14px;
+}
+.messageField__input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #8E95A4;
+	opacity: 1; /* Firefox */
+}
+
+.messageField__input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: #8E95A4;
+}
+
+.messageField__input::-ms-input-placeholder { /* Microsoft Edge */
+	color: #8E95A4;
+}
+.messageField__button {
+	position: relative;
+	outline: none;
+	border: none;
+	background: transparent;
+	padding: 0 8px;
 }

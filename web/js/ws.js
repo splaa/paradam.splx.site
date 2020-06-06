@@ -52,7 +52,7 @@ $(document).ready(function(){
         }
     });
 
-    var div = $(".msg_history");
+    let div = $(".msg_history");
     div.scrollTop(div.prop('scrollHeight'));
 
     $(document).on('click', '.confirm_message', function() {
@@ -60,55 +60,75 @@ $(document).ready(function(){
 
         if (parseInt(action) === 0) {
             sendingData.cancel = 1;
+        } else {
+            $('.write_msg').attr('placeholder', 'Введите причину отказа');
         }
 
-        $(this).parent().addClass('hide');
+        $(this).parents('#control-information').addClass('hide');
         $('.type_msg').removeClass('hide');
     })
+
+    // Symbols Length
+    let myObject = '.write_msg'; // объект, у которого считаем символы
+    let max = 300; // максимум символов
+    let typeChars = '#typeChars'; // куда выводим кол-во введенных символов
+    let leftChars = '#leftChars'; // куда выводим кол-во оставшихся символов
+
+    limitChars(myObject, max, typeChars, leftChars);
 });
 
 function message(data, me) {
     let html = '';
     if (me) {
-        html += '<div class="outgoing_msg">';
-        html += '<div class="sent_msg">';
-        if (data.cancel) {
-            html += '<span class="service__finish reason_cancel"><b>Причина отказа:</b></span>';
-        }
-        if (data.message && data.audio) {
-            html += '<p>' + data.message + '<audio controls="" src="' + systemData.host + '/uploads/messages/' + data.audio + '"></audio></p>';
-        } else if (data.audio) {
-            html += '<p><audio controls="" src="' + systemData.host + '/uploads/messages/' + data.audio + '"></audio></p>';
-        } else {
-            html += '<p>' + data.message + '</p>';
-        }
-        if (data.error) {
-            html += '<span class="balance_error">' + data.error + '</span>';
-        }
-        html += '<span class="time_date"> ' + data.time + '    |    ' + data.date + '</span>';
-        html += '</div>';
+        html += '<div class="dialogMessage dialogMessage_me">';
+            html += '<div class="dialogMessage__body">';
+                html += '<div class="dialogMessage__content">';
+                    html += '<div class="dialogMessage__note">';
+
+                        if (data.cancel) {
+                            html += '<span class="service__finish reason_cancel"><b>Причина отказа:</b></span>';
+                        }
+
+                        if (data.message && data.audio) {
+                            html += data.message + '<audio controls="" src="' + systemData.host + '/uploads/messages/' + data.audio + '"></audio>';
+                        } else if (data.audio) {
+                            html += '<audio controls="" src="' + systemData.host + '/uploads/messages/' + data.audio + '"></audio>';
+                        } else {
+                            html += data.message;
+                        }
+                        if (data.error) {
+                            html += '<span class="balance_error">' + data.error + '</span>';
+                        }
+
+                    html += '</div>';
+                html += '</div>';
+            html += '</div>';
+            html += '<div class="dialogMessage__time">' + data.time + '</div>';
         html += '</div>';
     } else {
-        html += '<div class="incoming_msg">';
-        html += '<div class="incoming_msg_img">';
-        html += '<img src="' + data.avatar + '"  alt="' +  data.alt + '">';
-        html += '</div>';
-        html += '<div class="received_msg">';
-        html += '<div class="received_withd_msg">';
-        if (data.cancel) {
-            html += '<span class="service__finish reason_cancel"><b>Причина отказа:</b></span>';
-        }
-        if (data.message && data.audio) {
-            html += '<p>' + data.message + '<audio controls="" src="' + systemData.host + '/uploads/messages/' + data.audio + '"></audio></p>';
-        } else if (data.audio) {
-            html += '<p><audio controls="" src="' + systemData.host + '/uploads/messages/' + data.audio + '"></audio></p>';
-        } else {
-            html += '<p>' + data.message + '</p>';
-        }
-
-        html += '<span class="time_date"> ' + data.time + '    |    ' + data.date + '</span>';
-        html += '</div>';
-        html += '</div>';
+        html += '<div class="dialogMessage">';
+            html += '<div class="dialogMessage__body">';
+                html += '<div class="dialogMessage__user">';
+                    html += '<div class="userAvatar userAvatar_size_small">';
+                        html += '<img src="' + data.avatar + '" alt="' +  data.alt + '">';
+                    html += '</div>';
+                html += '</div>';
+                html += '<div class="dialogMessage__content">';
+                    html += '<div class="dialogMessage__note">';
+                        if (data.cancel) {
+                            html += '<span class="service__finish reason_cancel"><b>Причина отказа:</b></span>';
+                        }
+                        if (data.message && data.audio) {
+                            html += '<p>' + data.message + '<audio controls="" src="' + systemData.host + '/uploads/messages/' + data.audio + '"></audio></p>';
+                        } else if (data.audio) {
+                            html += '<p><audio controls="" src="' + systemData.host + '/uploads/messages/' + data.audio + '"></audio></p>';
+                        } else {
+                            html += '<p>' + data.message + '</p>';
+                        }
+                    html += '</div>';
+                html += '</div>';
+            html += '</div>';
+            html += '<div class="dialogMessage__time">' + data.time + '</div>';
         html += '</div>';
     }
 
@@ -123,6 +143,8 @@ function send() {
     if (sendingData.message || sendingData.audio) {
         socket.send(JSON.stringify(sendingData));
 
+        $('.write_msg').attr('placeholder', 'Введите сообщение');
+        $('#record_information').addClass('hide');
         $('#recordingsList').html('');
         $(".write_msg").val("");
 
@@ -131,4 +153,22 @@ function send() {
         sendingData.timing = '';
         sendingData.cancel = 0;
     }
+}
+
+function limitChars(myObject, max, typeChars, leftChars){
+    $(myObject).keyup(function(){
+        var count = $(this).val().length; // кол-во уже введенных символов
+        var num = max - count; // кол-во символов, которое еще можно ввести
+
+        if(num > 0){
+            // если не достигнут лимит символов
+            $(typeChars).text(count);
+            $(leftChars).text(num);
+            $(this).removeClass('type');
+        }else{
+            // если достигнут лимит символов
+            $(typeChars).text(count);
+            $(this).addClass('type');
+        }
+    });
 }

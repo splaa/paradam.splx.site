@@ -16,6 +16,9 @@ recordButton.addEventListener("mouseup", stopRecording);
 function startRecording() {
     var constraints = { audio: true, video:false }
 
+    // Show Record Info Block
+    document.getElementById('record_information').classList.remove('hide');
+
     recordButton.disabled = false;
 
     navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {

@@ -39,7 +39,6 @@ class MessageController extends UserController
 	 */
 	public function actionIndex()
 	{
-		$this->view->registerCssFile('@web/css/chat.css');
 		$this->view->registerJsFile('@web/js/chat.js');
 
 		$threads = UserThread::find()->joinWith('thread')
@@ -62,7 +61,6 @@ class MessageController extends UserController
 
 	public function actionView($id = '')
 	{
-		$this->view->registerCssFile('@web/css/chat.css');
 		$this->view->registerJsFile('@web/js/ws.js', ['depends' => 'yii\web\YiiAsset', 'position' => View::POS_END]);
 		$this->view->registerJsFile('@web/js/recorder.js', ['depends' => 'yii\web\YiiAsset', 'position' => View::POS_END]);
 		$this->view->registerJsFile('@web/js/record.js', ['depends' => 'yii\web\YiiAsset', 'position' => View::POS_END]);
@@ -88,13 +86,12 @@ class MessageController extends UserController
 
 			if ($selected_user_thread) {
 				$froze = Froze::find()->where(['thread_id' => $selected_user_thread->thread->id])->andWhere(['status' => 0])->count();
+
+				$this->view->blocks['hideNavigationBar'] = true;
 			}
 		}
 
-		$model = new SettingsForm();
-
-		return $this->render('index', [
-			'model' => $model,
+		return $this->render('thread', [
 			'threads' => $threads,
 			'froze' => $froze,
 			'selected_user_thread' => $selected_user_thread

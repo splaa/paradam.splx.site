@@ -1,10 +1,12 @@
 <?php
 namespace app\commands;
+use app\components\Time;
 use app\modules\message\models\Froze;
 use app\modules\message\models\Message;
 use app\modules\message\models\Thread;
 use app\modules\message\models\UserMessage;
 use app\modules\message\models\UserThread;
+use app\modules\services\models\OrderService;
 use app\modules\user\models\User;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
@@ -131,8 +133,8 @@ class SocketServer implements MessageComponentInterface
 					$parse['error'] = 'На счету не достаточно средств пожалуйста пополните Ваш баланс.';
 				}
 
-				$parse['time'] = Yii::$app->formatter->asRelativeTime(date('Y-m-d H:i:s'));
-				$parse['date'] = Yii::$app->formatter->asDate(date('Y-m-d H:i:s'));
+				$parse['time'] = Time::showDate(date('Y-m-d H:i:s'));
+				$parse['date'] = Time::showDate(date('Y-m-d H:i:s'));
 			}
 
 			$data = json_encode($parse);
