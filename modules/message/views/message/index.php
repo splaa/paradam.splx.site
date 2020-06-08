@@ -56,16 +56,15 @@ use yii\widgets\Pjax;
 
 								<?php if (!empty($thread->thread->message->author)): ?>
 									<p>
-										<span class="text">
-											<?php if ($thread->thread->message->author->id == Yii::$app->user->id): ?>
-												<b>You:</b>
-											<?php endif; ?>
+										<?php if ($thread->thread->message->author->id == Yii::$app->user->id): ?>
 											<?php if ($thread->thread->message->audio): ?>
 												Voice message
 											<?php else: ?>
 												<?= mb_substr($thread->thread->message->text, 0, 100) ?>...
 											<?php endif; ?>
-										</span>
+										<?php else: ?>
+											<span class="text">Новое сообщение</span>
+										<?php endif; ?>
 									</p>
 								<?php endif; ?>
 							</div>

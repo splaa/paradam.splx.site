@@ -244,10 +244,10 @@ $time = Time::showDate(date("Y-m-m H:i:s"));
 						<div class="messageField__wrapper">
 							<input type="text" placeholder="Введите сообщение" class="messageField__input write_msg" maxlength="300" />
 							<input type="hidden" class="audio_msg"/>
-							<button type="button" class="messageField__button msg_send_btn" id="recordButton">
-								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/microphone.svg" alt="" />
-							</button>
 						</div>
+						<button type="button" class="messageField__button msg_send_btn" id="recordButton">
+							<img src="<?= Yii::getAlias('@web') ?>/images/paradam/microphone.svg" alt="" />
+						</button>
 					</div>
 				</div>
 			</div>

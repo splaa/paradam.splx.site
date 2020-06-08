@@ -20,6 +20,7 @@ use yii\db\Expression;
  * @property string|null $created_at
  * @property string $audio
  * @property int $cancel
+ * @property int $status
  *
  * @property User $author
  * @property Thread $thread

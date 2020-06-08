@@ -2380,7 +2380,7 @@ input[readonly="true"]{
 	color: #8E95A4;
 }
 .bitsCounter__info span {
-	margin-left: 5;
+	margin-left: 5px;
 	font-size: 14px;
 	line-height: 17px;
 }
@@ -2388,14 +2388,14 @@ input[readonly="true"]{
 .messageField {
 	padding: 15px;
 	border-top: 1px solid #00000033;
-}
-.messageField__wrapper {
-	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+.messageField__wrapper {
+	width: 100%;
 	border-radius: 26px;
-	padding: 8px;
+	padding: 12px;
 	border: 1px solid #CCCCCC;
 }
 .messageField__input {
@@ -2425,4 +2425,7 @@ input[readonly="true"]{
 	border: none;
 	background: transparent;
 	padding: 0 8px;
+}
+.messageField__button#recordButton img{
+	width: 25px;
 }
