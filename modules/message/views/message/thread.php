@@ -1,24 +1,24 @@
 <?php
-/**
- * @var \app\modules\message\models\UserThread $selected_user_thread
- * @var \yii\web\View $this
- * @var integer $froze
- */
+	/**
+	* @var \app\modules\message\models\UserThread $selected_user_thread
+	* @var \yii\web\View $this
+	* @var integer $froze
+	*/
 
-use app\components\Time;
-use app\components\widgets\icon_menu\IconMenuWidget;
-use app\components\widgets\menu\MenuWidget;
-use app\modules\services\models\OrderService;
-use app\modules\user\models\User;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\web\View;
+	use app\components\Time;
+	use app\components\widgets\icon_menu\IconMenuWidget;
+	use app\components\widgets\menu\MenuWidget;
+	use app\modules\services\models\OrderService;
+	use app\modules\user\models\User;
+	use yii\helpers\Html;
+	use yii\helpers\Url;
+	use yii\web\View;
 
-$host = Yii::$app->request->hostInfo;
-$user_id = Yii::$app->user->id;
-$avatar = Yii::$app->user->identity->avatarSmall;
-$alt = Yii::$app->user->identity->alt;
-$time = Time::showDate(date("Y-m-m H:i:s"));
+	$host = Yii::$app->request->hostInfo;
+	$user_id = Yii::$app->user->id;
+	$avatar = Yii::$app->user->identity->avatarSmall;
+	$alt = Yii::$app->user->identity->alt;
+	$time = Time::showDate(date("Y-m-m H:i:s"));
 ?>
 
 <?php if ($selected_user_thread): ?>
@@ -56,6 +56,13 @@ $time = Time::showDate(date("Y-m-m H:i:s"));
 	<section>
 		<div class="dialogContainer">
 			<div class="dialogContainer__messages msg_history">
+				<?php /*if ($selected_user_thread->thread->getCreatorMessageExists()): ?>
+					<div class="btn-donatat">
+						<div class="btn-donatat-wrapper">
+							<img src="<?= Yii::getAlias('@web') ?>/images/paradam/donation.svg" />
+						</div>
+					</div>
+				<?php endif;*/ ?>
 				<?php foreach ($selected_user_thread->thread->messages as $message): ?>
 					<?php if ($message->author_id != Yii::$app->user->id): ?>
 						<div class="dialogMessage">

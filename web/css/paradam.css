@@ -2099,6 +2099,22 @@ input[readonly="true"]{
 
 
 /*dialogs*/
+.btn-donatat {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.btn-donatat-wrapper {
+	width: 100px;
+	height: 100px;
+}
+.btn-donatat-wrapper img {
+	width: 120px;
+	border: 1px solid #ccc;
+	border-radius: 20px;
+	box-shadow: 0 0 0 0 #000;
+}
 .headerDialogs {
 	flex: 0 1 100%;
 	display: flex;

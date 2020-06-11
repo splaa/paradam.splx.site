@@ -21,6 +21,7 @@ use yii\db\Expression;
  * @property Message[] $messageWriter
  * @property UserThread[] $userThreads
  * @property User $creator
+ * @property int $creator_message_exists
  */
 class Thread extends \yii\db\ActiveRecord
 {
@@ -104,5 +105,13 @@ class Thread extends \yii\db\ActiveRecord
     public function getCreator()
     {
         return $this->hasOne(User::className(), ['id' => 'creator_id']);
+    }
+
+    /**
+     * @return int
+     */
+    public function getCreatorMessageExists()
+    {
+        return (int)Message::find()->where(['author_id' => $this->creator_id])->count();
     }
 }
