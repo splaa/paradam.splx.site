@@ -6,23 +6,31 @@
 
 /* @var $exception Exception */
 
+use app\components\widgets\icon_menu\IconMenuWidget;
+use app\components\widgets\menu\MenuWidget;
 use yii\helpers\Html;
-
-$this->title = $name;
 ?>
-<div class="main-default-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<?php if (Yii::$app->user->isGuest) : ?>
+	<header class="loginHeader">
+		<h2>Paradam,</h2>
+	</header>
+<?php else: ?>
+	<!-- HEADER -->
+	<header class="flex-center">
+		<?= IconMenuWidget::widget() ?>
+		<h2>Ошибка</h2>
+		<input type="checkbox" id="nav-toggle" hidden>
 
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
-    </div>
+		<?= MenuWidget::widget() ?>
+	</header>
+	<!-- HEADER FIN -->
+<?php endif; ?>
 
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
-</div>
+<section class="mainContainer">
+	<div class="loginForm">
+		<div class="alert alert-danger">
+			<?= nl2br(Html::encode($message)) ?>
+		</div>
+	</div>
+</section>

@@ -3,6 +3,7 @@
 	namespace app\modules\main\controllers;
 
 	use app\modules\user\controllers\UserController;
+	use Yii;
 
 	/**
 	 * Default controller for the `main` module
@@ -18,9 +19,10 @@
 			return $this->render('index');
 		}
 		
-		public function actionAbout()
+		public function actionError()
 		{
-			$message = 'About';
-			return $this->render('about', compact('message'));
+			$message = Yii::$app->errorHandler->exception->getMessage();
+
+			return $this->render('error', ['message' => $message]);
 		}
 	}
