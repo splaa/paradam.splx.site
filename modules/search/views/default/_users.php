@@ -11,7 +11,7 @@ use yii\helpers\Url;
 	<div class="userItem__conent">
 		<div class="userItem__header">
 			<div class="userItem__name">
-				<?= $model->alt ?>
+				<?= $model->first_name ?> <?= $model->last_name ?>
 			</div>
 			<div class="userItem__login">
 				@<?= $model->username ?>
