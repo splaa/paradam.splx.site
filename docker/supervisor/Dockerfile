@@ -9,9 +9,8 @@ RUN mkdir /var/log/websocket/
 COPY conf.d/supervisord.conf /etc/supervisor/supervisord.conf
 #COPY conf.d/telegram_api_server.conf /etc/supervisor/conf.d/telegram_api_server.conf
 COPY conf.d/websocket_server.conf /etc/supervisor/conf.d/websocket_server.conf
-COPY conf.d/certificate.crt /etc/ssl/certs/certificate.crt
-COPY conf.d/private.key /etc/ssl/private/private.key
-COPY conf.d/ca_bundle.crt /etc/ssl/chain/ca_bundle.crt
+COPY conf.d/domain.crt /etc/ssl/certs/domain.crt
+COPY conf.d/domain.key /etc/ssl/key/domain.key
 COPY conf.d/apache_ssl.conf /etc/apache2/sites-available/new-default-ssl.conf
 
 EXPOSE 80
