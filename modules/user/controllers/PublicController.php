@@ -49,17 +49,6 @@ class PublicController extends UserController
 		}
 	}
 
-	public function actionList()
-	{
-		$searchModel = new UserSearch();
-		$dataProvider = $searchModel->search([]);
-
-		return $this->render('list', [
-			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
-		]);
-	}
-
 	public function actionSubscribe()
 	{
 		if (!Yii::$app->user->isGuest) {

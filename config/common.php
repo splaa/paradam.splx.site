@@ -96,7 +96,6 @@
 					'message/<id>' => 'message/message/view',
 
 					// Public user
-					'public/list' => 'user/public/list',
 					'public/subscribe' => 'user/public/subscribe',
 
 					// search
