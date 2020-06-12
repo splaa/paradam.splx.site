@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 <header class="flex-center">
 	<?= IconMenuWidget::widget() ?>
 	<h2>Изменить Обложку</h2>
-	<input type="checkbox" id="nav-toggle" hidden>
+
 
 	<?= MenuWidget::widget() ?>
 </header>

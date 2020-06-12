@@ -21,7 +21,7 @@ use yii\widgets\Pjax;
 <header class="flex-center">
 	<?= IconMenuWidget::widget() ?>
 	<h2>Сообщения</h2>
-	<input type="checkbox" id="nav-toggle" hidden>
+
 
 	<?= MenuWidget::widget() ?>
 </header>

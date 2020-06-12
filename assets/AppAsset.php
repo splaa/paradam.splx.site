@@ -23,12 +23,15 @@
 			'css/paradam.css',
 			'css/flickity.css',
 			'css/site.css',
-			'css/order.css'
+			'css/order.css',
+			'css/tooltipster.bundle.min.css',
+			'css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-shadow.min.css',
 		];
 		public $js = [
 			'js/flickity.pkgd.min.js',
 			'js/jquery.inputmask.min.js',
 			'js/tabs.js',
+			'js/tooltipster.bundle.min.js',
 			'js/main.js',
 		];
 		public $depends = [

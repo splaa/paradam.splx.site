@@ -16,7 +16,7 @@ use yii\helpers\Url;
 	<?= IconMenuWidget::widget() ?>
 
 	<h2><?= Html::encode($this->title) ?></h2>
-	<input type="checkbox" id="nav-toggle" hidden>
+
 
 	<?= MenuWidget::widget() ?>
 </header>

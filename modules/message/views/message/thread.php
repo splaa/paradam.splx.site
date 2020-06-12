@@ -242,7 +242,7 @@
 							</div>
 							<div class="bitsCounter__info">
 								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/info-icon.svg" alt="" />
-								<span>info</span>
+								<span class="tooltip" title="This is info tooltip message!">info</span>
 							</div>
 						</div>
 					</div>
@@ -299,7 +299,7 @@
 	<header class="flex-center">
 		<?= IconMenuWidget::widget() ?>
 		<h2>Ошибка</h2>
-		<input type="checkbox" id="nav-toggle" hidden>
+
 
 		<?= MenuWidget::widget() ?>
 	</header>

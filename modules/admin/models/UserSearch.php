@@ -44,7 +44,27 @@
 				'date_to' => Yii::t('app', 'USER_DATE_TO'),
 			];
 		}
-		
+
+	    /**
+	     * @return ActiveDataProvider
+	     * @throws \yii\base\InvalidConfigException
+	     */
+		public function get() {
+			$dataProvider = new ActiveDataProvider([
+				'query' => User::find(),
+				'pagination' => [
+					'pageSize' => 10,
+				],
+			]);
+
+			return $dataProvider;
+		}
+
+	    /**
+	     * @param $params
+	     * @return ActiveDataProvider
+	     * @throws \yii\base\InvalidConfigException
+	     */
 		public function search($params)
 		{
 			$query = User::find();

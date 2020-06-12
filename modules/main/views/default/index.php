@@ -13,7 +13,7 @@ use app\components\widgets\menu\MenuWidget;
 <header class="flex-center">
 	<?= IconMenuWidget::widget() ?>
 	<h2>Главная</h2>
-	<input type="checkbox" id="nav-toggle" hidden>
+
 
 	<?= MenuWidget::widget() ?>
 </header>

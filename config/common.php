@@ -36,6 +36,9 @@
 			'message' => [
 				'class' => 'app\modules\message\Module',
 			],
+			'search' => [
+				'class' => 'app\modules\search\Module',
+			],
 			'robotsTxt' => [
 				'class' => 'execut\robotsTxt\Module',
 				'components'    => [
@@ -82,7 +85,6 @@
 				'on languageChanged' => 'app\modules\user\models\User::onLanguageChanged',
 				'rules' => [
 					['pattern' => 'robots', 'route' => 'robotsTxt/web/index', 'suffix' => '.txt'],
-
 					'' => 'main/default/index',
 					'site/about' => 'main/default/about',
 					'contact' => 'main/contact/index',
@@ -96,15 +98,18 @@
 					// Public user
 					'public/list' => 'user/public/list',
 					'public/subscribe' => 'user/public/subscribe',
+
+					// search
+					'search' => 'search/default/index',
+
 					[
 						'pattern' => '<username>',
 						'route' => 'user/public',
-						'suffix' => '/',
 						'normalizer' => false, // disable normalizer for this rule
 					],
 
-					// Search
-					'search' => 'user/search/index',
+					// API
+					'api/search' => 'search/default/query',
 
 					'<_a:error>' => 'main/default/<_a>',
 					'<_a:(login|logout|forgotten)>' => '/user/default/<_a>',

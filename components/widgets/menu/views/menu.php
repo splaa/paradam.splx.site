@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
 <!-- LEFT MENU -->
+<input type="checkbox" id="nav-toggle" hidden>
 <nav class="nav">
 	<label for="nav-toggle" class="nav-toggle" onclick></label>
 	<?php if (!Yii::$app->user->isGuest): ?>

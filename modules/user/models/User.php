@@ -52,6 +52,7 @@ use yii\web\IdentityInterface;
  * @property string $convertBalanceToUSD
  * @property string $linkFormat
  * @property array $languageArray
+ * @property array $subscribersCount
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -316,6 +317,11 @@ class User extends ActiveRecord implements IdentityInterface
 	public function getLinkFormat()
 	{
 		return str_replace(['https://', 'http://', 'www.'], '', $this->link);
+	}
+
+	public function getSubscribersCount()
+	{
+		return Subscribe::find()->where(['user_id' => $this->id])->count();
 	}
 	
 	/**

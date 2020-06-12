@@ -20,7 +20,7 @@ use yii\helpers\Html;
 	<header class="flex-center">
 		<?= IconMenuWidget::widget() ?>
 		<h2>Ошибка</h2>
-		<input type="checkbox" id="nav-toggle" hidden>
+
 
 		<?= MenuWidget::widget() ?>
 	</header>

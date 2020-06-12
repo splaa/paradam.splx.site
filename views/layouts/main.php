@@ -3,7 +3,7 @@
 /* @var $content string */
 
 use app\assets\AppAsset;
-use app\components\widgets\menu\MenuWidget;
+use app\components\widgets\navigation\NavigationWidget;
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -34,34 +34,7 @@ AppAsset::register($this);
 	<div id="app_container">
 		<?= $content ?>
 
-		<?php if (!isset($this->blocks['hideNavigationBar'])): ?>
-			<section>
-				<nav class="navigationBar">
-					<ul>
-						<li>
-							<a href="<?= Yii::$app->homeUrl ?>">
-								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/discover.svg" alt="">
-							</a>
-						</li>
-						<li>
-							<a href="<?= Url::to(['/user/public/list']) ?>">
-								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/search.svg" alt="">
-							</a>
-						</li>
-						<li>
-							<a href="<?= Url::to(['/message']) ?>">
-								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/messages.svg" alt="">
-							</a>
-						</li>
-						<li>
-							<a href="<?= Url::to(['/services/service']) ?>">
-								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/notification.svg" alt="">
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</section>
-		<?php endif; ?>
+		<?= NavigationWidget::widget() ?>
 	</div>
 	<?php $this->endBody() ?>
 	</body>

@@ -14,7 +14,7 @@ use kartik\select2\Select2;
 <header class="flex-center">
 	<?= IconMenuWidget::widget() ?>
 	<h2>Изменить Язык</h2>
-	<input type="checkbox" id="nav-toggle" hidden>
+
 
 	<?= MenuWidget::widget() ?>
 </header>
