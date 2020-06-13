@@ -14,7 +14,7 @@ use yii\helpers\Url;
 				<?= $model->first_name ?> <?= $model->last_name ?>
 			</div>
 			<div class="userItem__login">
-				@<?= $model->username ?>
+				<?= $model->username ?>
 			</div>
 		</div>
 		<div class="userItem__bookmark"><?= $model->subscribersCount ?> on bookmarks</div>

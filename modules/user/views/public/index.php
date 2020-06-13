@@ -52,7 +52,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl . '@web/js/order.js', ['depend
 						<div class="pui_right">
 							<div class="userNickName_container">
 								<span>username</span>
-								<h3 class="userNickName">@<?= $model->username ?></h3>
+								<h3 class="userNickName"><?= $model->username ?></h3>
 							</div>
 							<div class="userBookMarks">
 								<span>on bookmarks</span>

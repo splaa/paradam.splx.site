@@ -19,7 +19,7 @@ use yii\helpers\Url;
 					</div>
 					<div class="nm_info">
 						<span><?= Yii::$app->user->identity->first_name ?> <?= Yii::$app->user->identity->last_name ?></span>
-						<p>@<?= Yii::$app->user->identity->username ?></p>
+						<p><?= Yii::$app->user->identity->username ?></p>
 					</div>
 				</div>
 			</div>

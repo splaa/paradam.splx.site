@@ -46,7 +46,7 @@
 					</div>
 					<div class="userInfo headerDialogs__userInfo">
 						<span class="userInfo__name"><?= $selected_user_thread->thread->creator->alt ?></span>
-						<span class="userInfo__login">@<?= $headerUsername ?></span>
+						<span class="userInfo__login"><?= $headerUsername ?></span>
 					</div>
 				</div>
 			</div>
