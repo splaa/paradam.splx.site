@@ -47,12 +47,6 @@ use yii\helpers\Url;
 					<a href="<?= Url::to(['register']) ?>"><?= Yii::t('app', 'NAV_SIGNUP') ?></a>
 				</li>
 			<?php endif; ?>
-			<li>
-                <span>
-                    <img src="<?= Yii::getAlias('@web') ?>/images/paradam/rectangle.png" alt="">
-                </span>
-				<a href="<?= Url::to(['/user/public/list']) ?>"><?= Yii::t('app', 'NAV_USERS') ?></a>
-			</li>
 		</ul>
 	</div>
 	<?php if (!Yii::$app->user->isGuest): ?>
