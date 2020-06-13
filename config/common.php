@@ -101,18 +101,21 @@
 					// search
 					'search' => 'search/default/index',
 
+					// API
+					'api/search' => 'search/default/query',
+
 					[
 						'pattern' => '<username>',
 						'route' => 'user/public',
 						'normalizer' => false, // disable normalizer for this rule
 					],
 
-					// API
-					'api/search' => 'search/default/query',
+					// User Action
+					'user/login' => 'user/default/login',
+					'user/logout' => 'user/default/logout',
+					'user/forgotten' => 'user/default/forgotten',
 
 					'<_a:error>' => 'main/default/<_a>',
-					'<_a:(login|logout|forgotten)>' => '/user/default/<_a>',
-					'<_a:(register)>' => 'user/<_a>',
 
 					'<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>' => '<_m>/<_c>/view',
 					'<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>/<_a:[\w\-]+>' => '<_m>/<_c>/<_a>',
