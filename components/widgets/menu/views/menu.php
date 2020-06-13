@@ -13,7 +13,7 @@ use yii\helpers\Url;
 		</div>
 		<div class="nav_menu_block">
 			<div class="nm_profile">
-				<div class="nm_top flex">
+				<div class="nm_top flex" onclick="window.location.href='<?= Url::to(Yii::$app->user->identity->username, ['public/', 'username' => Yii::$app->user->identity->username]) ?>';">
 					<div class="nm_avatar">
 						<img src="<?= Yii::$app->user->identity->avatarSmall ?>" alt="<?= Yii::$app->user->identity->username ?>">
 					</div>
