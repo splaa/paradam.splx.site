@@ -2134,7 +2134,7 @@ input[readonly="true"]{
 	padding: 0 15px;
 }
 .dialogContainer {
-
+	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	height: calc(100vh - 59px);
