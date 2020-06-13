@@ -54,7 +54,7 @@
 			</div>
 		</header>
 
-		<section class="flexPage">
+		<section class="flexPage__full">
 			<div class="dialogContainer">
 				<div class="dialogContainer__messages msg_history">
 					<?php /*if ($selected_user_thread->thread->getCreatorMessageExists()): ?>
