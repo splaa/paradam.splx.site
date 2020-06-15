@@ -2403,12 +2403,54 @@ input[readonly="true"]{
 	line-height: 17px;
 }
 /* message field */
-.messageField {
+.record-control {
+	transition: all .3s ease;
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	left: 100%;
+}
+.record-control.active {
+	transform: translate(-100%);
+}
+.messageField, .record-control {
 	padding: 15px;
 	border-top: 1px solid #00000033;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+.timing {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.timing::before {
+	content: "";
+	animation-name: blinker;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+	animation-duration: 1s;
+	-webkit-animation-name: blinker;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+	-webkit-animation-duration: 1s;
+	background: red;
+	width: 10px;
+	height: 10px;
+	margin-right: 5px;
+	border-radius: 50%;
+	display: block;
+}
+
+@keyframes blinker {
+	from { opacity: 1.0; }
+	to { opacity: 0.0; }
+}
+
+@-webkit-keyframes blinker {
+	from { opacity: 1.0; }
+	to { opacity: 0.0; }
 }
 .messageField__wrapper {
 	width: 100%;
@@ -2444,8 +2486,23 @@ input[readonly="true"]{
 	background: transparent;
 	padding: 0 8px;
 }
-.messageField__button#recordButton img{
+.messageField__button#recordButton {
+	background-image: url("../images/paradam/microphone.svg");
+	height: 36px;
 	width: 25px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 22px;
+	margin-left: 10px;
+}
+.messageField__button#stopButton {
+	background-image: url("../images/paradam/stop.svg");
+	height: 36px;
+	width: 25px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 22px;
+	margin-left: 10px;
 }
 .discoverTitle {
 	font-weight: 900;

@@ -23,6 +23,9 @@ let main = {
 // Init Main function when page is loaded
 $(document).ready(function() {
 	main.initTooltip();
+	$('.mask-content').on('click', function(){
+		$('#nav-toggle').prop('checked', false);
+	})
 });
 
 let pageService = document.getElementById("service_block_form");

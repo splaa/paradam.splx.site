@@ -253,9 +253,16 @@
 								<input type="text" placeholder="Введите сообщение" class="messageField__input write_msg" maxlength="300" />
 								<input type="hidden" class="audio_msg"/>
 							</div>
-							<button type="button" class="messageField__button msg_send_btn" id="recordButton">
-								<img src="<?= Yii::getAlias('@web') ?>/images/paradam/microphone.svg" alt="" />
-							</button>
+							<button type="button" class="messageField__button msg_send_btn" id="recordButton"></button>
+						</div>
+						<div class="record-control" id="record-control">
+							<div class="timing" id="timing">00,00</div>
+							<div class="cancel">
+								<button type="button" class="messageField__button msg_send_btn" id="cancelButton">Отменить</button>
+							</div>
+							<div class="stop">
+								<button type="button" class="messageField__button msg_send_btn" id="stopButton"></button>
+							</div>
 						</div>
 					</div>
 				</div>

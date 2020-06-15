@@ -3,15 +3,24 @@ URL = window.URL || window.webkitURL;
 var gumStream; 						//stream from getUserMedia()
 var rec; 							//Recorder.js object
 var input; 							//MediaStreamAudioSourceNode we'll be recording
-let counterClick = 0;
+var counterClick = 0;
+var secondAudioRecord = 0;
+
+var base = 60;
+var clocktimer,dateObj,dh,dm,ds,ms;
+var h=1,m=1,tm=1,s=0,ts=0,ms=0,init=0;
 
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext //audio context to help us record
+var record_control = document.getElementById('record-control');
 
 var recordButton = document.getElementById("recordButton");
+var stopButton = document.getElementById("stopButton");
+var cancelButton = document.getElementById("cancelButton");
 
-recordButton.addEventListener("mousedown", startRecording);
-recordButton.addEventListener("mouseup", stopRecording);
+recordButton.addEventListener("mouseup", startRecording);
+stopButton.addEventListener("mouseup", stopRecording);
+cancelButton.addEventListener("mouseup", cancelRecording);
 
 function startRecording() {
     var constraints = { audio: true, video:false }
@@ -34,19 +43,23 @@ function startRecording() {
             //start the recording process
             rec.record()
 
-            setInterval(function () {
-                if (rec.recording) {
-                    let record_time = document.getElementById('record_time');
-                    let record_bits = document.getElementById('record_bits');
-                    record_time.innerText = Math.round(audioContext.currentTime) + 'sec';
-                    record_bits.innerText = Math.ceil(parseInt(record_time.innerText) / 30) * 100 + ' bits';
+	        startStop();
 
-                    if (parseInt(record_time.innerText) > 30) {
-                        record_time.style.color = 'darkred';
-                        record_time.style.fontWeight = 'bold';
-                    }
-                }
-            }, '1000');
+	        record_control.classList.add("active");
+
+            // setInterval(function () {
+            //     if (rec.recording) {
+            //         let record_time = document.getElementById('record_time');
+            //         let record_bits = document.getElementById('record_bits');
+            //         record_time.innerText = Math.round(audioContext.currentTime) + 'sec';
+            //         record_bits.innerText = Math.ceil(parseInt(record_time.innerText) / 30) * 100 + ' bits';
+			//
+            //         if (parseInt(record_time.innerText) > 30) {
+            //             record_time.style.color = 'darkred';
+            //             record_time.style.fontWeight = 'bold';
+            //         }
+            //     }
+            // }, '1000');
         }
 
         counterClick++;
@@ -81,7 +94,14 @@ function stopRecording() {
         gumStream.getAudioTracks()[0].stop();
 
         rec.exportWAV(createDownloadLink);
+
+	    clearClock();
     }
+}
+
+function cancelRecording() {
+	record_control.classList.remove("active");
+	stopRecording();
 }
 
 function createDownloadLink(blob) {
@@ -110,4 +130,54 @@ function createDownloadLink(blob) {
     //add the li element to the ol
     recordingsList.innerHTML = "";
     recordingsList.appendChild(div);
+}
+
+//функция для старта секундомера
+function startTime() {
+	if (secondAudioRecord === 30) {
+		stopRecording();
+	} else {
+		let cdateObj = new Date();
+		let t = (cdateObj.getTime() - dateObj.getTime())-(s*1000);
+
+		if (t>999) { s++; }
+
+		if (s>=(m*base)) {
+			ts=0;
+			m++;
+		} else {
+			ts=parseInt((ms/100)+s);
+			if(ts>=base) { ts=ts-((m-1)*base); }
+		}
+		if (m>(h*base)) {
+			tm=1;
+			h++;
+		} else {
+			tm=parseInt((ms/100)+m);
+			if(tm>=base) { tm=tm-((h-1)*base); }
+		}
+		ms = Math.round(t/10);
+		if (ms>99) {ms=0;}
+		if (ms===0) {ms='00';}
+		if (ms>0&&ms<=9) { ms = '0'+ms; }
+		if (ts>0) { ds = ts; if (ts<10) { ds = '0'+ts; }} else { ds = '00'; }
+
+		secondAudioRecord = ds;
+
+		document.getElementById('timing').innerText = ds + ',' + ms;
+		clocktimer = setTimeout("startTime()",1);
+	}
+}
+
+//Функция запуска и остановки
+function startStop() {
+	clearClock();
+	dateObj = new Date();
+	startTime();
+}
+//функция для очистки поля
+function clearClock() {
+	clearTimeout(clocktimer);
+	s=0;ts=0;ms=0;secondAudioRecord = 0;
+	document.getElementById('timing').innerText = '0,00';
 }
