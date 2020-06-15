@@ -151,6 +151,9 @@ function send() {
 		sendingData.audio = '';
 		sendingData.timing = '';
 		sendingData.cancel = 0;
+
+		document.getElementById('record-control').classList.remove('active');
+		document.getElementById('record-panel').classList.remove('active');
 	}
 }
 

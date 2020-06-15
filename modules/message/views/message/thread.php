@@ -247,7 +247,6 @@
 								</div>
 							</div>
 						</div>
-						<div id="recordingsList"></div>
 						<div class="messageField">
 							<div class="messageField__wrapper">
 								<input type="text" placeholder="Введите сообщение" class="messageField__input write_msg" maxlength="300" />
@@ -257,12 +256,18 @@
 						</div>
 						<div class="record-control" id="record-control">
 							<div class="timing" id="timing">00,00</div>
-							<div class="cancel">
+							<div class="cancel" id="cancel">
 								<button type="button" class="messageField__button msg_send_btn" id="cancelButton">Отменить</button>
 							</div>
 							<div class="stop">
 								<button type="button" class="messageField__button msg_send_btn" id="stopButton"></button>
 							</div>
+						</div>
+						<div class="record-panel" id="record-panel">
+							<div class="delete" id="delete">
+								<button type="button" class="messageField__button msg_send_btn" id="deleteButton"></button>
+							</div>
+							<div id="recordingsList"></div>
 						</div>
 					</div>
 				</div>

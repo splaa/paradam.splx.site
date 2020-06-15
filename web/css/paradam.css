@@ -2163,6 +2163,11 @@ input[readonly="true"]{
 /*dialog message*/
 #recordingsList {
 	text-align: center;
+	width: 100%;
+}
+#recordingsList audio {
+	width: 100%;
+	margin-left: 10px;
 }
 .dialogMessage {
 	display: flex;
@@ -2403,18 +2408,23 @@ input[readonly="true"]{
 	line-height: 17px;
 }
 /* message field */
-.record-control {
+.type_msg {
+	overflow: hidden;
+	position: relative;
+}
+.record-control, .record-panel {
+	border-top: none !important;
 	transition: all .3s ease;
 	position: absolute;
 	top: 100%;
 	width: 100%;
 	left: 0;
 }
-.record-control.active {
+.record-control.active, .record-panel.active {
 	transform: translatey(-100%);
 	background: #fff;
 }
-.messageField, .record-control {
+.messageField, .record-control, .record-panel {
 	padding: 15px;
 	border-top: 1px solid #00000033;
 	display: flex;
@@ -2498,6 +2508,15 @@ input[readonly="true"]{
 }
 .messageField__button#stopButton {
 	background-image: url("../images/paradam/stop.svg");
+	height: 36px;
+	width: 25px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 22px;
+	margin-left: 10px;
+}
+.messageField__button#deleteButton {
+	background-image: url("../images/paradam/delete.svg");
 	height: 36px;
 	width: 25px;
 	background-repeat: no-repeat;

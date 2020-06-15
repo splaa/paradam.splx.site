@@ -17,10 +17,12 @@ var record_control = document.getElementById('record-control');
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var cancelButton = document.getElementById("cancelButton");
+var deleteButton = document.getElementById("deleteButton");
 
 recordButton.addEventListener("mouseup", startRecording);
 stopButton.addEventListener("mouseup", stopRecording);
 cancelButton.addEventListener("mouseup", cancelRecording);
+deleteButton.addEventListener("mouseup", deleteRecording);
 
 function startRecording() {
     var constraints = { audio: true, video:false }
@@ -96,6 +98,8 @@ function stopRecording() {
         rec.exportWAV(createDownloadLink);
 
 	    clearClock();
+
+	    document.getElementById('record-panel').classList.add('active');
     }
 }
 
@@ -130,6 +134,11 @@ function createDownloadLink(blob) {
     //add the li element to the ol
     recordingsList.innerHTML = "";
     recordingsList.appendChild(div);
+}
+
+function deleteRecording() {
+	document.getElementById('record-control').classList.remove('active');
+	document.getElementById('record-panel').classList.remove('active');
 }
 
 //функция для старта секундомера
