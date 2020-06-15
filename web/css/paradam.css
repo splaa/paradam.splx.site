@@ -2408,10 +2408,11 @@ input[readonly="true"]{
 	position: absolute;
 	top: 100%;
 	width: 100%;
-	left: 100%;
+	left: 0;
 }
 .record-control.active {
-	transform: translate(-100%);
+	transform: translatey(-100%);
+	background: #fff;
 }
 .messageField, .record-control {
 	padding: 15px;
