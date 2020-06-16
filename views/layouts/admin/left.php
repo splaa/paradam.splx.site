@@ -5,10 +5,10 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                <img src="<?= Yii::$app->user->identity->avatarSmall ?>" class="img-circle" alt="<?= Yii::$app->user->identity->alt ?>"/>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?= Yii::$app->user->identity->alt ?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -33,62 +33,21 @@
                     ['label' => 'Панель Администратора', 'options' => ['class' => 'header']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
-                        'label' => 'Admin Tools',
-                        'icon' => 'file-code-o',
+                        'label' => 'Пользователи',
+                        'icon' => 'user',
                         'url' => '/admin',
                         'items' => [
-                            [
-                                'label' => 'Пользователи',
-                                'icon' => 'file-code-o',
-                                'url' => '/admin/users',
-                                'items' => [
-                                    ['label' => 'Создать пользователя', 'icon' => 'circle-o', 'url' => '/admin/users/create',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                            [
-                                'label' => 'Услуги',
-                                'icon' => 'file-code-o',
-                                'url' => '/services/service',
-                                'items' => [
-                                    ['label' => 'Услуги', 'icon' => 'circle-o', 'url' => '/services/service',],
-                                    ['label' => 'Добавить Услугу', 'icon' => 'circle-o', 'url' => '/services/service/create',],
-                                ],
-                            ],
-                        ],
+                            ['label' => 'Все пользователи', 'icon' => 'user-o', 'url' => '/admin/users'],
+                            ['label' => 'Создать пользователя', 'icon' => 'user-plus', 'url' => '/admin/users/create'],
+	                    ]
                     ],
                     [
-                        'label' => 'Инструменты Разработчика',
-                        'icon' => 'share',
-                        'url' => '#',
+                        'label' => 'Услуги',
+                        'icon' => 'user',
+                        'url' => '/admin',
                         'items' => [
-                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
+                            ['label' => 'Услуги', 'icon' => 'address-card', 'url' => '/services/service',],
+                            ['label' => 'Добавить Услугу', 'icon' => 'plus', 'url' => '/services/service/create',],
                         ],
                     ],
                 ],

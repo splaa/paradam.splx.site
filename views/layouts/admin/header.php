@@ -33,8 +33,7 @@ use yii\helpers\Html;
                                 <li><!-- start message -->
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                                 alt="User Image"/>
+                                            <img src="<?= Yii::$app->user->identity->avatarSmall ?>" class="img-circle" alt="<?= Yii::$app->user->identity->alt ?>"/>
                                         </div>
                                         <h4>
                                             Support Team
@@ -47,8 +46,7 @@ use yii\helpers\Html;
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="<?= $directoryAsset ?>/img/user3-128x128.jpg" class="img-circle"
-                                                 alt="user image"/>
+                                            <img src="<?= Yii::$app->user->identity->avatarSmall ?>" class="img-circle" alt="<?= Yii::$app->user->identity->alt ?>"/>
                                         </div>
                                         <h4>
                                             AdminLTE Design Team
@@ -60,8 +58,7 @@ use yii\helpers\Html;
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="<?= $directoryAsset ?>/img/user4-128x128.jpg" class="img-circle"
-                                                 alt="user image"/>
+                                            <img src="<?= Yii::$app->user->identity->avatarSmall ?>" class="img-circle" alt="<?= Yii::$app->user->identity->alt ?>"/>
                                         </div>
                                         <h4>
                                             Developers
@@ -229,18 +226,16 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <img src="<?= Yii::$app->user->identity->avatarSmall ?>" class="user-image" alt="<?= Yii::$app->user->identity->alt ?>"/>
+                        <span class="hidden-xs"><?= Yii::$app->user->identity->alt ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                 alt="User Image"/>
+                            <img src="<?= Yii::$app->user->identity->avatarSmall ?>" class="img-circle" alt="<?= Yii::$app->user->identity->alt ?>"/>
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+	                            <?= Yii::$app->user->identity->alt ?>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -269,11 +264,6 @@ use yii\helpers\Html;
                             </div>
                         </li>
                     </ul>
-                </li>
-
-                <!-- User Account: style can be found in dropdown.less -->
-                <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
         </div>
