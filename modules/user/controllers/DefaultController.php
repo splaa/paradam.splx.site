@@ -48,7 +48,7 @@
 			$model = new PhoneLoginForm();
 
 			if ($model->load(Yii::$app->request->post()) && $model->login()) {
-				return $this->goBack();
+				return $this->redirect(['/main/default']);
 			} else {
 				$show_captcha = false;
 				if (Yii::$app->request->isPost) {
