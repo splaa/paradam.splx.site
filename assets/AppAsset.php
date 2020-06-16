@@ -35,7 +35,6 @@
 			'js/main.js',
 		];
 		public $depends = [
-			'assets/AdminAsset',
 			'yii\web\YiiAsset',
 			'yii\bootstrap\BootstrapPluginAsset',
 		];
