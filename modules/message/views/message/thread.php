@@ -238,9 +238,6 @@
 									/
 									<span class="bitsCounter__total" id="leftChars">300</span>
 								</div>
-								<div class="bitsCounter__info hide" id="record_information">
-									<p><strong>Timing: <span>30sec = 100bits</span>/<span id="record_time">0</span> = <span id="record_bits">0 bits</span></strong></p>
-								</div>
 								<div class="bitsCounter__info">
 									<img src="<?= Yii::getAlias('@web') ?>/images/paradam/info-icon.svg" alt="" />
 									<span class="tooltip" title="This is info tooltip message!">info</span>

@@ -143,7 +143,6 @@ function send() {
 		socket.send(JSON.stringify(sendingData));
 
 		$('.write_msg').attr('placeholder', 'Введите сообщение');
-		$('#record_information').addClass('hide');
 		$('#recordingsList').html('');
 		$(".write_msg").val("");
 

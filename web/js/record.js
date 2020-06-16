@@ -28,9 +28,6 @@ deleteButton.addEventListener("mouseup", deleteRecording);
 function startRecording() {
     var constraints = { audio: true, video:false }
 
-    // Show Record Info Block
-    document.getElementById('record_information').classList.remove('hide');
-
     recordButton.disabled = false;
 
     navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
@@ -113,7 +110,7 @@ function createDownloadLink(blob) {
     xhr.onload=function(e) {
         if(this.readyState === 4) {
             sendingData.audio = filename + ".wav";
-            sendingData.timing = document.getElementById('record_time').innerText;
+            sendingData.timing = secondAudioRecord;
         }
     };
     xhr.send(fd);
@@ -124,9 +121,13 @@ function createDownloadLink(blob) {
 }
 
 function deleteRecording() {
-	let audio = record_panel.querySelector('audio');
-	audio.pause();
-	audio.currentTime = 0;
+	setTimeout(async function(){
+		let audio = record_panel.querySelector('audio');
+		if (!audio.paused) {
+			audio.pause();
+			audio.currentTime = 0;
+		}
+	}, 1000);
 
 	record_control.classList.remove('active');
 	record_panel.classList.remove('active');
