@@ -18,7 +18,9 @@ use yii\helpers\Html;
         <div class="navbar-custom-menu">
 
             <ul class="nav navbar-nav">
-
+				<li>
+					<a href="/" target="_blank"><i class="fa fa-internet-explorer"></i></a>
+				</li>
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
