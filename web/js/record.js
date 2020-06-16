@@ -13,6 +13,7 @@ var h=1,m=1,tm=1,s=0,ts=0,ms=0,init=0;
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext //audio context to help us record
 var record_control = document.getElementById('record-control');
+var record_panel = document.getElementById('record-panel');
 
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
@@ -48,20 +49,6 @@ function startRecording() {
 	        startStop();
 
 	        record_control.classList.add("active");
-
-            // setInterval(function () {
-            //     if (rec.recording) {
-            //         let record_time = document.getElementById('record_time');
-            //         let record_bits = document.getElementById('record_bits');
-            //         record_time.innerText = Math.round(audioContext.currentTime) + 'sec';
-            //         record_bits.innerText = Math.ceil(parseInt(record_time.innerText) / 30) * 100 + ' bits';
-			//
-            //         if (parseInt(record_time.innerText) > 30) {
-            //             record_time.style.color = 'darkred';
-            //             record_time.style.fontWeight = 'bold';
-            //         }
-            //     }
-            // }, '1000');
         }
 
         counterClick++;
@@ -99,13 +86,13 @@ function stopRecording() {
 
 	    clearClock();
 
-	    document.getElementById('record-panel').classList.add('active');
+	    record_panel.classList.add('active');
     }
 }
 
 function cancelRecording() {
-	record_control.classList.remove("active");
 	stopRecording();
+	deleteRecording();
 }
 
 function createDownloadLink(blob) {
@@ -137,8 +124,13 @@ function createDownloadLink(blob) {
 }
 
 function deleteRecording() {
-	document.getElementById('record-control').classList.remove('active');
-	document.getElementById('record-panel').classList.remove('active');
+	let audio = record_panel.querySelector('audio');
+	audio.pause();
+	audio.currentTime = 0;
+
+	record_control.classList.remove('active');
+	record_panel.classList.remove('active');
+
 }
 
 //функция для старта секундомера
